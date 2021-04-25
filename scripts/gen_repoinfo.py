@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
 
-from os import listdir
-from os.path import isfile, join
+from os import listdir, makedirs
+from os.path import isfile, join, exists
 
 import yaml
 import json
+import argparse
 
-pkgpath = 'packages'
+parser = argparse.ArgumentParser()
+parser.add_argument('-i', '--input-dir', required=True)
+parser.add_argument('-o', '--output-dir', required=True)
+args = parser.parse_args()
+
+pkgpath = args.input_dir
+outdir = args.output_dir
 
 manifest_files = [f for f in listdir(pkgpath) if isfile(join(pkgpath, f))]
 
@@ -30,6 +37,12 @@ def parse_package_info(filename: str):
 
 packages = list(filter(lambda x: x, map(parse_package_info, manifest_files)))
 
-print(json.dumps({
-    'packages': packages
-}, indent=2))
+if not exists(outdir):
+    makedirs(outdir, exist_ok)
+
+with open(join(outdir, 'apps.json'), 'w') as f:
+    json.dump({
+        'packages': packages
+    }, f, indent=2)
+
+print('Generated for %d packages.' % len(packages))

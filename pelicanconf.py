@@ -7,6 +7,8 @@ SITEURL = ''
 
 PATH = 'content'
 
+STATIC_PATHS = ['api']
+
 TIMEZONE = 'Asia/Tokyo'
 
 DEFAULT_LANG = 'en'
