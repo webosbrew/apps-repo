@@ -1,1 +1,2 @@
 pelican[markdown]
+yaml
