@@ -21,7 +21,7 @@ if not exists(outdir):
 template = '''\
 Title: {title}
 status: hidden
-slug: {id}
+save_as: apps/{id}.html
 
 This is description of an application
 '''

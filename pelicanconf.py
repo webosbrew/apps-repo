@@ -8,6 +8,8 @@ SITEURL = ''
 PATH = 'content'
 
 STATIC_PATHS = ['api', 'extra/CNAME']
+PAGE_PATHS = ['pages', 'apps']
+
 EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'},
 }
