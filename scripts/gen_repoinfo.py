@@ -38,7 +38,7 @@ def parse_package_info(filename: str):
 packages = list(filter(lambda x: x, map(parse_package_info, manifest_files)))
 
 if not exists(outdir):
-    makedirs(outdir, exist_ok)
+    makedirs(outdir)
 
 with open(join(outdir, 'apps.json'), 'w') as f:
     json.dump({
