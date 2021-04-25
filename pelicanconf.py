@@ -7,7 +7,10 @@ SITEURL = ''
 
 PATH = 'content'
 
-STATIC_PATHS = ['api']
+STATIC_PATHS = ['api', 'extra/CNAME']
+EXTRA_PATH_METADATA = {
+    'extra/CNAME': {'path': 'CNAME'},
+}
 
 TIMEZONE = 'Asia/Tokyo'
 
