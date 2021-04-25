@@ -1,3 +1,3 @@
 title: Homebrew Channel
 iconUri: https://raw.githubusercontent.com/webosbrew/webos-homebrew-channel/main/assets/icon160.png
-manifestUrl: https://github.com/mariotaku/webos-homebrew-channel/releases/latest/download/org.webosbrew.hbchannel.manifest.json
+manifestUrl: https://github.com/webosbrew/webos-homebrew-channel/releases/latest/download/org.webosbrew.hbchannel.manifest.json
