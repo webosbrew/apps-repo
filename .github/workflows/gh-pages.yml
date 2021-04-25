@@ -20,7 +20,9 @@ jobs:
         run: python3 -m pip install -r ./requirements.txt
 
       - name: Generate repository data
-        run: python3 ./scripts/gen_repoinfo.py -i ./packages/ -o ./content/api/
+        run: |
+          python3 -m repogen.jsondata -i ./packages/ -o ./content/api/
+          python3 -m repogen.apppage -i ./packages/ -o ./content/pages/apps/
 
       - run: pelican content
 
