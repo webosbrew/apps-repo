@@ -9,7 +9,7 @@ from repogen.common import list_packages
 with open(join(dirname(__file__), 'templates', 'apps', 'detail.md')) as f:
     details_template = f.read()
 
-with open(join(dirname(__file__), 'templates', 'apps', 'index.md')) as f:
+with open(join(dirname(__file__), 'templates', 'apps', 'index.html')) as f:
     index_template = f.read()
 
 
@@ -23,8 +23,8 @@ def generate(indir, outdir):
         with open(join(outdir, '%s.md' % pkg['id']), 'w') as f:
             f.write(pystache.render(details_template, pkg))
 
-    with open(join(outdir, 'index.md'), 'w') as f:
-        f.write(pystache.render(index_template, {'packages': packages}))
+    with open(join(outdir, 'index.html'), 'w') as f:
+        f.write(pystache.render(index_template, {'packages':  packages}))
 
     print('Generated application page for %d packages.' % len(packages))
 

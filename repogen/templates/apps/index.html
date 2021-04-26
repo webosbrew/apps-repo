@@ -1,0 +1,61 @@
+<html>
+
+<head>
+  <title>Apps</title>
+  <meta name="status" content="hidden" />
+  <meta name="save_as" content="apps/index.html" />
+</head>
+
+<body>
+  <style>
+    ul.apps-list {
+      list-style-type: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    ul.apps-list .app-item {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    ul.apps-list .app-item a {
+      display: block;
+      height: 100%;
+    }
+
+    ul.apps-list .app-item .app-icon {
+      width: 80px;
+      height: 80px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 10px;
+    }
+
+    ul.apps-list .app-item .app-icon img {
+      max-width: 100%;
+      max-height: 100%;
+      vertical-align: middle;
+    }
+
+    ul.apps-list .app-item .app-title {
+      padding-bottom: 5px;
+    }
+  </style>
+  <ul class="apps-list">
+    {{#packages}}
+    <li class="app-item">
+      <a href="apps/{{id}}">
+        <div class="app-icon">
+          <img src="{{iconUri}}" />
+        </div>
+        <div class="app-title">{{title}}</div>
+      </a>
+    </li>
+    {{/packages}}
+  </ul>
+</body>
+
+</html>
