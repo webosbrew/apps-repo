@@ -1,8 +1,7 @@
-Title: webOS Homebrew Project - Central Repository
+Title: Central Repository - webOS Homebrew Project
 URL: 
 save_as: index.html
-
-# Central Repository for webOS Homebrew Project
+status: hidden
 
 ## Submit Your Application
 

@@ -1,3 +1,4 @@
 title: Moonlight
 iconUri: https://github.com/mariotaku/moonlight-tv/raw/main/deploy/webos/icon.png
 manifestUrl: https://github.com/mariotaku/moonlight-tv/releases/latest/download/com.limelight.webos.manifest.json
+category: games

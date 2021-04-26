@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 
 AUTHOR = 'webOS Homebrew Project'
-SITENAME = 'webOS Homebrew Central Repo'
+SITENAME = 'webOS Homebrew Project'
 SITEURL = ''
 
 PATH = 'content'
@@ -25,15 +25,21 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
+MENUITEMS = (
+    ('Home', '/'),
+    ('Apps', 'apps'),
+)
+
 # Blogroll
-LINKS = (('Pelican', 'https://getpelican.com/'),
-         ('Python.org', 'https://www.python.org/'),
-         ('Jinja2', 'https://palletsprojects.com/p/jinja/'),
-         ('You can modify those links in your config file', '#'),)
+LINKS = (
+    ('webOS Homebrew', 'https://github.com/webosbrew/'),
+    ('openlgtv', 'https://http://openlgtv.github.io/'),
+)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (
+    ('openlgtv Discord', 'https://discord.gg/xWqRVEm'),
+)
 
 DEFAULT_PAGINATION = 30
 

@@ -1,8 +1,16 @@
 import json
 from os import makedirs
-from os.path import exists, join
+from os.path import dirname, exists, join
+
+import pystache
 
 from repogen.common import list_packages
+
+with open(join(dirname(__file__), 'templates', 'apps', 'detail.md')) as f:
+    details_template = f.read()
+
+with open(join(dirname(__file__), 'templates', 'apps', 'index.md')) as f:
+    index_template = f.read()
 
 
 def generate(indir, outdir):
@@ -11,16 +19,12 @@ def generate(indir, outdir):
     if not exists(outdir):
         makedirs(outdir)
 
-    template = '''\
-    Title: {title}
-    status: hidden
-    save_as: apps/{id}.html
-
-    This is description of an application
-    '''
     for pkg in packages:
         with open(join(outdir, '%s.md' % pkg['id']), 'w') as f:
-            f.write(template.format_map(pkg))
+            f.write(pystache.render(details_template, pkg))
+
+    with open(join(outdir, 'index.md'), 'w') as f:
+        f.write(pystache.render(index_template, {'packages': packages}))
 
     print('Generated application page for %d packages.' % len(packages))
 

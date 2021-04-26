@@ -19,10 +19,11 @@ def parse_package_info(path: str):
         'title': content['title'],
         'iconUri': content['iconUri'],
         'manifestUrl': content['manifestUrl'],
+        'category': content['category'],
     }
 
 
 def list_packages(pkgdir):
     paths = [join(pkgdir, f)
              for f in listdir(pkgdir) if isfile(join(pkgdir, f))]
-    return list(filter(lambda x: x, map(parse_package_info, paths)))
+    return sorted(filter(lambda x: x, map(parse_package_info, paths)), key=lambda x: x['title'])
