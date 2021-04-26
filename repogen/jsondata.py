@@ -1,10 +1,11 @@
 import json
+import math
 from os import makedirs
 from os.path import exists, join
-import math
+
+import more_itertools
 
 from repogen.common import list_packages
-import more_itertools
 
 
 def generate(indir, outdir):
