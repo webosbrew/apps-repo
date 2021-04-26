@@ -20,6 +20,7 @@ def parse_package_info(path: str):
         'iconUri': content['iconUri'],
         'manifestUrl': content['manifestUrl'],
         'category': content['category'],
+        'description': content.get('description', ''),
     }
 
 

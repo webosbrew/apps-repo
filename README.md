@@ -19,9 +19,17 @@ TODO: Submit without GitHub
 Create a file named `your-package-name.yml` in `packages`. Example:
 
 ```yaml
-title: Homebrew Channel # Display name of your application
-iconUri: https://raw.githubusercontent.com/webosbrew/webos-homebrew-channel/main/assets/icon160.png # Publicly accesible HTTP/HTTPS URL, or data uri to icon image.
-manifestUrl: https://github.com/webosbrew/webos-homebrew-channel/releases/latest/download/org.webosbrew.hbchannel.manifest.json # Publicly accessible manifest file of your application
+# Display name of your application
+title: Homebrew Channel
+# Publicly accesible HTTP/HTTPS URL, or data uri to icon image.
+iconUri: https://raw.githubusercontent.com/webosbrew/webos-homebrew-channel/main/assets/icon160.png
+# Publicly accessible manifest file of your application
+manifestUrl: https://github.com/webosbrew/webos-homebrew-channel/releases/latest/download/org.webosbrew.hbchannel.manifest.json
+# Category for your application
+category: tools
+# Long description for your application, in Markdown format
+description: |
+  Markdown text
 ```
 
 ### Submit a Pull Request

@@ -2,4 +2,10 @@ Title: {{title}}
 Status: hidden
 Save_As: apps/{{id}}.html
 
-This is description of an application
+<style>
+    section#content img {
+        max-width: 100%;
+    }
+</style>
+
+{{description}}
