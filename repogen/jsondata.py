@@ -13,22 +13,27 @@ def generate(indir, outdir):
 
     if not exists(outdir):
         makedirs(outdir)
+    appsdir = join(outdir, 'apps')
+    if not exists(appsdir):
+        makedirs(appsdir)
 
     def package_item(item):
         return {k: item[k] for k in ('id', 'title', 'iconUri', 'manifestUrl') if k in item}
 
     items_per_page = 30
     packages_length = len(packages)
-    total_pages = math.ceil(packages_length / items_per_page)
-    for page, items in enumerate(more_itertools.chunked(packages, items_per_page)):
-        json_name = 'apps_%d.json' % page if page > 0 else 'apps.json'
-        with open(join(outdir, json_name), 'w') as f:
+    max_page = math.ceil(packages_length / items_per_page)
+    for index, items in enumerate(more_itertools.chunked(packages, items_per_page)):
+        page = index + 1
+        json_file = join(appsdir, '%d.json' %
+                         page) if page > 1 else join(outdir, 'apps.json')
 
+        with open(json_file, 'w') as f:
             json.dump({
                 'paging': {
                     'page': page,
-                    'pageMax': total_pages - 1,
-                    'pageTotal': total_pages,
+                    'count': len(items),
+                    'maxPage': max_page,
                     'itemsTotal': packages_length,
                 },
                 'packages': list(map(package_item, items))
