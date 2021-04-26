@@ -20,11 +20,10 @@ jobs:
         run: python3 -m pip install -r ./requirements.txt
 
       - name: Generate repository data
-        run: |
-          python3 -m repogen.jsondata -i ./packages/ -o ./content/api/
-          python3 -m repogen.apppage -i ./packages/ -o ./content/pages/apps/
+        run: python3 -m repogen -i ./packages -o ./content
 
-      - run: pelican content
+      - name: Generate site content
+        run: pelican content
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
