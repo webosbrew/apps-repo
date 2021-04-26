@@ -1,3 +1,4 @@
 pelican[markdown]
 pyyaml
 pystache
+more_itertools

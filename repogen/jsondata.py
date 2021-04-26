@@ -1,8 +1,10 @@
 import json
 from os import makedirs
 from os.path import exists, join
+import math
 
 from repogen.common import list_packages
+import more_itertools
 
 
 def generate(indir, outdir):
@@ -11,10 +13,25 @@ def generate(indir, outdir):
     if not exists(outdir):
         makedirs(outdir)
 
-    with open(join(outdir, 'apps.json'), 'w') as f:
-        json.dump({
-            'packages': packages
-        }, f, indent=2)
+    def package_item(item):
+        return {k: item[k] for k in ('id', 'title', 'iconUri', 'manifestUrl') if k in item}
+
+    items_per_page = 30
+    packages_length = len(packages)
+    total_pages = math.ceil(packages_length / items_per_page)
+    for page, items in enumerate(more_itertools.chunked(packages, items_per_page)):
+        json_name = 'apps_%d.json' % page if page > 0 else 'apps.json'
+        with open(join(outdir, json_name), 'w') as f:
+
+            json.dump({
+                'paging': {
+                    'page': page,
+                    'pageMax': total_pages - 1,
+                    'pageTotal': total_pages,
+                    'itemsTotal': packages_length,
+                },
+                'packages': list(map(package_item, items))
+            }, f, indent=2)
 
     print('Generated json data for %d packages.' % len(packages))
 
