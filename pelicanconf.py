@@ -33,7 +33,7 @@ MENUITEMS = (
 # Blogroll
 LINKS = (
     ('webOS Homebrew', 'https://github.com/webosbrew/'),
-    ('openlgtv', 'https://http://openlgtv.github.io/'),
+    ('openlgtv', 'https://openlgtv.github.io/'),
 )
 
 # Social widget
