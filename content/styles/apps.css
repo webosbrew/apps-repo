@@ -1,0 +1,43 @@
+ul.apps-list {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+ul.apps-list .app-item {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+ul.apps-list .app-item a {
+    display: block;
+    height: 100%;
+}
+
+ul.apps-list .app-item .app-icon {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+}
+
+ul.apps-list .app-item .app-icon img {
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+}
+
+ul.apps-list .app-item .app-title {
+    padding-bottom: 5px;
+}
+
+.apps-paginator {
+    text-align: center;
+}
+
+.apps-paginator a.current {
+    font-weight: bold;
+}

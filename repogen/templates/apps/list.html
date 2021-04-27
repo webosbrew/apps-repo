@@ -1,0 +1,40 @@
+<html>
+
+<head>
+  <title>Apps</title>
+  <meta name="status" content="hidden" />
+  {{#pagination}}
+  <meta name="slug" content="apps-page-{{page}}" />
+  {{/pagination}}
+  <meta name="save_as" content="{{pagePath}}" />
+</head>
+
+<body>
+  <link rel="stylesheet" href="/theme/css/apps.css" />
+  <ul class="apps-list">
+    {{#packages}}
+    <li class="app-item">
+      <a href="/apps/{{id}}">
+        <div class="app-icon">
+          <img src="{{iconUri}}" />
+        </div>
+        <div class="app-title">{{title}}</div>
+      </a>
+    </li>
+    {{/packages}}
+  </ul>
+  {{#pagination}}
+  <div class="apps-paginator">
+    {{#prevPath}}<a href="/{{.}}">Previous</a>{{/prevPath}}
+    {{^prevPath}}<span>Previous</span>{{/prevPath}}
+    {{#pageLinks}}
+    {{#.}}<a class="page{{#current}} current{{/current}}" href="/{{path}}">{{page}}</a>{{/.}}
+    {{^.}}<span>&hellip;</span>{{/.}}
+    {{/pageLinks}}
+    {{#nextPath}}<a href="/{{.}}">Next</a>{{/nextPath}}
+    {{^nextPath}}<span>Next</span>{{/nextPath}}
+  </div>
+  {{/pagination}}
+</body>
+
+</html>
