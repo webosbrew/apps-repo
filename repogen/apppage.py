@@ -30,11 +30,10 @@ class AppListingGenerator:
         prevp = pagination['prev']
         nextp = pagination['next']
 
-        def _page_path(p: int):
-            return 'apps/index.html' if p == 1 else 'apps/page/%d.html' % p
-        page_path = _page_path(page)
-        prev_href = _page_path(prevp) if prevp else None
-        next_href = _page_path(nextp) if nextp else None
+        def _nav_path(p: int):
+            return 'apps' if p == 1 else 'apps/page/%d' % p
+        prev_href = _nav_path(prevp) if prevp else None
+        next_href = _nav_path(nextp) if nextp else None
 
         nav_center_start = page - 4
         nav_center_end = page + 4
@@ -45,7 +44,7 @@ class AppListingGenerator:
             nav_center_end = maxp
 
         def _nav_item(p: int):
-            return {'page': p, 'path': _page_path(p), 'current': p == page}
+            return {'page': p, 'path': _nav_path(p), 'current': p == page}
         page_links = list(map(_nav_item, range(
             nav_center_start, nav_center_end + 1)))
         if page > 4:
@@ -55,9 +54,11 @@ class AppListingGenerator:
             page_links = page_links[:-1]
             page_links = page_links + [None, _nav_item(maxp)]
 
+        def _page_path(p: int):
+            return 'apps/index.html' if p == 1 else 'apps/page/%d.html' % p
         with open(join(outdir, ('apps-page-%d.html' % page)), 'w') as f:
             f.write(pystache.render(self.index_template, {
-                'packages': items, 'pagePath': page_path,
+                'packages': items, 'pagePath': _page_path(page),
                 'pagination': {
                     'page': page, 'prevPath': prev_href, 'nextPath': next_href,
                     'pageLinks': page_links
