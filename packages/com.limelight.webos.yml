@@ -3,8 +3,6 @@ iconUri: https://github.com/mariotaku/moonlight-tv/raw/main/deploy/webos/icon.pn
 manifestUrl: https://github.com/mariotaku/moonlight-tv/releases/latest/download/com.limelight.webos.manifest.json
 category: games
 description: |
-  # Moonlight TV
-
   Moonlight TV is a GUI front end for [Moonlight GameStream Client](https://moonlight-stream.org/). With some components from [moonlight-embedded](https://github.com/irtimmer/moonlight-embedded).
   It was originally designed for LG webOS TVs, but may support running on more devices in the future.
 
