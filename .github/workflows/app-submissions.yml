@@ -2,6 +2,8 @@ name: app submissions
 
 on:
   pull_request:
+    branches:
+      - main
     paths:
       - 'packages/**'
 
@@ -19,9 +21,19 @@ jobs:
       - name: Install dependencies
         run: python3 -m pip install -r ./requirements.txt
 
-      - id: changed_files
-        uses: jitterbit/get-changed-files@v1
-      - run: |
-          for changed_file in ${{ steps.changed_files.outputs.all }}; do
-            echo "Check package info ${changed_file}."
+      - name: Check changed packages
+        uses: dorny/paths-filter@v2
+        id: changed_files
+        with:
+          list-files: shell
+
+          filters: |
+            packages:
+              - added|modified: 'packages/**'
+
+      - name: Lint package information
+        if: ${{ steps.changed_files.outputs.packages == 'true' }}
+        run: |
+          for changed_file in ${{ steps.changed_files.outputs.packages_files }}; do
+            python3 -m repogen.lintpkg -f ${changed_file}
           done
