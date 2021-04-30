@@ -8,4 +8,4 @@ Save_As: apps/{{id}}.html
     }
 </style>
 
-{{description}}
+{{&description}}
