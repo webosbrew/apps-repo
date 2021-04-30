@@ -19,7 +19,8 @@ jobs:
       - name: Install dependencies
         run: python3 -m pip install -r ./requirements.txt
 
-      - uses: dorny/paths-filter@v2
+      - name: Check changed packages
+        uses: dorny/paths-filter@v2
         id: changed_files
         with:
           list-files: shell
@@ -30,7 +31,7 @@ jobs:
 
       - name: Lint package information
         if: ${{ steps.changed_files.outputs.packages == 'true' }}
-      - run: |
+        run: |
           for changed_file in ${{ steps.changed_files.outputs.packages }}; do
             echo "Check package info ${changed_file}."
           done
