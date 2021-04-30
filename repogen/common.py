@@ -16,15 +16,13 @@ def parse_package_info(path: str):
     pkgid = filename[:suffixidx]
     if not ('title' in content) and ('iconUri' in content) and ('manifestUrl' in content):
         return None
-    description = bleach.clean(content.get('description', ''))
     return {
         'id': pkgid,
         'title': content['title'],
         'iconUri': content['iconUri'],
         'manifestUrl': content['manifestUrl'],
         'category': content['category'],
-        'description': description,
-        'descriptionHtml': markdown.markdown(description),
+        'description': bleach.clean(content.get('description', '')),
     }
 
 
