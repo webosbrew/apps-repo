@@ -1,0 +1,27 @@
+name: app submissions
+
+on:
+  pull_request:
+    paths:
+      - packages
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: python3 -m pip install -r ./requirements.txt
+
+      - id: changed_files
+        uses: jitterbit/get-changed-files@v1
+      - run: |
+          for changed_file in ${{ steps.changed_files.outputs.all }}; do
+            echo "Check package info ${changed_file}."
+          done
