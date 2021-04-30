@@ -3,7 +3,7 @@ name: app submissions
 on:
   pull_request:
     paths:
-      - packages
+      - 'packages/**'
 
 jobs:
   deploy:
