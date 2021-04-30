@@ -35,5 +35,5 @@ jobs:
         if: ${{ steps.changed_files.outputs.packages == 'true' }}
         run: |
           for changed_file in ${{ steps.changed_files.outputs.packages_files }}; do
-            echo "Check package info ${changed_file}."
+            python3 -m repogen.lintpkg -f ${changed_file}
           done

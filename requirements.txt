@@ -3,3 +3,6 @@ pyyaml
 pystache
 more_itertools
 bleach
+requests
+urllib3
+markdown
