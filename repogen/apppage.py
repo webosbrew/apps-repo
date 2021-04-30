@@ -59,9 +59,10 @@ class AppListingGenerator:
         with open(join(outdir, ('apps-page-%d.html' % page)), 'w') as f:
             f.write(pystache.render(self.index_template, {
                 'packages': items, 'pagePath': _page_path(page),
+                'firstPage': page == 1,
                 'pagination': {
-                    'page': page, 'prevPath': prev_href, 'nextPath': next_href,
-                    'pageLinks': page_links
+                    'page': page, 'maxPage': maxp, 'pageLinks': page_links,
+                    'prevPath': prev_href, 'nextPath': next_href
                 }
             }))
 

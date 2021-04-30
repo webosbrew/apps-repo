@@ -28,7 +28,8 @@ AUTHOR_FEED_RSS = None
 
 MENUITEMS = (
     ('Home', '/'),
-    ('Apps', '/apps'),
+    ('Applications', '/apps'),
+    ('Submit Application', '/submit'),
 )
 
 # Blogroll
