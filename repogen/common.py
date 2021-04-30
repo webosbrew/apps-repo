@@ -2,6 +2,7 @@ from os import listdir
 from os.path import basename, isfile, join
 
 import bleach
+import markdown
 import yaml
 
 
@@ -21,7 +22,7 @@ def parse_package_info(path: str):
         'iconUri': content['iconUri'],
         'manifestUrl': content['manifestUrl'],
         'category': content['category'],
-        'description': bleach.clean(content.get('description', '')),
+        'description': bleach.clean(markdown.markdown(content.get('description', ''))),
     }
 
 
