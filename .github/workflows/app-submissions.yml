@@ -19,9 +19,18 @@ jobs:
       - name: Install dependencies
         run: python3 -m pip install -r ./requirements.txt
 
-      - id: changed_files
-        uses: jitterbit/get-changed-files@v1
+      - uses: dorny/paths-filter@v2
+        id: changed_files
+        with:
+          list-files: shell
+
+          filters: |
+            packages:
+              - added|modified: 'packages/**'
+
+      - name: Lint package information
+        if: ${{ steps.changed_files.outputs.packages == 'true' }}
       - run: |
-          for changed_file in ${{ steps.changed_files.outputs.all }}; do
+          for changed_file in ${{ steps.changed_files.outputs.packages }}; do
             echo "Check package info ${changed_file}."
           done
