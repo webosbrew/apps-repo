@@ -2,6 +2,7 @@ from os import listdir
 from os.path import basename, isfile, join
 
 import bleach
+import markdown
 import yaml
 
 
