@@ -4,9 +4,9 @@
 
 Before submitting your application, please make sure it complies following basic rules:
 
-1. **NO PIRACY**. We refuse to endorse or host any kind of information related to priacy, as well as breaking DRM protected content and applications. For IPTV services **only legal IPTV services are allowed**.
+1. **NO PIRACY**. We refuse to endorse or host any kind of information related to piracy, as well as breaking DRM protected content and applications. For IPTV services **only legal IPTV services are allowed**.
 2. Be considerate to users' TV. It's not a cheap toy, so try your best not breaking it.
-3. If you are making a port to existing applications, please make sure that you are following original project's open source license.
+3. If you are making a port to existing applications, please make sure that you are following the original project's open source license.
 
 To submit your application to this central repository, refer to following steps:
 
