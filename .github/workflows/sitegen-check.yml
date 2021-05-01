@@ -1,0 +1,28 @@
+name: site generator checks
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '!packages/**'
+
+jobs:
+  lint:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: python3 -m pip install -r ./requirements.txt
+
+      - name: '[Dry run] Generate repository data'
+        run: python3 -m repogen -i ./packages -o ./content
+
+      - name: '[Dry run] Generate site content'
+        run: pelican content
