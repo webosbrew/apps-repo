@@ -1,5 +1,6 @@
 from os import listdir
 from os.path import basename, isfile, join
+from urllib.parse import urljoin
 
 import bleach
 import requests
@@ -18,6 +19,7 @@ def parse_package_info(path: str):
         return None
     manifest = requests.get(
         url=content['manifestUrl'], allow_redirects=True).json()
+    manifest['ipkUrl'] = urljoin(content['manifestUrl'], manifest['ipkUrl'])
     return {
         'id': pkgid,
         'title': content['title'],
