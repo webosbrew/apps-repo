@@ -6,10 +6,12 @@ from os.path import exists, join
 import more_itertools
 
 from repogen.common import list_packages
+from markdown import Markdown
 
 
 def generate(indir, outdir):
     packages = list_packages(indir)
+    markdown = Markdown()
 
     if not exists(outdir):
         makedirs(outdir)
@@ -18,7 +20,12 @@ def generate(indir, outdir):
         makedirs(appsdir)
 
     def package_item(item):
-        return {k: item[k] for k in ('id', 'title', 'iconUri', 'manifestUrl') if k in item}
+        package = {k: item[k] for k in (
+            'id', 'title', 'iconUri', 'manifestUrl', 'manifest') if k in item}
+        package['shortDescription'] = item['manifest'].get(
+            'appDescription', None)
+        package['fullDescriptionUrl'] = '%s-full_description.html' % item['id']
+        return package
 
     items_per_page = 30
     packages_length = len(packages)
@@ -27,7 +34,6 @@ def generate(indir, outdir):
         page = index + 1
         json_file = join(appsdir, '%d.json' %
                          page) if page > 1 else join(outdir, 'apps.json')
-
         with open(json_file, 'w') as f:
             json.dump({
                 'paging': {
@@ -38,7 +44,11 @@ def generate(indir, outdir):
                 },
                 'packages': list(map(package_item, items))
             }, f, indent=2)
-
+        for item in items:
+            full_desc_file = join(
+                outdir, '%s-full_description.html' % item['id'])
+            with open(full_desc_file, 'w') as f:
+                f.write(markdown.convert(item['description']))
     print('Generated json data for %d packages.' % len(packages))
 
 

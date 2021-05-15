@@ -2,7 +2,7 @@ from os import listdir
 from os.path import basename, isfile, join
 
 import bleach
-import markdown
+import requests
 import yaml
 
 
@@ -16,11 +16,14 @@ def parse_package_info(path: str):
     pkgid = filename[:suffixidx]
     if not ('title' in content) and ('iconUri' in content) and ('manifestUrl' in content):
         return None
+    manifest = requests.get(
+        url=content['manifestUrl'], allow_redirects=True).json()
     return {
         'id': pkgid,
         'title': content['title'],
         'iconUri': content['iconUri'],
         'manifestUrl': content['manifestUrl'],
+        'manifest': manifest,
         'category': content['category'],
         'description': bleach.clean(content.get('description', '')),
     }
