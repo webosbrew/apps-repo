@@ -11,6 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache package manifests
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-package-manifests
+        with:
+          path: ./cache
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-v1
+
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
