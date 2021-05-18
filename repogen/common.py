@@ -1,5 +1,5 @@
 import json
-from os import listdir, path
+from os import listdir, mkdir, path
 from os.path import basename, isfile, join
 from urllib.parse import urljoin
 
@@ -9,6 +9,8 @@ import yaml
 
 
 def obtain_manifest(pkgid, url: str):
+    if not path.exists('cache'):
+        mkdir('cache')
     cache_file = path.join('cache', 'manifest_%s.json' % pkgid)
     try:
         manifest = requests.get(url=url, allow_redirects=True).json()
