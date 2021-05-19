@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: 41 */3 * * *
 
 jobs:
   deploy:
