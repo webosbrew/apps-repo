@@ -8,4 +8,10 @@ Save_As: apps/{{id}}.html
     }
 </style>
 
+Version: {{manifest.version}}
+
+Last checked: {{lastmodified}}
+
+---
+
 {{&description}}

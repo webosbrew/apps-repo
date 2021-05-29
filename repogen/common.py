@@ -1,11 +1,13 @@
 import json
 from os import listdir, mkdir, path
+import os
 from os.path import basename, isfile, join
 from urllib.parse import urljoin
 
 import bleach
 import requests
 import yaml
+from datetime import datetime
 
 
 def obtain_manifest(pkgid, url: str):
@@ -17,11 +19,11 @@ def obtain_manifest(pkgid, url: str):
         manifest['ipkUrl'] = urljoin(url, manifest['ipkUrl'])
         with open(cache_file, 'w') as f:
             json.dump(manifest, f)
-        return manifest
+        return manifest, datetime.now()
     except requests.exceptions.RequestException:
         if (path.exists(cache_file)):
             with open(cache_file) as f:
-                return json.load(f)
+                return json.load(f), datetime.fromtimestamp(os.stat(cache_file).st_mtime)
     return None
 
 
@@ -43,7 +45,8 @@ def parse_package_info(path: str):
         'category': content['category'],
         'description': bleach.clean(content.get('description', '')),
     }
-    manifest = obtain_manifest(pkgid, content['manifestUrl'])
+    manifest, lastmodified = obtain_manifest(pkgid, content['manifestUrl'])
+    pkginfo['lastmodified'] = lastmodified.strftime('%Y/%m/%d %H:%M:%S')
     if manifest:
         pkginfo['manifest'] = manifest
     return pkginfo

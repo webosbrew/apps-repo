@@ -19,12 +19,15 @@ def generate(indir, outdir):
     if not exists(appsdir):
         makedirs(appsdir)
 
-    def package_item(item):
+    def package_item(item, in_apps_dir):
         package = {k: item[k] for k in (
             'id', 'title', 'iconUri', 'manifestUrl', 'manifest') if k in item}
         package['shortDescription'] = item['manifest'].get(
             'appDescription', None)
-        package['fullDescriptionUrl'] = '%s-full_description.html' % item['id']
+        if in_apps_dir:
+            package['fullDescriptionUrl'] = f'{item["id"]}-full_description.html'
+        else:
+            package['fullDescriptionUrl'] = f'apps/{item["id"]}-full_description.html'
         return package
 
     items_per_page = 30
@@ -42,13 +45,13 @@ def generate(indir, outdir):
                     'maxPage': max_page,
                     'itemsTotal': packages_length,
                 },
-                'packages': list(map(package_item, items))
+                'packages': list(map(lambda x: package_item(x, page > 1), items))
             }, f, indent=2)
         for item in items:
             app_info = join(appsdir, f'{item["id"]}.json')
             with open(app_info, 'w') as f:
-                json.dump(package_item(item), f)
-            desc_html = join(outdir, f'{item["id"]}-full_description.html')
+                json.dump(package_item(item, True), f)
+            desc_html = join(appsdir, f'{item["id"]}-full_description.html')
             with open(desc_html, 'w') as f:
                 f.write(markdown.convert(item['description']))
     print('Generated json data for %d packages.' % len(packages))
