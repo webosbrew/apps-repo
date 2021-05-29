@@ -45,9 +45,11 @@ def generate(indir, outdir):
                 'packages': list(map(package_item, items))
             }, f, indent=2)
         for item in items:
-            full_desc_file = join(
-                outdir, '%s-full_description.html' % item['id'])
-            with open(full_desc_file, 'w') as f:
+            app_info = join(appsdir, f'{item["id"]}.json')
+            with open(app_info, 'w') as f:
+                json.dump(package_item(item), f)
+            desc_html = join(outdir, f'{item["id"]}-full_description.html')
+            with open(desc_html, 'w') as f:
                 f.write(markdown.convert(item['description']))
     print('Generated json data for %d packages.' % len(packages))
 
