@@ -55,7 +55,7 @@ def parse_package_info(path: str):
         'description': bleach.clean(content.get('description', '')),
     }
     manifest, lastmodified = obtain_manifest(pkgid, content['manifestUrl'])
-    pkginfo['lastmodified'] = lastmodified.strftime('%Y/%m/%d %H:%M:%S')
+    pkginfo['lastmodified'] = lastmodified.strftime('%Y/%m/%d %H:%M:%S %Z')
     if manifest:
         pkginfo['manifest'] = manifest
     return pkginfo
