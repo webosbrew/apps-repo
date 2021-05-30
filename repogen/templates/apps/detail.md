@@ -2,15 +2,11 @@ Title: {{title}}
 Status: hidden
 Save_As: apps/{{id}}.html
 
-<style>
-    section#content img {
-        max-width: 100%;
-    }
-</style>
+<link rel="stylesheet" href="/theme/css/app.css" />
 
 Version: {{manifest.version}}
 
-Last checked: {{lastmodified}}
+{{#lastmodified}}Last Updated: {{lastmodified}}{{/lastmodified}}
 
 ---
 

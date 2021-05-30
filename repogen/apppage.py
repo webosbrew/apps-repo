@@ -81,8 +81,8 @@ class AppListingGenerator:
             self._gen_page(outdir, items, pagination)
 
 
-def generate(indir, outdir):
-    generator = AppListingGenerator(list_packages(indir))
+def generate(packages, outdir):
+    generator = AppListingGenerator(packages)
 
     if not exists(outdir):
         makedirs(outdir)
@@ -102,4 +102,4 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--output-dir', required=True)
     args = parser.parse_args()
 
-    generate(args.input_dir, args.output_dir)
+    generate(list_packages(args.input_dir), args.output_dir)

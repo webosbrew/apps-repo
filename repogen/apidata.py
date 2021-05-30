@@ -9,8 +9,7 @@ from repogen.common import list_packages
 from markdown import Markdown
 
 
-def generate(indir, outdir):
-    packages = list_packages(indir)
+def generate(packages, outdir):
     markdown = Markdown()
 
     if not exists(outdir):
@@ -65,4 +64,4 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--output-dir', required=True)
     args = parser.parse_args()
 
-    generate(args.input_dir, args.output_dir)
+    generate(list_packages(args.input_dir), args.output_dir)
