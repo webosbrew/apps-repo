@@ -1,4 +1,4 @@
-title: Retroarch
+title: RetroArch
 iconUri: https://github.com/webosbrew/RetroArch/raw/webos-tv-support/webos/icon160.png
 manifestUrl: https://github.com/webosbrew/RetroArch/releases/latest/download/com.retroarch.manifest.json
 category: games
