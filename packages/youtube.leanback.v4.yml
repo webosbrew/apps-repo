@@ -1,5 +1,5 @@
 title: YouTube AdFree
-iconUri: https://raw.githubusercontent.com/Ruthenic/youtube-webos/main/largeIcon.png
+iconUri: https://github.com/Ruthenic/youtube-webos/raw/main/assets/largeIcon.png
 manifestUrl: https://github.com/Ruthenic/youtube-webos/releases/latest/download/youtube.leanback.v4.manifest.json
 category: entertainment
 description: |
