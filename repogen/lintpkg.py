@@ -45,15 +45,10 @@ class PackageInfoLinter:
             errors.append('iconUrl must be data URI or use HTTPS')
 
         # Process manifest
-        manifest_url = urlparse(pkginfo['manifestUrl'])
-        if manifest_url.scheme == 'https':
-            with requests.get(pkginfo['manifestUrl']) as resp:
-                if resp.status_code == 200:
-                    resp.json()
-                else:
-                    errors.append("manifestUrl must be accessible")
-        else:
-            errors.append('manifestUrl must be HTTPS URL')
+        PackageInfoLinter._validate_manifest_url(pkginfo['manifestUrl'], 'manifestUrl', errors)
+
+        if 'manifestUrlBeta' in pkginfo:
+            PackageInfoLinter._validate_manifest_url(pkginfo['manifestUrlBeta'], 'manifestUrlBeta', errors)
 
         description = pkginfo.get('description', '')
         mk = Markdown()
@@ -62,6 +57,18 @@ class PackageInfoLinter:
             self.ImageProcessor(errors), 'image_link', 1)
         mk.convert(description)
         return errors
+
+    @staticmethod
+    def _validate_manifest_url(url: str, key: str, e: [str]):
+        manifest_url_pre = urlparse(url)
+        if manifest_url_pre.scheme == 'https':
+            with requests.get(url) as resp:
+                if resp.status_code == 200:
+                    resp.json()
+                else:
+                    e.append(f"{key} must be accessible")
+        else:
+            e.append(f"{key} must be HTTPS URL")
 
 
 if __name__ == '__main__':

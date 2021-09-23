@@ -1,11 +1,13 @@
+import importlib.util
 import json
 import locale
 import os
 from datetime import datetime
+from email.utils import parsedate_to_datetime
 from os import listdir, mkdir, path
 from os.path import basename, isfile, join
 from urllib.parse import urljoin
-from email.utils import parsedate_to_datetime
+
 import bleach
 import requests
 import yaml
@@ -13,10 +15,10 @@ import yaml
 locale.setlocale(locale.LC_TIME, '')
 
 
-def obtain_manifest(pkgid, url: str):
+def obtain_manifest(pkgid, type, url: str):
     if not path.exists('cache'):
         mkdir('cache')
-    cache_file = path.join('cache', 'manifest_%s.json' % pkgid)
+    cache_file = path.join('cache', f'manifest_{pkgid}_{type}.json')
     try:
         resp = requests.get(url=url, allow_redirects=True)
         manifest = resp.json()
@@ -30,22 +32,23 @@ def obtain_manifest(pkgid, url: str):
             os.utime(cache_file, (last_modified.timestamp(), last_modified.timestamp()))
         return manifest, last_modified
     except requests.exceptions.RequestException:
-        if (path.exists(cache_file)):
+        if path.exists(cache_file):
             with open(cache_file) as f:
                 return json.load(f), datetime.fromtimestamp(os.stat(cache_file).st_mtime)
     return None
 
 
 def parse_package_info(path: str):
-    filename = basename(path)
-    with open(path) as f:
-        content = yaml.safe_load(f)
-    suffixidx = filename.rfind('.yml')
-    if suffixidx < 0:
+    extension = os.path.splitext(path)[1]
+    if extension == '.yml':
+        content = parse_yml_package(path)
+    elif extension == '.py':
+        content = load_py_package(path)
+    else:
         return None
-    pkgid = filename[:suffixidx]
     if not ('title' in content) and ('iconUri' in content) and ('manifestUrl' in content):
         return None
+    pkgid = os.path.splitext(basename(path))[0]
     pkginfo = {
         'id': pkgid,
         'title': content['title'],
@@ -54,11 +57,32 @@ def parse_package_info(path: str):
         'category': content['category'],
         'description': bleach.clean(content.get('description', '')),
     }
-    manifest, lastmodified = obtain_manifest(pkgid, content['manifestUrl'])
-    pkginfo['lastmodified'] = lastmodified.strftime('%Y/%m/%d %H:%M:%S %Z')
+    manifest, lastmodified_r = obtain_manifest(pkgid, 'release', content['manifestUrl'])
     if manifest:
         pkginfo['manifest'] = manifest
+    lastmodified_b = None
+    if 'manifestUrlBeta' in content:
+        manifest_b, lastmodified_b = obtain_manifest(pkgid, 'beta', content['manifestUrlBeta'])
+        if manifest_b:
+            pkginfo['manifestBeta'] = manifest_b
+    lastmodified = lastmodified_r, lastmodified_b
+    pkginfo['lastmodified'] = max(d for d in lastmodified if d is not None).strftime('%Y/%m/%d %H:%M:%S %Z')
     return pkginfo
+
+
+def parse_yml_package(path):
+    with open(path) as f:
+        content = yaml.safe_load(f)
+    return content
+
+
+# noinspection PyUnresolvedReferences
+def load_py_package(path):
+    pkgid = os.path.splitext(basename(path))[0]
+    spec = importlib.util.spec_from_file_location(f"pkg.{pkgid}", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.load()
 
 
 def list_packages(pkgdir):

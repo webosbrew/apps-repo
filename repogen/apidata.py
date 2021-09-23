@@ -20,7 +20,7 @@ def generate(packages, outdir):
 
     def package_item(item, in_apps_dir):
         package = {k: item[k] for k in (
-            'id', 'title', 'iconUri', 'manifestUrl', 'manifest') if k in item}
+            'id', 'title', 'iconUri', 'manifestUrl', 'manifest', 'manifestUrlBeta', 'manifestBeta') if k in item}
         package['shortDescription'] = item['manifest'].get(
             'appDescription', None)
         if in_apps_dir:

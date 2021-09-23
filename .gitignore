@@ -142,3 +142,6 @@ output/
 
 # Package info cache directory
 cache/
+
+# IDEA directory
+.idea/
