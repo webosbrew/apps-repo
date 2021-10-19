@@ -1,0 +1,8 @@
+title: 3D Pinball – Space Cadet
+iconUri: https://github.com/webosbrew/SpaceCadetPinball/raw/webos/webos/icon.png
+manifestUrl: https://github.com/webosbrew/SpaceCadetPinball/releases/latest/download/webosbrew.manifest.json
+category: games
+description: |
+  ## Summary
+
+  Reverse engineering of `3D Pinball for Windows – Space Cadet`, a game bundled with Windows.
