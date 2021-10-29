@@ -1,0 +1,21 @@
+title: PicCap - Hyperion Sender App
+iconUri: https://raw.githubusercontent.com/TBSniller/piccap/main/piccap/logo_big.png
+manifestUrl: https://github.com/TBSniller/piccap/releases/download/release/org.webosbrew.piccap.manifest.json
+category: tools
+description: |
+ **In early stage development**  
+
+ This is a GUI frontend for hyperion sender.  
+ 
+ ![image](https://user-images.githubusercontent.com/51515147/139295840-fd57d90d-8583-45e5-9284-04cedae2647e.png)  
+
+ ## Features  
+ 1. Autostart
+ 2. No CLI-needs after first setup  
+
+ ## Known issues  
+
+ 1. FPS Limit isn't working  
+ 2. libvt (older TVs) not in active development, so only experimental. -> No autostart after TV suspend | maybe EGL bugs
+
+ I'm not a real programmer and all this stuff is really new to me. The only reason this exists, is because I just badly wanted it for any cost. Feel free to create an issue or pull request if you can make things better.  
