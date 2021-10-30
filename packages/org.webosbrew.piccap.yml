@@ -13,9 +13,14 @@ description: |
  1. Autostart
  2. No CLI-needs after first setup  
 
+ ## Before first start
+ **To get HBChannel services available to the PicCap-Service, this command has to be run before the first app start:**  
+ `sed -i 's/org.webosbrew.hbchannel.service.group/public/g' /var/luna-service2-dev/api-permissions.d/org.webosbrew.hbchannel.service.api.json; reboot`
+ Please also see the Readme-Page of this project for further information.
+
  ## Known issues  
 
  1. FPS Limit isn't working  
- 2. libvt (older TVs) not in active development, so only experimental. -> No autostart after TV suspend | maybe EGL bugs
+ 2. libvt (older TVs) not in active development, so only experimental. -> No autostart after TV suspend
 
  I'm not a real programmer and all this stuff is really new to me. The only reason this exists, is because I just badly wanted it for any cost. Feel free to create an issue or pull request if you can make things better.  
