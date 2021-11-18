@@ -1,8 +1,8 @@
-pelican[markdown]
-pyyaml
+pelican[markdown]~=4.7
+pyyaml~=6.0
 pystache
-more_itertools
+more_itertools~=8.0
 bleach
 requests
 urllib3
-markdown
+markdown~=3.0
