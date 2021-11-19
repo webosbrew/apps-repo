@@ -16,28 +16,14 @@ It was originally designed for LG webOS TVs, but may support running on more dev
 
 ## Screenshots
 
-![Launcher](https://user-images.githubusercontent.com/830358/135492540-5dae06fc-9653-4ff5-a6f3-c714ba0b58ac.png)
+![Launcher](https://user-images.githubusercontent.com/830358/141690137-529d3b94-b56a-4f24-a3c5-00a56eb30952.png)
 
-![Settings](https://user-images.githubusercontent.com/830358/135492547-6f9789a0-ae8a-42c9-ac11-7ecf921c83a0.png)
+![Settings](https://user-images.githubusercontent.com/830358/141690143-6752757b-5e1f-4a23-acf7-4b2667e2fd05.png)
 
-![In-game Overlay](https://user-images.githubusercontent.com/830358/135492550-fb3a3e4f-4835-4fde-93d7-c2761e85a712.png)
+![In-game Overlay](https://user-images.githubusercontent.com/830358/141690146-27ee2564-0cc8-43ef-a5b0-54b8487dda1e.png)
+_Screenshot performed on TV has lower picture quality. Actual picture quality is better._
 
-## Download
-
-Download IPK from [Latest release](https://github.com/mariotaku/moonlight-tv/releases/latest)
-
-## [Installation Guide](https://github.com/mariotaku/moonlight-tv/wiki/Installation-Guide)
-
-## [Compatibility Status](https://github.com/mariotaku/moonlight-tv/wiki/Compatibility-Status)
-
-## [Gamepad Setup](https://github.com/mariotaku/moonlight-tv/wiki/Gamepad-Setup)
-
-## Building for webOS
-
-- Follow instructions [here](https://github.com/webosbrew/meta-lg-webos-ndk) to setup NDK
-- Create a directory e.g. `build` in project root directory, and `cd` into it.
-- run `cmake .. -DTARGET_WEBOS=ON`
-- run `make webos-package-moonlight` to get IPK package in `build` directory
+## [Documentations](https://github.com/mariotaku/moonlight-tv/wiki)
 '''
 
 
