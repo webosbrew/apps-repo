@@ -1,6 +1,6 @@
 title: YouTube AdFree
-iconUri: https://raw.githubusercontent.com/Ruthenic/youtube-webos/main/assets/largeIcon.png
-manifestUrl: https://github.com/Ruthenic/youtube-webos/releases/latest/download/youtube.leanback.v4.manifest.json
+iconUri: https://raw.githubusercontent.com/webosbrew/youtube-webos/main/assets/largeIcon.png
+manifestUrl: https://github.com/webosbrew/youtube-webos/releases/latest/download/youtube.leanback.v4.manifest.json
 category: entertainment
 description: |
   **BE SURE TO UNINSTALL THE SYSTEM YOUTUBE APP BEFORE INSTALLING**
