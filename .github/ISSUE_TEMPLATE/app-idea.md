@@ -17,4 +17,5 @@ Please read conditions below carefully, and don't delete this part. Invalid issu
 - [ ] (Optional) I'd like to develop this app by myself
 
 *Issue content starts below this line*
+
 ---
