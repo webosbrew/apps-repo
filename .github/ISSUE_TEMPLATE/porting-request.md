@@ -16,5 +16,5 @@ Please read conditions below carefully, and don't delete this part. Invalid issu
 - [ ] I understand conditions above
 - [ ] (Optional) I'd like to port this app by myself
 
-__Issue content starts below this line__
+*Issue content starts below this line*
 ---
