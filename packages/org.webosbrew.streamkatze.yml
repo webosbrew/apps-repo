@@ -1,7 +1,7 @@
 title: streamkatze
 iconUri: https://raw.githubusercontent.com/informatic/streamkatze/main/assets/icon130.png
 manifestUrl: https://github.com/informatic/streamkatze/releases/latest/download/org.webosbrew.streamkatze.manifest.json
-category: system
+category: multimedia
 description: |
   Experimental webOS [streaming.media.ccc.de](https://streaming.media.ccc.de) live stream player.
 
