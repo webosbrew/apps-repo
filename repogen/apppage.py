@@ -1,4 +1,4 @@
-import json
+# -*- coding: utf-8 -*-
 import math
 from os import makedirs
 from os.path import dirname, exists, join
@@ -12,16 +12,16 @@ from repogen.common import list_packages
 class AppListingGenerator:
 
     def __init__(self, packages):
-        with open(join(dirname(__file__), 'templates', 'apps', 'detail.md')) as f:
+        with open(join(dirname(__file__), 'templates', 'apps', 'detail.md'), encoding='utf-8') as f:
             self.details_template = f.read()
-        with open(join(dirname(__file__), 'templates', 'apps', 'list.html')) as f:
+        with open(join(dirname(__file__), 'templates', 'apps', 'list.html'), encoding='utf-8') as f:
             self.index_template = f.read()
 
         self.packages = packages
 
     def gen_details(self, outdir):
         for pkg in self.packages:
-            with open(join(outdir, '%s.md' % pkg['id']), 'w') as f:
+            with open(join(outdir, '%s.md' % pkg['id']), 'w', encoding='utf-8') as f:
                 f.write(pystache.render(self.details_template, pkg))
 
     def _gen_page(self, outdir, items, pagination):
@@ -56,7 +56,7 @@ class AppListingGenerator:
 
         def _page_path(p: int):
             return 'apps/index.html' if p == 1 else 'apps/page/%d.html' % p
-        with open(join(outdir, ('apps-page-%d.html' % page)), 'w') as f:
+        with open(join(outdir, ('apps-page-%d.html' % page)), 'w', encoding='utf-8') as f:
             f.write(pystache.render(self.index_template, {
                 'packages': items, 'pagePath': _page_path(page),
                 'firstPage': page == 1,

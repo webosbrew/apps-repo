@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import math
 from os import makedirs
@@ -36,7 +37,7 @@ def generate(packages, outdir):
         page = index + 1
         json_file = join(appsdir, '%d.json' %
                          page) if page > 1 else join(outdir, 'apps.json')
-        with open(json_file, 'w') as f:
+        with open(json_file, 'w', encoding='utf-8') as f:
             json.dump({
                 'paging': {
                     'page': page,
@@ -48,10 +49,10 @@ def generate(packages, outdir):
             }, f, indent=2)
         for item in items:
             app_info = join(appsdir, f'{item["id"]}.json')
-            with open(app_info, 'w') as f:
+            with open(app_info, 'w', encoding='utf-8') as f:
                 json.dump(package_item(item, True), f)
             desc_html = join(appsdir, f'{item["id"]}-full_description.html')
-            with open(desc_html, 'w') as f:
+            with open(desc_html, 'w', encoding='utf-8') as f:
                 f.write(markdown.convert(item['description']))
     print('Generated json data for %d packages.' % len(packages))
 

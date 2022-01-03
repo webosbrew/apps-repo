@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
 import importlib.util
 import json
 import locale
 import os
+import urllib
 from datetime import datetime
 from email.utils import parsedate_to_datetime
 from os import listdir, mkdir, path
@@ -15,15 +17,26 @@ import yaml
 locale.setlocale(locale.LC_TIME, '')
 
 
+def url_fixup(u):
+    parsed = urllib.parse.urlparse(u)
+    segs = parsed.path.split('/')
+    if parsed.hostname == 'github.com' and len(segs) == 7 and segs[3] == 'releases' and segs[4] == 'latest':
+        resp = requests.get(u, allow_redirects=False)
+        if resp.is_redirect:
+            return resp.headers['location']
+    return u
+
+
 def obtain_manifest(pkgid, type, url: str):
     if not path.exists('cache'):
         mkdir('cache')
     cache_file = path.join('cache', f'manifest_{pkgid}_{type}.json')
     try:
+        url = url_fixup(url)
         resp = requests.get(url=url, allow_redirects=True)
         manifest = resp.json()
         manifest['ipkUrl'] = urljoin(url, manifest['ipkUrl'])
-        with open(cache_file, 'w') as f:
+        with open(cache_file, 'w', encoding='utf-8') as f:
             json.dump(manifest, f)
         last_modified = datetime.now()
         if 'last-modified' in resp.headers:
@@ -33,7 +46,7 @@ def obtain_manifest(pkgid, type, url: str):
         return manifest, last_modified
     except requests.exceptions.RequestException:
         if path.exists(cache_file):
-            with open(cache_file) as f:
+            with open(cache_file, encoding='utf-8') as f:
                 return json.load(f), datetime.fromtimestamp(os.stat(cache_file).st_mtime)
     return None
 
@@ -71,7 +84,7 @@ def parse_package_info(path: str):
 
 
 def parse_yml_package(path):
-    with open(path) as f:
+    with open(path, encoding='utf-8') as f:
         content = yaml.safe_load(f)
     return content
 
