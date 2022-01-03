@@ -62,20 +62,21 @@ def parse_package_info(path: str):
     if not ('title' in content) and ('iconUri' in content) and ('manifestUrl' in content):
         return None
     pkgid = os.path.splitext(basename(path))[0]
+    manifest_url = url_fixup(content['manifestUrl'])
     pkginfo = {
         'id': pkgid,
         'title': content['title'],
         'iconUri': content['iconUri'],
-        'manifestUrl': content['manifestUrl'],
+        'manifestUrl': manifest_url,
         'category': content['category'],
         'description': bleach.clean(content.get('description', '')),
     }
-    manifest, lastmodified_r = obtain_manifest(pkgid, 'release', content['manifestUrl'])
+    manifest, lastmodified_r = obtain_manifest(pkgid, 'release', manifest_url)
     if manifest:
         pkginfo['manifest'] = manifest
     lastmodified_b = None
     if 'manifestUrlBeta' in content:
-        manifest_b, lastmodified_b = obtain_manifest(pkgid, 'beta', content['manifestUrlBeta'])
+        manifest_b, lastmodified_b = obtain_manifest(pkgid, 'beta', url_fixup(content['manifestUrlBeta']))
         if manifest_b:
             pkginfo['manifestBeta'] = manifest_b
     lastmodified = lastmodified_r, lastmodified_b
