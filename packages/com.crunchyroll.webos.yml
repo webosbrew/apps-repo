@@ -1,0 +1,16 @@
+title: Crunchyroll
+iconUri: https://raw.githubusercontent.com/mateussouzaweb/crunchyroll-webos/master/src/img/80px.png
+manifestUrl: https://github.com/mateussouzaweb/crunchyroll-webos/releases/latest/download/webosbrew.manifest.json
+category: multimedia
+description: |
+  Unofficial WebOS TV App for Crunchyroll.
+  
+  The last Crunchyroll app you will ever need!
+  
+  ## Support
+
+  Support [author](https://github.com/mateussouzaweb) for future versions for Samsung, Android TV, ChromeCast and Others.
+
+  ## Know Bugs
+
+  - Select dropdown does not trigger with LG TV Controller in arrow navigation mode.
