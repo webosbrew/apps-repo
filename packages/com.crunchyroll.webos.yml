@@ -11,6 +11,6 @@ description: |
 
   Support [author](https://github.com/mateussouzaweb) for future versions for Samsung, Android TV, ChromeCast and Others.
 
-  ## Know Bugs
+  ## Known Bugs
 
   - Select dropdown does not trigger with LG TV Controller in arrow navigation mode.
