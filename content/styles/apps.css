@@ -1,7 +1,8 @@
 ul.apps-list {
     list-style-type: none;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+    margin: 10px;
 }
 
 ul.apps-list .app-item {
@@ -40,4 +41,11 @@ ul.apps-list .app-item .app-title {
 
 .apps-paginator a.current {
     font-weight: bold;
+}
+
+@media screen and (max-width: 320px) {
+    ul.apps-list {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        margin: 5px;
+    }
 }
