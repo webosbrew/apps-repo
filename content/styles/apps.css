@@ -49,3 +49,9 @@ ul.apps-list .app-item .app-title {
         margin: 5px;
     }
 }
+@media screen and (max-width: 480px) {
+    ul.apps-list {
+        grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+        margin: 5px;
+    }
+}
