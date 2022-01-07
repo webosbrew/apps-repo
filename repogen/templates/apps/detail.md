@@ -1,8 +1,8 @@
 Title: {{title}}
 Status: hidden
 Save_As: apps/{{id}}.html
+Template: app
 
-<link rel="stylesheet" href="/theme/css/app.css" />
 <img src="{{iconUri}}" class="app-icon" alt="{{title}} Icon" />
 
 Version: {{manifest.version}}
