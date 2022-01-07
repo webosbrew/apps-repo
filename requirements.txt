@@ -3,6 +3,10 @@ pyyaml~=6.0
 pystache
 more_itertools~=8.0
 bleach
-requests
+requests~=2.27.0
 urllib3
 markdown~=3.0
+webassets~=2.0
+pyscss~=1.3.7
+livereload~=2.6.3
+invoke~=1.6.0

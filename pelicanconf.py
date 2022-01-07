@@ -1,9 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
+from os.path import join, dirname, abspath
 
 AUTHOR = 'webOS Homebrew Project'
 SITENAME = 'webOS Homebrew Project'
 SITEURL = ''
+
+THEME = './theme'
+THEME_STATIC_PATHS = [join(dirname(abspath(__file__)), 'website/theme/static')]
+THEME_TEMPLATES_OVERRIDES = ['./website/theme/templates']
+PLUGIN_PATHS = ['./website/plugins']
+PLUGINS = ['assets']
+ASSET_SOURCE_PATHS = ['static']
 
 PATH = 'content'
 
@@ -28,9 +36,8 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 MENUITEMS = (
-    ('Home', '/'),
     ('Applications', '/apps'),
-    ('Submit Application', '/submit'),
+    ('Submit', '/submit'),
 )
 
 # Blogroll
