@@ -1,3 +1,6 @@
 [submodule "website"]
 	path = website
 	url = https://github.com/webosbrew/webosbrew.github.io.git
+[submodule "plugins"]
+	path = plugins
+	url = https://github.com/getpelican/pelican-plugins.git
