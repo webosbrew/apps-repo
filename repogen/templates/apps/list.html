@@ -1,30 +1,30 @@
 <html>
 
 <head>
-  <title>Applications{{^firstPage}} - Page {{pagination.page}}{{/firstPage}}</title>
-  <meta name="status" content="hidden" />
-  {{#pagination}}
-  <meta name="slug" content="apps-page-{{page}}" />
-  {{/pagination}}
-  <meta name="save_as" content="{{pagePath}}" />
+    <title>Applications{{^firstPage}} - Page {{pagination.page}}{{/firstPage}}</title>
+    <meta name="status" content="hidden"/>
+    {{#pagination}}
+    <meta name="slug" content="apps-page-{{page}}"/>
+    {{/pagination}}
+    <meta name="save_as" content="{{pagePath}}"/>
+    <meta name="template" content="apps"/>
 </head>
 
 <body>
-  <link rel="stylesheet" href="/theme/css/apps.css" />
-  <ul class="apps-list">
+<ul class="apps-list">
     {{#packages}}
     <li class="app-item">
-      <a href="/apps/{{id}}">
-        <div class="app-icon">
-          <img src="{{iconUri}}" />
-        </div>
-        <div class="app-title">{{title}}</div>
-      </a>
+        <a href="/apps/{{id}}">
+            <div class="app-icon">
+                <img src="{{iconUri}}"/>
+            </div>
+            <div class="app-title">{{title}}</div>
+        </a>
     </li>
     {{/packages}}
-  </ul>
-  {{#pagination}}
-  <div class="apps-paginator">
+</ul>
+{{#pagination}}
+<div class="apps-paginator">
     {{#prevPath}}<a href="/{{.}}">Previous</a>{{/prevPath}}
     {{^prevPath}}<span>Previous</span>{{/prevPath}}
     {{#pageLinks}}
@@ -33,8 +33,8 @@
     {{/pageLinks}}
     {{#nextPath}}<a href="/{{.}}">Next</a>{{/nextPath}}
     {{^nextPath}}<span>Next</span>{{/nextPath}}
-  </div>
-  {{/pagination}}
+</div>
+{{/pagination}}
 </body>
 
 </html>
