@@ -9,7 +9,7 @@ SITEURL = ''
 THEME = './theme'
 THEME_STATIC_PATHS = [join(dirname(abspath(__file__)), 'website/theme/static')]
 THEME_TEMPLATES_OVERRIDES = ['./website/theme/templates']
-PLUGIN_PATHS = ['./website/plugins']
+PLUGIN_PATHS = ['plugins']
 PLUGINS = ['assets']
 ASSET_SOURCE_PATHS = ['static']
 
