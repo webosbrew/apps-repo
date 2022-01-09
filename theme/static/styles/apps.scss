@@ -26,6 +26,7 @@ ul.apps-list {
     }
 
     .app-title {
+      margin-top: 5px;
       padding-bottom: 5px;
     }
 
@@ -54,7 +55,7 @@ ul.apps-list {
 
 @media screen and (max-width: 480px) {
   ul.apps-list {
-    grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     margin: 5px;
   }
 }
