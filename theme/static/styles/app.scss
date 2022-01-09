@@ -1,4 +1,7 @@
+@import "variables";
+
 $icon-size: 160px;
+$icon-size-small: 80px;
 
 #content .main {
   overflow-x: hidden;
@@ -6,64 +9,75 @@ $icon-size: 160px;
   img {
     max-width: 100%;
   }
+}
+
+.app-icon {
+  width: $icon-size;
+  height: $icon-size;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.app-title {
+  margin-top: 10px;
+}
+
+.app-info {
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 10px;
+
+  .app-actions {
+    margin: auto 10px 10px auto;
+    padding-top: 10px;
+
+    .app-action {
+      height: 48px;
+      padding: 5px 10px;
+      box-sizing: border-box;
+
+      overflow: hidden;
+
+      background-color: $color-accent;
+      border-radius: 5px;
+      color: white;
+    }
+
+    .download-ipk {
+      .title {
+        font-size: 15px;
+      }
+
+      .version {
+        display: inline-block;
+        font-size: 12px;
+        float: left;
+      }
+
+      .size {
+        display: inline-block;
+        font-size: 12px;
+        float: right;
+      }
+
+      hr {
+        margin: 2px 0;
+        border-color: rgba(255, 255, 255, 0.5);
+        border-width: 1px;
+      }
+    }
+  }
+}
+
+@media (max-width: $desktop-small-width) {
 
   .app-icon {
-    width: $icon-size;
-    height: $icon-size;
-    float: left;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    width: $icon-size-small;
+    height: $icon-size-small;
   }
 
-  .app-info {
-    display: flex;
-    flex-flow: column;
-    min-height: $icon-size;
-    margin-bottom: 10px;
-
-    .app-title {
-      margin-top: 10px;
-    }
-
-    .app-actions {
-      margin: auto 10px 10px auto;
-      padding-top: 10px;
-
-      .app-action {
-        height: 48px;
-        padding: 5px 10px;
-        box-sizing: border-box;
-
-        overflow: hidden;
-
-        background-color: var(#{--color-accent});
-        border-radius: 5px;
-        color: white;
-      }
-
-      .download-ipk {
-        .title {
-          font-size: 15px;
-        }
-
-        .version {
-          display: inline-block;
-          font-size: 12px;
-          float: left;
-        }
-
-        .size {
-          display: inline-block;
-          font-size: 12px;
-          float: right;
-        }
-
-        hr {
-          margin: 2px 0;
-          border-color: rgba(255, 255, 255, 0.5);
-          border-width: 1px;
-        }
-      }
-    }
+  .app-title {
+    margin-bottom: 5px;
   }
 }

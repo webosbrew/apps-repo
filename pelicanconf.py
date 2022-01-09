@@ -5,18 +5,21 @@ from os.path import join, dirname, abspath
 
 import repogen
 from pelican.plugins import webassets
+import pelican.themes.webosbrew
 
 AUTHOR = 'webOS Homebrew Project'
 SITENAME = 'webOS Homebrew Project'
 SITEURL = ''
 
 THEME = 'webosbrew'
-THEME_STATIC_PATHS = [join(dirname(abspath(__file__)), 'theme/static')]
+THEME_STATIC_PATHS = [join(dirname(abspath(__file__)), 'theme/static'), pelican.themes.webosbrew.static_dir()]
 THEME_TEMPLATES_OVERRIDES = ['./theme/templates']
 
 PLUGINS = [webassets, repogen]
 
-WEBASSETS_SOURCE_PATHS = ['static']
+WEBASSETS_CONFIG = [
+    ("PYSCSS_LOAD_PATHS", [pelican.themes.webosbrew.scss_dir()])
+]
 
 PATH = 'content'
 
