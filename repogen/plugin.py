@@ -28,6 +28,7 @@ class PackageInfoReader(BaseReader):
             'status': 'hidden',
             'modified': info['lastmodified'],
             'manifest': info['manifest'],
+            'detailIcon': info.get('detailIconUri', info['iconUri'])
         }
         return self._md.convert(info['description']), metadata
 

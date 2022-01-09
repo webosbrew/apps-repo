@@ -1,7 +1,8 @@
 import requests
 
 title = 'Moonlight'
-iconUri = 'https://github.com/mariotaku/moonlight-tv/raw/main/res/moonlight_320.png'
+iconUri = 'https://github.com/mariotaku/moonlight-tv/raw/main/deploy/webos/icon_large.png'
+detailIconUri = 'https://github.com/mariotaku/moonlight-tv/raw/main/res/moonlight_320.png'
 manifestUrl = 'https://github.com/mariotaku/moonlight-tv/releases/latest/download/com.limelight.webos.manifest.json'
 category = 'games'
 description = '''
@@ -32,6 +33,7 @@ def load():
     content = {
         'title': title,
         'iconUri': iconUri,
+        'detailIconUri': detailIconUri,
         'category': category,
         'description': description,
         'manifestUrl': manifestUrl

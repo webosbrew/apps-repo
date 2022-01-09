@@ -87,6 +87,8 @@ def parse_package_info(path: str, offline=False):
         'category': content['category'],
         'description': bleach.clean(content.get('description', '')),
     }
+    if 'detailIconUri' in content:
+        pkginfo['detailIconUri'] = content['detailIconUri']
     manifest, lastmodified_r = obtain_manifest(pkgid, 'release', manifest_url, offline)
     if manifest:
         pkginfo['manifest'] = manifest
