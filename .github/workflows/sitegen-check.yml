@@ -27,4 +27,4 @@ jobs:
         run: python3 -m repogen -i ./packages -o ./content -D
 
       - name: '[Dry run] Generate site content'
-        run: pelican content
+        run: invoke build

@@ -37,7 +37,7 @@ jobs:
         run: python3 -m repogen -i ./packages -o ./content -D
 
       - name: Generate site content
-        run: pelican content
+        run: invoke build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
