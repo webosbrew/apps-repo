@@ -3,6 +3,9 @@
 import datetime
 from os.path import join, dirname, abspath
 
+import repogen
+from pelican.plugins import webassets
+
 AUTHOR = 'webOS Homebrew Project'
 SITENAME = 'webOS Homebrew Project'
 SITEURL = ''
@@ -10,13 +13,16 @@ SITEURL = ''
 THEME = './theme'
 THEME_STATIC_PATHS = [join(dirname(abspath(__file__)), 'website/theme/static')]
 THEME_TEMPLATES_OVERRIDES = ['./website/theme/templates']
+
+PLUGINS = [webassets, repogen]
+
 WEBASSETS_SOURCE_PATHS = ['static']
 
 PATH = 'content'
 
 STATIC_PATHS = ['api', 'extra/CNAME', 'styles']
 ARTICLE_EXCLUDES = ['api']
-PAGE_PATHS = ['pages', 'apps']
+PAGE_PATHS = ['pages', 'apps', '../packages']
 
 EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'},
@@ -45,21 +51,19 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
+CACHE_CONTENT = False
+LOAD_CONTENT_CACHE = False
 
 MENUITEMS = (
     ('Applications', '/apps'),
     ('Submit', '/submit'),
 )
 
-# Blogroll
 LINKS = (
-    ('webOS Homebrew', 'https://github.com/webosbrew/'),
+    ('Github Organization', 'https://github.com/webosbrew/'),
+    ('Join us on Discord', 'https://discord.gg/xWqRVEm'),
+    ('RootMy.TV', 'https://rootmy.tv/'),
     ('openlgtv', 'https://openlgtv.github.io/'),
-)
-
-# Social widget
-SOCIAL = (
-    ('openlgtv Discord', 'https://discord.gg/xWqRVEm'),
 )
 
 DEFAULT_PAGINATION = 30

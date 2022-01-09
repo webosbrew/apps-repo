@@ -6,6 +6,7 @@ import os
 import urllib
 from datetime import datetime
 from email.utils import parsedate_to_datetime
+from json import JSONDecodeError
 from os import listdir, mkdir, path
 from os.path import basename, isfile, join
 from urllib.parse import urljoin
@@ -27,15 +28,25 @@ def url_fixup(u):
     return u
 
 
-def obtain_manifest(pkgid, type, url: str):
+def url_size(u):
+    content_length = requests.head(u, allow_redirects=True).headers.get('content-length', None)
+    if not content_length:
+        return 0
+    return int(content_length)
+
+
+def obtain_manifest(pkgid, type, url: str, offline=False):
     if not path.exists('cache'):
         mkdir('cache')
     cache_file = path.join('cache', f'manifest_{pkgid}_{type}.json')
     try:
+        if offline:
+            raise requests.exceptions.ConnectionError('Offline')
         url = url_fixup(url)
         resp = requests.get(url=url, allow_redirects=True)
         manifest = resp.json()
         manifest['ipkUrl'] = urljoin(url, manifest['ipkUrl'])
+        manifest['ipkSize'] = url_size(manifest['ipkUrl'])
         with open(cache_file, 'w', encoding='utf-8') as f:
             json.dump(manifest, f)
         last_modified = datetime.now()
@@ -44,14 +55,19 @@ def obtain_manifest(pkgid, type, url: str):
                 resp.headers['last-modified'])
             os.utime(cache_file, (last_modified.timestamp(), last_modified.timestamp()))
         return manifest, last_modified
-    except requests.exceptions.RequestException:
+    except requests.exceptions.RequestException as e:
         if path.exists(cache_file):
-            with open(cache_file, encoding='utf-8') as f:
-                return json.load(f), datetime.fromtimestamp(os.stat(cache_file).st_mtime)
+            try:
+                with open(cache_file, encoding='utf-8') as f:
+                    return json.load(f), datetime.fromtimestamp(os.stat(cache_file).st_mtime)
+            except IOError or JSONDecodeError:
+                os.unlink(cache_file)
+        else:
+            raise e
     return None
 
 
-def parse_package_info(path: str):
+def parse_package_info(path: str, offline=False):
     extension = os.path.splitext(path)[1]
     if extension == '.yml':
         content = parse_yml_package(path)
@@ -71,7 +87,7 @@ def parse_package_info(path: str):
         'category': content['category'],
         'description': bleach.clean(content.get('description', '')),
     }
-    manifest, lastmodified_r = obtain_manifest(pkgid, 'release', manifest_url)
+    manifest, lastmodified_r = obtain_manifest(pkgid, 'release', manifest_url, offline)
     if manifest:
         pkginfo['manifest'] = manifest
     lastmodified_b = None
@@ -80,7 +96,8 @@ def parse_package_info(path: str):
         if manifest_b:
             pkginfo['manifestBeta'] = manifest_b
     lastmodified = lastmodified_r, lastmodified_b
-    pkginfo['lastmodified'] = max(d for d in lastmodified if d is not None).strftime('%Y/%m/%d %H:%M:%S %Z')
+    pkginfo['lastmodified'] = max(d for d in lastmodified if d is not None)
+    pkginfo['lastmodified_str'] = pkginfo['lastmodified'].strftime('%Y/%m/%d %H:%M:%S %Z')
     return pkginfo
 
 
@@ -99,7 +116,7 @@ def load_py_package(path):
     return module.load()
 
 
-def list_packages(pkgdir):
+def list_packages(pkgdir, offline=False):
     paths = [join(pkgdir, f)
              for f in listdir(pkgdir) if isfile(join(pkgdir, f))]
-    return sorted(filter(lambda x: x, map(parse_package_info, paths)), key=lambda x: x['title'])
+    return sorted(filter(lambda x: x, map(lambda p: parse_package_info(p, offline), paths)), key=lambda x: x['title'])

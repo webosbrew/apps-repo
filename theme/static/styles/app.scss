@@ -1,11 +1,66 @@
+@import "../../../website/theme/static/styles/variables";
+
+$icon-size: 160px;
+
 #content .main {
   img {
     max-width: 100%;
   }
 
-  img.app-icon {
-    max-width: 80px;
-    margin-top: -20px;
-    float: right;
+  .app-icon {
+    width: $icon-size;
+    height: $icon-size;
+    float: left;
+  }
+
+  .app-info {
+    display: flex;
+    flex-flow: column;
+    min-height: $icon-size;
+
+    .app-title {
+      margin-top: 10px;
+    }
+
+    .app-actions {
+      margin: auto 10px 10px auto;
+      padding-top: 10px;
+
+      .app-action {
+        height: 48px;
+        padding: 5px 10px;
+        box-sizing: border-box;
+
+        overflow: hidden;
+
+        background-color: $color-accent;
+        border-radius: 5px;
+        color: white;
+      }
+
+      .download-ipk {
+        .title {
+          font-size: 15px;
+        }
+
+        .version {
+          display: inline-block;
+          font-size: 12px;
+          float: left;
+        }
+
+        .size {
+          display: inline-block;
+          font-size: 12px;
+          float: right;
+        }
+
+        hr {
+          margin: 2px 0;
+          border-color: rgba(255, 255, 255, 0.5);
+          border-width: 1px;
+        }
+      }
+    }
   }
 }

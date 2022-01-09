@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "page.html" %}
 {% block html_lang %}{{ page.lang }}{% endblock %}
 
 {% block title %}{{ page.title|striptags }} | {{ SITENAME }}{%endblock%}
@@ -17,9 +17,6 @@
 
 {% block content %}
     <h1>{{ page.title }}</h1>
-  {% for app in REPO_APPS %}
-    {{app}}
-  {% endfor %}
     {% import 'translations.html' as translations with context %}
     {{ translations.translations_for(page) }}
 

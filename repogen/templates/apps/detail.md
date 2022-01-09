@@ -9,7 +9,7 @@ Version: {{manifest.version}}
 
 {{#manifest.sourceUrl}}Source: [{{manifest.sourceUrl}}]({{manifest.sourceUrl}}){{/manifest.sourceUrl}}
 
-{{#lastmodified}}Last Updated: {{lastmodified}}{{/lastmodified}}
+{{#lastmodified_str}}Last Updated: {{lastmodified_str}}{{/lastmodified_str}}
 
 ---
 
