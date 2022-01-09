@@ -1,8 +1,8 @@
 import requests
 
 title = 'Moonlight'
-iconUri = 'https://github.com/mariotaku/moonlight-tv/raw/main/deploy/webos/icon_large.png'
-detailIconUri = 'https://github.com/mariotaku/moonlight-tv/raw/main/res/moonlight_320.png'
+iconUri = 'https://raw.githubusercontent.com/mariotaku/moonlight-tv/main/deploy/webos/icon_large.png'
+detailIconUri = 'https://raw.githubusercontent.com/mariotaku/moonlight-tv/main/res/moonlight_320.png'
 manifestUrl = 'https://github.com/mariotaku/moonlight-tv/releases/latest/download/com.limelight.webos.manifest.json'
 category = 'games'
 description = '''

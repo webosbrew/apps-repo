@@ -47,6 +47,9 @@ $icon-size-small: 80px;
     .download-ipk {
       .title {
         font-size: 15px;
+        border-bottom: 1px rgba(255, 255, 255, 0.5) solid;
+        padding-bottom: 2px;
+        margin-bottom: 2px;
       }
 
       .version {
@@ -61,11 +64,6 @@ $icon-size-small: 80px;
         float: right;
       }
 
-      hr {
-        margin: 2px 0;
-        border-color: rgba(255, 255, 255, 0.5);
-        border-width: 1px;
-      }
     }
   }
 }
