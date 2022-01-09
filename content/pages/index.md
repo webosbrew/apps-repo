@@ -1,4 +1,4 @@
-Title: Central Repository - webOS Homebrew Project
+Title: Apps Repository
 URL: 
 save_as: index.html
 status: hidden
