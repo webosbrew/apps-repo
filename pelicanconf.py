@@ -10,7 +10,7 @@ SITEURL = ''
 THEME = './theme'
 THEME_STATIC_PATHS = [join(dirname(abspath(__file__)), 'website/theme/static')]
 THEME_TEMPLATES_OVERRIDES = ['./website/theme/templates']
-WEBASSET_SOURCE_PATHS = ['static']
+WEBASSETS_SOURCE_PATHS = ['static']
 
 PATH = 'content'
 
