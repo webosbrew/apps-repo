@@ -1,6 +1,8 @@
 $icon-size: 160px;
 
 #content .main {
+  overflow-x: hidden;
+
   img {
     max-width: 100%;
   }
@@ -10,12 +12,14 @@ $icon-size: 160px;
     height: $icon-size;
     float: left;
     margin-right: 20px;
+    margin-bottom: 10px;
   }
 
   .app-info {
     display: flex;
     flex-flow: column;
     min-height: $icon-size;
+    margin-bottom: 10px;
 
     .app-title {
       margin-top: 10px;

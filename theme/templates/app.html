@@ -22,7 +22,13 @@
     <div class="app-info">
         <h1 class="app-title">{{ page.title }}</h1>
 
-        Source: <a href="{{ page.metadata.manifest.sourceUrl }}" target="_blank">{{ page.metadata.manifest.sourceUrl }}</a>
+        <p>Source: <a href="{{ page.metadata.manifest.sourceUrl }}" target="_blank">{{ page.metadata.manifest.sourceUrl }}</a></p>
+
+        {% if page.metadata.manifest.rootRequired == True %}
+        <p><strong>Root required</strong></p>
+        {% elif page.metadata.manifest.rootRequired == 'optional' %}
+        <p><strong>Optional root</strong></p>
+        {% endif %}
 
         <div class="app-actions">
             <a href="{{ page.metadata.manifest.ipkUrl }}" target="_blank">

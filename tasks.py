@@ -81,6 +81,11 @@ def preview(c):
     pelican_run('-s {settings_publish}'.format(**CONFIG))
 
 @task
+def devserver(c):
+    """Build local version of site"""
+    pelican_run('-lr -s {settings_base} -p {port}'.format(**CONFIG))
+
+@task
 def livereload(c):
     """Automatically reload browser tab upon file modification."""
     from livereload import Server

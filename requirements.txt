@@ -12,3 +12,4 @@ pyscss~=1.3.7
 cssmin~=0.2.0
 livereload~=2.6.3
 invoke~=1.6.0
+git+https://github.com/webosbrew/pelican-theme-webosbrew.git#egg=pelican-theme-webosbrew

@@ -10,9 +10,9 @@ AUTHOR = 'webOS Homebrew Project'
 SITENAME = 'webOS Homebrew Project'
 SITEURL = ''
 
-THEME = './theme'
-THEME_STATIC_PATHS = [join(dirname(abspath(__file__)), 'website/theme/static')]
-THEME_TEMPLATES_OVERRIDES = ['./website/theme/templates']
+THEME = 'webosbrew'
+THEME_STATIC_PATHS = [join(dirname(abspath(__file__)), 'theme/static')]
+THEME_TEMPLATES_OVERRIDES = ['./theme/templates']
 
 PLUGINS = [webassets, repogen]
 
@@ -20,13 +20,12 @@ WEBASSETS_SOURCE_PATHS = ['static']
 
 PATH = 'content'
 
-STATIC_PATHS = ['api', 'extra/CNAME', 'styles']
+STATIC_PATHS = ['api', 'extra/CNAME']
 ARTICLE_EXCLUDES = ['api']
 PAGE_PATHS = ['pages', 'apps', '../packages']
 
 EXTRA_PATH_METADATA = {
-    'extra/CNAME': {'path': 'CNAME'},
-    'styles': {'path': 'theme/css'}
+    'extra/CNAME': {'path': 'CNAME'}
 }
 
 MARKDOWN = {
