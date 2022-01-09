@@ -1,5 +1,3 @@
-@import "../../../website/theme/static/styles/variables";
-
 $icon-size: 160px;
 
 #content .main {
@@ -33,7 +31,7 @@ $icon-size: 160px;
 
         overflow: hidden;
 
-        background-color: $color-accent;
+        background-color: var(--color-accent);
         border-radius: 5px;
         color: white;
       }
