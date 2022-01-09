@@ -85,11 +85,7 @@ def livereload(c):
     """Automatically reload browser tab upon file modification."""
     from livereload import Server
 
-    def cached_build():
-        cmd = '-s {settings_base} -e CACHE_CONTENT=True LOAD_CONTENT_CACHE=True'
-        pelican_run(cmd.format(**CONFIG))
-
-    cached_build()
+    rebuild(c)
     server = Server()
     theme_path = SETTINGS['THEME']
     watched_globs = [
@@ -108,7 +104,7 @@ def livereload(c):
         watched_globs.append(static_file_glob)
 
     for glob in watched_globs:
-        server.watch(glob, cached_build)
+        server.watch(glob, lambda: build(c))
     server.serve(host=CONFIG['host'], port=CONFIG['port'], root=CONFIG['deploy_path'])
 
 
