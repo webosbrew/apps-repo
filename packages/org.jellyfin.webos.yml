@@ -1,0 +1,6 @@
+title: Jellyfin
+iconUri: https://raw.githubusercontent.com/jellyfin/jellyfin-webos/master/frontend/assets/icon-130.png
+manifestUrl: https://github.com/jellyfin/jellyfin-webos/releases/latest/download/org.jellyfin.webos.manifest.json
+category: multimedia
+description: |
+  Wrapper around [Jellyfin](https://jellyfin.org) Web project
