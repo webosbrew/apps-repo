@@ -5,6 +5,6 @@ status: hidden
 
 Unofficial webOS application store
 
-## [Get Homebrew Channel (Working in progress...)](https://github.com/webosbrew/webos-homebrew-channel)
+## [Get Homebrew Channel](/apps/org.webosbrew.hbchannel)
 
 ## [Submit Application](/submit)
