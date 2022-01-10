@@ -23,7 +23,7 @@ jobs:
           cache-name: cache-package-manifests
         with:
           path: ./cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-v1
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('packages/*') }}
 
       - name: Setup Python
         uses: actions/setup-python@v2
