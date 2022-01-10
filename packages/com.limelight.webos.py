@@ -9,6 +9,9 @@ description = '''
 Moonlight TV is a community version of [Moonlight GameStream Client](https://moonlight-stream.org/), made for large
 screens.
 
+![Download Stats](https://img.shields.io/github/downloads/mariotaku/moonlight-tv/total)
+![GitHub Stars](https://img.shields.io/github/stars/mariotaku/moonlight-tv?style=social)
+
 ## Features
 
 * High performance streaming for webOS
