@@ -17,14 +17,21 @@
 
 {% block content %}
     <h1>{{ page.title }}</h1>
-    {% import 'translations.html' as translations with context %}
-    {{ translations.translations_for(page) }}
 
-    {{ page.content }}
+    <ul class="apps-list">
+    {% for package in page.metadata.packages %}
+        <li class="app-item">
+            <a href="/apps/{{package.id}}">
+                <div class="app-icon">
+                    <img src="{{package.iconUri}}"/>
+                </div>
+                <div class="app-title">{{package.title}}</div>
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
 
-    {% if page.modified %}
-        <p>
-        Last updated: {{ page.locale_modified }}
-        </p>
-    {% endif %}
+    {% set pagination = page.metadata.pagination %}
+    {% include "pagination.html" %}
+
 {% endblock %}

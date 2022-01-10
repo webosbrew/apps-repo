@@ -24,7 +24,7 @@ jobs:
         run: python3 -m pip install -r ./requirements.txt
 
       - name: '[Dry run] Generate repository data'
-        run: python3 -m repogen -i ./packages -o ./content -D
+        run: python3 -m repogen -i ./packages -o ./content -D -L
 
       - name: '[Dry run] Generate site content'
         run: invoke build
