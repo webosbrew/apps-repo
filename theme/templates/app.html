@@ -49,3 +49,15 @@
     <p>Last Updated: {{ page.modified.strftime('%Y/%m/%d %H:%M:%S %Z') }}</p>
     {% endif %}
 {% endblock %}
+
+{% block sidebar %}
+{% if page.metadata.sponsor_links %}
+<h3>Sponsor</h3>
+<ul class="links">
+    {% for link in page.metadata.sponsor_links %}
+    <li><a href="{{link.href}}" target="_blank">{{link.text}}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+{{ super() }}
+{% endblock %}

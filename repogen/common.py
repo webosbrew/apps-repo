@@ -89,6 +89,8 @@ def parse_package_info(path: str, offline=False):
     }
     if 'detailIconUri' in content:
         pkginfo['detailIconUri'] = content['detailIconUri']
+    if 'funding' in content:
+        pkginfo['funding'] = content['funding']
     manifest, lastmodified_r = obtain_manifest(pkgid, 'release', manifest_url, offline)
     if manifest:
         pkginfo['manifest'] = manifest

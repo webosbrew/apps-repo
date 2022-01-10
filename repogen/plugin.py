@@ -9,6 +9,7 @@ from pelican.contents import Page
 from pelican.readers import BaseReader
 from pelican.themes.webosbrew import pagination_data
 
+from repogen import funding
 from repogen.common import parse_package_info
 
 log = logging.getLogger(__name__)
@@ -33,6 +34,7 @@ class PackageInfoReader(BaseReader):
             'modified': info['lastmodified'],
             'manifest': info['manifest'],
             'detailIcon': info.get('detailIconUri', info['iconUri']),
+            'sponsor_links': funding.parse_links(info.get('funding', None)),
             'package_info': info
         }
         return self._md.convert(info['description']), metadata
