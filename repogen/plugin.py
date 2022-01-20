@@ -1,15 +1,14 @@
 import logging
 import os
-from itertools import chain
 
 from markdown import Markdown
 from more_itertools import chunked
-from pelican import signals, Readers, PagesGenerator
-from pelican.contents import Page
+from pelican import signals, Readers, PagesGenerator, StaticGenerator
+from pelican.contents import Page, Static
 from pelican.readers import BaseReader
 from pelican.themes.webosbrew import pagination_data
 
-from repogen import funding
+from repogen import funding, apidata
 from repogen.common import parse_package_info
 
 log = logging.getLogger(__name__)
@@ -37,6 +36,9 @@ class PackageInfoReader(BaseReader):
             'sponsor_links': funding.parse_links(info.get('funding', None)),
             'package_info': info
         }
+        if 'PACKAGES' not in self.settings:
+            self.settings['PACKAGES'] = {}
+        self.settings['PACKAGES'][info['id']] = info
         return self._md.convert(info['description']), metadata
 
 
@@ -46,10 +48,7 @@ def readers_init(readers: Readers):
 
 
 def add_app_indices(generator: PagesGenerator):
-    packages = list(
-        sorted(filter(lambda x: x is not None, map(lambda page: page.metadata.get('package_info', None),
-                                                   chain(generator.pages, generator.hidden_pages))),
-               key=lambda info: info['title'].lower()))
+    packages = list(sorted(generator.settings['PACKAGES'].values(), key=lambda info: info['title'].lower()))
 
     pages = list(chunked(packages, generator.settings['DEFAULT_PAGINATION']))
     pages_count = len(pages)
@@ -70,7 +69,17 @@ def apps_list_href(page):
     return '/apps' if page <= 1 else f'/apps/page/{page}'
 
 
+def add_app_api_data(generator: StaticGenerator):
+    packages = generator.settings['PACKAGES'].values()
+
+    def pool_list(pool: str):
+        return list(sorted(filter(lambda pkg: pkg['pool'] == pool, packages), key=lambda pkg: pkg['title'].lower()))
+
+    apidata.generate(pool_list('main'), os.path.join(generator.settings['OUTPUT_PATH'], 'api'))
+    apidata.generate(pool_list('non-free'), os.path.join(generator.settings['OUTPUT_PATH'], 'api', 'non-free'))
+
+
 def register():
     signals.readers_init.connect(readers_init)
     signals.page_generator_finalized.connect(add_app_indices)
-    pass
+    signals.static_generator_finalized.connect(add_app_api_data)

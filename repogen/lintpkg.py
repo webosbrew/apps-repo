@@ -33,6 +33,12 @@ class PackageInfoLinter:
     def lint(self, pkginfo) -> [str]:
         errors: [str] = []
 
+        # Pool property
+        if pkginfo.get('nopool', False):
+            errors.append('pool property is required (`main` or `non-free`)')
+        elif pkginfo['pool'] not in['main', 'non-free']:
+            errors.append('pool property must be `main` or `non-free`')
+
         # Process icon
         icon_uri = urlparse(pkginfo['iconUri'])
         if icon_uri.scheme == 'data' or icon_uri.scheme == 'https':

@@ -67,6 +67,12 @@ def obtain_manifest(pkgid, type, url: str, offline=False):
     return None
 
 
+def valid_pool(value):
+    if value not in ['main', 'non-free']:
+        raise ValueError(f'Unknown pool type {value}')
+    return value
+
+
 def parse_package_info(path: str, offline=False):
     extension = os.path.splitext(path)[1]
     if extension == '.yml':
@@ -91,6 +97,15 @@ def parse_package_info(path: str, offline=False):
         pkginfo['detailIconUri'] = content['detailIconUri']
     if 'funding' in content:
         pkginfo['funding'] = content['funding']
+    if 'pool' in content:
+        try:
+            pkginfo['pool'] = valid_pool(content['pool'])
+        except ValueError:
+            return None
+    else:
+        # This is for compatibility, new submissions requires this field
+        pkginfo['pool'] = 'main'
+        pkginfo['nopool'] = True
     manifest, lastmodified_r = obtain_manifest(pkgid, 'release', manifest_url, offline)
     if manifest:
         pkginfo['manifest'] = manifest
