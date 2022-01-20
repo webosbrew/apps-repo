@@ -23,7 +23,9 @@
     <p class="app-version">Version {{page.metadata.manifest.version }}</p>
     <div class="app-info">
         <p>Source: <a href="{{ page.metadata.manifest.sourceUrl }}" target="_blank">{{ page.metadata.manifest.sourceUrl }}</a></p>
-
+        {% if page.metadata.package_info.pool == 'non-free' %}
+        <p><strong>Non-free</strong></p>
+        {% endif %}
         {% if page.metadata.manifest.rootRequired == True %}
         <p><strong>Root required</strong></p>
         {% elif page.metadata.manifest.rootRequired == 'optional' %}

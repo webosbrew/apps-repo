@@ -24,6 +24,9 @@
             <a href="/apps/{{package.id}}">
                 <div class="app-icon">
                     <img src="{{package.iconUri}}"/>
+                    {% if package.pool == 'non-free' %}
+                    <label class="non-free">Non-free</label>
+                    {% endif %}
                 </div>
                 <div class="app-title">{{package.title}}</div>
             </a>

@@ -9,6 +9,8 @@ import more_itertools
 from repogen.common import list_packages
 from markdown import Markdown
 
+MANIFEST_KEYS = ('id', 'title', 'iconUri', 'manifestUrl', 'manifest', 'manifestUrlBeta', 'manifestBeta', 'pool')
+
 
 def generate(packages, outdir):
     markdown = Markdown()
@@ -20,8 +22,7 @@ def generate(packages, outdir):
         makedirs(appsdir)
 
     def package_item(item, in_apps_dir):
-        package = {k: item[k] for k in (
-            'id', 'title', 'iconUri', 'manifestUrl', 'manifest', 'manifestUrlBeta', 'manifestBeta') if k in item}
+        package = {k: item[k] for k in MANIFEST_KEYS if k in item}
         package['shortDescription'] = item['manifest'].get(
             'appDescription', None)
         if in_apps_dir:
