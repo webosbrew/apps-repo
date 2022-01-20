@@ -105,6 +105,7 @@ def parse_package_info(path: str, offline=False):
     else:
         # This is for compatibility, new submissions requires this field
         pkginfo['pool'] = 'main'
+        pkginfo['nopool'] = True
     manifest, lastmodified_r = obtain_manifest(pkgid, 'release', manifest_url, offline)
     if manifest:
         pkginfo['manifest'] = manifest
