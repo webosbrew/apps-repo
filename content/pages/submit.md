@@ -28,9 +28,14 @@ iconUri: https://raw.githubusercontent.com/webosbrew/webos-homebrew-channel/main
 manifestUrl: https://github.com/webosbrew/webos-homebrew-channel/releases/latest/download/org.webosbrew.hbchannel.manifest.json
 # Category for your application
 category: tools
+# If this is an open source application, use main, otherwise non-free
+pool: main
 # Long description for your application, in Markdown format
 description: |
-  Markdown text
+  Description in markdown format, we suggest you to add some screenshots to help users understand
+# Sponsor information, like .github/FUNDING.yml
+funding:
+  github: [your-name]
 ```
 
 ### Submit a Pull Request
