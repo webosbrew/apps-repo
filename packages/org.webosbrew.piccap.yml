@@ -2,6 +2,7 @@ title: PicCap - Hyperion Sender App
 iconUri: https://raw.githubusercontent.com/TBSniller/piccap/main/piccap/logo_big.png
 manifestUrl: https://github.com/TBSniller/piccap/releases/latest/download/org.webosbrew.piccap.manifest.json
 category: tools
+pool: main
 description: |
  **In early stage development**  
   
