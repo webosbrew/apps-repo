@@ -5,24 +5,24 @@ category: tools
 description: |
  **In early stage development**  
   
-The main idea of this is, to have a simple frontend app with autostart feature from the underlaying hyperion-webos service. 
-PicCap directly speaks to this service, so its reasonable for starting, stopping, displaying and changing settings of this service.  
-  
-![image](https://user-images.githubusercontent.com/51515147/150593018-8e935f55-2926-408f-81e5-40c73bf877fb.png)
-
+ The main idea of this is, to have a simple frontend app with autostart feature from the underlaying hyperion-webos service. 
+ PicCap directly speaks to this service, so its reasonable for starting, stopping, displaying and changing settings of this service.  
+   
+ ![image](https://user-images.githubusercontent.com/51515147/150593018-8e935f55-2926-408f-81e5-40c73bf877fb.png)
+ 
  ## Features  
  1. Autostart
  2. Simple frontend
 
-### After first start  
-Wait a few secounds to let the service elevate root permissions through the Homebrew Channel-Service. After that a full reboot (no powercycle) of your TV might be neccessary. You can simply use the reboot button.
+ ### After first start  
+ Wait a few secounds to let the service elevate root permissions through the Homebrew Channel-Service. After that a full reboot (no powercycle) of your TV might be neccessary. You can simply use the reboot button.
   
  ## Known issues   
-- Autostart only works after a complete TV-restart. If your TV goes to suspension after shutting it down, our startup scripts doesn't get fired when the TV gets waked up again. To work around it, you will have to disable LGs Quick Start+ in settings until we find a reliable way. This way the TV doesn't go to sleep, it fully shuts down.  
-- Not all TVs are supported - Test it out or check the ReadMe at github.com/webosbrew/hyperion-webos/ for more information  
-- Nothing more known so far.  
-- Please see https://github.com/webosbrew/hyperion-webos/tree/main#known-issues for issues regarding the backend capture service. - This is only the frontend application! 
+ - On some platforms (likley `libvt` and `libvtcapture` autostart only works after a complete TV-restart. If your TV goes to suspension after shutting it down, our startup scripts doesn't get fired when the TV gets waked up again. To work around it, you will have to disable LGs QuickStart+ in settings until we find a reliable way. This way the TV doesn't go to sleep, it fully shuts down. It can cause a failsafe boot - take a look at the RootMyTVv2 FAQ  
+ - Not all TVs are supported - Test it out or check the ReadMe at github.com/webosbrew/hyperion-webos/ for more information  
+ - Nothing more known so far.  
+ - Please see https://github.com/webosbrew/hyperion-webos/tree/main#known-issues for issues regarding the backend capture service. - This is only the frontend application! 
   
-Discord for questions and discuss https://discord.gg/9sqAgHVRhP
-  
-SIDENOTE: I'm not a real programmer and all this stuff is really new to me. The only reason this exists, is because I just wanted the capture for any cost. I'm really happy that there are more people like me, who are helping and contributing, to make this dream real! You can also feel free to create an issue or pull request if you can make things better.  
+ Discord for questions and discuss https://discord.gg/9sqAgHVRhP
+   
+ SIDENOTE: I'm not a real programmer and all this stuff is really new to me. The only reason this exists, is because I just wanted the capture for any cost. I'm really happy that there are more people like me, who are helping and contributing, to make this dream real! You can also feel free to create an issue or pull request if you can make things better.  
