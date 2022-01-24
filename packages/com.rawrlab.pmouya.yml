@@ -3,6 +3,8 @@ iconUri: https://github.com/panreyes/xd-webos-ipk/releases/download/v1.0.0/icon1
 manifestUrl: https://github.com/panreyes/xd-webos-ipk/releases/download/v1.0.0/com.rawrlab.pmouya.manifest.json
 category: games
 pool: non-free
+requirements:
+  minOs: 3.0.0
 description: |
   eXplosive Dinosaurs WebOS DEMO. 2D party game up to 4 players.
   12 minigames available. Requires gamepads!
