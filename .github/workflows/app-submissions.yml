@@ -4,8 +4,8 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - 'packages/**'
+#    paths:
+#      - 'packages/**'
 
 jobs:
   lint:
@@ -57,9 +57,7 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-             console.log(context.steps)
-             console.log(context.steps.changed_files)
-             console.log(context.steps.changed_files.outputs)
+             console.log("${{ steps.changed_files.outputs.packages_files }}".split(' '))
 #            github.rest.issues.createComment({
 #              issue_number: context.issue.number,
 #              owner: context.repo.owner,
