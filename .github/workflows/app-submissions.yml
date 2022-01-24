@@ -18,8 +18,17 @@ jobs:
         with:
           python-version: '3.8'
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          cache: 'npm'
+
       - name: Install dependencies
-        run: python3 -m pip install -r ./requirements.txt
+        run: |
+          python3 -m pip install -r ./requirements.txt
+          python3 -m pip install yq
+          npm install -g @webosbrew/compat-checker
 
       - name: Check changed packages
         uses: dorny/paths-filter@v2
@@ -32,8 +41,29 @@ jobs:
               - added|modified: 'packages/**'
 
       - name: Lint package information
+        id: lint_package
         if: ${{ steps.changed_files.outputs.packages == 'true' }}
         run: |
           for changed_file in ${{ steps.changed_files.outputs.packages_files }}; do
             python3 -m repogen.lintpkg -f ${changed_file}
+            filehash=$(sha1sum "${changed_file}")
+            ipkfile=/tmp/${filehash}.ipk
+            python3 -m repogen.downloadipk -i ${changed_file} -o "${ipkfile}"
+            validation_result=$(webosbrew-ipk-compat-checker -m "${ipkfile}")
+            echo "::set-output name=validation_result_${filehash}::${validation_result}"
           done
+
+      - name: Report check result
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+             console.log(context.steps)
+             console.log(context.steps.changed_files)
+             console.log(context.steps.changed_files.outputs)
+#            github.rest.issues.createComment({
+#              issue_number: context.issue.number,
+#              owner: context.repo.owner,
+#              repo: context.repo.repo,
+#              body: '👋 Thanks for reporting!'
+#            })

@@ -1,11 +1,9 @@
-import re
 import sys
 from urllib.parse import urlparse
 from xml.etree import ElementTree
 
 import requests
 from markdown import Markdown
-from markdown.inlinepatterns import IMAGE_LINK_RE, Pattern
 from markdown.treeprocessors import Treeprocessor
 
 from repogen.common import parse_package_info
