@@ -45,7 +45,6 @@ jobs:
         continue-on-error: true
         run: |
           export lint_retcode=0
-
           for changed_file in ${{ steps.changed_files.outputs.packages_files }}; do
             echo "## Check Result for $(basename ${changed_file}):" >> /tmp/lint-report.md
             echo >> /tmp/lint-report.md
