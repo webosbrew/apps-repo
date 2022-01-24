@@ -42,6 +42,7 @@ jobs:
       - name: Lint package information
         id: lint_package
         if: ${{ steps.changed_files.outputs.packages == 'true' }}
+        continue-on-error: true
         run: |
           export lint_retcode=0
 
@@ -64,7 +65,6 @@ jobs:
 
       - name: Report check result
         uses: actions/github-script@v5
-        continue-on-error: true
         if: ${{ !env.ACT }}
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -78,6 +78,5 @@ jobs:
              })
 
       - name: Print check result (local test)
-        continue-on-error: true
         if: ${{ env.ACT }}
         run: cat /tmp/lint-report.md
