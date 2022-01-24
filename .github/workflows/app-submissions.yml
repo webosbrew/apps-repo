@@ -31,13 +31,16 @@ jobs:
 
       - name: Check changed packages
         id: changed_files
-        uses: dorny/paths-filter@v2
-        with:
-          list-files: shell
-
-          filters: |
-            packages:
-              - added|modified: 'packages/**'
+        run: |
+          echo "::set-output name=packages::true"
+          echo "::set-output name=packages_files::packages/com.github.k4zmu2a.space-cadet-pinball.yml"
+#        uses: dorny/paths-filter@v2
+#        with:
+#          list-files: shell
+#
+#          filters: |
+#            packages:
+#              - added|modified: 'packages/**'
 
       - name: Lint package information
         id: lint_package
@@ -52,13 +55,13 @@ jobs:
             echo '### Metadata Lint Result' >> /tmp/lint-report.md
             echo >> /tmp/lint-report.md
 
-            python3 -m repogen.lintpkg -f "${changed_file}" 2>&1 || export lint_retcode=1 >> /tmp/lint-report.md
+            python3 -m repogen.lintpkg -f "${changed_file}" >> /tmp/lint-report.md || export lint_retcode=1
             echo >> /tmp/lint-report.md
 
             ipkfile=/tmp/$(sha256sum "${changed_file}" | cut -d ' ' -f 1).ipk
             python3 -m repogen.downloadipk -i ${changed_file} -o "${ipkfile}"
             echo '### Compatibility Check Result' >> /tmp/lint-report.md
-            webosbrew-ipk-compat-checker -m -u -q "${ipkfile}" || export lint_retcode=1 >> /tmp/lint-report.md
+            webosbrew-ipk-compat-checker -m -u -q "${ipkfile}" >> /tmp/lint-report.md || export lint_retcode=1
           done
           exit ${lint_retcode}
 

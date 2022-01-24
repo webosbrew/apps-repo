@@ -89,9 +89,9 @@ if __name__ == '__main__':
     errors = linter.lint(pkginfo)
 
     if len(errors):
-        print('[!] Found problems:', file=sys.stderr)
+        print('[!] Found problems:')
         for err in errors:
-            print(' * %s' % err, file=sys.stderr)
+            print(' * %s' % err)
         exit(1)
     else:
         print('Check passed.')
