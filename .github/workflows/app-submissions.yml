@@ -8,8 +8,8 @@ on:
       - 'packages/**'
 
 jobs:
-  lint:
-    runs-on: ubuntu-18.04
+  app-lint:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -25,13 +25,14 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt-get install -y jq
           python3 -m pip install -r ./requirements.txt
           python3 -m pip install yq
           npm install -g @webosbrew/compat-checker
 
       - name: Check changed packages
-        uses: dorny/paths-filter@v2
         id: changed_files
+        uses: dorny/paths-filter@v2
         with:
           list-files: shell
 
@@ -43,26 +44,51 @@ jobs:
         id: lint_package
         if: ${{ steps.changed_files.outputs.packages == 'true' }}
         run: |
+          export lint_retcode=0
           for changed_file in ${{ steps.changed_files.outputs.packages_files }}; do
-            python3 -m repogen.lintpkg -f ${changed_file}
-            filehash=$(sha256sum "${changed_file}" | cut -d ' ' -f 1)
-            ipkfile=/tmp/${filehash}.ipk
+            echo "## Check Result for $(basename ${changed_file}):" >> /tmp/lint-report.md
+            echo >> /tmp/lint-report.md
+
+            echo '### Metadata Lint Result' >> /tmp/lint-report.md
+            echo >> /tmp/lint-report.md
+
+            python3 -m repogen.lintpkg -f "${changed_file}" >> /tmp/lint-report.md || export lint_retcode=1
+            echo >> /tmp/lint-report.md
+
+            ipkfile=/tmp/$(sha256sum "${changed_file}" | cut -d ' ' -f 1).ipk
             python3 -m repogen.downloadipk -i ${changed_file} -o "${ipkfile}"
-            validation_result=$(webosbrew-ipk-compat-checker -m "${ipkfile}")
-            echo "::set-output name=validation_result_${filehash}::${validation_result}"
+            echo '### Compatibility Check Result' >> /tmp/lint-report.md
+            compat_check_args="-m -u -q"
+            min_os=$(yq -r '.requirements.minOs // ""' ${changed_file})
+            max_os=$(yq -r '.requirements.maxOs // ""' ${changed_file})
+            max_os_exclusive=$(yq -r '.requirements.maxOsExclusive // ""' ${changed_file})
+            if [ ! -z "${min_os}" ]; then
+              compat_check_args="${compat_check_args} --min-os ${min_os}"
+            fi
+            if [ ! -z "${max_os}" ]; then
+              compat_check_args="${compat_check_args} --max-os ${max_os}"
+            fi
+            if [ ! -z "${max_os_exclusive}" ]; then
+              compat_check_args="${compat_check_args} --max-os-exclusive ${max_os_exclusive}"
+            fi
+            webosbrew-ipk-compat-checker ${compat_check_args} "${ipkfile}" >> /tmp/lint-report.md || export lint_retcode=1
           done
+          exit ${lint_retcode}
 
       - name: Report check result
         uses: actions/github-script@v5
+        if: ${{ !env.ACT && (success() || failure()) }}
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-             console.log(context.steps)
-             console.log(context.steps.changed_files)
-             console.log(context.steps.changed_files.outputs)
-#            github.rest.issues.createComment({
-#              issue_number: context.issue.number,
-#              owner: context.repo.owner,
-#              repo: context.repo.repo,
-#              body: '👋 Thanks for reporting!'
-#            })
+             const fs = require('fs')
+             github.rest.issues.createComment({
+               issue_number: context.issue.number,
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               body: fs.readFileSync('/tmp/lint-report.md', 'utf-8')
+             })
+
+      - name: Print check result (local test)
+        if: ${{ env.ACT && (success() || failure()) }}
+        run: cat /tmp/lint-report.md
