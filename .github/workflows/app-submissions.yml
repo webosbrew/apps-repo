@@ -25,6 +25,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt-get install -y jq
           python3 -m pip install -r ./requirements.txt
           python3 -m pip install yq
           npm install -g @webosbrew/compat-checker
@@ -57,7 +58,20 @@ jobs:
             ipkfile=/tmp/$(sha256sum "${changed_file}" | cut -d ' ' -f 1).ipk
             python3 -m repogen.downloadipk -i ${changed_file} -o "${ipkfile}"
             echo '### Compatibility Check Result' >> /tmp/lint-report.md
-            webosbrew-ipk-compat-checker -m -u -q "${ipkfile}" >> /tmp/lint-report.md || export lint_retcode=1
+            compat_check_args="-m -u -q"
+            min_os=$(yq -r .requirements.minOs ${changed_file})
+            max_os=$(yq -r .requirements.maxOs ${changed_file})
+            max_os_exclusive=$(yq -r .requirements.maxOsExclusive ${changed_file})
+            if [ ! -z "${min_os}" ]; then
+              compat_check_args="${compat_check_args} --min-os ${min_os}"
+            fi
+            if [ ! -z "${max_os}" ]; then
+              compat_check_args="${compat_check_args} --max-os ${max_os}"
+            fi
+            if [ ! -z "${max_os_exclusive}" ]; then
+              compat_check_args="${compat_check_args} --max-os-exclusive ${max_os_exclusive}"
+            fi
+            webosbrew-ipk-compat-checker ${compat_check_args} "${ipkfile}" >> /tmp/lint-report.md || export lint_retcode=1
           done
           exit ${lint_retcode}
 
