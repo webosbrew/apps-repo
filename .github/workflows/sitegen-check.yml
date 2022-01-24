@@ -8,7 +8,7 @@ on:
       - '!packages/**'
 
 jobs:
-  lint:
+  site-lint:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2

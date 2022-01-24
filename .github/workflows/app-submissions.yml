@@ -4,12 +4,12 @@ on:
   pull_request:
     branches:
       - main
-#    paths:
-#      - 'packages/**'
+    paths:
+      - 'packages/**'
 
 jobs:
-  lint:
-    runs-on: ubuntu-18.04
+  app-lint:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -30,8 +30,8 @@ jobs:
           npm install -g @webosbrew/compat-checker
 
       - name: Check changed packages
-        uses: dorny/paths-filter@v2
         id: changed_files
+        uses: dorny/paths-filter@v2
         with:
           list-files: shell
 
@@ -45,22 +45,26 @@ jobs:
         run: |
           for changed_file in ${{ steps.changed_files.outputs.packages_files }}; do
             python3 -m repogen.lintpkg -f ${changed_file}
-            filehash=$(sha256sum "${changed_file}" | cut -d ' ' -f 1)
-            ipkfile=/tmp/${filehash}.ipk
+            ipkfile=/tmp/$(sha256sum "${changed_file}" | cut -d ' ' -f 1).ipk
             python3 -m repogen.downloadipk -i ${changed_file} -o "${ipkfile}"
-            validation_result=$(webosbrew-ipk-compat-checker -m "${ipkfile}")
-            echo "::set-output name=validation_result_${filehash}::${validation_result}"
+            echo '### Compatibility Check Result' >> /tmp/lint-report.md
+            webosbrew-ipk-compat-checker -m "${ipkfile}" >> /tmp/lint-report.md
           done
 
       - name: Report check result
         uses: actions/github-script@v5
+        if: ${{ !env.ACT }}
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-             console.log("${{ steps.changed_files.outputs.packages_files }}".split(' '))
-#            github.rest.issues.createComment({
-#              issue_number: context.issue.number,
-#              owner: context.repo.owner,
-#              repo: context.repo.repo,
-#              body: '👋 Thanks for reporting!'
-#            })
+             const fs = require('fs')
+             github.rest.issues.createComment({
+               issue_number: context.issue.number,
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               body: fs.readFileSync('/tmp/lint-report.md', 'utf-8')
+             })
+
+      - name: Print check result (local test)
+        if: ${{ env.ACT }}
+        run: cat /tmp/lint-report.md
