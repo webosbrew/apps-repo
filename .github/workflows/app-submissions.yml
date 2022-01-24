@@ -31,16 +31,13 @@ jobs:
 
       - name: Check changed packages
         id: changed_files
-        run: |
-          echo "::set-output name=packages::true"
-          echo "::set-output name=packages_files::packages/com.github.k4zmu2a.space-cadet-pinball.yml"
-#        uses: dorny/paths-filter@v2
-#        with:
-#          list-files: shell
-#
-#          filters: |
-#            packages:
-#              - added|modified: 'packages/**'
+        uses: dorny/paths-filter@v2
+        with:
+          list-files: shell
+
+          filters: |
+            packages:
+              - added|modified: 'packages/**'
 
       - name: Lint package information
         id: lint_package
