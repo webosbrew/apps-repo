@@ -48,7 +48,7 @@ jobs:
             ipkfile=/tmp/$(sha256sum "${changed_file}" | cut -d ' ' -f 1).ipk
             python3 -m repogen.downloadipk -i ${changed_file} -o "${ipkfile}"
             echo '### Compatibility Check Result' >> /tmp/lint-report.md
-            webosbrew-ipk-compat-checker -m "${ipkfile}" >> /tmp/lint-report.md
+            webosbrew-ipk-compat-checker -m -q "${ipkfile}" >> /tmp/lint-report.md
           done
 
       - name: Report check result
