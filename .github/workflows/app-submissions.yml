@@ -45,7 +45,7 @@ jobs:
         run: |
           for changed_file in ${{ steps.changed_files.outputs.packages_files }}; do
             python3 -m repogen.lintpkg -f ${changed_file}
-            filehash=$(sha1sum "${changed_file}")
+            filehash=$(sha256sum "${changed_file}" | cut -d ' ' -f 1)
             ipkfile=/tmp/${filehash}.ipk
             python3 -m repogen.downloadipk -i ${changed_file} -o "${ipkfile}"
             validation_result=$(webosbrew-ipk-compat-checker -m "${ipkfile}")
