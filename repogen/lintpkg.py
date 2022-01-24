@@ -85,11 +85,10 @@ if __name__ == '__main__':
     pkginfo = parse_package_info(args.file)
 
     linter = PackageInfoLinter()
-    print(f'Checking for {pkginfo["id"]} - {pkginfo["title"]}')
     errors = linter.lint(pkginfo)
 
     if len(errors):
-        print('[!] Found problems:')
+        print('#### Issue:')
         for err in errors:
             print(' * %s' % err)
         exit(1)
