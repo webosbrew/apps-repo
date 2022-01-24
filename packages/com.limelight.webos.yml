@@ -3,6 +3,7 @@ iconUri: https://raw.githubusercontent.com/mariotaku/moonlight-tv/main/deploy/we
 detailIconUri: https://raw.githubusercontent.com/mariotaku/moonlight-tv/main/res/moonlight_320.png
 manifestUrl: https://github.com/mariotaku/moonlight-tv/releases/latest/download/com.limelight.webos.manifest.json
 category: games
+minVersion: 1.4.0
 description: |
   Moonlight TV is a community version of [Moonlight GameStream Client](https://moonlight-stream.org/), made for large
   screens.
