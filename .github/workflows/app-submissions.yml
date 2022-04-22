@@ -10,6 +10,8 @@ on:
 jobs:
   app-lint:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
       - uses: actions/checkout@v2
 
@@ -76,7 +78,7 @@ jobs:
           exit ${lint_retcode}
 
       - name: Report check result
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         if: ${{ !env.ACT && (success() || failure()) }}
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
