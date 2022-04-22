@@ -1,9 +1,9 @@
 {
   "paging": {
     "page": 1,
-    "count": 11,
+    "count": 12,
     "maxPage": 1,
-    "itemsTotal": 11
+    "itemsTotal": 12
   },
   "packages": [
     {
@@ -124,6 +124,30 @@
       "pool": "main",
       "shortDescription": "webOS Homebrew installer",
       "fullDescriptionUrl": "apps/org.webosbrew.hbchannel-full_description.html"
+    },
+    {
+      "id": "org.webosbrew.hyperion.ng.loader",
+      "title": "Hyperion.NG",
+      "iconUri": "https://raw.githubusercontent.com/webosbrew/hyperion.ng-webos-loader/master/assets/logo_big.png",
+      "manifestUrl": "https://github.com/webosbrew/hyperion.ng-webos-loader/releases/download/v0.1.0/org.webosbrew.hyperion.ng.loader.manifest.json",
+      "manifest": {
+        "id": "org.webosbrew.hyperion.ng.loader",
+        "version": "0.1.0",
+        "type": "web",
+        "title": "Hyperion.NG",
+        "appDescription": "Hyperion.NG for WebOS",
+        "iconUri": "https://github.com/webosbrew/hyperion.ng-webos-loader/raw/master/assets/logo_big.png",
+        "sourceUrl": "https://github.com/webosbrew/hyperion.ng-webos-loader",
+        "rootRequired": true,
+        "ipkUrl": "https://github.com/webosbrew/hyperion.ng-webos-loader/releases/download/v0.1.0/org.webosbrew.hyperion.ng.loader_0.1.0_all.ipk",
+        "ipkHash": {
+          "sha256": "017ccfde8a376065482a0a76ccbf8ee246a742f01697814fd710252454325e72"
+        },
+        "ipkSize": 17673568
+      },
+      "pool": "main",
+      "shortDescription": "Hyperion.NG for WebOS",
+      "fullDescriptionUrl": "apps/org.webosbrew.hyperion.ng.loader-full_description.html"
     },
     {
       "id": "org.jellyfin.webos",
