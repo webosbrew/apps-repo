@@ -42,8 +42,13 @@ jobs:
              unzip -d "$name" "$name.zip"
            done
 
+           report=$(cat 'Check Results/lint-report.md')
+           report="${report//'%'/'%25'}"
+           report="${report//$'\n'/'%0A'}"
+           report="${report//$'\r'/'%0D'}"
+           echo "::set-output name=content::$report"
+
            echo "::set-output name=issue-number::$(cat 'Check Results/issue-number.txt')"
-           echo "::set-output name=content::$(cat 'Check Results/lint-report.md')"
 
       - id: find-comment
         name: Find Check Results Comment
