@@ -26,7 +26,8 @@ jobs:
     if: github.event.workflow_run.conclusion != 'skipped'
 
     steps:
-      - name: Download and Extract Artifacts
+      - id: extract-check-results
+        name: Download and Extract Artifacts
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
@@ -41,16 +42,21 @@ jobs:
              unzip -d "$name" "$name.zip"
            done
 
-      - name: Report Check Results
-        uses: actions/github-script@v6
+           echo "::set-output name=issue-number::$(cat 'artifacts/Check Results/issue-number.txt')"
+           echo "::set-output name=content::$(cat 'artifacts/Check Results/lint-report.md')"
+
+      - id: find-comment
+        name: Find Check Results Comment
+        uses: peter-evans/find-comment@v2
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-             const fs = require('fs')
-             const issueNumber = fs.readFileSync('artifacts/Check Results/issue-number.txt', 'utf-8').trim()
-             github.rest.issues.createComment({
-               issue_number: issueNumber,
-               owner: context.repo.owner,
-               repo: context.repo.repo,
-               body: fs.readFileSync('artifacts/Check Results/lint-report.md', 'utf-8')
-             })
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Check Result
+
+      - name: Report Check Results
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          issue-number: ${{ steps.extract-check-results.outputs.issue-number }}
+          body: ${{ steps.extract-check-results.outputs.content }}
+          edit-mode: replace
