@@ -3,6 +3,7 @@ iconUri: https://raw.githubusercontent.com/mateussouzaweb/crunchyroll-webos/v1.8
 detailIconUri: https://raw.githubusercontent.com/mateussouzaweb/crunchyroll-webos/v1.8.0/src/images/512px.png
 manifestUrl: https://github.com/mateussouzaweb/crunchyroll-webos/releases/latest/download/webosbrew.manifest.json
 category: multimedia
+pool: main
 description: |
   # Crunchyroll - WebOS TV App
 
