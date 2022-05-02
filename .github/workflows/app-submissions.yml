@@ -48,7 +48,7 @@ jobs:
         run: |
           export lint_retcode=0
           for changed_file in ${{ steps.changed_files.outputs.packages_files }}; do
-            echo "## Check Result for $(basename ${changed_file}):" >> /tmp/lint-report.md
+            echo "## Check Results for $(basename ${changed_file}):" >> /tmp/lint-report.md
             echo >> /tmp/lint-report.md
 
             echo '### Metadata Lint Result' >> /tmp/lint-report.md
@@ -59,7 +59,7 @@ jobs:
 
             ipkfile=/tmp/$(sha256sum "${changed_file}" | cut -d ' ' -f 1).ipk
             python3 -m repogen.downloadipk -i ${changed_file} -o "${ipkfile}"
-            echo '### Compatibility Check Result' >> /tmp/lint-report.md
+            echo '### Compatibility Check Results' >> /tmp/lint-report.md
             compat_check_args="-m -u -q"
             min_os=$(yq -r '.requirements.minOs // ""' ${changed_file})
             max_os=$(yq -r '.requirements.maxOs // ""' ${changed_file})
@@ -77,13 +77,13 @@ jobs:
           done
           exit ${lint_retcode}
 
-      - name: Upload Check Result
+      - name: Upload Check Results
         if: ${{ !env.ACT && (success() || failure()) }}
         uses: actions/upload-artifact@v2
         with:
           name: Check Results
           path: /tmp/lint-report.md
 
-      - name: Print Check Result (Local)
+      - name: Print Check Results (Local)
         if: ${{ env.ACT && (success() || failure()) }}
         run: cat /tmp/lint-report.md

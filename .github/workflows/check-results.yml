@@ -41,9 +41,8 @@ jobs:
              unzip -d "$name" "$name.zip"
            done
 
-      - name: Report Check Result
+      - name: Report Check Results
         uses: actions/github-script@v6
-        if: hashFiles('artifacts/lint-report.md') != ''
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
@@ -52,5 +51,5 @@ jobs:
                issue_number: context.issue.number,
                owner: context.repo.owner,
                repo: context.repo.repo,
-               body: fs.readFileSync('artifacts/lint-report.md', 'utf-8')
+               body: fs.readFileSync('artifacts/Check Results/lint-report.md', 'utf-8')
              })
