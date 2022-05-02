@@ -77,12 +77,20 @@ jobs:
           done
           exit ${lint_retcode}
 
+      - name: Save Issue Number
+        if: ${{ !env.ACT && (success() || failure()) }}
+        run: echo $ISSUE_NUMBER > /tmp/issue-number.txt
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+
       - name: Upload Check Results
         if: ${{ !env.ACT && (success() || failure()) }}
         uses: actions/upload-artifact@v2
         with:
           name: Check Results
-          path: /tmp/lint-report.md
+          path: |
+            /tmp/lint-report.md
+            /tmp/issue-number.txt
 
       - name: Print Check Results (Local)
         if: ${{ env.ACT && (success() || failure()) }}

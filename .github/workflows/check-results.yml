@@ -47,8 +47,9 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
              const fs = require('fs')
+             const issueNumber = fs.readFileSync('artifacts/Check Results/issue-number.txt', 'utf-8').trim()
              github.rest.issues.createComment({
-               issue_number: context.issue.number,
+               issue_number: issueNumber,
                owner: context.repo.owner,
                repo: context.repo.repo,
                body: fs.readFileSync('artifacts/Check Results/lint-report.md', 'utf-8')
