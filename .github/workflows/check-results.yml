@@ -49,7 +49,7 @@ jobs:
         name: Find Check Results Comment
         uses: peter-evans/find-comment@v2
         with:
-          issue-number: ${{ github.event.pull_request.number }}
+          issue-number: ${{ steps.extract-check-results.outputs.issue-number }}
           comment-author: 'github-actions[bot]'
           body-includes: Check Result
 
