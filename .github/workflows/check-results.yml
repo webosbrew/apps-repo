@@ -42,8 +42,8 @@ jobs:
              unzip -d "$name" "$name.zip"
            done
 
-           echo "::set-output name=issue-number::$(cat 'artifacts/Check Results/issue-number.txt')"
-           echo "::set-output name=content::$(cat 'artifacts/Check Results/lint-report.md')"
+           echo "::set-output name=issue-number::$(cat 'Check Results/issue-number.txt')"
+           echo "::set-output name=content::$(cat 'Check Results/lint-report.md')"
 
       - id: find-comment
         name: Find Check Results Comment
