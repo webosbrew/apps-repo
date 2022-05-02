@@ -81,7 +81,7 @@ jobs:
         if: ${{ !env.ACT && (success() || failure()) }}
         run: echo $ISSUE_NUMBER > /tmp/issue-number.txt
         env:
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_NUMBER: ${{ github.event.number }}
 
       - name: Upload Check Results
         if: ${{ !env.ACT && (success() || failure()) }}
