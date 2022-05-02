@@ -2,7 +2,7 @@ name: Check Results
 
 on:
   workflow_run:
-    workflows: ["CI"]
+    workflows: ["App Submissions"]
     types:
       - completed
 permissions: {}

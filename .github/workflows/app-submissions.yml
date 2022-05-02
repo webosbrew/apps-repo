@@ -1,4 +1,4 @@
-name: app submissions
+name: App Submissions
 
 on:
   pull_request:
@@ -83,20 +83,6 @@ jobs:
         with:
           name: Check Results
           path: /tmp/lint-report.md
-
-      - name: Report check result
-        uses: actions/github-script@v6
-        if: ${{ !env.ACT && (success() || failure()) }}
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-             const fs = require('fs')
-             github.rest.issues.createComment({
-               issue_number: context.issue.number,
-               owner: context.repo.owner,
-               repo: context.repo.repo,
-               body: fs.readFileSync('/tmp/lint-report.md', 'utf-8')
-             })
 
       - name: Print Check Result (Local)
         if: ${{ env.ACT && (success() || failure()) }}
