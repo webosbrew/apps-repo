@@ -1,4 +1,4 @@
-name: app submissions
+name: App Submissions
 
 on:
   pull_request:
@@ -48,7 +48,7 @@ jobs:
         run: |
           export lint_retcode=0
           for changed_file in ${{ steps.changed_files.outputs.packages_files }}; do
-            echo "## Check Result for $(basename ${changed_file}):" >> /tmp/lint-report.md
+            echo "## Check Results for $(basename ${changed_file}):" >> /tmp/lint-report.md
             echo >> /tmp/lint-report.md
 
             echo '### Metadata Lint Result' >> /tmp/lint-report.md
@@ -59,7 +59,7 @@ jobs:
 
             ipkfile=/tmp/$(sha256sum "${changed_file}" | cut -d ' ' -f 1).ipk
             python3 -m repogen.downloadipk -i ${changed_file} -o "${ipkfile}"
-            echo '### Compatibility Check Result' >> /tmp/lint-report.md
+            echo '### Compatibility Check Results' >> /tmp/lint-report.md
             compat_check_args="-m -u -q"
             min_os=$(yq -r '.requirements.minOs // ""' ${changed_file})
             max_os=$(yq -r '.requirements.maxOs // ""' ${changed_file})
@@ -77,20 +77,21 @@ jobs:
           done
           exit ${lint_retcode}
 
-      - name: Report check result
-        uses: actions/github-script@v6
+      - name: Save Issue Number
         if: ${{ !env.ACT && (success() || failure()) }}
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-             const fs = require('fs')
-             github.rest.issues.createComment({
-               issue_number: context.issue.number,
-               owner: context.repo.owner,
-               repo: context.repo.repo,
-               body: fs.readFileSync('/tmp/lint-report.md', 'utf-8')
-             })
+        run: echo $ISSUE_NUMBER > /tmp/issue-number.txt
+        env:
+          ISSUE_NUMBER: ${{ github.event.number }}
 
-      - name: Print check result (local test)
+      - name: Upload Check Results
+        if: ${{ !env.ACT && (success() || failure()) }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: Check Results
+          path: |
+            /tmp/lint-report.md
+            /tmp/issue-number.txt
+
+      - name: Print Check Results (Local)
         if: ${{ env.ACT && (success() || failure()) }}
         run: cat /tmp/lint-report.md
