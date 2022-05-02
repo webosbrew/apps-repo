@@ -6,4 +6,4 @@ pool: main
 description: |
   [Hyperion.NG](https://hyperion-project.org) ambient lighting service incl. frontend to start/stop/autostart the daemon.
 
-  To be used in combination with PicCap.
+  To be used in combination with PicCap. [TRIGGER]
