@@ -1,0 +1,56 @@
+name: Check Results
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+permissions: {}
+
+jobs:
+  check-results:
+    name: Check Results
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      checks: write
+
+      # only needed unless run with comment_mode: off
+      pull-requests: write
+
+      # only needed for private repository
+      contents: read
+
+      # only needed for private repository
+      issues: read
+    if: github.event.workflow_run.conclusion != 'skipped'
+
+    steps:
+      - name: Download and Extract Artifacts
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: |
+           mkdir -p artifacts && cd artifacts
+
+           artifacts_url=${{ github.event.workflow_run.artifacts_url }}
+
+           gh api "$artifacts_url" -q '.artifacts[] | [.name, .archive_download_url] | @tsv' | while read artifact
+           do
+             IFS=$'\t' read name url <<< "$artifact"
+             gh api $url > "$name.zip"
+             unzip -d "$name" "$name.zip"
+           done
+
+      - name: Report Check Result
+        uses: actions/github-script@v6
+        if: hashFiles('artifacts/lint-report.md') != ''
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+             const fs = require('fs')
+             github.rest.issues.createComment({
+               issue_number: context.issue.number,
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               body: fs.readFileSync('artifacts/lint-report.md', 'utf-8')
+             })
