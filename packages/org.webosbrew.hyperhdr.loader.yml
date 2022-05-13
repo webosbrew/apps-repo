@@ -1,0 +1,9 @@
+title: HyperHDR
+iconUri: https://raw.githubusercontent.com/webosbrew/hyperhdr-webos-loader/master/assets/logo_big.png
+manifestUrl: https://github.com/webosbrew/hyperhdr-webos-loader/releases/latest/download/org.webosbrew.hyperhdr.loader.manifest.json
+category: multimedia
+pool: main
+description: |
+  [HyperHDR](https://www.hyperhdr.eu) (Fork of [Hyperion.NG](https://hyperion-project.org)) ambient lighting service incl. frontend to start/stop/autostart the daemon.
+
+  To be used in combination with PicCap.
