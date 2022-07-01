@@ -1,9 +1,9 @@
 {
   "paging": {
     "page": 1,
-    "count": 13,
+    "count": 14,
     "maxPage": 1,
-    "itemsTotal": 13
+    "itemsTotal": 14
   },
   "packages": [
     {
@@ -244,6 +244,30 @@
       "pool": "main",
       "shortDescription": "Hyperion Sender App - Ambilight for WebOS",
       "fullDescriptionUrl": "apps/org.webosbrew.piccap-full_description.html"
+    },
+    {
+      "id": "ui30",
+      "title": "Piccap On/Off Remote",
+      "iconUri": "https://raw.githubusercontent.com/Bahoue/OnOff-Remote/master/app/largeIcon.png",
+      "manifestUrl": "https://github.com/Bahoue/OnOff-Remote/releases/download/v0.0.8/ui30.manifest.json",
+      "manifest": {
+        "id": "ui30",
+        "version": "0.0.8",
+        "type": "web",
+        "title": "PicCap OnOff",
+        "appDescription": "Movies - RakutenTV button",
+        "iconUri": "https://github.com/Bahoue/OnOff-Remote/raw/main/app/largeIcon.png",
+        "sourceUrl": "https://github.com/Bahoue/OnOff-Remote",
+        "rootRequired": false,
+        "ipkUrl": "https://github.com/Bahoue/OnOff-Remote/releases/download/v0.0.8/ui30_0.0.8_all.ipk",
+        "ipkHash": {
+          "sha256": "d732ca667fca4cd61db63f98538c6c8f95f9a4a40b4e618ac5bbc5ceaec65cbf"
+        },
+        "ipkSize": 22430
+      },
+      "pool": "main",
+      "shortDescription": "Movies - RakutenTV button",
+      "fullDescriptionUrl": "apps/ui30-full_description.html"
     },
     {
       "id": "com.retroarch",
