@@ -177,21 +177,21 @@
       "id": "org.jellyfin.webos",
       "title": "Jellyfin",
       "iconUri": "https://raw.githubusercontent.com/jellyfin/jellyfin-webos/master/frontend/assets/icon-130.png",
-      "manifestUrl": "https://github.com/jellyfin/jellyfin-webos/releases/download/v1.0.1/org.jellyfin.webos.manifest.json",
+      "manifestUrl": "https://github.com/jellyfin/jellyfin-webos/releases/download/v1.1.0/org.jellyfin.webos.manifest.json",
       "manifest": {
         "id": "org.jellyfin.webos",
-        "version": "1.0.1",
+        "version": "1.1.0",
         "type": "web",
         "title": "Jellyfin",
         "appDescription": "A webOS client to connect to a Jellyfin Server instance and stream media.",
         "iconUri": "https://github.com/jellyfin/jellyfin-webos/raw/master/org.jellyfin.webos/submission-icon.png",
         "sourceUrl": "https://github.com/jellyfin/jellyfin-webos",
-        "rootRequired": true,
-        "ipkUrl": "https://github.com/jellyfin/jellyfin-webos/releases/download/v1.0.1/org.jellyfin.webos_1.0.1_all.ipk",
+        "rootRequired": false,
+        "ipkUrl": "https://github.com/jellyfin/jellyfin-webos/releases/download/v1.1.0/org.jellyfin.webos_1.1.0_all.ipk",
         "ipkHash": {
-          "sha256": "d7bf2a3407f867e4b8c88905c65e4f9f22372e8d73b4ca4e8c3fa08a560e013a"
+          "sha256": "161b242088c7b4de15cb7342d76f5831a4cc0ad54e7c3bfef0672ea75d63427f"
         },
-        "ipkSize": 161474
+        "ipkSize": 161428
       },
       "pool": "main",
       "shortDescription": "A webOS client to connect to a Jellyfin Server instance and stream media.",
