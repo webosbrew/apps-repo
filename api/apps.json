@@ -10,21 +10,21 @@
       "id": "com.github.k4zmu2a.space-cadet-pinball",
       "title": "3D Pinball \u2013 Space Cadet",
       "iconUri": "https://raw.githubusercontent.com/webosbrew/SpaceCadetPinball/webos/webos/icon.png",
-      "manifestUrl": "https://github.com/webosbrew/SpaceCadetPinball/releases/download/v0.0.3/webosbrew.manifest.json",
+      "manifestUrl": "https://github.com/webosbrew/SpaceCadetPinball/releases/download/v0.0.2/webosbrew.manifest.json",
       "manifest": {
         "id": "com.github.k4zmu2a.space-cadet-pinball",
-        "version": "0.0.3",
+        "version": "0.0.2",
         "type": "native",
         "title": "Pinball",
         "appDescription": "Technical Demo for SpaceCadetPinball",
         "iconUri": "https://github.com/webosbrew/SpaceCadetPinball/raw/webos/webos/icon.png",
         "sourceUrl": "https://github.com/webosbrew/SpaceCadetPinball",
         "rootRequired": false,
-        "ipkUrl": "https://github.com/webosbrew/SpaceCadetPinball/releases/download/v0.0.3/com.github.k4zmu2a.space-cadet-pinball_0.0.3_arm.ipk",
+        "ipkUrl": "https://github.com/webosbrew/SpaceCadetPinball/releases/download/v0.0.2/com.github.k4zmu2a.space-cadet-pinball_0.0.2_arm.ipk",
         "ipkHash": {
-          "sha256": "00a35773e61d3eba3173fcf3fa2bc9804d2d24ff5c24fa488cc797afe6e16c05"
+          "sha256": "3e92948f971d8c44594bc5f10d2f7a4f4bead5638b27973454080519579eafbd"
         },
-        "ipkSize": 7465122
+        "ipkSize": 6609406
       },
       "pool": "main",
       "shortDescription": "Technical Demo for SpaceCadetPinball",
