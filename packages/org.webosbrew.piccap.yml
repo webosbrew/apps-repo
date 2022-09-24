@@ -1,29 +1,38 @@
-title: PicCap - Hyperion Sender App
-iconUri: https://raw.githubusercontent.com/TBSniller/piccap/main/piccap/logo_big.png
-manifestUrl: https://github.com/TBSniller/piccap/releases/latest/download/org.webosbrew.piccap.manifest.json
-category: tools
-pool: main
-description: |
- **In early stage development**  
-  
- The main idea of this is, to have a simple frontend app with autostart feature from the underlaying hyperion-webos service. 
- PicCap directly speaks to this service, so its reasonable for starting, stopping, displaying and changing settings of this service.  
-   
- ![image](https://user-images.githubusercontent.com/51515147/150593018-8e935f55-2926-408f-81e5-40c73bf877fb.png)
- 
- ## Features  
- 1. Autostart
- 2. Simple frontend
+## PicCap - Hyperion Sender App
+The idea is to have an ambilight on our LG webOS TVs like it's known from Philipps TVs.  
+![Ambilight preview](https://user-images.githubusercontent.com/51515147/192122007-3eea4750-204c-445f-84f9-35062554ba19.jpg)
 
- ### After first start  
- Wait a few secounds to let the service elevate root permissions through the Homebrew Channel-Service. After that a full reboot (no powercycle) of your TV might be neccessary. You can simply use the reboot button.
+### PicCap?
+PicCap is an frontend app, which you can install on your TV, to make TV content capturing as easy as possible. It ships and controls the seperated [hyperion-webos](https://github.com/webosbrew/hyperion-webos) background native service, which uses capture interfaces on your TV based on reverse engineering, proccesses the output and sends as result a low quality image to a receiver like Hyperion's flatbuffer server.  
+![Main](https://user-images.githubusercontent.com/51515147/192116360-efd6483a-8dc7-4b61-af27-d428f90740a3.jpg)  
+### Hyperion?  
+[hyperion.ng](https://github.com/hyperion-project/hyperion.ng) basicly is a server service, which transforms incomming image data to an LED output.
+ 
+### What do you need?  
+- [Root access](https://github.com/RootMyTV/RootMyTV.github.io) to your TV  
+- webOS 3.4 or above  
+- Latest version of [Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel) installed, as we take use of its elevate-service script  
+- Brain with some basic knowledge - We haven't encountered any bricks, but standard no warranty clause applies
+
+## How to use
+### First start  
+Wait a few secounds to let the service elevate root permissions through Homebrew Channel-Service. Check status message in bottom right corner, to see when it's done.
   
- ## Known issues   
- - On some platforms (likley `libvt` and `libvtcapture` autostart only works after a complete TV-restart. If your TV goes to suspension after shutting it down, our startup scripts doesn't get fired when the TV gets waked up again. To work around it, you will have to disable LGs QuickStart+ in settings until we find a reliable way. This way the TV doesn't go to sleep, it fully shuts down. It can cause a failsafe boot - take a look at the RootMyTVv2 FAQ  
- - Not all TVs are supported - Test it out or check the ReadMe at github.com/webosbrew/hyperion-webos/ for more information  
- - Nothing more known so far.  
- - Please see https://github.com/webosbrew/hyperion-webos/tree/main#known-issues for issues regarding the backend capture service. - This is only the frontend application! 
   
- Discord for questions and discuss https://discord.gg/9sqAgHVRhP
-   
- SIDENOTE: I'm not a real programmer and all this stuff is really new to me. The only reason this exists, is because I just wanted the capture for any cost. I'm really happy that there are more people like me, who are helping and contributing, to make this dream real! You can also feel free to create an issue or pull request if you can make things better.  
+### Settings 
+ - If you use hyperion.ng or HyperHDR loader, you will have to fill `127.0.0.1` as IP address. 
+ - Change priority if you have other capture or effect sources for your Hyperion or HyperHDR instance.  
+
+### Backends
+We use different libraries to capture TVs content. These are used by hyperion-webos and described [here](https://github.com/webosbrew/hyperion-webos/tree/main#backends).  
+
+### Advanced settings
+Some TV models are comptabile with a specific backend, but require a slightly different routine to work reliably. You can find an explaination for  these so called quirks [here](https://github.com/webosbrew/hyperion-webos/tree/main#quirks).  
+
+### DRM-protected content  
+On newer TVs there is no official way for capturing DRM-protected content like from Netflix or Amazon. This restriction doesn't take place for content comming from an HDMI input.  
+So currently as a workaround you can play your media using your PC, FireTV-Stick or Chromecast and still enjoy your LEDs.  
+ 
+### Need some help?  
+- Discord for questions and discuss https://discord.gg/9sqAgHVRhP  
+- Visit projects page and feel free to raise an issue  
