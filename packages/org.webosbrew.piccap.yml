@@ -1,13 +1,27 @@
-## PicCap - Hyperion Sender App
+title: PicCap - Hyperion Sender App
+iconUri: https://raw.githubusercontent.com/TBSniller/piccap/main/piccap/logo_big.png
+manifestUrl: https://github.com/TBSniller/piccap/releases/latest/download/org.webosbrew.piccap.manifest.json
+category: tools
+pool: main
+description: |
+## PicCap - Hyperion Sender App  
 The idea is to have an ambilight on our LG webOS TVs like it's known from Philipps TVs.  
 ![Ambilight preview](https://user-images.githubusercontent.com/51515147/192122007-3eea4750-204c-445f-84f9-35062554ba19.jpg)
 
 ### PicCap?
 PicCap is an frontend app, which you can install on your TV, to make TV content capturing as easy as possible. It ships and controls the seperated [hyperion-webos](https://github.com/webosbrew/hyperion-webos) background native service, which uses capture interfaces on your TV based on reverse engineering, proccesses the output and sends as result a low quality image to a receiver like Hyperion's flatbuffer server.  
 ![Main](https://user-images.githubusercontent.com/51515147/192116360-efd6483a-8dc7-4b61-af27-d428f90740a3.jpg)  
+  
 ### Hyperion?  
-[hyperion.ng](https://github.com/hyperion-project/hyperion.ng) basicly is a server service, which transforms incomming image data to an LED output.
- 
+[hyperion.ng](https://github.com/hyperion-project/hyperion.ng) basicly is a server service, which transforms incomming image data to an LED output. - Also available in Homebrew Channel!  
+  
+### Features  
+- webOS 3.4+ support 
+- Log gathering for app and hyperion-webos  
+- Status refreshing to display some useful info like FPS or used backends  
+- Button and magic remote navigation  
+- Switch between dark, grey or blue UI  
+  
 ### What do you need?  
 - [Root access](https://github.com/RootMyTV/RootMyTV.github.io) to your TV  
 - webOS 3.4 or above  
@@ -17,7 +31,6 @@ PicCap is an frontend app, which you can install on your TV, to make TV content 
 ## How to use
 ### First start  
 Wait a few secounds to let the service elevate root permissions through Homebrew Channel-Service. Check status message in bottom right corner, to see when it's done.
-  
   
 ### Settings 
  - If you use hyperion.ng or HyperHDR loader, you will have to fill `127.0.0.1` as IP address. 
