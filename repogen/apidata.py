@@ -34,7 +34,9 @@ def generate(packages, outdir):
     items_per_page = 30
     packages_length = len(packages)
     max_page = math.ceil(packages_length / items_per_page)
-    for index, items in enumerate(more_itertools.chunked(packages, items_per_page)):
+    for index, items in enumerate(
+        more_itertools.chunked(packages, items_per_page) if packages else [[]]
+    ):
         page = index + 1
         json_file = join(appsdir, '%d.json' %
                          page) if page > 1 else join(outdir, 'apps.json')
