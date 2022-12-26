@@ -5,14 +5,7 @@ manifestUrl: https://github.com/mariotaku/ihsplay/releases/latest/download/org.m
 category: games
 pool: main
 description: |
-  ```
-      ______  _______       __
-    /  _/ / / / ___/____  / /___ ___  __      In-Home
-    / // /_/ /\__ \/ __ \/ / __ `/ / / /     Streaming
-  _/ // __  /___/ / /_/ / / /_/ / /_/ /     Player
-  /___/_/ /_//____/ .___/_/\__,_/\__, /     For Steam
-                /_/            /____/
-  ```
+  # Early Beta!
 
   IHSplay is an SDL2 based Steam Link Client, primarily targeting webOS TV
   and Raspberry Pi.
