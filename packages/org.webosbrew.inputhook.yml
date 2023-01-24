@@ -1,5 +1,5 @@
 title: LG Input Hook
-iconUri: https://raw.githubusercontent.com/Simon34545/lginputhook/main/inputhook/largeIcon.png
+iconUri: https://raw.githubusercontent.com/Simon34545/lginputhook/main/assets/largeIcon.png
 manifestUrl: https://github.com/Simon34545/lginputhook/releases/latest/download/org.webosbrew.inputhook.manifest.json
 category: tools
 pool: main
