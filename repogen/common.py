@@ -120,16 +120,16 @@ def parse_package_info(path: str, offline=False):
     return pkginfo
 
 
-def parse_yml_package(path):
-    with open(path, encoding='utf-8') as f:
+def parse_yml_package(p: str):
+    with open(p, encoding='utf-8') as f:
         content = yaml.safe_load(f)
     return content
 
 
 # noinspection PyUnresolvedReferences
-def load_py_package(path):
-    pkgid = os.path.splitext(basename(path))[0]
-    spec = importlib.util.spec_from_file_location(f"pkg.{pkgid}", path)
+def load_py_package(p: str):
+    pkgid = os.path.splitext(basename(p))[0]
+    spec = importlib.util.spec_from_file_location(f"pkg.{pkgid}", p)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module.load()
