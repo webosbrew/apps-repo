@@ -60,7 +60,7 @@ jobs:
             ipkfile=/tmp/$(sha256sum "${changed_file}" | cut -d ' ' -f 1).ipk
             python3 -m repogen.downloadipk -i ${changed_file} -o "${ipkfile}"
             echo '### Compatibility Check Results' >> /tmp/lint-report.md
-            compat_check_args="-m -u -q"
+            compat_check_args="--markdown --github-emoji --quiet"
             min_os=$(yq -r '.requirements.minOs // ""' ${changed_file})
             max_os=$(yq -r '.requirements.maxOs // ""' ${changed_file})
             max_os_exclusive=$(yq -r '.requirements.maxOsExclusive // ""' ${changed_file})
