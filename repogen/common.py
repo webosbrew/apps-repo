@@ -4,7 +4,7 @@ from urllib.parse import urljoin
 
 import requests
 
-ITEMS_PER_PAGE: int = 10
+ITEMS_PER_PAGE: int = 30
 
 
 def url_fixup(u: str) -> str:
