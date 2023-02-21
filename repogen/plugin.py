@@ -4,12 +4,11 @@ import os
 from markdown import Markdown
 from more_itertools import chunked
 from pelican import signals, Readers, PagesGenerator, StaticGenerator
-from pelican.contents import Page, Static
+from pelican.contents import Page
 from pelican.readers import BaseReader
 from pelican.themes.webosbrew import pagination_data
 
-from repogen import funding, apidata
-from repogen.common import parse_package_info
+from repogen import funding, apidata, pkg_info
 
 log = logging.getLogger(__name__)
 
@@ -24,7 +23,7 @@ class PackageInfoReader(BaseReader):
         self._md = Markdown(**self.settings['MARKDOWN'])
 
     def read(self, filename):
-        info = parse_package_info(filename, offline='CI' not in os.environ)
+        info = pkg_info.parse_package_info(filename, offline='CI' not in os.environ)
         metadata = {
             'title': info['title'],
             'override_save_as': f'apps/{info["id"]}.html',

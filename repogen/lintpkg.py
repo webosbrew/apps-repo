@@ -1,4 +1,3 @@
-import sys
 from urllib.parse import urlparse
 from xml.etree import ElementTree
 
@@ -6,7 +5,7 @@ import requests
 from markdown import Markdown
 from markdown.treeprocessors import Treeprocessor
 
-from repogen.common import parse_package_info
+from repogen import pkg_info
 
 
 class PackageInfoLinter:
@@ -34,7 +33,7 @@ class PackageInfoLinter:
         # Pool property
         if pkginfo.get('nopool', False):
             errors.append('pool property is required (`main` or `non-free`)')
-        elif pkginfo['pool'] not in['main', 'non-free']:
+        elif pkginfo['pool'] not in ['main', 'non-free']:
             errors.append('pool property must be `main` or `non-free`')
 
         # Process icon
@@ -82,7 +81,7 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--file', required=True)
     args = parser.parse_args()
 
-    pkginfo = parse_package_info(args.file)
+    pkginfo = pkg_info.parse_package_info(args.file)
 
     linter = PackageInfoLinter()
     errors = linter.lint(pkginfo)

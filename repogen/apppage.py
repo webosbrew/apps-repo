@@ -6,7 +6,8 @@ from os.path import dirname, exists, join
 import more_itertools
 import pystache
 
-from repogen.common import list_packages
+from repogen import pkg_info
+from repogen.common import ITEMS_PER_PAGE
 
 
 class AppListingGenerator:
@@ -70,11 +71,10 @@ class AppListingGenerator:
             }))
 
     def gen_list(self, outdir):
-        items_per_page = 30
         pkgs = self.packages
         packages_length = len(pkgs)
-        max_page = math.ceil(packages_length / items_per_page)
-        for index, items in enumerate(more_itertools.chunked(pkgs, items_per_page)):
+        max_page = math.ceil(packages_length / ITEMS_PER_PAGE)
+        for index, items in enumerate(more_itertools.chunked(pkgs, ITEMS_PER_PAGE)):
             page = index + 1
             pagination = {
                 'prev': page - 1 if page > 1 else None,
@@ -107,4 +107,4 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--output-dir', required=True)
     args = parser.parse_args()
 
-    generate(list_packages(args.input_dir), args.output_dir)
+    generate(pkg_info.list_packages(args.input_dir), args.output_dir)

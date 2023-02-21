@@ -3,16 +3,20 @@ import json
 import math
 from os import makedirs
 from os.path import exists, join
+from typing import List
 
 import more_itertools
 
-from repogen.common import list_packages
 from markdown import Markdown
+
+from repogen import pkg_info
+from repogen.common import ITEMS_PER_PAGE
+from repogen.pkg_info import PackageInfo
 
 MANIFEST_KEYS = ('id', 'title', 'iconUri', 'manifestUrl', 'manifest', 'manifestUrlBeta', 'manifestBeta', 'pool')
 
 
-def generate(packages, outdir):
+def generate(packages: List[PackageInfo], outdir: str):
     markdown = Markdown()
 
     if not exists(outdir):
@@ -21,21 +25,20 @@ def generate(packages, outdir):
     if not exists(appsdir):
         makedirs(appsdir)
 
-    def package_item(item, in_apps_dir):
-        package = {k: item[k] for k in MANIFEST_KEYS if k in item}
-        package['shortDescription'] = item['manifest'].get(
+    def package_item(p_info: PackageInfo, in_apps_dir: bool):
+        package = {k: p_info[k] for k in MANIFEST_KEYS if k in p_info}
+        package['shortDescription'] = p_info['manifest'].get(
             'appDescription', None)
         if in_apps_dir:
-            package['fullDescriptionUrl'] = f'{item["id"]}-full_description.html'
+            package['fullDescriptionUrl'] = f'{p_info["id"]}/full_description.html'
         else:
-            package['fullDescriptionUrl'] = f'apps/{item["id"]}-full_description.html'
+            package['fullDescriptionUrl'] = f'apps/{p_info["id"]}/full_description.html'
         return package
 
-    items_per_page = 30
     packages_length = len(packages)
-    max_page = math.ceil(packages_length / items_per_page)
-    for index, items in enumerate(
-        more_itertools.chunked(packages, items_per_page) if packages else [[]]
+    max_page = math.ceil(packages_length / ITEMS_PER_PAGE)
+    for index, chunk in enumerate(
+            more_itertools.chunked(packages, ITEMS_PER_PAGE) if packages else [[]]
     ):
         page = index + 1
         json_file = join(appsdir, '%d.json' %
@@ -44,17 +47,21 @@ def generate(packages, outdir):
             json.dump({
                 'paging': {
                     'page': page,
-                    'count': len(items),
+                    'count': len(chunk),
                     'maxPage': max_page,
                     'itemsTotal': packages_length,
                 },
-                'packages': list(map(lambda x: package_item(x, page > 1), items))
+                'packages': list(map(lambda x: package_item(x, page > 1), chunk))
             }, f, indent=2)
-        for item in items:
-            app_info = join(appsdir, f'{item["id"]}.json')
+        for item in chunk:
+            app_dir = join(appsdir, item['id'])
+            releases_dir = join(app_dir, 'releases')
+            if not exists(releases_dir):
+                makedirs(releases_dir)
+            app_info = join(releases_dir, 'latest.json')
             with open(app_info, 'w', encoding='utf-8') as f:
                 json.dump(package_item(item, True), f)
-            desc_html = join(appsdir, f'{item["id"]}-full_description.html')
+            desc_html = join(app_dir, 'full_description.html')
             with open(desc_html, 'w', encoding='utf-8') as f:
                 f.write(markdown.convert(item['description']))
     print('Generated json data for %d packages.' % len(packages))
@@ -68,4 +75,4 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--output-dir', required=True)
     args = parser.parse_args()
 
-    generate(list_packages(args.input_dir), args.output_dir)
+    generate(pkg_info.list_packages(args.input_dir), args.output_dir)
