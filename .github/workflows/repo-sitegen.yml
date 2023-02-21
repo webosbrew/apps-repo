@@ -32,7 +32,7 @@ jobs:
           submodules: true
 
       - name: Cache package manifests
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-package-manifests
         with:
