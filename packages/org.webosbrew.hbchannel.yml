@@ -4,9 +4,10 @@ manifestUrl: https://github.com/webosbrew/webos-homebrew-channel/releases/latest
 category: system
 pool: main
 description: |
-  **Note for rooted webOS 22 users:** Use Homebrew Channel Updater app when
-  updating from Homebrew Channel version older than v0.6.3! Due to a bug in
-  older versions, updating here *may* cause loss of root access/permissions.
+  ## ⚠️ Note for rooted webOS 22 users
+  Use Homebrew Channel Updater app when updating from Homebrew Channel version
+  older than v0.6.3! Due to a bug in older versions, updating here *may* cause
+  loss of root access/permissions.
 
   Features
   --------
