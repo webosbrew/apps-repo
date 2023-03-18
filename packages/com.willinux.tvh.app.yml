@@ -4,26 +4,33 @@ manifestUrl: https://github.com/willinuX-code/webos-tvheadend/releases/latest/do
 category: multimedia
 pool: main
 description: |
-  A TVHeadend client for WebOS
+ # TVHeadend Client for WebOS
 
   ![Download Stats](https://img.shields.io/github/downloads/willinux-code/webos-tvheadend/total)
   ![GitHub Stars](https://img.shields.io/github/stars/willinux-code/webos-tvheadend?style=social)
 
   ## Features
   * Watch your favorite tvheadend streams
-  * EPG
+  * EPG (blue button)
   * Channel List
-  * Record live tv or plan recordings using EPG or Channel List
+  * Channel List Details - click right button on channel list to show details (left button to hide details)
+  * Record live tv or plan recordings using EPG or Channel List (red button)
   * Play recordings
   * User Authentication: basic and digest (md5, sha256)
-  * Tested on WebOS 3, 4 and 5
+  * Tested on WebOS 3, 4, 5 (6+ untested probably ok)
 
   ## Screenshots
+  ### Setup
   ![Setup](https://github.com/WillinuX-Code/webos-tvheadend/blob/master/screenshots/setup_verification.png?raw=true)
+  ### Channel List
   ![Channel List](https://github.com/WillinuX-Code/webos-tvheadend/blob/master/screenshots/channellist.png?raw=true)
+  ### Channel List with Details
   ![Channel List with details](https://github.com/WillinuX-Code/webos-tvheadend/blob/master/screenshots/channellist_details.png?raw=true)
+  ### EPG (blue button)
   ![EPG](https://github.com/WillinuX-Code/webos-tvheadend/blob/master/screenshots/epg.png?raw=true)
+  ### Current Channel Info
   ![Current Channel Info](https://github.com/WillinuX-Code/webos-tvheadend/blob/master/screenshots/infobar.png?raw=true)
+  ### Menu (green button)
   ![Menu](https://github.com/WillinuX-Code/webos-tvheadend/blob/master/screenshots/menu.png?raw=true)
 
 funding:
