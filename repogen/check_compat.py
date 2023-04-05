@@ -24,9 +24,8 @@ def check(info_file: Path, package_file: Path):
     # if [ ! -z "${max_os_exclusive}"]; then
     # compat_check_args = "${compat_check_args} --max-os-exclusive ${max_os_exclusive}"
     # fi
-    check_args = ['webosbrew-ipk-compat-checker', *compat_check_args, str(package_file.absolute())]
-    print(check_args, file=sys.stderr)
-    p = subprocess.run(check_args, shell=True)
+    p = subprocess.run(f'webosbrew-ipk-compat-checker {" ".join(compat_check_args)} {str(package_file.absolute())}',
+                       shell=True)
     exit(p.returncode)
 
 
