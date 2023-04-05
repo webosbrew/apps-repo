@@ -92,7 +92,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     lint_pkginfo = pkg_info.from_package_info_file(args.file)
-    print(lint_pkginfo)
     if lint_pkginfo is None:
         raise ValueError('No package info')
 
