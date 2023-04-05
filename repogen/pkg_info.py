@@ -2,7 +2,7 @@ import locale
 import os
 from datetime import datetime
 from os.path import basename, isfile, join
-from typing import TypedDict, Optional, List
+from typing import TypedDict, Optional, List, NotRequired
 
 import bleach
 
@@ -18,15 +18,15 @@ class PackageInfo(TypedDict):
     title: str
     iconUri: str
     manifestUrl: str
-    manifestUrlBeta: Optional[str]
+    manifestUrlBeta: NotRequired[str]
     category: str
     description: str
-    detailIconUri: Optional[str]
-    funding: Optional[dict]
+    detailIconUri: NotRequired[str]
+    funding: NotRequired[dict]
     pool: str
-    nopool: Optional[bool]
+    nopool: NotRequired[bool]
     manifest: PackageManifest
-    manifestBeta: Optional[PackageManifest]
+    manifestBeta: NotRequired[PackageManifest]
     lastmodified: datetime
     lastmodified_str: str
 
