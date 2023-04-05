@@ -55,7 +55,28 @@ def from_package_info(pkgid: str, content: PackageRegistry, offline=False):
         'iconUri': content['iconUri'],
         'manifestUrl': manifest_url,
         'category': content['category'],
-        'description': nh3.clean(content.get('description', ''), attributes={'*': {'align'}}, link_rel=None),
+        'description': nh3.clean(content.get('description', ''), attributes={
+            'a': {'href', 'hreflang'},
+            'bdo': {'dir'},
+            'blockquote': {'cite'},
+            'col': {'align', 'char', 'charoff', 'span'},
+            'colgroup': {'align', 'char', 'charoff', 'span'},
+            'del': {'cite', 'datetime'},
+            'h1': {'align'},
+            'hr': {'align', 'size', 'width'},
+            'img': {'align', 'alt', 'height', 'src', 'width'},
+            'ins': {'cite', 'datetime'},
+            'ol': {'start'},
+            'p': {'align'},
+            'q': {'cite'},
+            'table': {'align', 'char', 'charoff', 'summary'},
+            'tbody': {'align', 'char', 'charoff'},
+            'td': {'align', 'char', 'charoff', 'colspan', 'headers', 'rowspan'},
+            'tfoot': {'align', 'char', 'charoff'},
+            'th': {'align', 'char', 'charoff', 'colspan', 'headers', 'rowspan', 'scope'},
+            'thead': {'align', 'char', 'charoff'},
+            'tr': {'align', 'char', 'charoff'}
+        }, link_rel=None),
     }
     if 'detailIconUri' in content:
         pkginfo['detailIconUri'] = content['detailIconUri']
