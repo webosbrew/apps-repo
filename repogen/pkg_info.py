@@ -1,6 +1,7 @@
 import locale
 import os
 from datetime import datetime
+from os import path
 from os.path import isfile, join
 from typing import TypedDict, Optional, List, NotRequired
 
@@ -32,8 +33,9 @@ class PackageInfo(TypedDict):
 
 
 def from_package_info_file(info_path: str, offline=False) -> Optional[PackageInfo]:
-    extension = os.path.splitext(info_path)[1]
+    extension = path.splitext(info_path)[1]
     content: PackageRegistry
+    print(f'Parsing package info file {path.basename(info_path)}')
     if extension == '.yml':
         pkgid, content = parse_yml_package(info_path)
     elif extension == '.py':

@@ -4,7 +4,6 @@ import urllib.parse
 from datetime import datetime
 from email.utils import parsedate_to_datetime
 from json import JSONDecodeError
-from os import path
 from typing import Tuple, TypedDict, Optional, NotRequired, Literal
 from urllib.parse import urljoin
 from urllib.request import url2pathname
