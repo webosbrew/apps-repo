@@ -48,6 +48,7 @@ jobs:
            echo "content<<${delimiter}" >> "${GITHUB_OUTPUT}"
            cat 'Check Results/lint-report.md' >> "${GITHUB_OUTPUT}"
            echo "content=$report" >> $GITHUB_OUTPUT
+           echo "${delimiter}" >> "${GITHUB_OUTPUT}"
 
       - id: find-comment
         name: Find Check Results Comment
