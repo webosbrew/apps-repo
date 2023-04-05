@@ -1,18 +1,20 @@
 # -*- coding: utf-8 -*-
 import math
-from os import makedirs
-from os.path import dirname, exists, join
+from os.path import dirname, join
+from pathlib import Path
+from typing import List
 
 import more_itertools
 import pystache
 
 from repogen import pkg_info
 from repogen.common import ITEMS_PER_PAGE
+from repogen.pkg_info import PackageInfo
 
 
 class AppListingGenerator:
 
-    def __init__(self, packages):
+    def __init__(self, packages: List[PackageInfo]):
         with open(join(dirname(__file__), 'templates', 'apps', 'detail.md'), encoding='utf-8') as f:
             self.details_template = f.read()
         with open(join(dirname(__file__), 'templates', 'apps', 'list.html'), encoding='utf-8') as f:
@@ -84,11 +86,11 @@ class AppListingGenerator:
             self._gen_page(outdir, items, pagination)
 
 
-def generate(packages, outdir, gen_details=True, gen_list=True):
+def generate(packages: List[PackageInfo], outdir: Path, gen_details=True, gen_list=True):
     generator = AppListingGenerator(packages)
 
-    if not exists(outdir):
-        makedirs(outdir)
+    if not outdir.exists():
+        outdir.mkdir(parents=True)
 
     if gen_details:
         generator.gen_details(outdir)
@@ -107,4 +109,4 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--output-dir', required=True)
     args = parser.parse_args()
 
-    generate(pkg_info.list_packages(args.input_dir), args.output_dir)
+    generate(pkg_info.list_packages(args.input_dir), Path(args.output_dir))

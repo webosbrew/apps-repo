@@ -1,5 +1,6 @@
 import logging
 import os
+from pathlib import Path
 
 from markdown import Markdown
 from more_itertools import chunked
@@ -74,8 +75,8 @@ def add_app_api_data(generator: StaticGenerator):
     def pool_list(pool: str):
         return list(sorted(filter(lambda pkg: pkg['pool'] == pool, packages), key=lambda pkg: pkg['title'].lower()))
 
-    apidata.generate(pool_list('main'), os.path.join(generator.settings['OUTPUT_PATH'], 'api'))
-    apidata.generate(pool_list('non-free'), os.path.join(generator.settings['OUTPUT_PATH'], 'api', 'non-free'))
+    apidata.generate(pool_list('main'), Path(generator.settings['OUTPUT_PATH'], 'api'))
+    apidata.generate(pool_list('non-free'), Path(generator.settings['OUTPUT_PATH'], 'api', 'non-free'))
 
 
 def register():

@@ -1,18 +1,14 @@
 import os
 from pathlib import Path
-from typing import IO, TypeVar, Callable
+from typing import IO
+
+from repogen.common import copy_signature
 
 _approot = Path(__file__).parent.parent
 
 assert _approot.samefile(os.getcwd())
 
 _cachepath = _approot.joinpath('cache')
-
-F = TypeVar("F", bound=Callable)
-
-
-def copy_signature(_: F) -> Callable[..., F]:
-    return lambda f: f
 
 
 def path(name: str) -> Path:

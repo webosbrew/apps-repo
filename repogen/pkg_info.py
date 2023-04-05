@@ -5,7 +5,7 @@ from os import path
 from os.path import isfile, join
 from typing import TypedDict, Optional, List, NotRequired
 
-import bleach
+import nh3
 
 from repogen.common import url_fixup
 from repogen.pkg_manifest import obtain_manifest, PackageManifest
@@ -55,7 +55,7 @@ def from_package_info(pkgid: str, content: PackageRegistry, offline=False):
         'iconUri': content['iconUri'],
         'manifestUrl': manifest_url,
         'category': content['category'],
-        'description': bleach.clean(content.get('description', '')),
+        'description': nh3.clean(content.get('description', ''), attributes={'*': {'align'}}, link_rel=None),
     }
     if 'detailIconUri' in content:
         pkginfo['detailIconUri'] = content['detailIconUri']
