@@ -105,7 +105,7 @@ def from_package_info(pkgid: str, content: PackageRegistry, offline=False):
 
 
 def list_packages(pkgdir: Path, offline: bool = False) -> List[PackageInfo]:
-    paths: List[Path] = [pkgdir.joinpath(f) for f in pkgdir.iterdir() if f.is_file()]
+    paths: List[Path] = [f for f in pkgdir.iterdir() if f.is_file()]
     return sorted(filter(lambda x: x, map(lambda p: from_package_info_file(p, offline), paths)),
                   key=lambda x: x['title'])
 

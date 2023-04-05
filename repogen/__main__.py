@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
-from os import path
 from pathlib import Path
 
 from repogen import apppage, apidata, pkg_info
@@ -18,7 +17,7 @@ parser.set_defaults(gen_api=True, gen_details=True, gen_list=True)
 
 args = parser.parse_args()
 
-packages = pkg_info.list_packages(args.input_dir)
+packages = pkg_info.list_packages(Path(args.input_dir))
 
 if args.gen_api:
     apidata.generate(packages, Path(args.output_dir, 'api'))

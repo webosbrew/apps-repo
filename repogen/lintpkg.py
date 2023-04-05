@@ -1,4 +1,3 @@
-from os import path
 from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import url2pathname
@@ -80,7 +79,7 @@ class PackageInfoLinter:
                     else:
                         e.append(f"{key} must be accessible")
             case 'file':
-                assert path.isfile(url2pathname(manifest_url_pre.path))
+                assert Path(url2pathname(manifest_url_pre.path)).exists()
             case _:
                 e.append(f"{key} must be HTTPS URL")
 

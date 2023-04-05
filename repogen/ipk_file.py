@@ -1,10 +1,10 @@
+import io
 import json
 import re
 import tarfile
-from typing import Optional, TypedDict, NotRequired
+from typing import TypedDict, NotRequired
 
 import ar
-import io
 
 
 class AppInfo(TypedDict):

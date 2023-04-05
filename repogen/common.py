@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import urllib
-from os import path, PathLike
+from os import PathLike
 from pathlib import Path
 from typing import Callable, TypeVar
 from urllib.parse import urljoin

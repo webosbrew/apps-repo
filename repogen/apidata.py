@@ -82,4 +82,4 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--output-dir', required=True)
     args = parser.parse_args()
 
-    generate(pkg_info.list_packages(args.input_dir), args.output_dir)
+    generate(pkg_info.list_packages(Path(args.input_dir)), Path(args.output_dir))
