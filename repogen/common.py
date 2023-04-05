@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import urllib
+from os import path
 from urllib.parse import urljoin
 
 import requests
@@ -9,6 +10,8 @@ ITEMS_PER_PAGE: int = 30
 
 def url_fixup(u: str) -> str:
     parsed = urllib.parse.urlparse(u)
+    if parsed.scheme != 'https':
+        return u
     segs = parsed.path.split('/')
     if parsed.hostname == 'github.com' and len(segs) == 7 and segs[3] == 'releases' and segs[4] == 'latest':
         resp = requests.get(u, allow_redirects=False)

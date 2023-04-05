@@ -1,7 +1,7 @@
 import locale
 import os
 from datetime import datetime
-from os.path import basename, isfile, join
+from os.path import isfile, join
 from typing import TypedDict, Optional, List, NotRequired
 
 import bleach
@@ -31,18 +31,21 @@ class PackageInfo(TypedDict):
     lastmodified_str: str
 
 
-def parse_package_info(info_path: str, offline=False) -> Optional[PackageInfo]:
+def from_package_info_file(info_path: str, offline=False) -> Optional[PackageInfo]:
     extension = os.path.splitext(info_path)[1]
     content: PackageRegistry
     if extension == '.yml':
-        content = parse_yml_package(info_path)
+        pkgid, content = parse_yml_package(info_path)
     elif extension == '.py':
-        content = load_py_package(info_path)
+        pkgid, content = load_py_package(info_path)
     else:
         return None
-    if not ('title' in content) and ('iconUri' in content) and ('manifestUrl' in content):
+    if not ('title' in content and 'iconUri' in content and 'manifestUrl' in content):
         return None
-    pkgid = os.path.splitext(basename(info_path))[0]
+    return from_package_info(pkgid, content, offline)
+
+
+def from_package_info(pkgid: str, content: PackageRegistry, offline=False):
     manifest_url = url_fixup(content['manifestUrl'])
     pkginfo: PackageInfo = {
         'id': pkgid,
@@ -82,7 +85,8 @@ def parse_package_info(info_path: str, offline=False) -> Optional[PackageInfo]:
 def list_packages(pkgdir: str, offline: bool = False) -> List[PackageInfo]:
     paths = [join(pkgdir, f)
              for f in os.listdir(pkgdir) if isfile(join(pkgdir, f))]
-    return sorted(filter(lambda x: x, map(lambda p: parse_package_info(p, offline), paths)), key=lambda x: x['title'])
+    return sorted(filter(lambda x: x, map(lambda p: from_package_info_file(p, offline), paths)),
+                  key=lambda x: x['title'])
 
 
 def valid_pool(value: str) -> str:
