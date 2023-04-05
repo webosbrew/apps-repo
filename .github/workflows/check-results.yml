@@ -46,9 +46,9 @@ jobs:
            report="${report//'%'/'%25'}"
            report="${report//$'\n'/'%0A'}"
            report="${report//$'\r'/'%0D'}"
-           echo "::set-output name=content::$report"
+           echo "content=$report" >> $GITHUB_OUTPUT
 
-           echo "::set-output name=issue-number::$(cat 'Check Results/issue-number.txt')"
+           echo "issue-number=$(cat 'Check Results/issue-number.txt')" >> $GITHUB_OUTPUT
 
       - id: find-comment
         name: Find Check Results Comment
