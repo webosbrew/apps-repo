@@ -1,5 +1,5 @@
 import importlib
-from os import path
+from pathlib import Path
 from typing import TypedDict, NotRequired, Literal
 
 import yaml
@@ -17,16 +17,15 @@ class PackageRegistry(TypedDict):
     funding: NotRequired[dict]
 
 
-def parse_yml_package(p: str) -> (str, PackageRegistry):
-    pkgid = path.splitext(path.basename(p))[0]
-    with open(p, encoding='utf-8') as f:
+def parse_yml_package(p: Path) -> (str, PackageRegistry):
+    with p.open(encoding='utf-8') as f:
         content: PackageRegistry = yaml.safe_load(f)
-    return pkgid, content
+    return p.stem, content
 
 
 # noinspection PyUnresolvedReferences
-def load_py_package(p: str) -> (str, PackageRegistry):
-    pkgid = path.splitext(path.basename(p))[0]
+def load_py_package(p: Path) -> (str, PackageRegistry):
+    pkgid = p.stem
     spec = importlib.util.spec_from_file_location(f"pkg.{pkgid}", p)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)

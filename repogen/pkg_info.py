@@ -1,9 +1,7 @@
 import locale
-import os
 import sys
 from datetime import datetime
-from os import path
-from os.path import isfile, join
+from pathlib import Path
 from typing import TypedDict, Optional, List, NotRequired
 
 import nh3
@@ -33,16 +31,16 @@ class PackageInfo(TypedDict):
     lastmodified_str: str
 
 
-def from_package_info_file(info_path: str, offline=False) -> Optional[PackageInfo]:
-    extension = path.splitext(info_path)[1]
+def from_package_info_file(info_path: Path, offline=False) -> Optional[PackageInfo]:
+    extension = info_path.suffix
     content: PackageRegistry
-    print(f'Parsing package info file {path.basename(info_path)}', file=sys.stderr)
+    print(f'Parsing package info file {info_path.name}', file=sys.stderr)
     if extension == '.yml':
         pkgid, content = parse_yml_package(info_path)
     elif extension == '.py':
         pkgid, content = load_py_package(info_path)
     else:
-        return None
+        raise ValueError(f'Unrecognized info format {extension}')
     if not ('title' in content and 'iconUri' in content and 'manifestUrl' in content):
         return None
     return from_package_info(pkgid, content, offline)
@@ -106,9 +104,8 @@ def from_package_info(pkgid: str, content: PackageRegistry, offline=False):
     return pkginfo
 
 
-def list_packages(pkgdir: str, offline: bool = False) -> List[PackageInfo]:
-    paths = [join(pkgdir, f)
-             for f in os.listdir(pkgdir) if isfile(join(pkgdir, f))]
+def list_packages(pkgdir: Path, offline: bool = False) -> List[PackageInfo]:
+    paths: List[Path] = [pkgdir.joinpath(f) for f in pkgdir.iterdir() if f.is_file()]
     return sorted(filter(lambda x: x, map(lambda p: from_package_info_file(p, offline), paths)),
                   key=lambda x: x['title'])
 

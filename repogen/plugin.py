@@ -23,8 +23,8 @@ class PackageInfoReader(BaseReader):
         super().__init__(*args, **kwargs)
         self._md = Markdown(**self.settings['MARKDOWN'])
 
-    def read(self, filename):
-        info = pkg_info.from_package_info_file(filename, offline='CI' not in os.environ)
+    def read(self, filename: str):
+        info = pkg_info.from_package_info_file(Path(filename), offline='CI' not in os.environ)
         metadata = {
             'title': info['title'],
             'override_save_as': f'apps/{info["id"]}.html',

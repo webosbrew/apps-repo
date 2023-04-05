@@ -1,4 +1,5 @@
 from os import path
+from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import url2pathname
 from xml.etree import ElementTree
@@ -91,7 +92,7 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--file', required=True)
     args = parser.parse_args()
 
-    lint_pkginfo = pkg_info.from_package_info_file(args.file)
+    lint_pkginfo = pkg_info.from_package_info_file(Path(args.file))
     if lint_pkginfo is None:
         raise ValueError('No package info')
 
