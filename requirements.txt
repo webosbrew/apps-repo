@@ -12,5 +12,5 @@ cssmin~=0.2.0
 livereload~=2.6.3
 invoke~=2.0.0
 ar~=0.3.2
-git+https://github.com/Kronuz/pyScss.git@60414f5d573315a8458b5fbcdf69e5c648c44a9a#egg=pyscss~=1.4.0
+git+https://github.com/Kronuz/pyScss.git@60414f5d573315a8458b5fbcdf69e5c648c44a9a#egg=pyscss
 git+https://github.com/webosbrew/pelican-theme-webosbrew.git@v1.0.4#egg=pelican-theme-webosbrew
