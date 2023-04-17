@@ -12,7 +12,7 @@ def schemas_dir() -> Path:
     return Path('content/schemas').resolve()
 
 
-assert Path(__file__, '../content/schemas').samefile(schemas_dir())
+assert Path(__file__, '../../content/schemas').resolve().samefile(schemas_dir())
 
 
 def for_schema(rel_path: str) -> Validator:
