@@ -5,6 +5,10 @@ from typing import TypedDict, NotRequired, Literal
 import yaml
 
 
+class PackageRequirements(TypedDict):
+    webosRelease: NotRequired[str]
+
+
 class PackageRegistry(TypedDict):
     title: str
     iconUri: str
@@ -13,6 +17,7 @@ class PackageRegistry(TypedDict):
     category: str
     description: str
     pool: Literal['main', 'non-free']
+    requirements: NotRequired[PackageRequirements]
     detailIconUri: NotRequired[str]
     funding: NotRequired[dict]
 
