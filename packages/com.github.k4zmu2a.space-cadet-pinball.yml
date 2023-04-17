@@ -1,7 +1,8 @@
 title: 3D Pinball – Space Cadet
 iconUri: https://raw.githubusercontent.com/webosbrew/SpaceCadetPinball/webos/webos/icon.png
 manifestUrl: https://github.com/webosbrew/SpaceCadetPinball/releases/latest/download/webosbrew.manifest.json
-category: games
+category: game
+pool: main
 description: |
   ## Summary
 

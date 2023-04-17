@@ -35,9 +35,7 @@ class PackageInfoLinter:
         errors: [str] = []
 
         # Pool property
-        if info.get('nopool', False):
-            errors.append('pool property is required (`main` or `non-free`)')
-        elif info['pool'] not in ['main', 'non-free']:
+        if info['pool'] not in ['main', 'non-free']:
             errors.append('pool property must be `main` or `non-free`')
 
         # Process icon

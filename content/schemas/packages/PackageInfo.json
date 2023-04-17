@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://repo.webosbrew.org/schemas/packages/PackageInfo.json",
+  "title": "PackageInfo",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "The title of the application as it shows in the Launcher and the app window. The application title is unique, set once."
+    },
+    "iconUri": {
+      "type": "string",
+      "description": "Image displayed for your app. This is a URL to an image, or data: encoded URI"
+    },
+    "manifestUrl": {
+      "type": "string",
+      "description": "Link to manifest, should be pointed to an URL can always provide latest version"
+    },
+    "manifestUrlBeta": {
+      "type": "string",
+      "description": "Link to manifest, should be pointed to an URL can always provide latest version"
+    },
+    "category": {
+      "$ref": "Category.json"
+    },
+    "description": {
+      "type": "string",
+      "description": "Markdown/HTML formatted description"
+    },
+    "detailIconUri": {
+      "type": "string",
+      "description": "Icon uri for application detail page, in higher resolution"
+    },
+    "pool": {
+      "type": "string",
+      "anyOf": [
+        {
+          "const": "main",
+          "description": "Main pool - Must be open-source"
+        },
+        {
+          "const": "non-free",
+          "description": "Non-free pool - Can be closed-source"
+        }
+      ]
+    },
+    "funding": {
+      "type": "object",
+      "description": "Funding information",
+      "properties": {
+        "github": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "GitHub username"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "title",
+    "iconUri",
+    "manifestUrl",
+    "category",
+    "pool",
+    "description"
+  ],
+  "additionalProperties": false
+}

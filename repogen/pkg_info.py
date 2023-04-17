@@ -1,14 +1,18 @@
+import json
 import locale
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import TypedDict, Optional, List, NotRequired
+from typing import TypedDict, Optional, List, NotRequired, Type
 
 import nh3
 
+from repogen import validators
 from repogen.common import url_fixup
 from repogen.pkg_manifest import obtain_manifest, PackageManifest
 from repogen.pkg_registery import PackageRegistry, parse_yml_package, load_py_package
+
+import jsonschema
 
 locale.setlocale(locale.LC_TIME, '')
 
@@ -24,7 +28,6 @@ class PackageInfo(TypedDict):
     detailIconUri: NotRequired[str]
     funding: NotRequired[dict]
     pool: str
-    nopool: NotRequired[bool]
     manifest: PackageManifest
     manifestBeta: NotRequired[PackageManifest]
     lastmodified: datetime
@@ -41,8 +44,8 @@ def from_package_info_file(info_path: Path, offline=False) -> Optional[PackageIn
         pkgid, content = load_py_package(info_path)
     else:
         raise ValueError(f'Unrecognized info format {extension}')
-    if not ('title' in content and 'iconUri' in content and 'manifestUrl' in content):
-        return None
+    validator = validators.for_schema('packages/PackageInfo.json')
+    validator.validate(content)
     return from_package_info(pkgid, content, offline)
 
 
@@ -81,15 +84,10 @@ def from_package_info(pkgid: str, content: PackageRegistry, offline=False):
         pkginfo['detailIconUri'] = content['detailIconUri']
     if 'funding' in content:
         pkginfo['funding'] = content['funding']
-    if 'pool' in content:
-        try:
-            pkginfo['pool'] = valid_pool(content['pool'])
-        except ValueError:
-            return None
-    else:
-        # This is for compatibility, new submissions requires this field
-        pkginfo['pool'] = 'main'
-        pkginfo['nopool'] = True
+    try:
+        pkginfo['pool'] = valid_pool(content['pool'])
+    except ValueError:
+        return None
     manifest, lastmodified_r = obtain_manifest(pkgid, 'release', manifest_url, offline)
     if manifest:
         pkginfo['manifest'] = manifest

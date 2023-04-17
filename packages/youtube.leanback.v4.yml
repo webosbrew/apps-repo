@@ -1,7 +1,8 @@
 title: YouTube AdFree
 iconUri: https://raw.githubusercontent.com/webosbrew/youtube-webos/main/assets/largeIcon.png
 manifestUrl: https://github.com/webosbrew/youtube-webos/releases/latest/download/youtube.leanback.v4.manifest.json
-category: entertainment
+category: multimedia
+pool: main
 description: |
   **BE SURE TO UNINSTALL THE OFFICIAL YOUTUBE TV APP BEFORE INSTALLING**
 

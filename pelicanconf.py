@@ -23,13 +23,13 @@ WEBASSETS_CONFIG = [
 
 PATH = 'content'
 
-STATIC_PATHS = ['extra/CNAME', 'extra/favicon.ico']
+STATIC_PATHS = ['extra/CNAME', 'extra/favicon.ico', 'schemas']
 ARTICLE_EXCLUDES = ['api']
 PAGE_PATHS = ['pages', 'apps', '../packages']
 
 EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'},
-    'extra/favicon.ico': {'path': 'favicon.ico'}
+    'extra/favicon.ico': {'path': 'favicon.ico'},
 }
 
 MARKDOWN = {

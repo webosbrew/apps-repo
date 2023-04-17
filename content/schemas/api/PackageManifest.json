@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://repo.webosbrew.org/schemas/api/PackageManifest.schema",
+  "title": "PackageManifest",
+  "description": "Package manifest for webOS homebrew package",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Application ID, e.g., \"com.newco.app.myApp\" . Every application has a unique ID, created from reverse DNS naming conventions."
+    },
+    "version": {
+      "type": "string",
+      "description": "The application version number, in the dot-notation format, e.g., 3.0.2500"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "web",
+        "stub",
+        "native",
+        "native_builtin",
+        "native_appshell",
+        "qml"
+      ],
+      "description": "Identifies the application type"
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the application as it shows in the Launcher and the app window. The application title is unique, set once."
+    },
+    "appDescription": {
+      "type": "string",
+      "description": "The description of the application shown in the application details page."
+    },
+    "iconUri": {
+      "type": "string",
+      "description": "Image displayed for your app. This is a URL to an image, or data: encoded URI"
+    },
+    "sourceUrl": {
+      "type": "string",
+      "description": "Link to source code repository, or project homepage etc"
+    },
+    "rootRequired": {
+      "type": [
+        "boolean",
+        "string"
+      ],
+      "enum": [
+        true,
+        false,
+        "optional"
+      ],
+      "description": "Whether this app require a rooted/jailbroken TV to work, or optional."
+    },
+    "ipkUrl": {
+      "type": "string",
+      "description": "URL to package file"
+    },
+    "ipkHash": {
+      "type": "object",
+      "properties": {
+        "sha256": {
+          "type": "string",
+          "description": "Hex encoded hash"
+        }
+      },
+      "minProperties": 1,
+      "additionalProperties": false,
+      "description": "URL to package file"
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "type",
+    "title",
+    "iconUri",
+    "ipkUrl",
+    "ipkHash"
+  ]
+}

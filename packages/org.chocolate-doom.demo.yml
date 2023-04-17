@@ -1,7 +1,8 @@
 title: Chocolate Doom Demo
 iconUri: https://raw.githubusercontent.com/webosbrew/chocolate-doom/webos-tv/data/doom.png
 manifestUrl: https://github.com/webosbrew/chocolate-doom/releases/latest/download/org.chocolate-doom.demo.manifest.json
-category: games
+category: game
+pool: main
 description: |
   ** This Technical Demo Contains [Shareware version of Doom](https://doomwiki.org/wiki/DOOM1.WAD) **
 
