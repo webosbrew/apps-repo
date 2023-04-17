@@ -4,7 +4,7 @@ manifestUrl: https://github.com/webosbrew/RetroArch/releases/latest/download/com
 category: game
 pool: main
 requirements:
-  webosRelease: ">=3.0"
+  webosRelease: ">=2.0"
 description: |
   RetroArch is the reference frontend for the libretro API.
   Popular examples of implementations for this API includes video game system emulators and game engines as well as
