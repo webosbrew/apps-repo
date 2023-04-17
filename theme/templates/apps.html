@@ -5,7 +5,7 @@
 
 {% block head %}
   {{ super() }}
-  {% assets filters="pyscss,cssmin", output="styles/apps.css", "styles/apps.scss" %}
+  {% assets filters="pyscss,cssmin", output="styles/apps.css", "apps.scss" %}
   <link href="{{ SITEURL }}/{{ ASSET_URL }}" type="text/css" rel="stylesheet">
   {% endassets %}
 

@@ -1,19 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 import datetime
-from os.path import join, dirname, abspath
+from pathlib import Path
+
+import pelican.themes.webosbrew
+from pelican.plugins import webassets
+from webassets.cache import MemoryCache
 
 import repogen
-from pelican.plugins import webassets
-import pelican.themes.webosbrew
-from webassets.cache import MemoryCache
 
 AUTHOR = 'webOS Homebrew Project'
 SITENAME = 'webOS Homebrew Project'
 SITEURL = ''
 
 THEME = 'webosbrew'
-THEME_STATIC_PATHS = [join(dirname(abspath(__file__)), 'theme/static'), pelican.themes.webosbrew.static_dir()]
+theme_dir = Path(__file__, '..', 'theme').resolve()
+THEME_STATIC_PATHS = [theme_dir.joinpath('static'), pelican.themes.webosbrew.static_dir()]
+WEBASSETS_SOURCE_PATHS = [theme_dir.joinpath('styles'), pelican.themes.webosbrew.scss_dir()]
 THEME_TEMPLATES_OVERRIDES = ['./theme/templates']
 
 PLUGINS = [webassets, repogen]
