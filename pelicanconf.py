@@ -6,6 +6,7 @@ from os.path import join, dirname, abspath
 import repogen
 from pelican.plugins import webassets
 import pelican.themes.webosbrew
+from webassets.cache import MemoryCache
 
 AUTHOR = 'webOS Homebrew Project'
 SITENAME = 'webOS Homebrew Project'
@@ -18,7 +19,8 @@ THEME_TEMPLATES_OVERRIDES = ['./theme/templates']
 PLUGINS = [webassets, repogen]
 
 WEBASSETS_CONFIG = [
-    ("PYSCSS_LOAD_PATHS", [pelican.themes.webosbrew.scss_dir()])
+    ("CACHE", MemoryCache(1024)),
+    ("PYSCSS_LOAD_PATHS", [pelican.themes.webosbrew.scss_dir()]),
 ]
 
 PATH = 'content'
