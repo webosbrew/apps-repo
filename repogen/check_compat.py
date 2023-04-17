@@ -1,6 +1,8 @@
 import subprocess
 from pathlib import Path
 
+import shellescape
+
 from repogen import pkg_info
 from repogen.pkg_info import PackageInfo
 
@@ -10,7 +12,7 @@ def check(info_file: Path, package_file: Path):
     compat_check_args = ['--markdown', '--github-emoji', '--quiet']
     if 'requirements' in info:
         if 'webosRelease' in info['requirements']:
-            compat_check_args.extend(['--os', info['requirements']['webosRelease']])
+            compat_check_args.extend(['--os', shellescape.quote(info["requirements"]["webosRelease"])])
     p = subprocess.run(f'webosbrew-ipk-compat-checker {" ".join(compat_check_args)} {str(package_file.absolute())}',
                        shell=True)
     exit(p.returncode)
