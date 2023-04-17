@@ -32,6 +32,16 @@
       "type": "string",
       "description": "Icon uri for application detail page, in higher resolution"
     },
+    "requirements": {
+      "type": "object",
+      "description": "System requirements",
+      "properties": {
+        "webosRelease": {
+          "type": "string",
+          "description": "webOS Release version (check /etc/starfish-release)"
+        }
+      }
+    },
     "pool": {
       "type": "string",
       "anyOf": [

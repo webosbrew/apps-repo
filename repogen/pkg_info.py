@@ -17,6 +17,10 @@ import jsonschema
 locale.setlocale(locale.LC_TIME, '')
 
 
+class PackageRequirements(TypedDict):
+    webosRelease: NotRequired[str]
+
+
 class PackageInfo(TypedDict):
     id: str
     title: str
@@ -28,6 +32,7 @@ class PackageInfo(TypedDict):
     detailIconUri: NotRequired[str]
     funding: NotRequired[dict]
     pool: str
+    requirements: NotRequired[PackageRequirements]
     manifest: PackageManifest
     manifestBeta: NotRequired[PackageManifest]
     lastmodified: datetime

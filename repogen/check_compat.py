@@ -1,29 +1,16 @@
 import subprocess
-import sys
 from pathlib import Path
 
 from repogen import pkg_info
+from repogen.pkg_info import PackageInfo
 
 
 def check(info_file: Path, package_file: Path):
-    info = pkg_info.from_package_info_file(info_file)
+    info: PackageInfo = pkg_info.from_package_info_file(info_file)
     compat_check_args = ['--markdown', '--github-emoji', '--quiet']
     if 'requirements' in info:
-        pass
-    #     min_os =$(yq - r '.requirements.minOs // ""' ${changed_file})
-    #     max_os =$(yq - r '.requirements.maxOs // ""' ${changed_file})
-    #     max_os_exclusive =$(yq - r '.requirements.maxOsExclusive // ""' ${changed_file})
-    #     if [ ! -z "${min_os}"]; then
-    #     compat_check_args = "${compat_check_args} --min-os ${min_os}"
-    #
-    #
-    # fi
-    # if [ ! -z "${max_os}"]; then
-    # compat_check_args = "${compat_check_args} --max-os ${max_os}"
-    # fi
-    # if [ ! -z "${max_os_exclusive}"]; then
-    # compat_check_args = "${compat_check_args} --max-os-exclusive ${max_os_exclusive}"
-    # fi
+        if 'webosRelease' in info['requirements']:
+            compat_check_args.extend(['--os', info['requirements']['webosRelease']])
     p = subprocess.run(f'webosbrew-ipk-compat-checker {" ".join(compat_check_args)} {str(package_file.absolute())}',
                        shell=True)
     exit(p.returncode)

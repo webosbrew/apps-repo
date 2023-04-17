@@ -13,5 +13,6 @@ livereload~=2.6.3
 invoke~=2.0.0
 ar~=0.3.2
 jsonschema~=4.17.3
+semantic-version~=2.10.0
 git+https://github.com/Kronuz/pyScss.git@60414f5d573315a8458b5fbcdf69e5c648c44a9a#egg=pyscss
 git+https://github.com/webosbrew/pelican-theme-webosbrew.git@v1.0.9#egg=pelican-theme-webosbrew
