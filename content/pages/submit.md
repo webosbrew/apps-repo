@@ -27,7 +27,7 @@ iconUri: https://raw.githubusercontent.com/webosbrew/webos-homebrew-channel/main
 # Publicly accessible manifest file of your application
 manifestUrl: https://github.com/webosbrew/webos-homebrew-channel/releases/latest/download/org.webosbrew.hbchannel.manifest.json
 # Category for your application
-category: tools
+category: utility
 # If this is an open source application, use main, otherwise non-free
 pool: main
 # Long description for your application, in Markdown format
@@ -35,7 +35,7 @@ description: |
   Description in markdown format, we suggest you to add some screenshots to help users understand
 # Sponsor information, like .github/FUNDING.yml
 funding:
-  github: [your-name]
+  github: [ your-name ]
 ```
 
 ### Submit a Pull Request
@@ -54,5 +54,6 @@ TODO: Make this repo configurable
 
 * [webOS Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel)
 * [Documentation](https://github.com/webosbrew/docs)
-* [Unofficial webOS NDK](https://github.com/webosbrew/meta-lg-webos-ndk)
+* [Unofficial webOS NDK](https://github.com/openlgtv/buildroot-nc4/)
+* [Unofficial webOS NDK (Legacy)](https://github.com/webosbrew/meta-lg-webos-ndk)
 * [openlgtv Project](https://openlgtv.github.io/)

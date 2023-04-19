@@ -9,7 +9,7 @@ from repogen.pkg_info import PackageInfo
 
 def check(info_file: Path, package_file: Path):
     info: PackageInfo = pkg_info.from_package_info_file(info_file)
-    compat_check_args = ['--markdown', '--github-emoji', '--quiet']
+    compat_check_args = ['--markdown', '--github-emoji', '--quiet', '--details']
     if 'requirements' in info:
         if 'webosRelease' in info['requirements']:
             compat_check_args.extend(['--os', shellescape.quote(info["requirements"]["webosRelease"])])
