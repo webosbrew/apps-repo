@@ -1,0 +1,18 @@
+title: Twitch extended
+iconUri: https://github.com/nourlie/twitch-extended-webos/blob/master/assets/app/largeIcon.png
+manifestUrl: https://github.com/nourlie/twitch-extended-webos/blob/master/twitchex.leanback.manifest.json
+category: multimedia
+pool: main
+description: |
+  # twitch-extended-webos
+  Twitch App with extended functionalities
+
+  ## Features
+  * Bttv,7tv,ffz emotes
+  * Chat settings
+
+  **Note:** Configuration screen can be opened by pressing GREEN button on the remote.
+
+  ## Screenshots
+  ![Configuration Screen](https://github.com/nourlie/twitch-extended-webos/blob/master/screenshots/tw1.png?raw=true)
+  ![Emotes example in chat](https://github.com/nourlie/twitch-extended-webos/blob/master/screenshots/tw2.png?raw=true)
