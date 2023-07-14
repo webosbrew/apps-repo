@@ -1,6 +1,6 @@
 title: Twitch extended
 iconUri: https://github.com/nourlie/twitch-extended-webos/blob/master/assets/app/largeIcon.png
-manifestUrl: https://github.com/nourlie/twitch-extended-webos/blob/master/twitchex.leanback.manifest.json
+manifestUrl: https://github.com/nourlie/twitch-extended-webos/releases/download/1.0.1/twitchex.manifest.json
 category: multimedia
 pool: main
 description: |
