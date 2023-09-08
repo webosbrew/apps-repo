@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://repo.webosbrew.org/schemas/packages/Category.json",
+  "title": "PackageCategory",
+  "type": "string",
+  "anyOf": [
+    {
+      "const": "multimedia",
+      "description": "Application for presenting, creating, or processing multimedia (audio/video)"
+    },
+    {
+      "const": "game",
+      "description": "A game"
+    },
+    {
+      "const": "system",
+      "description": "System application, \"System Tools\" such as say a log viewer or network monitor"
+    },
+    {
+      "const": "utility",
+      "description": "Small utility application, \"Accessories\""
+    },
+    {
+      "const": "screensaver",
+      "description": "A screen saver"
+    },
+    {
+      "const": "launcher",
+      "description": "A launcher (home screen) alternative"
+    }
+  ]
+}

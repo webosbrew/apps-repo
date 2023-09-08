@@ -1,14 +1,15 @@
 import locale
-import os
+import sys
 from datetime import datetime
-from os.path import basename, isfile, join
-from typing import TypedDict, Optional, List
+from pathlib import Path
+from typing import TypedDict, Optional, List, NotRequired
 
-import bleach
+import nh3
 
+from repogen import validators
 from repogen.common import url_fixup
 from repogen.pkg_manifest import obtain_manifest, PackageManifest
-from repogen.pkg_registery import PackageRegistry, parse_yml_package, load_py_package
+from repogen.pkg_registery import PackageRequirements, PackageRegistry, parse_yml_package, load_py_package
 
 locale.setlocale(locale.LC_TIME, '')
 
@@ -18,31 +19,35 @@ class PackageInfo(TypedDict):
     title: str
     iconUri: str
     manifestUrl: str
-    manifestUrlBeta: Optional[str]
+    manifestUrlBeta: NotRequired[str]
     category: str
     description: str
-    detailIconUri: Optional[str]
-    funding: Optional[dict]
+    detailIconUri: NotRequired[str]
+    funding: NotRequired[dict]
     pool: str
-    nopool: Optional[bool]
+    requirements: NotRequired[PackageRequirements]
     manifest: PackageManifest
-    manifestBeta: Optional[PackageManifest]
+    manifestBeta: NotRequired[PackageManifest]
     lastmodified: datetime
     lastmodified_str: str
 
 
-def parse_package_info(info_path: str, offline=False) -> Optional[PackageInfo]:
-    extension = os.path.splitext(info_path)[1]
+def from_package_info_file(info_path: Path, offline=False) -> Optional[PackageInfo]:
+    extension = info_path.suffix
     content: PackageRegistry
+    print(f'Parsing package info file {info_path.name}', file=sys.stderr)
     if extension == '.yml':
-        content = parse_yml_package(info_path)
+        pkgid, content = parse_yml_package(info_path)
     elif extension == '.py':
-        content = load_py_package(info_path)
+        pkgid, content = load_py_package(info_path)
     else:
-        return None
-    if not ('title' in content) and ('iconUri' in content) and ('manifestUrl' in content):
-        return None
-    pkgid = os.path.splitext(basename(info_path))[0]
+        raise ValueError(f'Unrecognized info format {extension}')
+    validator = validators.for_schema('packages/PackageInfo.json')
+    validator.validate(content)
+    return from_package_info(pkgid, content, offline)
+
+
+def from_package_info(pkgid: str, content: PackageRegistry, offline=False) -> PackageInfo:
     manifest_url = url_fixup(content['manifestUrl'])
     pkginfo: PackageInfo = {
         'id': pkgid,
@@ -50,21 +55,36 @@ def parse_package_info(info_path: str, offline=False) -> Optional[PackageInfo]:
         'iconUri': content['iconUri'],
         'manifestUrl': manifest_url,
         'category': content['category'],
-        'description': bleach.clean(content.get('description', '')),
+        'description': nh3.clean(content.get('description', ''), attributes={
+            'a': {'href', 'hreflang'},
+            'bdo': {'dir'},
+            'blockquote': {'cite'},
+            'col': {'align', 'char', 'charoff', 'span'},
+            'colgroup': {'align', 'char', 'charoff', 'span'},
+            'del': {'cite', 'datetime'},
+            'h1': {'align'},
+            'hr': {'align', 'size', 'width'},
+            'img': {'align', 'alt', 'height', 'src', 'width'},
+            'ins': {'cite', 'datetime'},
+            'ol': {'start'},
+            'p': {'align'},
+            'q': {'cite'},
+            'table': {'align', 'char', 'charoff', 'summary'},
+            'tbody': {'align', 'char', 'charoff'},
+            'td': {'align', 'char', 'charoff', 'colspan', 'headers', 'rowspan'},
+            'tfoot': {'align', 'char', 'charoff'},
+            'th': {'align', 'char', 'charoff', 'colspan', 'headers', 'rowspan', 'scope'},
+            'thead': {'align', 'char', 'charoff'},
+            'tr': {'align', 'char', 'charoff'}
+        }, link_rel=None),
     }
     if 'detailIconUri' in content:
         pkginfo['detailIconUri'] = content['detailIconUri']
     if 'funding' in content:
         pkginfo['funding'] = content['funding']
-    if 'pool' in content:
-        try:
-            pkginfo['pool'] = valid_pool(content['pool'])
-        except ValueError:
-            return None
-    else:
-        # This is for compatibility, new submissions requires this field
-        pkginfo['pool'] = 'main'
-        pkginfo['nopool'] = True
+    pkginfo['pool'] = valid_pool(content['pool'])
+    if 'requirements' in content:
+        pkginfo['requirements'] = content['requirements']
     manifest, lastmodified_r = obtain_manifest(pkgid, 'release', manifest_url, offline)
     if manifest:
         pkginfo['manifest'] = manifest
@@ -79,10 +99,10 @@ def parse_package_info(info_path: str, offline=False) -> Optional[PackageInfo]:
     return pkginfo
 
 
-def list_packages(pkgdir: str, offline: bool = False) -> List[PackageInfo]:
-    paths = [join(pkgdir, f)
-             for f in os.listdir(pkgdir) if isfile(join(pkgdir, f))]
-    return sorted(filter(lambda x: x, map(lambda p: parse_package_info(p, offline), paths)), key=lambda x: x['title'])
+def list_packages(pkgdir: Path, offline: bool = False) -> List[PackageInfo]:
+    paths: List[Path] = [f for f in pkgdir.iterdir() if f.is_file()]
+    return sorted(filter(lambda x: x, map(lambda p: from_package_info_file(p, offline), paths)),
+                  key=lambda x: x['title'])
 
 
 def valid_pool(value: str) -> str:

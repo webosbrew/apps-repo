@@ -1,35 +1,40 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 import datetime
-from os.path import join, dirname, abspath
+from pathlib import Path
+
+import pelican.themes.webosbrew
+from pelican.plugins import webassets
+from webassets.cache import MemoryCache
 
 import repogen
-from pelican.plugins import webassets
-import pelican.themes.webosbrew
 
 AUTHOR = 'webOS Homebrew Project'
 SITENAME = 'webOS Homebrew Project'
 SITEURL = ''
 
 THEME = 'webosbrew'
-THEME_STATIC_PATHS = [join(dirname(abspath(__file__)), 'theme/static'), pelican.themes.webosbrew.static_dir()]
+theme_dir = Path(__file__, '..', 'theme').resolve()
+THEME_STATIC_PATHS = [theme_dir.joinpath('static'), pelican.themes.webosbrew.static_dir()]
+WEBASSETS_SOURCE_PATHS = [theme_dir.joinpath('styles'), pelican.themes.webosbrew.scss_dir()]
 THEME_TEMPLATES_OVERRIDES = ['./theme/templates']
 
 PLUGINS = [webassets, repogen]
 
 WEBASSETS_CONFIG = [
-    ("PYSCSS_LOAD_PATHS", [pelican.themes.webosbrew.scss_dir()])
+    ("CACHE", MemoryCache(1024)),
+    ("PYSCSS_LOAD_PATHS", [pelican.themes.webosbrew.scss_dir()]),
 ]
 
 PATH = 'content'
 
-STATIC_PATHS = ['extra/CNAME', 'extra/favicon.ico']
+STATIC_PATHS = ['extra/CNAME', 'extra/favicon.ico', 'schemas']
 ARTICLE_EXCLUDES = ['api']
 PAGE_PATHS = ['pages', 'apps', '../packages']
 
 EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'},
-    'extra/favicon.ico': {'path': 'favicon.ico'}
+    'extra/favicon.ico': {'path': 'favicon.ico'},
 }
 
 MARKDOWN = {

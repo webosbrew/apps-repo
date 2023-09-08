@@ -1,4 +1,6 @@
+from pathlib import Path
 from urllib.parse import urlparse
+from urllib.request import url2pathname
 from xml.etree import ElementTree
 
 import requests
@@ -6,6 +8,7 @@ from markdown import Markdown
 from markdown.treeprocessors import Treeprocessor
 
 from repogen import pkg_info
+from repogen.pkg_info import PackageInfo
 
 
 class PackageInfoLinter:
@@ -18,6 +21,7 @@ class PackageInfoLinter:
     class ImageProcessor(Treeprocessor):
 
         def __init__(self, errors: [str]):
+            super().__init__()
             self.errors = errors
 
         def run(self, root: ElementTree.Element):
@@ -27,19 +31,17 @@ class PackageInfoLinter:
                     self.errors.append("Use HTTPS URL for %s" % src)
             return None
 
-    def lint(self, pkginfo) -> [str]:
+    def lint(self, info: PackageInfo) -> [str]:
         errors: [str] = []
 
         # Pool property
-        if pkginfo.get('nopool', False):
-            errors.append('pool property is required (`main` or `non-free`)')
-        elif pkginfo['pool'] not in ['main', 'non-free']:
+        if info['pool'] not in ['main', 'non-free']:
             errors.append('pool property must be `main` or `non-free`')
 
         # Process icon
-        icon_uri = urlparse(pkginfo['iconUri'])
+        icon_uri = urlparse(info['iconUri'])
         if icon_uri.scheme == 'data' or icon_uri.scheme == 'https':
-            with requests.get(pkginfo['iconUri']) as resp:
+            with requests.get(info['iconUri']) as resp:
                 if resp.status_code == 200:
                     pass
                 else:
@@ -48,12 +50,15 @@ class PackageInfoLinter:
             errors.append('iconUrl must be data URI or use HTTPS')
 
         # Process manifest
-        PackageInfoLinter._validate_manifest_url(pkginfo['manifestUrl'], 'manifestUrl', errors)
+        if 'manifestUrl' in info:
+            PackageInfoLinter._validate_manifest_url(info['manifestUrl'], 'manifestUrl', errors)
+        elif 'manifest' not in info:
+            errors.append('Either `manifestUrl` or `manifest` is required')
 
-        if 'manifestUrlBeta' in pkginfo:
-            PackageInfoLinter._validate_manifest_url(pkginfo['manifestUrlBeta'], 'manifestUrlBeta', errors)
+        if 'manifestUrlBeta' in info:
+            PackageInfoLinter._validate_manifest_url(info['manifestUrlBeta'], 'manifestUrlBeta', errors)
 
-        description = pkginfo.get('description', '')
+        description = info.get('description', '')
         mk = Markdown()
         # patch in the customized image pattern matcher with url checking
         mk.treeprocessors.register(
@@ -64,14 +69,17 @@ class PackageInfoLinter:
     @staticmethod
     def _validate_manifest_url(url: str, key: str, e: [str]):
         manifest_url_pre = urlparse(url)
-        if manifest_url_pre.scheme == 'https':
-            with requests.get(url) as resp:
-                if resp.status_code == 200:
-                    resp.json()
-                else:
-                    e.append(f"{key} must be accessible")
-        else:
-            e.append(f"{key} must be HTTPS URL")
+        match manifest_url_pre.scheme:
+            case 'https':
+                with requests.get(url) as resp:
+                    if resp.status_code == 200:
+                        resp.json()
+                    else:
+                        e.append(f"{key} must be accessible")
+            case 'file':
+                assert Path(url2pathname(manifest_url_pre.path)).exists()
+            case _:
+                e.append(f"{key} must be HTTPS URL")
 
 
 if __name__ == '__main__':
@@ -81,14 +89,16 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--file', required=True)
     args = parser.parse_args()
 
-    pkginfo = pkg_info.parse_package_info(args.file)
+    lint_pkginfo = pkg_info.from_package_info_file(Path(args.file))
+    if lint_pkginfo is None:
+        raise ValueError('No package info')
 
     linter = PackageInfoLinter()
-    errors = linter.lint(pkginfo)
+    lint_errors = linter.lint(lint_pkginfo)
 
-    if len(errors):
+    if len(lint_errors):
         print('#### Issue:')
-        for err in errors:
+        for err in lint_errors:
             print(' * %s' % err)
         exit(1)
     else:

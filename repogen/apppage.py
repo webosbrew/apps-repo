@@ -1,31 +1,32 @@
 # -*- coding: utf-8 -*-
 import math
-from os import makedirs
-from os.path import dirname, exists, join
+from pathlib import Path
+from typing import List
 
 import more_itertools
 import pystache
 
 from repogen import pkg_info
-from repogen.common import ITEMS_PER_PAGE
+from repogen.common import ITEMS_PER_PAGE, ensure_open
+from repogen.pkg_info import PackageInfo
 
 
 class AppListingGenerator:
 
-    def __init__(self, packages):
-        with open(join(dirname(__file__), 'templates', 'apps', 'detail.md'), encoding='utf-8') as f:
+    def __init__(self, packages: List[PackageInfo]):
+        with Path(__file__).parent.joinpath('templates', 'apps', 'detail.md').open(encoding='utf-8') as f:
             self.details_template = f.read()
-        with open(join(dirname(__file__), 'templates', 'apps', 'list.html'), encoding='utf-8') as f:
+        with Path(__file__).parent.joinpath('templates', 'apps', 'list.html').open(encoding='utf-8') as f:
             self.index_template = f.read()
 
         self.packages = packages
 
-    def gen_details(self, outdir):
+    def gen_details(self, outdir: Path):
         for pkg in self.packages:
-            with open(join(outdir, '%s.md' % pkg['id']), 'w', encoding='utf-8') as f:
+            with ensure_open(outdir.joinpath('%s.md' % pkg['id']), mode='w', encoding='utf-8') as f:
                 f.write(pystache.render(self.details_template, pkg))
 
-    def _gen_page(self, outdir, items, pagination):
+    def _gen_page(self, outdir: Path, items, pagination):
         page = pagination['page']
         maxp = pagination['max']
         prevp = pagination['prev']
@@ -60,7 +61,7 @@ class AppListingGenerator:
         def _page_path(p: int):
             return 'apps/index.html' if p == 1 else 'apps/page/%d.html' % p
 
-        with open(join(outdir, ('apps-page-%d.html' % page)), 'w', encoding='utf-8') as f:
+        with ensure_open(outdir.joinpath('apps-page-%d.html' % page), mode='w', encoding='utf-8') as f:
             f.write(pystache.render(self.index_template, {
                 'packages': items, 'pagePath': _page_path(page),
                 'firstPage': page == 1,
@@ -70,7 +71,7 @@ class AppListingGenerator:
                 }
             }))
 
-    def gen_list(self, outdir):
+    def gen_list(self, outdir: Path):
         pkgs = self.packages
         packages_length = len(pkgs)
         max_page = math.ceil(packages_length / ITEMS_PER_PAGE)
@@ -84,11 +85,8 @@ class AppListingGenerator:
             self._gen_page(outdir, items, pagination)
 
 
-def generate(packages, outdir, gen_details=True, gen_list=True):
+def generate(packages: List[PackageInfo], outdir: Path, gen_details=True, gen_list=True):
     generator = AppListingGenerator(packages)
-
-    if not exists(outdir):
-        makedirs(outdir)
 
     if gen_details:
         generator.gen_details(outdir)
@@ -107,4 +105,4 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--output-dir', required=True)
     args = parser.parse_args()
 
-    generate(pkg_info.list_packages(args.input_dir), args.output_dir)
+    generate(pkg_info.list_packages(Path(args.input_dir)), Path(args.output_dir))

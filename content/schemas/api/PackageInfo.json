@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://webosbrew.org/schema/HomebrewRepository.schema",
+  "title": "HomebrewPackageInfo",
+  "description": "Homebrew Package Information",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Application ID, e.g., \"com.newco.app.myApp\" . Every application has a unique ID, created from reverse DNS naming conventions."
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the application as it shows in the Launcher and the app window. The application title is unique, set once."
+    },
+    "shortDescription": {
+      "type": "string",
+      "description": "Short description for your app."
+    },
+    "fullDescriptionUrl": {
+      "type": "string",
+      "description": "URL to full description page in HTML. Client may apply appropriate stylesheet to it."
+    },
+    "iconUri": {
+      "type": "string",
+      "description": "Image displayed for your app. This is a URL to an image, or data: encoded URI"
+    },
+    "manifestUrl": {
+      "type": "string",
+      "description": "Link to manifest, should be pointed to an URL can always provide latest version"
+    },
+    "manifest": {
+      "$ref": "PackageManifest.json"
+    }
+  },
+  "allOf": [
+    {
+      "required": [
+        "id",
+        "title",
+        "iconUri"
+      ]
+    },
+    {
+      "oneOf": [
+        {
+          "required": [
+            "manifestUrl"
+          ]
+        },
+        {
+          "required": [
+            "manifest"
+          ]
+        }
+      ]
+    }
+  ]
+}

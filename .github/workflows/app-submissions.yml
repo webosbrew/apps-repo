@@ -18,19 +18,20 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Download Homebrew Toolbox
+        uses: robinraju/release-downloader@v1.8
         with:
-          node-version: '16.x'
+          repository: "webosbrew/dev-toolbox-cli"
+          latest: true
+          fileName: "webosbrew-toolbox-*.deb"
+          out-file-path: "temp"
 
       - name: Install dependencies
         run: |
-          sudo apt-get install -y jq
           python3 -m pip install -r ./requirements.txt
-          python3 -m pip install yq
-          npm install -g @webosbrew/compat-checker
+          sudo apt-get install ./temp/*.deb
 
       - name: Check changed packages
         id: changed_files
@@ -58,22 +59,9 @@ jobs:
             echo >> /tmp/lint-report.md
 
             ipkfile=/tmp/$(sha256sum "${changed_file}" | cut -d ' ' -f 1).ipk
-            python3 -m repogen.downloadipk -i ${changed_file} -o "${ipkfile}"
+            python3 -m repogen.downloadipk -i "${changed_file}" -o "${ipkfile}"
             echo '### Compatibility Check Results' >> /tmp/lint-report.md
-            compat_check_args="--markdown --github-emoji --quiet"
-            min_os=$(yq -r '.requirements.minOs // ""' ${changed_file})
-            max_os=$(yq -r '.requirements.maxOs // ""' ${changed_file})
-            max_os_exclusive=$(yq -r '.requirements.maxOsExclusive // ""' ${changed_file})
-            if [ ! -z "${min_os}" ]; then
-              compat_check_args="${compat_check_args} --min-os ${min_os}"
-            fi
-            if [ ! -z "${max_os}" ]; then
-              compat_check_args="${compat_check_args} --max-os ${max_os}"
-            fi
-            if [ ! -z "${max_os_exclusive}" ]; then
-              compat_check_args="${compat_check_args} --max-os-exclusive ${max_os_exclusive}"
-            fi
-            webosbrew-ipk-compat-checker ${compat_check_args} "${ipkfile}" >> /tmp/lint-report.md || export lint_retcode=1
+            python3 -m repogen.check_compat -i "${changed_file}" -p "${ipkfile}" >> /tmp/lint-report.md || export lint_retcode=1
           done
           exit ${lint_retcode}
 
@@ -85,7 +73,7 @@ jobs:
 
       - name: Upload Check Results
         if: ${{ !env.ACT && (success() || failure()) }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Check Results
           path: |

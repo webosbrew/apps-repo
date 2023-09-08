@@ -42,13 +42,12 @@ jobs:
              unzip -d "$name" "$name.zip"
            done
 
-           report=$(cat 'Check Results/lint-report.md')
-           report="${report//'%'/'%25'}"
-           report="${report//$'\n'/'%0A'}"
-           report="${report//$'\r'/'%0D'}"
-           echo "::set-output name=content::$report"
+           echo "issue-number=$(cat 'Check Results/issue-number.txt')" >> $GITHUB_OUTPUT
 
-           echo "::set-output name=issue-number::$(cat 'Check Results/issue-number.txt')"
+           delimiter="$(openssl rand -hex 16)"
+           echo "content<<${delimiter}" >> "${GITHUB_OUTPUT}"
+           cat 'Check Results/lint-report.md' >> "${GITHUB_OUTPUT}"
+           echo "${delimiter}" >> "${GITHUB_OUTPUT}"
 
       - id: find-comment
         name: Find Check Results Comment
