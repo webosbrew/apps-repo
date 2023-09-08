@@ -20,6 +20,11 @@ description: |
     * Tested on WebOS 3, 4, 5 (6+ untested probably ok)
 
     ## Changelog
+    ### 0.8.3 (08.09.2023)
+    * fixed recording playback on WebOS 3
+    * disabled animations on WebOS 3 to improve performance
+    * small performance fixes 
+
     ### 0.8.1 (19.03.2023)
     * fixed app crash on WebOS 3
 
