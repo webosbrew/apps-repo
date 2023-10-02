@@ -10,7 +10,9 @@ from markdown import Markdown
 
 from repogen import pkg_info
 from repogen.common import ITEMS_PER_PAGE, ensure_open
+from repogen.icons import obtain_icon
 from repogen.pkg_info import PackageInfo
+from repogen.siteurl import siteurl
 
 MANIFEST_KEYS = ('id', 'title', 'iconUri', 'manifestUrl', 'manifest', 'manifestUrlBeta', 'manifestBeta', 'pool')
 
@@ -40,6 +42,7 @@ def generate(packages: List[PackageInfo], outdir: Path):
             package['fullDescriptionUrl'] = f'{p_info["id"]}/full_description.html'
         else:
             package['fullDescriptionUrl'] = f'apps/{p_info["id"]}/full_description.html'
+        package['iconUri'] = obtain_icon(package['id'], p_info["iconUri"], siteurl())
         return package
 
     packages_length = len(packages)
