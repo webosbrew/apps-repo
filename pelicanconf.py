@@ -8,10 +8,11 @@ from pelican.plugins import webassets
 from webassets.cache import MemoryCache
 
 import repogen
+from repogen.siteurl import siteurl
 
 AUTHOR = 'webOS Homebrew Project'
 SITENAME = 'webOS Homebrew Project'
-SITEURL = ''
+SITEURL = siteurl()
 
 THEME = 'webosbrew'
 theme_dir = Path(__file__, '..', 'theme').resolve()
@@ -28,11 +29,12 @@ WEBASSETS_CONFIG = [
 
 PATH = 'content'
 
-STATIC_PATHS = ['extra/CNAME', 'extra/favicon.ico', 'schemas']
+STATIC_PATHS = ['extra/CNAME', 'extra/favicon.ico', 'schemas', 'apps/icons']
 ARTICLE_EXCLUDES = ['api']
 PAGE_PATHS = ['pages', 'apps', '../packages']
 
 EXTRA_PATH_METADATA = {
+    'apps/icons': {'path': 'apps/icons/'},
     'extra/CNAME': {'path': 'CNAME'},
     'extra/favicon.ico': {'path': 'favicon.ico'},
 }

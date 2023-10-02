@@ -10,6 +10,7 @@ from pelican.readers import BaseReader
 from pelican.themes.webosbrew import pagination_data
 
 from repogen import funding, apidata, pkg_info
+from repogen.icons import obtain_icon
 
 log = logging.getLogger(__name__)
 
@@ -25,6 +26,7 @@ class PackageInfoReader(BaseReader):
 
     def read(self, filename: str):
         info = pkg_info.from_package_info_file(Path(filename), offline='CI' not in os.environ)
+        info['iconUri'] = obtain_icon(info['id'], info['iconUri'], self.settings['SITEURL'])
         metadata = {
             'title': info['title'],
             'override_save_as': f'apps/{info["id"]}.html',
