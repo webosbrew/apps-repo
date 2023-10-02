@@ -1,6 +1,6 @@
 import importlib
 from pathlib import Path
-from typing import TypedDict, NotRequired, Literal
+from typing import TypedDict, NotRequired, Literal, List
 
 import yaml
 
@@ -19,7 +19,7 @@ class PackageRegistry(TypedDict):
     pool: Literal['main', 'non-free']
     requirements: NotRequired[PackageRequirements]
     detailIconUri: NotRequired[str]
-    funding: NotRequired[dict]
+    funding: NotRequired[dict[str, List[str]]]
 
 
 def parse_yml_package(p: Path) -> (str, PackageRegistry):
