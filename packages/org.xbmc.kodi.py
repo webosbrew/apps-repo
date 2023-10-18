@@ -60,7 +60,7 @@ visualizations. Once installed, your computer or HTPC will become a fully functi
 
 
 def load() -> PackageRegistry:
-    with requests.get('https://mirrors.kodi.tv/nightlies/webos/master/') as resp:
+    with requests.get('https://mirrors.kodi.tv/releases/webos/') as resp:
         doc: etree.ElementBase = etree.parse(StringIO(resp.text), parser=etree.HTMLParser())
         anchors: List[Element] = doc.xpath('//table[@id="list"]/tbody/tr/td[1]/a[@href!="../"]')
         urls: List[str] = list(map(lambda a: urllib.parse.urljoin(resp.url, a.attrib['href']), anchors))
