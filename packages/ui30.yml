@@ -1,0 +1,7 @@
+title: Piccap On/Off Remote
+iconUri: https://raw.githubusercontent.com/Bahoue/OnOff-Remote/master/app/largeIcon.png
+manifestUrl: https://github.com/Bahoue/OnOff-Remote/releases/latest/download/ui30.manifest.json
+category: utility
+pool: main
+description: |
+  Binds the Rakuten button on the remote control to the action of pausing/resuming PicCap.
