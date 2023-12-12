@@ -7,11 +7,11 @@
   "properties": {
     "id": {
       "type": "string",
-      "description": "Application ID, e.g., \"com.newco.app.myApp\" . Every application has a unique ID, created from reverse DNS naming conventions."
+      "description": "Application ID, e.g., \"com.newco.app.myApp\". Every application has a unique ID created using the reverse-DNS naming convention."
     },
     "version": {
       "type": "string",
-      "description": "The application version number, in the dot-notation format, e.g., 3.0.2500"
+      "description": "The application version number in dot-decimal format with three components, e.g., 3.0.2500."
     },
     "type": {
       "type": "string",
@@ -23,11 +23,11 @@
         "native_appshell",
         "qml"
       ],
-      "description": "Identifies the application type"
+      "description": "Identifies the application type. These are the same types used in appinfo.json on webOS."
     },
     "title": {
       "type": "string",
-      "description": "The title of the application as it shows in the Launcher and the app window. The application title is unique, set once."
+      "description": "The title of the application."
     },
     "appDescription": {
       "type": "string",
@@ -35,11 +35,11 @@
     },
     "iconUri": {
       "type": "string",
-      "description": "Image displayed for your app. This is a URL to an image, or data: encoded URI"
+      "description": "Image displayed for the app. This is a URL to an image, or data: encoded URI."
     },
     "sourceUrl": {
       "type": "string",
-      "description": "Link to source code repository, or project homepage etc"
+      "description": "Link to source code repository or project homepage, etc."
     },
     "rootRequired": {
       "type": [
@@ -51,23 +51,23 @@
         false,
         "optional"
       ],
-      "description": "Whether this app require a rooted/jailbroken TV to work, or optional."
+      "description": "Whether this app requires a rooted/jailbroken TV to work or can optionally use root."
     },
     "ipkUrl": {
       "type": "string",
-      "description": "URL to package file"
+      "description": "URL to package file."
     },
     "ipkHash": {
       "type": "object",
       "properties": {
         "sha256": {
           "type": "string",
-          "description": "Hex encoded hash"
+          "description": "Hex encoded SHA-256 hash."
         }
       },
       "minProperties": 1,
       "additionalProperties": false,
-      "description": "URL to package file"
+      "description": "Hash of package file."
     }
   },
   "required": [
