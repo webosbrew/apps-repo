@@ -30,13 +30,12 @@ WEBASSETS_CONFIG = [
 
 PATH = 'content'
 
-STATIC_PATHS = ['extra/CNAME', 'extra/favicon.ico', 'schemas', 'apps/icons']
+STATIC_PATHS = ['extra/favicon.ico', 'schemas', 'apps/icons']
 ARTICLE_EXCLUDES = ['api']
 PAGE_PATHS = ['pages', 'apps', '../packages']
 
 EXTRA_PATH_METADATA = {
     'apps/icons': {'path': 'apps/icons/'},
-    'extra/CNAME': {'path': 'CNAME'},
     'extra/favicon.ico': {'path': 'favicon.ico'},
 }
 
