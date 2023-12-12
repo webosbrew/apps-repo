@@ -1,0 +1,7 @@
+title: VNCServer (fixed)
+iconUri: https://github.com/throwaway96/webos-vncserver/raw/main/assets/largeIcon.png
+manifestUrl: https://github.com/throwaway96/webos-vncserver/releases/latest/download/org.webosbrew.vncserver.manifest.json
+category: utility
+pool: main
+description: |
+  Hi!
