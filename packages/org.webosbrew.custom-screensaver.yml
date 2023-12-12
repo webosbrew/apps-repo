@@ -1,9 +1,0 @@
-title: Custom Screensaver
-iconUri: https://raw.githubusercontent.com/webosbrew/custom-screensaver/main/assets/icon130.png
-manifestUrl: https://github.com/webosbrew/custom-screensaver/releases/latest/download/org.webosbrew.custom-screensaver.manifest.json
-category: screensaver
-pool: main
-description: |
-  Probably the only custom screensaver you'll ever need on webOS TV.
-
-  Requires root.
