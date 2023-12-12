@@ -11,8 +11,8 @@ from webassets.cache import MemoryCache
 import repogen
 from repogen.siteurl import siteurl
 
-AUTHOR = 'webOS Homebrew Project'
-SITENAME = 'webOS Homebrew Project'
+AUTHOR = 'throwaway96'
+SITENAME = 'throwaway96 dev repo'
 SITEURL = siteurl() if os.environ.get('CI') else ''
 
 THEME = 'webosbrew'
@@ -51,7 +51,7 @@ MARKDOWN = {
     'output_format': 'html5',
 }
 
-TIMEZONE = 'Asia/Tokyo'
+TIMEZONE = 'America/New_York'
 
 DEFAULT_LANG = 'en'
 
@@ -65,15 +65,10 @@ CACHE_CONTENT = False
 LOAD_CONTENT_CACHE = False
 
 MENUITEMS = (
-    ('Applications', '/apps'),
-    ('Submit', '/submit'),
+    ('Applications', 'apps'),
 )
 
 LINKS = (
-    ('Github Organization', 'https://github.com/webosbrew/'),
-    ('Join us on Discord', 'https://discord.gg/xWqRVEm'),
-    ('RootMy.TV', 'https://rootmy.tv/'),
-    ('openlgtv', 'https://openlgtv.github.io/'),
 )
 
 INDEX_APP_CATEGORIES = [
