@@ -29,7 +29,8 @@ class PackageManifest(TypedDict):
     rootRequired: NotRequired[bool | Literal['optional']]
     ipkUrl: str
     ipkHash: PackageHash
-    ipkSize: int
+    ipkSize: NotRequired[int]
+    installedSize: NotRequired[int]
 
 
 def obtain_manifest(pkgid: str, channel: str, uri: str, offline: bool = False) -> Tuple[PackageManifest, datetime]:

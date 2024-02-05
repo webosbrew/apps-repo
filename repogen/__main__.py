@@ -13,11 +13,13 @@ parser.add_argument('-A', '--no-gen-api', dest='gen_api', action='store_false')
 parser.add_argument('-D', '--no-gen-details', dest='gen_details', action='store_false')
 parser.add_argument('-L', '--no-gen-list', dest='gen_list', action='store_false')
 
+parser.add_argument('-p', '--packages', nargs='+', required=False)
+
 parser.set_defaults(gen_api=True, gen_details=True, gen_list=True)
 
 args = parser.parse_args()
 
-packages = pkg_info.list_packages(Path(args.input_dir))
+packages = pkg_info.list_packages(Path(args.input_dir), args.packages)
 
 if args.gen_api:
     apidata.generate(packages, Path(args.output_dir, 'api'))

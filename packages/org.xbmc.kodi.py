@@ -77,7 +77,7 @@ def load() -> PackageRegistry:
         with open(ipk_path, 'rb') as f:
             ipk_hash = hashlib.sha256(f.read()).hexdigest()
 
-        appinfo = ipk_file.get_appinfo(ipk_path)
+        control, appinfo = ipk_file.get_appinfo(ipk_path)
         manifest = {
             'id': appinfo['id'],
             'title': appinfo['title'],
@@ -90,7 +90,8 @@ def load() -> PackageRegistry:
             'ipkHash': {
                 'sha256': ipk_hash
             },
-            'ipkSize': os.stat(ipk_path).st_size
+            'ipkSize': os.stat(ipk_path).st_size,
+            'installedSize': control['installedSize'],
         }
         with cache.open_file(manifest_name, 'w') as f:
             json.dump(manifest, f)
