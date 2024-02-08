@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import math
+import os
 import urllib.parse
 from pathlib import Path
 from typing import List
@@ -33,6 +34,7 @@ def generate(packages: List[PackageInfo], outdir: Path):
     markdown = Markdown()
 
     appsdir: Path = outdir.joinpath('apps')
+    site_url = siteurl()
 
     def package_item(p_info: PackageInfo, in_apps_dir: bool):
         package = {k: p_info[k] for k in MANIFEST_KEYS if k in p_info}
@@ -42,7 +44,8 @@ def generate(packages: List[PackageInfo], outdir: Path):
             package['fullDescriptionUrl'] = f'{p_info["id"]}/full_description.html'
         else:
             package['fullDescriptionUrl'] = f'apps/{p_info["id"]}/full_description.html'
-        package['iconUri'] = obtain_icon(package['id'], p_info["iconUri"], siteurl())
+        if os.environ.get('CI'):
+            package['iconUri'] = obtain_icon(package['id'], p_info["iconUri"], site_url)
         return package
 
     packages_length = len(packages)

@@ -1,7 +1,7 @@
 title: Hyperion.NG
 iconUri: https://raw.githubusercontent.com/webosbrew/hyperion.ng-webos-loader/master/assets/logo_big.png
 manifestUrl: https://github.com/webosbrew/hyperion.ng-webos-loader/releases/latest/download/org.webosbrew.hyperion.ng.loader.manifest.json
-category: multimedia
+category: amblight
 pool: main
 description: |
   [Hyperion.NG](https://hyperion-project.org) ambient lighting service incl. frontend to start/stop/autostart the daemon.

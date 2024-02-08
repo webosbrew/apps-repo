@@ -68,6 +68,16 @@
       "minProperties": 1,
       "additionalProperties": false,
       "description": "Hash of package file."
+    },
+    "ipkSize": {
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "description": "Size of package file in bytes."
+    },
+    "installedSize": {
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "description": "Size of installed package in bytes."
     }
   },
   "required": [

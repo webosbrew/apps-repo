@@ -66,6 +66,25 @@ def add_app_indices(generator: PagesGenerator):
         generator.hidden_pages.append(Page('', metadata=metadata, settings=generator.settings,
                                            source_path=f'apps-page-{index + 1}.html', context=generator.context))
 
+    def get_category_entries():
+        entries = []
+        for (category, title) in generator.settings['INDEX_APP_CATEGORIES']:
+            entries.append({
+                'title': title,
+                'packages': [pkg for pkg in packages if pkg['category'] == category]
+            })
+        return entries
+
+    metadata = {
+        'title': 'Apps Repository',
+        'override_save_as': 'index.html',
+        'template': 'repo-index',
+        'status': 'hidden',
+        'categories': get_category_entries(),
+    }
+    generator.hidden_pages.append(Page('', metadata=metadata, settings=generator.settings,
+                                       source_path=f'repo-index.html', context=generator.context))
+
 
 def apps_list_href(page):
     return '/apps' if page <= 1 else f'/apps/page/{page}'

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 import datetime
+import os
 from pathlib import Path
 
 import pelican.themes.webosbrew
@@ -12,7 +13,7 @@ from repogen.siteurl import siteurl
 
 AUTHOR = 'webOS Homebrew Project'
 SITENAME = 'webOS Homebrew Project'
-SITEURL = siteurl()
+SITEURL = siteurl() if os.environ.get('CI') else ''
 
 THEME = 'webosbrew'
 theme_dir = Path(__file__, '..', 'theme').resolve()
@@ -75,6 +76,13 @@ LINKS = (
     ('RootMy.TV', 'https://rootmy.tv/'),
     ('openlgtv', 'https://openlgtv.github.io/'),
 )
+
+INDEX_APP_CATEGORIES = [
+    ('multimedia', 'Multimedia'),
+    ('game', 'Games'),
+    ('amblight', 'Ambient Light'),
+    ('utility', 'Utilities'),
+]
 
 DEFAULT_PAGINATION = 20
 
