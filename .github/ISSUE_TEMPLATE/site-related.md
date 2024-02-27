@@ -1,10 +1,8 @@
 ---
 name: Site Related
-about: Site related feedbacks and requests
+about: Submit bug reports or feedback regarding the repo.webosbrew.org site
 title: "[SITE]"
-labels: site
-assignees: ''
+labels: ["site"]
 
 ---
-
 

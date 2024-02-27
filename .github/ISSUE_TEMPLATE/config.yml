@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: OpenLGTV Discord server
+    url: https://discord.gg/nKQW6FPWeM
+    about: You can ask general webOS homebrew support questions here.
+  - name: OpenLGTV Matrix room
+    url: https://matrix.to/#/#openlgtv:netserve.live
+    about: You can ask general webOS homebrew support questions here.
