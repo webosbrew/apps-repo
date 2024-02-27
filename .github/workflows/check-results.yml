@@ -51,14 +51,14 @@ jobs:
 
       - id: find-comment
         name: Find Check Results Comment
-        uses: peter-evans/find-comment@v2
+        uses: peter-evans/find-comment@v3
         with:
           issue-number: ${{ steps.extract-check-results.outputs.issue-number }}
           comment-author: 'github-actions[bot]'
           body-includes: Check Result
 
       - name: Report Check Results
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
           issue-number: ${{ steps.extract-check-results.outputs.issue-number }}
