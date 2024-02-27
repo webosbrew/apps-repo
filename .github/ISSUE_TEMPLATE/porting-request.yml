@@ -18,7 +18,7 @@ body:
       options:
         - label: 'I have read and agree to the conditions above'
           required: true
-        - label: 'I\'d like to port this app myself'
+        - label: 'I would like to port this app myself'
           required: false
   - type: textarea
     attributes:
