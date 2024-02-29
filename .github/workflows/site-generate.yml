@@ -1,33 +1,18 @@
-name: repo site generator
+# Shared job for generating the site and uploading as an artifact.
+# Does not deploy to Pages.
+
+name: 'Site: Generate'
 
 on:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: 41 */3 * * *
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+  workflow_call:
 
 jobs:
-  deploy:
+  generate:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repo
+        uses: actions/checkout@v4
         with:
           submodules: true
 
@@ -39,7 +24,7 @@ jobs:
           path: ./cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('packages/*') }}
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
@@ -53,12 +38,7 @@ jobs:
       - name: Generate site content
         run: invoke build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
+      - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'output'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4

@@ -1,0 +1,13 @@
+name: 'Site: Lint'
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - 'packages/**'
+  workflow_dispatch:
+
+jobs:
+  generate:
+    uses: ./.github/workflows/site-generate.yml
