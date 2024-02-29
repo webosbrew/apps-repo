@@ -1,0 +1,12 @@
+name: 'Check site generation'
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '!packages/**'
+
+jobs:
+  generate:
+    uses: ./.github/workflows/generate.yml

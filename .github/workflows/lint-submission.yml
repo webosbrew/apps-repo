@@ -1,4 +1,4 @@
-name: App Submissions
+name: 'Lint app submission'
 
 on:
   pull_request:
@@ -8,14 +8,15 @@ on:
       - 'packages/**'
 
 jobs:
-  app-lint:
+  app_lint:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repo
+        uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
@@ -31,25 +32,23 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install -r ./requirements.txt
-          sudo apt-get install ./temp/*.deb
+          sudo apt-get install ./temp/webosbrew-toolbox-*.deb
 
       - name: Check changed packages
         id: changed_files
         uses: dorny/paths-filter@v3
         with:
           list-files: shell
-
           filters: |
             packages:
               - added|modified: 'packages/**'
 
       - name: Lint package information
-        id: lint_package
         if: ${{ steps.changed_files.outputs.packages == 'true' }}
         run: |
           export lint_retcode=0
           for changed_file in ${{ steps.changed_files.outputs.packages_files }}; do
-            echo "## Check Results for $(basename ${changed_file}):" >> /tmp/lint-report.md
+            echo "## Check Results for $(basename "${changed_file}"):" >> /tmp/lint-report.md
             echo >> /tmp/lint-report.md
 
             echo '### Metadata Lint Result' >> /tmp/lint-report.md
@@ -60,26 +59,29 @@ jobs:
 
             ipkfile=/tmp/$(sha256sum "${changed_file}" | cut -d ' ' -f 1).ipk
             python3 -m repogen.downloadipk -i "${changed_file}" -o "${ipkfile}"
+
             echo '### Compatibility Check Results' >> /tmp/lint-report.md
+
             python3 -m repogen.check_compat -i "${changed_file}" -p "${ipkfile}" >> /tmp/lint-report.md || export lint_retcode=1
           done
           exit ${lint_retcode}
 
-      - name: Save Issue Number
+      - name: Save issue number
+        # Skip on act or when previous step cancelled
         if: ${{ !env.ACT && (success() || failure()) }}
-        run: echo $ISSUE_NUMBER > /tmp/issue-number.txt
-        env:
-          ISSUE_NUMBER: ${{ github.event.number }}
+        run: echo "${ISSUE_NUMBER}" > /tmp/issue-number.txt
 
-      - name: Upload Check Results
+      - name: Upload lint results
+        # Skip on act or when previous step cancelled
         if: ${{ !env.ACT && (success() || failure()) }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: Check Results
+          name: lint-results
           path: |
             /tmp/lint-report.md
             /tmp/issue-number.txt
 
-      - name: Print Check Results (Local)
+      - name: Print lint results (local)
+        # Only run on act when previous steps not canceled 
         if: ${{ env.ACT && (success() || failure()) }}
         run: cat /tmp/lint-report.md
