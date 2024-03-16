@@ -27,6 +27,7 @@ class PackageInfoReader(BaseReader):
     def read(self, filename: str):
         info = pkg_info.from_package_info_file(Path(filename), offline='CI' not in os.environ)
         info['iconUri'] = obtain_icon(info['id'], info['iconUri'], self.settings['SITEURL'])
+        info['manifest']['iconUri'] = info['iconUri']
         metadata = {
             'title': info['title'],
             'override_save_as': f'apps/{info["id"]}.html',
