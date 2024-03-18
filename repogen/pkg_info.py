@@ -32,7 +32,7 @@ class PackageInfo(TypedDict):
     lastmodified_str: str
 
 
-def load_registry(info_path: Path) -> (str, PackageRegistry):
+def load_registry(info_path: Path) -> tuple[str, PackageRegistry]:
     extension = info_path.suffix
     content: PackageRegistry
     if extension == '.yml':
