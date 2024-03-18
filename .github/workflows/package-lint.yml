@@ -1,53 +1,50 @@
 name: 'Package: Lint'
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'packages/**'
+  workflow_call:
+    inputs:
+      packages:
+        type: string
+        required: true
+
+# Disable all permissions
+permissions: {}
 
 jobs:
-  app-lint:
+  package-lint:
     runs-on: ubuntu-latest
     permissions:
-      pull-requests: write
+      actions: read
+      pull-requests: read
+      contents: read # Only needed for private repository
+      issues: read # Only needed for private repository
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
 
       - name: Download Homebrew Toolbox
         uses: robinraju/release-downloader@v1.9
         with:
-          repository: "webosbrew/dev-toolbox-cli"
+          repository: 'webosbrew/dev-toolbox-cli'
           latest: true
-          fileName: "webosbrew-toolbox-*.deb"
-          out-file-path: "temp"
+          fileName: 'webosbrew-toolbox-*.deb'
+          out-file-path: 'temp'
 
       - name: Install dependencies
         run: |
           python3 -m pip install -r ./requirements.txt
           sudo apt-get install ./temp/webosbrew-toolbox-*.deb
 
-      - name: Check changed packages
-        id: changed_files
-        uses: dorny/paths-filter@v3
-        with:
-          list-files: shell
-          filters: |
-            packages:
-              - added|modified: 'packages/**'
-
       - name: Lint package information
-        if: ${{ steps.changed_files.outputs.packages == 'true' }}
         run: |
           export lint_retcode=0
-          for changed_file in ${{ steps.changed_files.outputs.packages_files }}; do
+          for changed_file in ${{ inputs.packages }}; do
             echo "## Check Results for $(basename "${changed_file}"):" >> /tmp/lint-report.md
             echo >> /tmp/lint-report.md
 
@@ -76,7 +73,7 @@ jobs:
         if: ${{ !env.ACT && (success() || failure()) }}
         uses: actions/upload-artifact@v4
         with:
-          name: lint-results
+          name: package-lint-results
           path: |
             /tmp/lint-report.md
             /tmp/issue-number.txt
