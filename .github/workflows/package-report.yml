@@ -1,0 +1,73 @@
+# This is a separate workflow due to permission issues.
+
+name: 'PR: Report results'
+
+on:
+  workflow_run:
+    # can apparently only refer to top-level workflow
+    workflows: ['PR Check']
+    types: [completed]
+
+# Disable all permissions
+permissions: {}
+
+jobs:
+  package-report:
+    name: Check results
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      pull-requests: write
+      contents: read # Only needed for private repository
+      issues: read # Only needed for private repository
+
+    if: github.event.workflow_run.conclusion != 'skipped'
+
+    steps:
+      - id: extract_package_lint_results
+        name: Download and extract artifacts
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: |
+          mkdir -p artifacts && cd artifacts
+
+          artifacts_url=${{ github.event.workflow_run.artifacts_url }}
+
+          gh api "$artifacts_url" -q '.artifacts[] | [.name, .archive_download_url] | @tsv' | while read artifact
+          do
+            IFS=$'\t' read name url <<< "$artifact"
+            gh api "$url" > "$name.zip"
+            unzip -d "$name" "$name.zip"
+          done
+
+          if [ -d 'package-lint-results' ]; then
+            echo 'found=true' >> "${GITHUB_OUTPUT}"
+          else
+            echo 'found=false' >> "${GITHUB_OUTPUT}"
+            exit
+          fi
+
+          echo "issue-number=$(cat 'package-lint-results/issue-number.txt')" >> "${GITHUB_OUTPUT}"
+
+          delimiter="$(openssl rand -hex 16)"
+          echo "content<<${delimiter}" >> "${GITHUB_OUTPUT}"
+          cat 'package-lint-results/lint-report.md' >> "${GITHUB_OUTPUT}"
+          echo "${delimiter}" >> "${GITHUB_OUTPUT}"
+
+      - id: find_comment
+        name: Find package lint results comment
+        if: ${{ steps.extract_package_lint_results.outputs.found == 'true' }}
+        uses: peter-evans/find-comment@v3
+        with:
+          issue-number: ${{ steps.extract_package_lint_results.outputs.issue-number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: 'Check Result'
+
+      - name: Report package lint results
+        uses: peter-evans/create-or-update-comment@v4
+        if: ${{ steps.extract_package_lint_results.outputs.found == 'true' }}
+        with:
+          comment-id: ${{ steps.find_comment.outputs.comment-id }}
+          issue-number: ${{ steps.extract_package_lint_results.outputs.issue-number }}
+          body: ${{ steps.extract_package_lint_results.outputs.content }}
+          edit-mode: replace

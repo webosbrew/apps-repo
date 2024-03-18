@@ -1,0 +1,9 @@
+name: 'Site: Lint'
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  site-lint:
+    uses: ./.github/workflows/site-generate.yml
