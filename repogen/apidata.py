@@ -46,7 +46,7 @@ def generate(packages: List[PackageInfo], outdir: Path):
             package['fullDescriptionUrl'] = f'apps/{p_info["id"]}/full_description.html'
         if os.environ.get('CI'):
             package['iconUri'] = obtain_icon(package['id'], p_info["iconUri"], site_url)
-            package['manifest']['iconUrl'] = package['iconUri']
+            package['manifest']['iconUri'] = package['iconUri']
         return package
 
     packages_length = len(packages)
