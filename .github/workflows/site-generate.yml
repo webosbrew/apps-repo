@@ -7,7 +7,7 @@ on:
   workflow_call:
 
 jobs:
-  generate:
+  site-generate:
     runs-on: ubuntu-latest
 
     steps:
