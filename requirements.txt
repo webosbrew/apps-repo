@@ -1,4 +1,4 @@
-pelican~=4.9.1
+pelican~=4.8.0
 pelican-webassets~=2.0.0
 markdown~=3.6
 pyyaml~=6.0
