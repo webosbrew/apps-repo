@@ -3,7 +3,7 @@ import os
 import urllib.parse
 from datetime import datetime
 from email.utils import parsedate_to_datetime
-from typing import TypedDict, Optional, NotRequired, Literal
+from typing import TypedDict, NotRequired, Literal
 from urllib.parse import urljoin
 from urllib.request import url2pathname
 
@@ -22,7 +22,7 @@ class PackageManifest(TypedDict):
     title: str
     version: str
     type: str
-    appDescription: Optional[str]
+    appDescription: str | None
     iconUri: str
     sourceUrl: NotRequired[str]
     rootRequired: NotRequired[bool | Literal['optional']]

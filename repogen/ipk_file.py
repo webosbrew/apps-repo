@@ -1,7 +1,7 @@
 import io
 import json
 import tarfile
-from typing import TypedDict, NotRequired, Optional
+from typing import TypedDict, NotRequired
 
 import ar
 from debian_parser import PackagesParser
@@ -9,7 +9,7 @@ from debian_parser import PackagesParser
 
 class Control(TypedDict):
     version: str
-    installedSize: Optional[int]
+    installedSize: int | None
 
 
 class AppInfo(TypedDict):
@@ -20,7 +20,7 @@ class AppInfo(TypedDict):
     appDescription: NotRequired[str]
 
 
-def get_appinfo(ipk_path: str) -> (Control, AppInfo):
+def get_appinfo(ipk_path: str) -> tuple[Control, AppInfo]:
     with open(ipk_path, 'rb') as f:
         archive = ar.Archive(f)
         control_file = io.BytesIO(archive.open('control.tar.gz', mode='rb').read())
