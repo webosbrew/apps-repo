@@ -39,6 +39,14 @@
         "webosRelease": {
           "type": "string",
           "description": "webOS Release version (check /etc/starfish-release)"
+        },
+        "deviceSoC": {
+          "type": "array",
+          "description": "Device SoC type (check /etc/prefs/properties/machineName)",
+          "items": {
+            "type": "string",
+            "pattern": "!?[a-z0-9]+"
+          }
         }
       }
     },

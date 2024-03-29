@@ -15,7 +15,8 @@ from repogen.icons import obtain_icon
 from repogen.pkg_info import PackageInfo
 from repogen.siteurl import siteurl
 
-MANIFEST_KEYS = ('id', 'title', 'iconUri', 'manifestUrl', 'manifest', 'manifestUrlBeta', 'manifestBeta', 'pool')
+MANIFEST_KEYS = ('id', 'title', 'iconUri', 'manifestUrl', 'manifest', 'manifestUrlBeta', 'manifestBeta', 'pool',
+                 'requirements')
 
 
 def fix_manifest_url(item: PackageInfo, app_dir: Path):

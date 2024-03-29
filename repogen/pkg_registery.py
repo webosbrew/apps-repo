@@ -7,6 +7,7 @@ import yaml
 
 class PackageRequirements(TypedDict):
     webosRelease: NotRequired[str]
+    deviceSoC: NotRequired[List[str]]
 
 
 class PackageRegistry(TypedDict):
