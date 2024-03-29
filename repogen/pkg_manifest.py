@@ -3,8 +3,7 @@ import os
 import urllib.parse
 from datetime import datetime
 from email.utils import parsedate_to_datetime
-from json import JSONDecodeError
-from typing import Tuple, TypedDict, Optional, NotRequired, Literal
+from typing import TypedDict, NotRequired, Literal
 from urllib.parse import urljoin
 from urllib.request import url2pathname
 
@@ -23,7 +22,7 @@ class PackageManifest(TypedDict):
     title: str
     version: str
     type: str
-    appDescription: Optional[str]
+    appDescription: str | None
     iconUri: str
     sourceUrl: NotRequired[str]
     rootRequired: NotRequired[bool | Literal['optional']]
@@ -33,15 +32,17 @@ class PackageManifest(TypedDict):
     installedSize: NotRequired[int]
 
 
-def obtain_manifest(pkgid: str, channel: str, uri: str, offline: bool = False) -> Tuple[PackageManifest, datetime]:
+def obtain_manifest(pkgid: str, channel: str, uri: str, offline: bool = False) -> tuple[PackageManifest, datetime]:
     parsed = urllib.parse.urlparse(uri)
     if parsed.scheme == 'file':
         manifest_path = url2pathname(parsed.path)
         try:
             with open(manifest_path, encoding='utf-8') as f:
                 return json.load(f), datetime.fromtimestamp(os.stat(manifest_path).st_mtime)
-        except IOError or JSONDecodeError:
-            os.unlink(manifest_path)
+        except (IOError, json.decoder.JSONDecodeError) as e:
+            # XXX: not sure this should be happening; it was broken before
+            #os.unlink(manifest_path)
+            raise e
     else:
         cache_name = f'manifest_{pkgid}_{channel}.json'
         cache_file = cache.path(cache_name)
@@ -61,11 +62,14 @@ def obtain_manifest(pkgid: str, channel: str, uri: str, offline: bool = False) -
                     resp.headers['last-modified'])
                 os.utime(cache_file, (last_modified.timestamp(), last_modified.timestamp()))
             return manifest, last_modified
+        except (requests.exceptions.JSONDecodeError, requests.exceptions.MissingSchema, requests.exceptions.InvalidSchema) as e:
+            # XXX: fall back to cache?
+            raise e
         except requests.exceptions.RequestException as e:
             if cache_file.exists():
                 try:
                     with cache.open_file(cache_name, encoding='utf-8') as f:
                         return json.load(f), datetime.fromtimestamp(cache_file.stat().st_mtime)
-                except IOError or JSONDecodeError:
+                except (IOError, json.decoder.JSONDecodeError):
                     cache_file.unlink()
             raise e

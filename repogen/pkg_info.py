@@ -2,7 +2,7 @@ import locale
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import TypedDict, Optional, List, NotRequired
+from typing import TypedDict, List, NotRequired
 
 import nh3
 
@@ -32,7 +32,7 @@ class PackageInfo(TypedDict):
     lastmodified_str: str
 
 
-def load_registry(info_path: Path) -> (str, PackageRegistry):
+def load_registry(info_path: Path) -> tuple[str, PackageRegistry]:
     extension = info_path.suffix
     content: PackageRegistry
     if extension == '.yml':
@@ -46,7 +46,7 @@ def load_registry(info_path: Path) -> (str, PackageRegistry):
     return pkgid, content
 
 
-def from_package_info_file(info_path: Path, offline=False) -> Optional[PackageInfo]:
+def from_package_info_file(info_path: Path, offline=False) -> PackageInfo | None:
     pkgid, content = load_registry(info_path)
     return from_package_info(pkgid, content, offline)
 
@@ -104,10 +104,10 @@ def from_package_info(pkgid: str, content: PackageRegistry, offline=False) -> Pa
     return pkginfo
 
 
-def list_packages(pkgdir: Path, packages: Optional[List[str]] = None, offline: bool = False) -> List[PackageInfo]:
+def list_packages(pkgdir: Path, packages: List[str] | None = None, offline: bool = False) -> List[PackageInfo]:
     paths: List[Path] = [f for f in pkgdir.iterdir() if f.is_file()]
 
-    def map_package_info(p: Path) -> Optional[PackageInfo]:
+    def map_package_info(p: Path) -> PackageInfo | None:
         pkgid, content = load_registry(p)
         if packages and pkgid not in packages:
             return None
