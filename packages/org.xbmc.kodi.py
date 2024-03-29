@@ -20,7 +20,8 @@ iconUri = 'https://raw.githubusercontent.com/xbmc/xbmc/master/media/icon120x120.
 detailIconUri = 'https://raw.githubusercontent.com/xbmc/xbmc/master/media/icon256x256.png'
 category = 'multimedia'
 requirements = {
-    'webosRelease': '>=4.0'
+    'webosRelease': '>=4.0',
+    'deviceSoC': ['!k5lp']
 }
 description = '''![Kodi Logo](https://raw.githubusercontent.com/xbmc/xbmc/master/docs/resources/banner.png)
 <p align="center">
