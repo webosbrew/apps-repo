@@ -37,11 +37,13 @@ def generate(packages: List[PackageInfo], outdir: Path):
     appsdir: Path = outdir.joinpath('apps')
     site_url = siteurl()
 
-    def package_item(p_info: PackageInfo, in_apps_dir: bool):
+    def package_item(p_info: PackageInfo, in_apps_dir: bool, is_details: bool):
         package = {k: p_info[k] for k in MANIFEST_KEYS if k in p_info}
         package['shortDescription'] = p_info['manifest'].get(
             'appDescription', None)
-        if in_apps_dir:
+        if is_details:
+            package['fullDescriptionUrl'] = f'../full_description.html'
+        elif in_apps_dir:
             package['fullDescriptionUrl'] = f'{p_info["id"]}/full_description.html'
         else:
             package['fullDescriptionUrl'] = f'apps/{p_info["id"]}/full_description.html'
@@ -63,7 +65,7 @@ def generate(packages: List[PackageInfo], outdir: Path):
                     'maxPage': max_page,
                     'itemsTotal': packages_length,
                 },
-                'packages': list(map(lambda x: package_item(x, page > 1), items))
+                'packages': list(map(lambda x: package_item(x, page > 1, False), items))
             }, pf, indent=2)
 
     chunks = more_itertools.chunked(packages, ITEMS_PER_PAGE) if packages else [[]]
@@ -74,7 +76,7 @@ def generate(packages: List[PackageInfo], outdir: Path):
             fix_manifest_url(item, app_dir)
             app_info = releases_dir.joinpath('latest.json')
             with ensure_open(app_info, 'w', encoding='utf-8') as f:
-                json.dump(package_item(item, True), f)
+                json.dump(package_item(item, True, True), f)
             desc_html = app_dir.joinpath('full_description.html')
             with ensure_open(desc_html, 'w', encoding='utf-8') as f:
                 f.write(markdown.convert(item['description']))
