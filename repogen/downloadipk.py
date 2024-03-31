@@ -2,7 +2,6 @@ from sys import stderr, exit
 from pathlib import Path
 import json.decoder
 
-import requests
 import requests.exceptions
 
 from repogen import pkg_info

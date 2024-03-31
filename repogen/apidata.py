@@ -16,7 +16,7 @@ from repogen.pkg_info import PackageInfo
 from repogen.siteurl import siteurl
 
 MANIFEST_KEYS = ('id', 'title', 'iconUri', 'manifestUrl', 'manifest', 'manifestUrlBeta', 'manifestBeta', 'pool',
-                 'requirements')
+                 'detailIconUri', 'requirements')
 
 
 def fix_manifest_url(item: PackageInfo, app_dir: Path):
@@ -37,7 +37,7 @@ def generate(packages: List[PackageInfo], outdir: Path):
     appsdir: Path = outdir.joinpath('apps')
     site_url = siteurl()
 
-    def package_item(p_info: PackageInfo, in_apps_dir: bool, is_details: bool):
+    def package_item(p_info: PackageInfo, in_apps_dir: bool, is_details: bool) -> PackageInfo:
         package = {k: p_info[k] for k in MANIFEST_KEYS if k in p_info}
         package['shortDescription'] = p_info['manifest'].get(
             'appDescription', None)
