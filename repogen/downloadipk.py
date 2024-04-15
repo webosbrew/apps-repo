@@ -20,7 +20,7 @@ if __name__ == '__main__':
     except (requests.exceptions.JSONDecodeError, json.decoder.JSONDecodeError) as e:
         print(f'Could not parse manifest: {e}')
         exit(2)
-    except (IOError) as e:
+    except IOError as e:
         print(f'Could not open package info file: {e.strerror}')
         exit(3)
     except ValidationError as e:

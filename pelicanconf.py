@@ -84,6 +84,12 @@ INDEX_APP_CATEGORIES = [
     ('utility', 'Utilities'),
 ]
 
+# Following packages will have their IPKs downloaded and hosted on the site
+HOST_PACKAGES: set[str] = {
+    'org.webosbrew.hbchannel',
+    'org.webosbrew.safeupdate'
+}
+
 DEFAULT_PAGINATION = 20
 
 # Uncomment following line if you want document-relative URLs when developing

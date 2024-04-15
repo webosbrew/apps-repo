@@ -30,7 +30,7 @@ class PackageInfoReader(BaseReader):
         info['manifest']['iconUri'] = info['iconUri']
         metadata = {
             'title': info['title'],
-            'override_save_as': f'apps/{info["id"]}.html',
+            'override_save_as': f'apps/{info["id"]}/index.html',
             'template': 'app',
             'status': 'hidden',
             'modified': info['lastmodified'],
@@ -93,12 +93,14 @@ def apps_list_href(page):
 
 def add_app_api_data(generator: StaticGenerator):
     packages = generator.settings['PACKAGES'].values()
+    output_path = generator.settings['OUTPUT_PATH']
+    host_packages = generator.settings.get('HOST_PACKAGES', None)
 
     def pool_list(pool: str):
         return list(sorted(filter(lambda pkg: pkg['pool'] == pool, packages), key=lambda pkg: pkg['title'].lower()))
 
-    apidata.generate(pool_list('main'), Path(generator.settings['OUTPUT_PATH'], 'api'))
-    apidata.generate(pool_list('non-free'), Path(generator.settings['OUTPUT_PATH'], 'api', 'non-free'))
+    apidata.generate(pool_list('main'), Path(output_path, 'api'), Path(output_path, 'apps'), host_packages)
+    apidata.generate(pool_list('non-free'), Path(output_path, 'api', 'non-free'))
 
 
 def register():
