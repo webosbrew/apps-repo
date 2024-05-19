@@ -146,3 +146,8 @@ cache/
 
 # IDEA directory
 .idea/
+
+# Eclipse IDE settings
+.project
+.pydevproject
+.settings/

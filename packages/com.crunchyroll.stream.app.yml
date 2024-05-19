@@ -1,0 +1,41 @@
+title: Crunchyroll Stream
+iconUri: https://raw.githubusercontent.com/ediaz23/crunchyroll-webos-stream/master/webos-meta/icon-large.png
+manifestUrl: https://github.com/ediaz23/crunchyroll-webos-stream/releases/latest/download/org.webosbrew.manifest.json
+category: multimedia
+pool: main
+description: |
+  # Crunchyroll Stream
+
+  ## Warning
+
+  *Crunchyroll&trade; is a registered trademark of Sony Pictures Entertainment Inc.
+  This project is not affiliated with Crunchyroll, Team Crunchyroll, or Sony Pictures Entertainment Inc.*
+
+  ## About
+
+  This is an unofficial app that allows you to watch Crunchyroll and supports multiple profiles.
+  Please support the anime industry by watching content through legal channels.
+
+  ## Compatibility
+
+  Requires webOS TV 5.x or later.
+
+  ## Support
+
+  To reach the developers, either open an issue on [GitHub](https://github.com/ediaz23/crunchyroll-webos-stream/issues).
+
+  ## License
+
+  This project is released under the [Apache 2.0 License](https://github.com/ediaz23/crunchyroll-webos-stream/blob/master/LICENSE).
+
+  ## Tested on Devices
+
+  - NANO079SNA, WebOS 5.5.0-1107
+
+  ## Screenshots
+
+  ![Warning Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/master/screenshots/1_warning.jpg?raw=true)
+  ![Login Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/master/screenshots/2_login.jpg?raw=true)
+  ![Profile Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/master/screenshots/3_profile.jpg?raw=true)
+  ![Feed Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/master/screenshots/4_feed.jpg?raw=true)
+  ![Details Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/master/screenshots/5_detail.jpg?raw=true)
