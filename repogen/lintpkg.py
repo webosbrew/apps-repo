@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Tuple, List
 from urllib.parse import urlparse
 from urllib.request import url2pathname
 from xml.etree import ElementTree
@@ -31,8 +32,9 @@ class PackageInfoLinter:
                     self.errors.append("Use HTTPS URL for %s" % src)
             return None
 
-    def lint(self, info: PackageInfo) -> [str]:
-        errors: [str] = []
+    def lint(self, info: PackageInfo) -> Tuple[List[str], List[str]]:
+        errors: List[str] = []
+        warnings: List[str] = []
 
         # Pool property
         if info['pool'] not in ['main', 'non-free']:
@@ -50,13 +52,11 @@ class PackageInfoLinter:
             errors.append('iconUrl must be data URI or use HTTPS')
 
         # Process manifest
-        if 'manifestUrl' in info:
-            PackageInfoLinter._validate_manifest_url(info['manifestUrl'], 'manifestUrl', errors)
-        elif 'manifest' not in info:
-            errors.append('Either `manifestUrl` or `manifest` is required')
-
-        if 'manifestUrlBeta' in info:
-            PackageInfoLinter._validate_manifest_url(info['manifestUrlBeta'], 'manifestUrlBeta', errors)
+        manifest = info['manifest']
+        if info['id'].startswith('org.webosbrew.'):
+            source_url = manifest.get('sourceUrl', None)
+            if not source_url or not source_url.startswith('https://github.com/webosbrew/'):
+                warnings.append('Only package from github.com/webosbrew can have id starting with `org.webosbrew.`')
 
         description = info.get('description', '')
         mk = Markdown()
@@ -64,7 +64,7 @@ class PackageInfoLinter:
         mk.treeprocessors.register(
             self.ImageProcessor(errors), 'image_link', 1)
         mk.convert(description)
-        return errors
+        return errors, warnings
 
     @staticmethod
     def _validate_manifest_url(url: str, key: str, e: [str]):
@@ -94,12 +94,13 @@ if __name__ == '__main__':
         raise ValueError('No package info')
 
     linter = PackageInfoLinter()
-    lint_errors = linter.lint(lint_pkginfo)
+    lint_errors, lint_warnings = linter.lint(lint_pkginfo)
 
-    if len(lint_errors):
-        print('#### Issue:')
-        for err in lint_errors:
-            print(' * %s' % err)
-        exit(1)
-    else:
-        print('Check passed.')
+    for err in lint_errors:
+        print(' * :x: %s' % err)
+    for warn in lint_warnings:
+        print(' * :warning: %s' % warn)
+
+    if not len(lint_errors) and not len(lint_warnings):
+        print(':white_check_mark: Check passed.')
+    exit(1 if len(lint_errors) else 0)
