@@ -20,16 +20,15 @@ if __name__ == '__main__':
     except (requests.exceptions.JSONDecodeError, json.decoder.JSONDecodeError) as e:
         print(f'Could not parse manifest: {e}')
         exit(2)
+    except requests.RequestException as e:
+        print(f'Could not download package info: {e}')
+        exit(5)
     except IOError as e:
         print(f'Could not open package info file: {e.strerror}')
         exit(3)
     except ValidationError as e:
         print(f'Could not parse package info: {e.message}')
         exit(4)
-
-    if pkginfo is None:
-        print(f'Failed to get manifest for unknown reason')
-        exit(5)
 
     try:
         ipk_url = pkginfo['manifest']['ipkUrl']

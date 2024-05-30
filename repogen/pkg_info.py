@@ -46,7 +46,7 @@ def load_registry(info_path: Path) -> tuple[str, PackageRegistry]:
     return pkgid, content
 
 
-def from_package_info_file(info_path: Path, offline=False) -> PackageInfo | None:
+def from_package_info_file(info_path: Path, offline=False) -> PackageInfo:
     pkgid, content = load_registry(info_path)
     return from_package_info(pkgid, content, offline)
 

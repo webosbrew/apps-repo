@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 from typing import Tuple, List
 from urllib.parse import urlparse
@@ -39,6 +40,9 @@ class PackageInfoLinter:
         # Pool property
         if info['pool'] not in ['main', 'non-free']:
             errors.append('pool property must be `main` or `non-free`')
+
+        if info['id'] != info['manifest']['id']:
+            errors.append('id in manifest must match id in info')
 
         # Process icon
         icon_uri = urlparse(info['iconUri'])
@@ -89,9 +93,14 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--file', required=True)
     args = parser.parse_args()
 
-    lint_pkginfo = pkg_info.from_package_info_file(Path(args.file))
-    if lint_pkginfo is None:
-        raise ValueError('No package info')
+    try:
+        lint_pkginfo = pkg_info.from_package_info_file(Path(args.file))
+    except requests.exceptions.RequestException as e:
+        print(f'Could not download package info: {e}', file=sys.stderr)
+        exit(5)
+    except IOError as e:
+        print(f'Could not open package info file: {e.strerror}', file=sys.stderr)
+        exit(3)
 
     linter = PackageInfoLinter()
     lint_errors, lint_warnings = linter.lint(lint_pkginfo)
