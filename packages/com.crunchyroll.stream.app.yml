@@ -31,11 +31,12 @@ description: |
   ## Tested on Devices
 
   - NANO079SNA, WebOS 5.5.0-1107
+  - 86QNED866RE, WebOS 23
 
   ## Screenshots
 
-  ![Warning Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/master/screenshots/1_warning.jpg?raw=true)
-  ![Login Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/master/screenshots/2_login.jpg?raw=true)
-  ![Profile Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/master/screenshots/3_profile.jpg?raw=true)
-  ![Feed Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/master/screenshots/4_feed.jpg?raw=true)
-  ![Details Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/master/screenshots/5_detail.jpg?raw=true)
+  ![Warning Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/1a6ba0ec544d1c349166e00f4c1309af9480af3e/screenshots/1_warning.jpg?raw=true)
+  ![Login Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/1a6ba0ec544d1c349166e00f4c1309af9480af3e/screenshots/2_login.jpg?raw=true)
+  ![Profile Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/1a6ba0ec544d1c349166e00f4c1309af9480af3e/screenshots/3_profile.jpg?raw=true)
+  ![Feed Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/1a6ba0ec544d1c349166e00f4c1309af9480af3e/screenshots/4_feed.jpg?raw=true)
+  ![Details Screen](https://github.com/ediaz23/crunchyroll-webos-stream/blob/1a6ba0ec544d1c349166e00f4c1309af9480af3e/screenshots/5_detail.jpg?raw=true)
