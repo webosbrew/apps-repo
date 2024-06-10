@@ -3,6 +3,7 @@ import os
 import urllib.parse
 from datetime import datetime
 from email.utils import parsedate_to_datetime
+from json import JSONDecodeError
 from typing import TypedDict, NotRequired, Literal
 from urllib.parse import urljoin
 from urllib.request import url2pathname
@@ -51,6 +52,8 @@ def obtain_manifest(pkgid: str, channel: str, uri: str, offline: bool = False) -
                 raise requests.exceptions.ConnectionError('Offline')
             uri = url_fixup(uri)
             resp = requests.get(url=uri, allow_redirects=True)
+            if resp.status_code != 200:
+                raise requests.exceptions.HTTPError(f'Failed to fetch manifest: HTTP {resp.status_code}')
             manifest = resp.json()
             manifest['ipkUrl'] = urljoin(uri, manifest['ipkUrl'])
             manifest['ipkSize'] = url_size(manifest['ipkUrl'])
