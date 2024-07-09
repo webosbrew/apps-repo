@@ -1,0 +1,27 @@
+title: Better xCloud
+iconUri: https://raw.githubusercontent.com/redphx/better-xcloud-webos/main/assets/largeIcon.png
+manifestUrl: https://github.com/redphx/better-xcloud-webos/releases/latest/download/com.redphx.better-xcloud.manifest.json
+category: game
+pool: main
+description: |
+  **Only for webOS 22 or later, and xCloud needs to be available in your region.**
+
+  # Better xCloud  
+  Unofficial Xbox Cloud Gaming client with extended functionalities  
+
+  ## Features  
+  - 1080p, high-quality codec  
+  - Clarity boost support  
+  - Local co-op support  
+  - ...  
+  
+  Please check [better-xcloud.github.io](https://better-xcloud.github.io) for more information.
+
+  ## Screenshots  
+  ![Home screen](https://raw.githubusercontent.com/redphx/better-xcloud-webos/main/assets/screenshots/home.png?raw=true)  
+  ![Global settings](https://github.com/redphx/better-xcloud-webos/blob/main/assets/screenshots/global-settings.png?raw=true)  
+  ![Stream stats](https://github.com/redphx/better-xcloud-webos/blob/main/assets/screenshots/stream-stats.png?raw=true)  
+  ![Stream settings](https://github.com/redphx/better-xcloud-webos/blob/main/assets/screenshots/stream-settings.png?raw=true)  
+
+  ## Disclaimers  
+  This project is not affiliated with Xbox in any way. All Xbox logos/icons/trademarks are copyright of their respective owners.  
