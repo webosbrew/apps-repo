@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/redphx/better-xcloud-webos/main/asset
 manifestUrl: https://github.com/redphx/better-xcloud-webos/releases/latest/download/com.redphx.better-xcloud.manifest.json
 category: game
 pool: main
+requirements: 
+  webosRelease: '>=7.0'
 description: |
   **Only for webOS 22 or later, and xCloud needs to be available in your region.**
 
