@@ -6,13 +6,13 @@ pool: main
 requirements: 
   webosRelease: '>=7.0'
 description: |
-  **Only for webOS 22 or later, and xCloud needs to be available in your region.**
+  **Only for webOS 22 or later.**
 
   # Better xCloud  
   Unofficial Xbox Cloud Gaming client with extended functionalities  
 
   ## Features  
-  - 1080p, high-quality codec  
+  - 1080p, high-quality codec (if your TV supports it)  
   - Clarity boost support  
   - Local co-op support  
   - ...  
