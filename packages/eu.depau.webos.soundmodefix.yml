@@ -1,0 +1,19 @@
+title: Sound Mode Fix
+iconUri: https://raw.githubusercontent.com/depau/webos-sound-mode-fix/main/icon.png
+manifestUrl: https://github.com/depau/webos-sound-mode-fix/releases/latest/download/eu.depau.webos.soundmodefix.manifest.json
+category: system
+pool: main
+description: |
+  # LG webOS TV Sound Mode Fix app
+
+  A simple app that forces the sound mode to be whatever you set it to, useful if you use the Game Optimizer mode.
+  
+  ![Screenshot](https://raw.githubusercontent.com/depau/webos-sound-mode-fix/main/screenshots/screenshot1.jpg)
+  ![Screenshot](https://raw.githubusercontent.com/depau/webos-sound-mode-fix/main/screenshots/screenshot2.jpg)
+  
+  Your TV needs to be [rooted](https://www.webosbrew.org/rooting/) for this app to work.
+
+  Source code on [GitHub](https://github.com/depau/webos-sound-mode-fix/).
+
+funding:
+  github: [ depau ]
