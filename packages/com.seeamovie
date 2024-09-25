@@ -1,0 +1,33 @@
+# Display name of your application
+title: see A movie
+# Publicly accesible HTTP/HTTPS URL, or data uri to icon image.
+iconUri: "https://see-A-movie.com/webosbrew/icon160.png"
+# Publicly accessible manifest file of your application
+manifestUrl: "https://see-A-movie.com/webosbrew/com.seeamovie.manifest.json"
+# Category for your application
+category: Entertainment
+requirements: 
+  webosRelease: '>=6.0'
+
+# If this is an open source application, use main, otherwise non-free
+pool: non-free
+# Long description for your application, in Markdown format
+# https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+description: |
+	
+- # ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩  ✩   ✩  ✩  ✩  ✩ 
+
+- ## Discover a world of drama, comedy, news, documentary, indie, short films, sports and recreation
+- ## Conveniently zap through hundreds of channels with your remote controller.
+
+- ## ✩ Free
+- ## ✩ Gratis
+- ## ✩ Legal
+- ## Languages: ***English, Español, Português, Deutsche, Hindi, Nigeria, Pakistan***
+- ## [https://see-A-movie.com/](https://see-A-movie.com/)
+
+
+## Screenshots  
+ ![1](https://see-A-movie.com/webosbrew/see-A-movie-1.jpg)
+ ![2](https://see-A-movie.com/webosbrew/see-A-movie-2.jpg)
+  
