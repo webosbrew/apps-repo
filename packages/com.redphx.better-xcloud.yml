@@ -1,6 +1,6 @@
 title: Better xCloud
 iconUri: https://raw.githubusercontent.com/redphx/better-xcloud-webos/main/assets/largeIcon.png
-manifestUrl: https://github.com/redphx/better-xcloud-webos/releases/latest/download/com.redphx.better-xcloud.manifest.json
+manifestUrl: https://github.com/redphx/better-xcloud-webos/releases/download/v5.5.6/com.redphx.better-xcloud.manifest.json
 category: game
 pool: main
 requirements: 
