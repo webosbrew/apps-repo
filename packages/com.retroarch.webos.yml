@@ -1,13 +1,9 @@
-title: RetroArch [Moved]
-iconUri: https://raw.githubusercontent.com/webosbrew/RetroArch/6a1bdb45cb089f23a39a12b378082f609ea7b027/webos/icon160.png
-manifestUrl: https://github.com/webosbrew/RetroArch/releases/download/v1.17.0-webos.1/com.retroarch.manifest.json
+title: RetroArch
+iconUri: https://raw.githubusercontent.com/webosbrew/RetroArch/af7c3ec095965880b2bfc118714dad904854958b/webos/icon160.png
+manifestUrl: https://github.com/webosbrew/RetroArch/releases/latest/download/com.retroarch.weboos.manifest.json
 category: game
 pool: main
 description: |
-  # Package has been moved to [com.retroarch.webos](https://repo.webosbrew.org/apps/com.retroarch.webos/).
-
-  ---
-
   RetroArch is the reference frontend for the libretro API.
   Popular examples of implementations for this API includes video game system emulators and game engines as well as
   more generalized 3D programs.
