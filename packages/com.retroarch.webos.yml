@@ -1,6 +1,6 @@
 title: RetroArch
 iconUri: https://raw.githubusercontent.com/webosbrew/RetroArch/af7c3ec095965880b2bfc118714dad904854958b/webos/icon160.png
-manifestUrl: https://github.com/webosbrew/RetroArch/releases/latest/download/com.retroarch.weboos.manifest.json
+manifestUrl: https://github.com/webosbrew/RetroArch/releases/latest/download/com.retroarch.webos.manifest.json
 category: game
 pool: main
 description: |
