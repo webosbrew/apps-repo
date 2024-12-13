@@ -1,6 +1,6 @@
 title: Auto Dev Token Refresh
 iconUri: https://github.com/LucifersCircle/WebOS-Token-Refresh-App/blob/main/src/app/icon.png?raw=true
-manifestUrl: https://raw.githubusercontent.com/LucifersCircle/WebOS-Token-Refresh-App/refs/heads/main/src/app/appinfo.json
+manifestUrl: https://raw.githubusercontent.com/LucifersCircle/WebOS-Token-Refresh-App/refs/heads/main/manifest.json
 category: system
 pool: main
 description: |
