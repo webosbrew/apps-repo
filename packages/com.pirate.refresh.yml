@@ -1,0 +1,20 @@
+title: Auto Dev Token Refresh
+iconUri: https://raw.githubusercontent.com/LucifersCircle/WebOS-Token-Refresh-App/df2ddd0d429e86b024777f9be762e242e8eb1106/src/app/icon.png
+manifestUrl: https://github.com/LucifersCircle/WebOS-Token-Refresh-App/releases/latest/download/manifest.json
+category: system
+pool: main
+description: |
+
+  # WebOS Token Refresher
+
+  A secure web-based tool for refreshing LG WebOS developer mode session tokens. This project ensures your token is stored securely and refreshes it periodically with the LG Developer API. Keys are refreshed using (https://lg.pirate.vodka)
+
+  ![Screenshot](https://github.com/LucifersCircle/WebOS-Token-Refresh-App/blob/main/img/Screenshot%202024-12-12%20142711.png?raw=true)
+  
+  Your TV does NOT need to be rooted to use this.
+
+  Source code on [GitHub](https://github.com/LucifersCircle/WebOS-Token-Refresh-App).
+  Source code for lg.pirate.vodka also available on [GitHub](https://github.com/LucifersCircle/webOS-Token-Refresh)
+
+funding:
+  github: [ LucifersCircle ]
