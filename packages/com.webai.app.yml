@@ -1,0 +1,23 @@
+# Display name of your application
+title: WebAI
+# Publicly accesible HTTP/HTTPS URL, or data uri to icon image.
+iconUri: https://raw.githubusercontent.com/JustablockCode/WebAI/main/largeIcon.png
+# Publicly accessible manifest file of your application
+manifestUrl: https://github.com/JustablockCode/WebAI/raw/refs/heads/main/com.webai.app.manifest.json
+# Category for your application
+category: utility
+# If this is an open source application, use main, otherwise non-free
+pool: main
+# Long description for your application, in Markdown format
+description: |
+  # WebAI
+  WebAI is project I made to replace already existing ai's on LG devices like Alexa or Google Assistant.
+
+  ## Usage:
+  1. Input your api key for huggingface(free account).
+  2. Press on "Start Voice recognition".
+  3. Say your prompt.
+
+# Sponsor information, like .github/FUNDING.yml
+funding:
+  github: [ JustablockCode ]
