@@ -1,0 +1,20 @@
+title: OpenTTD
+iconUri: https://raw.githubusercontent.com/7coil/webos-openttd/webos/os/webos/public/icon.png
+manifestUrl: https://github.com/7coil/webos-openttd/releases/latest/download/manifest.json
+category: game
+pool: main
+description: |
+  # OpenTTD
+
+  OpenTTD is an open source simulation game based on Transport Tycoon Deluxe.
+
+  This version is not built, maintained, distributed, etc. by OpenTTD Team.  
+
+  ## Usage
+
+  Use a mouse and keyboard connected to the television set for the best experience.
+
+  ## Licencing
+
+  OpenTTD, OpenGFX and OpenMSX is released under the GNU General Public Licence (GPL) version 2.  
+  OpenSFX is released under the Creative Commons Attribution-ShareAlike 3.0 Unported license.
