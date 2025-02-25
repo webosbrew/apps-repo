@@ -38,6 +38,7 @@ if __name__ == '__main__':
 
     try:
         with requests.get(ipk_url, allow_redirects=True) as resp:
+            resp.raise_for_status()
             try:
                 with open(args.output, 'wb') as f:
                     try:
