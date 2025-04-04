@@ -1,0 +1,26 @@
+name: App Idea
+description: Suggest an idea for a new app
+title: '[IDEA]'
+labels:
+  - 'idea'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please read the conditions below carefully before submitting your idea.
+        
+        * Apps related to intellectual property infringement are not allowed.
+        * We can't guarantee that anyone will work on developing suggested apps.
+        * We encourage you to develop the app yourself. This would be a great contribution to the webOS homebrew community.
+  - type: checkboxes
+    attributes:
+      label: 'Conditions for submitting an app idea'
+      options:
+        - label: 'I have read and agree to the conditions above'
+          required: true
+        - label: 'I would like to develop this app myself'
+          required: false
+  - type: textarea
+    attributes:
+      label: 'Describe your app idea'
+      placeholder: 'Please provide a detailed description of your app idea'

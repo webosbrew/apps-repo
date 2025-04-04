@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 import datetime
+import os
 from pathlib import Path
 
 import pelican.themes.webosbrew
@@ -8,10 +9,11 @@ from pelican.plugins import webassets
 from webassets.cache import MemoryCache
 
 import repogen
+from repogen.siteurl import siteurl
 
 AUTHOR = 'webOS Homebrew Project'
 SITENAME = 'webOS Homebrew Project'
-SITEURL = ''
+SITEURL = siteurl() if os.environ.get('CI') else ''
 
 THEME = 'webosbrew'
 theme_dir = Path(__file__, '..', 'theme').resolve()
@@ -28,11 +30,12 @@ WEBASSETS_CONFIG = [
 
 PATH = 'content'
 
-STATIC_PATHS = ['extra/CNAME', 'extra/favicon.ico', 'schemas']
+STATIC_PATHS = ['extra/CNAME', 'extra/favicon.ico', 'schemas', 'apps/icons']
 ARTICLE_EXCLUDES = ['api']
 PAGE_PATHS = ['pages', 'apps', '../packages']
 
 EXTRA_PATH_METADATA = {
+    'apps/icons': {'path': 'apps/icons/'},
     'extra/CNAME': {'path': 'CNAME'},
     'extra/favicon.ico': {'path': 'favicon.ico'},
 }
@@ -73,6 +76,20 @@ LINKS = (
     ('RootMy.TV', 'https://rootmy.tv/'),
     ('openlgtv', 'https://openlgtv.github.io/'),
 )
+
+INDEX_APP_CATEGORIES = [
+    ('multimedia', 'Multimedia'),
+    ('game', 'Games'),
+    ('amblight', 'Ambient Light'),
+    ('screensaver', 'Screensavers'),
+    ('utility', 'Utilities'),
+]
+
+# Following packages will have their IPKs downloaded and hosted on the site
+HOST_PACKAGES: set[str] = {
+    'org.webosbrew.hbchannel',
+    'org.webosbrew.safeupdate'
+}
 
 DEFAULT_PAGINATION = 20
 

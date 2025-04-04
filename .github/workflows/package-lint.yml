@@ -1,0 +1,85 @@
+name: 'Package: Lint'
+
+on:
+  workflow_call:
+    inputs:
+      packages:
+        type: string
+        required: true
+
+# Disable all permissions
+permissions: {}
+
+jobs:
+  package-lint:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      pull-requests: read
+      contents: read # Only needed for private repository
+      issues: read # Only needed for private repository
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Download Homebrew Toolbox
+        uses: robinraju/release-downloader@v1.9
+        with:
+          repository: 'webosbrew/dev-toolbox-cli'
+          latest: true
+          fileName: 'webosbrew-toolbox-*.deb'
+          out-file-path: 'temp'
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install -r ./requirements.txt
+          sudo apt-get install ./temp/webosbrew-toolbox-*.deb
+
+      - name: Lint package information
+        shell: bash
+        run: |
+          export lint_retcode=0
+          for changed_file in ${{ inputs.packages }}; do
+            echo "# Check Results for $(basename "${changed_file}"):" >> /tmp/lint-report.md
+            echo >> /tmp/lint-report.md
+
+            echo '## Package Metadata' >> /tmp/lint-report.md
+            echo >> /tmp/lint-report.md
+
+            python3 -m repogen.lintpkg -f "${changed_file}" >> /tmp/lint-report.md || export lint_retcode=1
+            echo >> /tmp/lint-report.md
+
+            ipkfile=/tmp/$(sha256sum "${changed_file}" | cut -d ' ' -f 1).ipk
+            python3 -m repogen.downloadipk -i "${changed_file}" -o "${ipkfile}" >> /tmp/lint-report.md || { export lint_retcode=1; continue; }
+
+            echo '## Compatibility Check' >> /tmp/lint-report.md
+
+            python3 -m repogen.check_compat -i "${changed_file}" -p "${ipkfile}" >> /tmp/lint-report.md || export lint_retcode=1
+          done
+          exit ${lint_retcode}
+
+      - name: Save issue number
+        # Skip on act or when previous step cancelled
+        if: ${{ !env.ACT && (success() || failure()) }}
+        run: echo '${{ github.event.number }}' > /tmp/issue-number.txt
+
+      - name: Upload lint results
+        # Skip on act or when previous step cancelled
+        if: ${{ !env.ACT && (success() || failure()) }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: package-lint-results
+          path: |
+            /tmp/lint-report.md
+            /tmp/issue-number.txt
+
+      - name: Print lint results (local)
+        # Only run on act when previous steps not cancelled
+        if: ${{ env.ACT && (success() || failure()) }}
+        run: cat /tmp/lint-report.md

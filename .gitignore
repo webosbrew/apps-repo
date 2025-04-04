@@ -112,6 +112,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.virtualenv/
 
 # Spyder project settings
 .spyderproject
@@ -145,3 +146,8 @@ cache/
 
 # IDEA directory
 .idea/
+
+# Eclipse IDE settings
+.project
+.pydevproject
+.settings/

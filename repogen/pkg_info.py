@@ -2,7 +2,7 @@ import locale
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import TypedDict, Optional, List, NotRequired
+from typing import TypedDict, List, NotRequired
 
 import nh3
 
@@ -32,10 +32,9 @@ class PackageInfo(TypedDict):
     lastmodified_str: str
 
 
-def from_package_info_file(info_path: Path, offline=False) -> Optional[PackageInfo]:
+def load_registry(info_path: Path) -> tuple[str, PackageRegistry]:
     extension = info_path.suffix
     content: PackageRegistry
-    print(f'Parsing package info file {info_path.name}', file=sys.stderr)
     if extension == '.yml':
         pkgid, content = parse_yml_package(info_path)
     elif extension == '.py':
@@ -44,10 +43,16 @@ def from_package_info_file(info_path: Path, offline=False) -> Optional[PackageIn
         raise ValueError(f'Unrecognized info format {extension}')
     validator = validators.for_schema('packages/PackageInfo.json')
     validator.validate(content)
+    return pkgid, content
+
+
+def from_package_info_file(info_path: Path, offline=False) -> PackageInfo:
+    pkgid, content = load_registry(info_path)
     return from_package_info(pkgid, content, offline)
 
 
 def from_package_info(pkgid: str, content: PackageRegistry, offline=False) -> PackageInfo:
+    print(f'Parsing package info for {pkgid}', file=sys.stderr)
     manifest_url = url_fixup(content['manifestUrl'])
     pkginfo: PackageInfo = {
         'id': pkgid,
@@ -99,10 +104,20 @@ def from_package_info(pkgid: str, content: PackageRegistry, offline=False) -> Pa
     return pkginfo
 
 
-def list_packages(pkgdir: Path, offline: bool = False) -> List[PackageInfo]:
+def list_packages(pkgdir: Path, packages: List[str] | None = None, offline: bool = False) -> List[PackageInfo]:
     paths: List[Path] = [f for f in pkgdir.iterdir() if f.is_file()]
-    return sorted(filter(lambda x: x, map(lambda p: from_package_info_file(p, offline), paths)),
-                  key=lambda x: x['title'])
+
+    def map_package_info(p: Path) -> PackageInfo | None:
+        pkgid, content = load_registry(p)
+        if packages and pkgid not in packages:
+            return None
+        try:
+            return from_package_info(pkgid, content, offline)
+        except Exception as e:
+            print(f'Error loading package info file {p.name}: {e}', file=sys.stderr)
+            return None
+
+    return sorted(filter(lambda x: x, map(map_package_info, paths)), key=lambda x: x['title'])
 
 
 def valid_pool(value: str) -> str:

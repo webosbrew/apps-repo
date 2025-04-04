@@ -1,4 +1,6 @@
+import sys
 from pathlib import Path
+from typing import Tuple, List
 from urllib.parse import urlparse
 from urllib.request import url2pathname
 from xml.etree import ElementTree
@@ -31,12 +33,16 @@ class PackageInfoLinter:
                     self.errors.append("Use HTTPS URL for %s" % src)
             return None
 
-    def lint(self, info: PackageInfo) -> [str]:
-        errors: [str] = []
+    def lint(self, info: PackageInfo) -> Tuple[List[str], List[str]]:
+        errors: List[str] = []
+        warnings: List[str] = []
 
         # Pool property
         if info['pool'] not in ['main', 'non-free']:
             errors.append('pool property must be `main` or `non-free`')
+
+        if info['id'] != info['manifest']['id']:
+            errors.append('id in manifest must match id in info')
 
         # Process icon
         icon_uri = urlparse(info['iconUri'])
@@ -50,13 +56,11 @@ class PackageInfoLinter:
             errors.append('iconUrl must be data URI or use HTTPS')
 
         # Process manifest
-        if 'manifestUrl' in info:
-            PackageInfoLinter._validate_manifest_url(info['manifestUrl'], 'manifestUrl', errors)
-        elif 'manifest' not in info:
-            errors.append('Either `manifestUrl` or `manifest` is required')
-
-        if 'manifestUrlBeta' in info:
-            PackageInfoLinter._validate_manifest_url(info['manifestUrlBeta'], 'manifestUrlBeta', errors)
+        manifest = info['manifest']
+        if info['id'].startswith('org.webosbrew.'):
+            source_url = manifest.get('sourceUrl', None)
+            if not source_url or not source_url.startswith('https://github.com/webosbrew/'):
+                warnings.append('Only package from github.com/webosbrew can have id starting with `org.webosbrew.`')
 
         description = info.get('description', '')
         mk = Markdown()
@@ -64,7 +68,7 @@ class PackageInfoLinter:
         mk.treeprocessors.register(
             self.ImageProcessor(errors), 'image_link', 1)
         mk.convert(description)
-        return errors
+        return errors, warnings
 
     @staticmethod
     def _validate_manifest_url(url: str, key: str, e: [str]):
@@ -89,17 +93,23 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--file', required=True)
     args = parser.parse_args()
 
-    lint_pkginfo = pkg_info.from_package_info_file(Path(args.file))
-    if lint_pkginfo is None:
-        raise ValueError('No package info')
+    try:
+        lint_pkginfo = pkg_info.from_package_info_file(Path(args.file))
+    except requests.exceptions.RequestException as e:
+        print(f'Could not download package info: {e}', file=sys.stderr)
+        exit(5)
+    except IOError as e:
+        print(f'Could not open package info file: {e.strerror}', file=sys.stderr)
+        exit(3)
 
     linter = PackageInfoLinter()
-    lint_errors = linter.lint(lint_pkginfo)
+    lint_errors, lint_warnings = linter.lint(lint_pkginfo)
 
-    if len(lint_errors):
-        print('#### Issue:')
-        for err in lint_errors:
-            print(' * %s' % err)
-        exit(1)
-    else:
-        print('Check passed.')
+    for err in lint_errors:
+        print(' * :x: %s' % err)
+    for warn in lint_warnings:
+        print(' * :warning: %s' % warn)
+
+    if not len(lint_errors) and not len(lint_warnings):
+        print(':white_check_mark: Check passed.')
+    exit(1 if len(lint_errors) else 0)

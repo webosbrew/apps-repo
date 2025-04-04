@@ -1,0 +1,44 @@
+# Shared job for generating the site and uploading as an artifact.
+# Does not deploy to Pages.
+
+name: 'Site: Generate'
+
+on:
+  workflow_call:
+
+jobs:
+  site-generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Cache package manifests
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-package-manifests
+        with:
+          path: ./cache
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('packages/*') }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: python3 -m pip install -r ./requirements.txt
+
+      - name: Generate repository data
+        run: python3 -m repogen -i ./packages -o ./content -D -L
+
+      - name: Generate site content
+        run: invoke build
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'output'

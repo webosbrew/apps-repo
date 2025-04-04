@@ -25,12 +25,19 @@
       "type": "string",
       "description": "Image displayed for your app. This is a URL to an image, or data: encoded URI"
     },
+    "detailIconUri": {
+      "type": "string",
+      "description": "Image displayed for your app in detail view. This is a URL to an image, or data: encoded URI"
+    },
     "manifestUrl": {
       "type": "string",
       "description": "Link to manifest, should be pointed to an URL can always provide latest version"
     },
     "manifest": {
       "$ref": "PackageManifest.json"
+    },
+    "requirements": {
+      "$ref": "../packages/PackageInfo.json#/properties/requirements"
     }
   },
   "allOf": [

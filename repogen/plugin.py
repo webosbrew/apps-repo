@@ -10,6 +10,7 @@ from pelican.readers import BaseReader
 from pelican.themes.webosbrew import pagination_data
 
 from repogen import funding, apidata, pkg_info
+from repogen.icons import obtain_icon
 
 log = logging.getLogger(__name__)
 
@@ -25,9 +26,11 @@ class PackageInfoReader(BaseReader):
 
     def read(self, filename: str):
         info = pkg_info.from_package_info_file(Path(filename), offline='CI' not in os.environ)
+        info['iconUri'] = obtain_icon(info['id'], info['iconUri'], self.settings['SITEURL'])
+        info['manifest']['iconUri'] = info['iconUri']
         metadata = {
             'title': info['title'],
-            'override_save_as': f'apps/{info["id"]}.html',
+            'override_save_as': f'apps/{info["id"]}/index.html',
             'template': 'app',
             'status': 'hidden',
             'modified': info['lastmodified'],
@@ -64,6 +67,25 @@ def add_app_indices(generator: PagesGenerator):
         generator.hidden_pages.append(Page('', metadata=metadata, settings=generator.settings,
                                            source_path=f'apps-page-{index + 1}.html', context=generator.context))
 
+    def get_category_entries():
+        entries = []
+        for (category, title) in generator.settings['INDEX_APP_CATEGORIES']:
+            entries.append({
+                'title': title,
+                'packages': [pkg for pkg in packages if pkg['category'] == category]
+            })
+        return entries
+
+    metadata = {
+        'title': 'Apps Repository',
+        'override_save_as': 'index.html',
+        'template': 'repo-index',
+        'status': 'hidden',
+        'categories': get_category_entries(),
+    }
+    generator.hidden_pages.append(Page('', metadata=metadata, settings=generator.settings,
+                                       source_path=f'repo-index.html', context=generator.context))
+
 
 def apps_list_href(page):
     return '/apps' if page <= 1 else f'/apps/page/{page}'
@@ -71,12 +93,14 @@ def apps_list_href(page):
 
 def add_app_api_data(generator: StaticGenerator):
     packages = generator.settings['PACKAGES'].values()
+    output_path = generator.settings['OUTPUT_PATH']
+    host_packages = generator.settings.get('HOST_PACKAGES', None)
 
     def pool_list(pool: str):
         return list(sorted(filter(lambda pkg: pkg['pool'] == pool, packages), key=lambda pkg: pkg['title'].lower()))
 
-    apidata.generate(pool_list('main'), Path(generator.settings['OUTPUT_PATH'], 'api'))
-    apidata.generate(pool_list('non-free'), Path(generator.settings['OUTPUT_PATH'], 'api', 'non-free'))
+    apidata.generate(pool_list('main'), Path(output_path, 'api'), Path(output_path, 'apps'), host_packages)
+    apidata.generate(pool_list('non-free'), Path(output_path, 'api', 'non-free'))
 
 
 def register():

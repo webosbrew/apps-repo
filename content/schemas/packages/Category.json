@@ -27,6 +27,10 @@
     {
       "const": "launcher",
       "description": "A launcher (home screen) alternative"
+    },
+    {
+      "const": "amblight",
+      "description": "Ambient light related application (e.g. for Hyperion)"
     }
   ]
 }

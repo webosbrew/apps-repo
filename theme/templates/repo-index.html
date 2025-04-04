@@ -17,14 +17,16 @@
 
 {% block content %}
     <h1>{{ page.title }}</h1>
+    <p>Unofficial webOS applications</p>
 
-    <ul class="apps-list">
-    {% for package in page.metadata.packages %}
+    {% for category in page.metadata.categories %}
+    <h3>{{ category.title }}</h3>
+    <ul class="apps-horizontal">
+    {% for package in category.packages %}
         {% include "app-item.html" %}
     {% endfor %}
     </ul>
+    {% endfor %}
 
-    {% set pagination = page.metadata.pagination %}
-    {% include "pagination.html" %}
 
 {% endblock %}

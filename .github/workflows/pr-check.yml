@@ -1,0 +1,53 @@
+name: 'PR Check'
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  filter-paths:
+    permissions:
+      pull-requests: read
+    runs-on: ubuntu-latest
+    outputs:
+      need-package: ${{ steps.changed_files.outputs.packages }}
+      packages-files: ${{ steps.changed_files.outputs.packages_files }}
+      need-site: ${{ steps.changed_files.outputs.site }}
+    steps:
+      - name: Check changed files
+        id: changed_files
+        uses: dorny/paths-filter@v3
+        with:
+          list-files: 'escape'
+          # the 'site' filters won't work with default 'some'
+          predicate-quantifier: 'every'
+          filters: |
+            packages:
+              - added|modified: 'packages/**'
+            site:
+              - '**'
+              - '!packages/**'
+              - '!README.md'
+
+  package-check:
+    needs: filter-paths
+    if: ${{ needs.filter-paths.outputs.need-package == 'true' }}
+    uses: ./.github/workflows/package-lint.yml
+    with:
+      packages: ${{ needs.filter-paths.outputs.packages-files }}
+
+  site-check:
+    needs: filter-paths
+    if: ${{ needs.filter-paths.outputs.need-site == 'true' }}
+    uses: ./.github/workflows/site-generate.yml
+
+  pr-check:
+    needs: [package-check, site-check]
+    runs-on: ubuntu-latest
+    # can't do anything too fancy due to https://github.com/actions/runner/issues/491
+    if: always() && !(needs.package-check.result == 'skipped' && needs.site-check.result == 'skipped')
+    steps:
+      - name: Status
+        # check result manually
+        run: exit "${{ ((needs.package-check.result == 'success' || needs.package-check.result == 'skipped') && (needs.site-check.result == 'success' || needs.site-check.result == 'skipped')) && '0' || '1' }}"

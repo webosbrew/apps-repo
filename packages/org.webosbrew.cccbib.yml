@@ -1,0 +1,12 @@
+title: CCCBib
+iconUri: https://raw.githubusercontent.com/volkovmqx/cccbib/main/assets/icon130.png
+manifestUrl: https://github.com/volkovmqx/cccbib/releases/latest/download/org.webosbrew.cccbib.manifest.json
+category: multimedia
+pool: main
+description: |
+  [media.ccc.de](https://media.ccc.de) media library application for webOS..
+
+  ![Main Screen](https://github.com/volkovmqx/cccbib/blob/main/.github/screenshots/screenshot1.png?raw=true)
+  
+  ![Player Screen](https://github.com/volkovmqx/cccbib/blob/main/.github/screenshots/screenshot2.png?raw=true)
+  
