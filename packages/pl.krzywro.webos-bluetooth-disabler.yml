@@ -1,0 +1,14 @@
+title: Bluetooth Disabler
+iconUri: https://raw.githubusercontent.com/krzywro/webos-bluetooth-disabler/main/assets/icon160.png
+manifestUrl: https://github.com/krzywro/webos-bluetooth-disabler/releases/latest/download/pl.krzywro.webos-bluetooth-disabler.manifest.json
+category: utility
+pool: main
+description: |
+  # Bluetooth Disabler
+
+  Root required
+
+  # Features
+
+  * Start/stop Bluetooth service on demand
+  * Automatically disable Bluetooth after boot
