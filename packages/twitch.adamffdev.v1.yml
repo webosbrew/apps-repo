@@ -1,0 +1,20 @@
+title: Twitch AdFree
+iconUri: https://raw.githubusercontent.com/adamff-dev/twitch-adfree-webos/main/assets/icon.jpg
+manifestUrl: https://github.com/adamff-dev/twitch-adfree-webos/releases/latest/download/twitch.adamffdev.v1.manifest.json
+category: web
+pool: main
+description: |
+  Modded Twitch application with extended features
+
+  **Features:**
+  - Hides and mutes ads
+  - Automatically claims channel points
+  - Access sub-only VODs without a subscription
+  - Disable animations to improve performance
+  - Quick navigation with controller number buttons (1-4)
+
+  **Feel free to contribute!**
+  [https://github.com/adamff-dev/twitch-adfree-webos](https://github.com/adamff-dev/twitch-adfree-webos)
+funding:
+  github: [adamff-dev]
+  buymeacoffee: [rsiztb3]
