@@ -1,7 +1,7 @@
 title: Twitch AdFree
 iconUri: https://raw.githubusercontent.com/adamff-dev/twitch-adfree-webos/main/assets/icon.jpg
 manifestUrl: https://github.com/adamff-dev/twitch-adfree-webos/releases/latest/download/twitch.adamffdev.v1.manifest.json
-category: web
+category: internet
 pool: main
 description: |
   Modded Twitch application with extended features
