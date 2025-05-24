@@ -31,6 +31,10 @@
     {
       "const": "amblight",
       "description": "Ambient light related application (e.g. for Hyperion)"
+    },
+    {
+      "const": "internet",
+      "description": "Application offers access to internet services (streaming, social network, etc.)"
     }
   ]
 }
