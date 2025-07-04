@@ -1,0 +1,17 @@
+title: LG App Update Blocker
+iconUri: https://raw.githubusercontent.com/dr0dr1dr2dr3/lgappupdateblocker/master/assets/icon.png
+manifestUrl: https://github.com/dr0dr1dr2dr3/lgappupdateblocker/releases/download/1.0.0/org.webosbrew.appupdateblocker.manifest.json
+category: utility
+pool: main
+description: |
+ # LG App Update Blocker
+ 
+ Lets you bypass the requirement to update the app before you can launch it.
+ 
+ Additionally, lets you null route the update servers in the hosts file.
+ 
+ The [homebrew channel](https://github.com/webosbrew/webos-homebrew-channel/) with root access is required.
+ 
+ ## Acknowledgements
+ 
+ [Simon34545](https://github.com/Simon34545/lginputhook) - I ripped a lot of code from him
