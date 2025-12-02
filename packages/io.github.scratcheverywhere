@@ -1,0 +1,27 @@
+title: Scratch Everywhere!
+iconUri: https://raw.githubusercontent.com/webosbrew/webos-homebrew-channel/main/assets/icon160.png
+manifestUrl: https://raw.githubusercontent.com/ScratchEverywhere/ScratchEverywhere/refs/heads/main/webos_manifest.json
+category: game
+pool: main
+description: |
+  <p align="center">
+    <img src="https://github.com/ScratchEverywhere/ScratchEverywhere/blob/main/gfx/menu/logo.png?raw=true" alt="Scratch Everywhere! logo" />
+  </p>
+  <p>
+    <a href="https://discord.gg/Y2gf5vZHpJ"><img alt="Discord" src="https://img.shields.io/discord/1408875318248345612?style=flat&logo=discord&label=Discord%20Server&link=https%3A%2F%2Fdiscord.gg%2FY2gf5vZHpJ"></a>
+  </p>
+
+  A work-in-progress runtime made in C++ aimed to bring most Scratch 3 projects over to 6-8th-generation console and handheld platforms (and more)!
+  
+  ![Runtime running a Scratch project on Wii U, Wii, and 3DS](https://github.com/ScratchEverywhere/ScratchEverywhere/blob/main/docs/demo.gif?raw=true)
+  <small>(Game shown is [Hopper Heros](https://scratch.mit.edu/projects/1184969400/) by pepper-prepper)</small>
+  
+  ## Controls
+  
+  ![Controls](docs/controls/all.png)
+
+  ## Usage instructions for webOS
+  
+  Upload your Scratch projects (.sb3) with Dev Manager to your TV in `apps/usr/palm/applications/io.github.scratcheverywhere/projects/`, if the folder doesn't exist, create it.
+  
+  Then it should be as simple as opening the app on your TV from the home menu!
