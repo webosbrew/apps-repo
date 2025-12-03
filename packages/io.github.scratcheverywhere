@@ -22,6 +22,6 @@ description: |
 
   ## Usage instructions for webOS
   
-  Upload your Scratch projects (.sb3) with Dev Manager to your TV in `apps/usr/palm/applications/io.github.scratcheverywhere/projects/`, if the folder doesn't exist, create it.
+  Upload your Scratch projects (.sb3) with Dev Manager to your TV in `/media/developer/apps/usr/palm/applications/io.github.scratcheverywhere/projects/`, if the folder doesn't exist, create it.
   
   Then it should be as simple as opening the app on your TV from the home menu!
