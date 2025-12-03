@@ -1,5 +1,5 @@
 title: Scratch Everywhere!
-iconUri: https://raw.githubusercontent.com/webosbrew/webos-homebrew-channel/main/assets/icon160.png
+iconUri: https://github.com/ScratchEverywhere/ScratchEverywhere/blob/main/gfx/webos/icon.png?raw=true
 manifestUrl: https://raw.githubusercontent.com/ScratchEverywhere/ScratchEverywhere/refs/heads/main/webos_manifest.json
 category: game
 pool: main
