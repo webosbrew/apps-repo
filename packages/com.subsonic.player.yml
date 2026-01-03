@@ -1,0 +1,16 @@
+title: Subsonic Player
+iconUri: https://raw.githubusercontent.com/pando85/subsonic-player-webos/main/webos/assets/icon_160.png
+manifestUrl: https://github.com/pando85/subsonic-player-webos/releases/latest/download/com.subsonic.player.v1.manifest.json
+category: multimedia
+pool: main
+description: |
+  Subsonic Player WebOS is a minimal fork of
+  [Subsonic player](https://github.com/VD39/subsonic-player), designed to stay closely compatible
+  with upstream while adding essential enhancements for LG webOS TVs.
+
+  **Compatible Servers:**
+
+  - [Gonic](https://github.com/sentriz/gonic/).
+  - [Airsonic Advanced](https://github.com/airsonic-advanced/airsonic-advanced/).
+  - [Navidrome](https://github.com/navidrome/navidrome/).
+  - [Subsonic servers](https://github.com/topics/subsonic/).
