@@ -7,7 +7,7 @@ from urllib.parse import urljoin
 
 import requests
 
-ITEMS_PER_PAGE: int = 30
+ITEMS_PER_PAGE: int = 50
 
 F = TypeVar("F", bound=Callable)
 
