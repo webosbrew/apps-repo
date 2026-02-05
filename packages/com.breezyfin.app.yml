@@ -1,0 +1,17 @@
+title: Breezyfin
+iconUri: https://raw.githubusercontent.com/botagas/Breezyfin/main/icon.png
+manifestUrl: https://github.com/botagas/Breezyfin/releases/latest/download/com.breezyfin.app.manifest.json
+category: multimedia
+pool: main
+description: |
+  # Breezyfin
+
+  Unofficial performance-oriented Jellyfin client for LG webOS TVs.
+
+  ## Features
+  - Home, library, favorites, search
+  - Media details and playback
+  - Remote-friendly TV UI
+
+  ## Source
+  https://github.com/botagas/Breezyfin
