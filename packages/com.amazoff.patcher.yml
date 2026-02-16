@@ -1,5 +1,5 @@
 title: AmazOff Patcher
-iconUri: https://github.com/azoffshowy/AmazOff/blob/master/amazoffLarge.png
+iconUri: https://raw.githubusercontent.com/azoffshowy/AmazOff/refs/heads/master/amazoffLarge.png
 manifestUrl: https://github.com/azoffshowy/AmazOff/releases/latest/download/org.webosbrew.manifest.json
 category: multimedia
 pool: main
