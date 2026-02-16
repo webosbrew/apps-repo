@@ -37,8 +37,3 @@ description: |
   Notes:
   - A successful patch is confirmed by a **toast notification** when the Amazon app is launched (Only WebOS > 4.0).
   - If the service cant be started you can check for possible fault in the **Details** page.
-  
-  ## Development Notes
-  
-  Within the folder **development** you can find the applied patches to the player resources. It also contains a setup script for development as well as a script how the dev-version was then packed. Feel free to PR additional patches.
-
