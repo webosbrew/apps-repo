@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/botagas/Breezyfin/main/icon.png
 manifestUrl: https://github.com/botagas/Breezyfin/releases/latest/download/com.breezyfin.app.manifest.json
 category: multimedia
 pool: main
+requirements:
+  webosRelease: '>=7.0'
 description: |
   # Breezyfin
 
