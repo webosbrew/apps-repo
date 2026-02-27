@@ -1,0 +1,39 @@
+title: AmazOff Patcher
+iconUri: https://raw.githubusercontent.com/azoffshowy/AmazOff/refs/heads/master/amazoffLarge.png
+manifestUrl: https://github.com/azoffshowy/AmazOff/releases/latest/download/org.webosbrew.manifest.json
+category: multimedia
+pool: main
+description: |
+  # AmazOff
+
+  > Patch-based customization layer for the stock Amazon app on rooted LG webOS TVs.
+  
+  ![Screenshot](https://github.com/azoffshowy/AmazOff/blob/master/Screenshot.png?raw=true)
+  
+  **AmazOff** is an IPK application for **rooted LG webOS TVs**. It extends the Amazon Prime Video Player with following patches applied:
+  - Remove Ads (Pre-, Mid- and Endrolls)
+  - Suppress telemetry
+  
+  As a result, all launch paths—including the **remote control’s dedicated Amazon button**—will open the modified version.
+  
+  ## Status
+  
+  - **Development stage:** early / experimental  
+  - **Tested on:** webOS 3.x, webOS 4.x, webOS 6.5, webOS 9.x
+  - **Amazon app variants:** 4.1.15, 6.3.38, 1.1.121
+  
+  ## WebOS < 4.0
+  
+  On WebOS prior to 4.0 the No-Ads patch only removes loaded Ads. 
+  Pre-Rolls from prime themself are still embedded into the stream, but can be fast-forwarded out of.
+  
+  ## Usage
+  
+  1. Launch **AmazOff**
+  2. Run **Start Service**
+  3. **Optional**: Enable Autostart
+  4. **Launch Target App**: Launch the Amazon Prime Video App.
+  
+  Notes:
+  - A successful patch is confirmed by a **toast notification** when the Amazon app is launched (Only WebOS > 4.0).
+  - If the service cant be started you can check for possible fault in the **Details** page.
