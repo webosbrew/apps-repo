@@ -1,0 +1,21 @@
+title: AltTime
+iconUri: https://github.com/zerkz/alttime/raw/main/app/icon.png
+manifestUrl: https://github.com/zerkz/alttime/releases/latest/download/webosbrew.manifest.json
+category: utility
+pool: main
+description: |
+  # AltTime
+
+  A webOS app that syncs the system clock via alternate HTTPS sources.
+  Useful when your network blocks whatever webOS normally uses to set the time.
+
+  ![Screenshot](https://github.com/user-attachments/assets/b704cf9e-6a75-4be4-92b7-4f0c1348c820)
+
+  ## Requirements
+
+  - Rooted webOS TV (via RootMyTV or similar)
+  - [Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel) installed and elevated
+
+  > **Root is required.** AltTime relies on Homebrew Channel's exec service,
+  > writes to `/var/lib/webosbrew/init.d/`, and calls `setSystemTime` —
+  > all of which require root privileges.
