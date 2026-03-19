@@ -1,0 +1,26 @@
+title: SmartTwitchWebOSTV
+iconUri: https://raw.githubusercontent.com/TBSniller/SmartTwitchWebOSTV/master/release/githubio/images/icon_circle.png
+manifestUrl: https://github.com/TBSniller/SmartTwitchWebOSTV/releases/latest/download/com.tbsniller.smarttwitchwebostv.manifest.json
+category: internet
+pool: main
+description: |
+  SmartTwitchWebOSTV is a Twitch client for TV devices focused on a fast, remote-friendly experience. Originally developed as Android app by fgl27/SmartTwitchTV.
+
+  ![Screenshot](https://raw.githubusercontent.com/TBSniller/SmartTwitchWebOSTV/refs/heads/master/screenshot/SmartTV%20for%20Twitch_20200326_202509.png)
+
+  ## Features
+  - Performance, performance, performance
+  - Full Live, VOD, and Clips navigation with TV-optimized controls
+  - Optional Twitch account linking for followed channels/games and personalized feeds
+  - Integrated chat read/write with advanced options and emote support (Twitch, BTTV, FFZ, 7TV)
+  - Granular playback controls (quality, low-latency tuning, chat/video layouts, seek behavior)
+  - Watch history and resume options for Live, VOD, and Clips
+  - Deep UI customization (content language, app language, text size, chat size/position/background)
+
+  Provided as is. You will still find leftovers from the Android app. I will most likely not maintain this port actively. It's enough for me and just didn't want to keep it private.
+
+  ## YouTube walkthrough
+  https://www.youtube.com/watch?v=PI2yrGb3pnY
+
+  ## Source
+  https://github.com/TBSniller/SmartTwitchWebOSTV
