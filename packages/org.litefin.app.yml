@@ -1,0 +1,7 @@
+title: Litefin
+iconUri: https://raw.githubusercontent.com/MoazSalem/litefin/development/icon-130.png
+manifestUrl: https://github.com/MoazSalem/litefin/releases/latest/download/manifest.json
+category: multimedia
+pool: main
+description: |
+  A High-Performance, Native Jellyfin Client for LG web-OS TVs.
