@@ -1,0 +1,40 @@
+title: BiliTV
+iconUri: https://raw.githubusercontent.com/asdf17128/bili-webos/main/app/webos-meta/largeIcon.png
+manifestUrl: https://github.com/asdf17128/bili-webos/releases/latest/download/com.biliwebos.app.manifest.json
+category: multimedia
+pool: main
+description: |
+  # BiliTV
+
+  Third-party Bilibili (哔哩哔哩) client for LG webOS Smart TVs.
+
+  ## Features
+
+  - **Video browsing** — Recommended, Hot, Partition, Follow feed
+  - **Video playback** — DASH adaptive streaming, 360P-8K quality selection
+  - **Danmaku** — Bullet comment overlay
+  - **Live streaming** — HLS playback with followed streamer list
+  - **Search** — On-screen keyboard
+  - **QR login** — Scan with Bilibili mobile app
+  - **Watch history** — Progress tracking with resume playback
+  - **Self-contained** — Built-in JS Service proxy, no external server needed
+
+  ## Requirements
+
+  - webOS TV 2020 or later (recommended: webOS 24)
+  - Bilibili account (for personalized content)
+
+  ## Controls
+
+  | Key | Action |
+  |-----|--------|
+  | D-pad | Navigate |
+  | Enter | Select / Play-Pause |
+  | Back | Go back / Close controls |
+  | Left/Right (in player) | Seek ±10s |
+
+  ## Source
+
+  [GitHub](https://github.com/asdf17128/bili-webos)
+funding:
+  github: asdf17128
