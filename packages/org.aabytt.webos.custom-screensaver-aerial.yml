@@ -8,10 +8,11 @@ description: |
 
   _Forked from [custom-screensaver](https://github.com/webosbrew/custom-screensaver)_
 
-  - 180+ aerial videos from different sources
-  - 40 locales for OSD
-  - Source type selection (FullHD / 4K SDR or Dolby Vision)
-  - Requires root and Homebrew Channel
+  - [190+ aerial videos](https://aabytt.github.io/aerial-preview/) from different sources.
+  - 40+ locales for OSD
+  - Source type selection (FullHD/4k SDR or Dolby Vision)
+  - Requires root and Homebrew channel
+  - Compatible with webOS 5 (2020), webOS 6 (2021), webOS 22 (2022), webOS 23 (2023)
   
   ---
 
