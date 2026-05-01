@@ -1,0 +1,36 @@
+title: Immich TV
+iconUri: https://raw.githubusercontent.com/Seeky91/immich-tv-webos/main/assets/icon-store.png
+detailIconUri: https://raw.githubusercontent.com/Seeky91/immich-tv-webos/main/assets/icon-source.png
+manifestUrl: https://github.com/Seeky91/immich-tv-webos/releases/latest/download/manifest.json
+category: multimedia
+pool: main
+description: |
+  A read-only client for [Immich](https://immich.app/) — the self-hosted photo
+  and video management platform — designed and optimized for LG webOS Smart TVs.
+
+  Browse your entire library on the big screen with native D-pad navigation, a
+  justified-grid timeline, and full-screen media playback.
+
+  ## Features
+
+  - **Timeline** — Infinite-scrolling photo & video timeline grouped by date
+  - **Albums** — Browse and explore your Immich albums
+  - **Search** — Smart text search powered by Immich's ML backend, plus face/person search via the People ribbon
+  - **Justified grid** — Layout that respects original aspect ratios while keeping rows aligned
+  - **Virtualized rendering** — Smooth performance on libraries with thousands of assets
+  - **D-pad first** — Native integration with webOS Spotlight; designed for the remote, not a mouse
+  - **4K-aware** — UI calibrated for FHD and 4K TVs
+  - **Two auth modes** — Email/password login OR API key
+
+  ## Setup
+
+  1. Launch the app and enter your Immich server URL
+  2. Sign in with your email/password, or paste an API key
+  3. Done — your timeline loads
+
+  ## Disclaimer
+
+  Unofficial third-party client. Not affiliated with the official Immich
+  development team. Provided "as is" for personal use on LG Smart TVs.
+funding:
+  custom: ["bitcoin:bc1qvxczfmurlglff6zmkgysnxy2yglvwspalcd373"]
