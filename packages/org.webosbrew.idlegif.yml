@@ -1,0 +1,23 @@
+title: Idlegif
+iconUri: https://raw.githubusercontent.com/Oted/idlegif/main/idlegif.png
+manifestUrl: https://github.com/Oted/idlegif/releases/latest/download/org.webosbrew.idlegif.manifest.json
+category: utilities
+pool: main
+description: |
+  > **Requires a rooted TV** via [Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel). Tested on webOS 9.2.1.
+
+  Replaces the LG webOS screensaver with a looping GIF of your choice. Browse GIPHY, or paste any direct `.gif` URL. The selected GIF persists across reboots.
+
+  A [GIPHY API key](https://developers.giphy.com) is required to use the browse grid.
+
+  ## Features
+
+  - **Browse** — curated 2×2 grid of cinemagraphs, nature loops, and ambient animations via GIPHY
+  - **Custom URL** — paste any direct `.gif` link and download it directly
+  - **Persistent** — selected GIF survives reboots
+  - **Test** — preview the screensaver from the app
+  - **Uninstall** — cleanly removes the screensaver
+
+  ![Idlegif running on an LG webOS TV](https://raw.githubusercontent.com/Oted/idlegif/main/assets/screenshot.png)
+funding:
+  github: [ Oted ]
