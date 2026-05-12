@@ -1,6 +1,6 @@
 title: Idlegif
 iconUri: https://raw.githubusercontent.com/Oted/idlegif/main/idlegif.png
-manifestUrl: https://github.com/Oted/idlegif/releases/latest/download/org.webosbrew.idlegif.manifest.json
+manifestUrl: https://github.com/Oted/idlegif/releases/latest/download/org.oted.idlegif.manifest.json
 category: utilities
 pool: main
 description: |
