@@ -1,7 +1,7 @@
 title: Idlegif
 iconUri: https://raw.githubusercontent.com/Oted/idlegif/main/idlegif.png
 manifestUrl: https://github.com/Oted/idlegif/releases/latest/download/org.oted.idlegif.manifest.json
-category: utilities
+category: screensaver
 pool: main
 description: |
   > **Requires a rooted TV** via [Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel). Tested on webOS 9.2.1.
