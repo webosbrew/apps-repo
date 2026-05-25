@@ -1,0 +1,15 @@
+﻿title: LampaUa
+iconUri: https://raw.githubusercontent.com/Hlushok/lampaua-webos/main/icon-512.png
+manifestUrl: https://raw.githubusercontent.com/Hlushok/lampaua-webos/main/com.lampaua.tv.manifest.json
+category: media
+pool: main
+description: |
+  LampaUa for LG webOS.
+
+  Features
+  --------
+  * webOS package distribution via GitHub Releases
+  * Manifest-based updates
+  * TV-friendly icon and metadata
+funding:
+  github: [ Hlushok ]
