@@ -1,6 +1,6 @@
 title: WireGuard VPN
-iconUri: https://raw.githubusercontent.com/cfernande1470/webos-wireguard/main/app/org.webosbrew.wireguard/icon.png
-manifestUrl: https://github.com/cfernande1470/webos-wireguard/releases/latest/download/org.webosbrew.wireguard.manifest.json
+iconUri: https://raw.githubusercontent.com/cfernande1470/webos-wireguard/main/app/org.wireguard/icon.png
+manifestUrl: https://github.com/cfernande1470/webos-wireguard/releases/latest/download/org.wireguard.manifest.json
 category: system
 pool: main
 description: |
