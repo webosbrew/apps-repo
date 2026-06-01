@@ -1,6 +1,6 @@
 title: Aerial webOS screensaver
 iconUri: https://raw.githubusercontent.com/rchalaaa/custom-screensaver/refs/heads/main/assets/icon_130x130.png
-manifestUrl: https://github.com/rchalaaa/custom-screensaver/releases/download/v1.0.2/org.rchalaaa.webos.custom-screensaver.manifest.json
+manifestUrl: https://github.com/rchalaaa/custom-screensaver/releases/download/v1.0.3/org.rchalaaa.webos.custom-screensaver.manifest.json
 category: screensaver
 pool: main
 description: |
