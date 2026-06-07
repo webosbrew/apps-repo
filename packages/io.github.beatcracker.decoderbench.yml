@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/beatcracker/decoder-bench/master/asse
 manifestUrl: https://github.com/beatcracker/decoder-bench/releases/latest/download/io.github.beatcracker.decoderbench.manifest.json
 category: multimedia
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 description: |
   Native decoder benchmark for rooted LG webOS TVs.
 
