@@ -1,0 +1,6 @@
+title: ZUI Player
+iconUri: https://raw.githubusercontent.com/Simulate-X/ZUI_IPTV_Player/main/icon.png
+manifestUrl: https://github.com/Simulate-X/ZUI_IPTV_Player/releases/latest/download/com.zui.player.manifest.json
+category: multimedia
+pool: main
+description: A modern, zero-ui, ad-free IPTV player with spatial navigation and seamless VOD/Live integration.
