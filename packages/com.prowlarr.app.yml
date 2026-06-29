@@ -1,0 +1,20 @@
+# Display name of your application
+title: Prowlarr
+# Publicly accessible HTTP/HTTPS URL, or data uri to icon image.
+iconUri: https://raw.githubusercontent.com/6ebeng/prowlarr-webos/main/appinfo/icon.png
+# Publicly accessible manifest file of your application
+manifestUrl: https://github.com/6ebeng/prowlarr-webos/releases/download/v1.0.4/org.webosbrew.prowlarr.manifest.json
+# Category for your application
+category: utility
+# If this is an open source application, use main, otherwise non-free
+pool: main
+# Long description for your application, in Markdown format
+description: |
+  **Prowlarr for webOS**
+  
+  Prowlarr is an indexer manager/proxy built on the popular *arr base stack. This port brings Prowlarr directly to your webOS device.
+  
+  *Note: Please ensure you comply with all local regulations and webosbrew community guidelines when configuring your indexers.*
+# Sponsor information, like .github/FUNDING.yml
+funding:
+  github: [ 6ebeng ]
