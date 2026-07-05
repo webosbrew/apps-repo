@@ -1,0 +1,8 @@
+id: com.open.hidden.menu
+title: Open Service Menu
+version: 1.0.0
+type: web
+vendor: MyTVApp
+description: An overlay app to quickly open webOS hidden service menus (inStart, ezAdjust, etc.) without interrupting the current app or HDMI input.
+iconUrl: "https://raw.githubusercontent.com/nguy3nloan1986-dotcom/Open-Service-Menu/main/icon.png"
+manifestUrl: "https://github.com/nguy3nloan1986-dotcom/Open-Service-Menu/releases/download/1.0.0/com.open.hidden.menu_1.0.0_all.ipk"
