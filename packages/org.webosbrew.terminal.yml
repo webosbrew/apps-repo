@@ -1,0 +1,33 @@
+title: webOS Terminal
+iconUri: https://raw.githubusercontent.com/gprot42/webos-terminal/main/webos-meta/icon-large.png
+manifestUrl: https://github.com/gprot42/webos-terminal/releases/latest/download/org.webosbrew.terminal.manifest.json
+category: utility
+pool: main
+requirements:
+  webosRelease: '>=4.0'
+description: |
+  # webOS Terminal
+
+  A native terminal app for LG webOS TVs. Open a shell right on your TV — no laptop required.
+
+  ![Screenshot](https://raw.githubusercontent.com/gprot42/webos-terminal/main/docs/images/screengrab1.jpg)
+
+  **Root required.** This app only works on a **rooted** LG webOS TV with **Homebrew Channel** installed.
+
+  ## Features
+
+  - Interactive shell on your TV using the remote and on-screen keyboard
+  - Multiple tabs, each with its own shell session
+  - Remote-friendly key bar (Ctrl, Esc, Tab, arrow keys)
+  - Native PTY support via `ptybridge` for job control and TUI apps (`vim`, `htop`, `less`, `tmux`)
+
+  ## Requirements
+
+  - Rooted LG webOS TV with [Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel/)
+  - webOS 4.x or newer recommended
+
+  For full PTY/TUI support, elevate the shell service to root — see the [install guide](https://github.com/gprot42/webos-terminal/blob/main/README.install.md#running-as-root).
+
+  ## Source
+
+  [github.com/gprot42/webos-terminal](https://github.com/gprot42/webos-terminal) (MIT)
