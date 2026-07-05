@@ -1,0 +1,28 @@
+title: Sendspin Cinema
+iconUri: https://raw.githubusercontent.com/zonya/sendspin-cinema-webos/main/icon.png
+manifestUrl: https://github.com/zonya/sendspin-cinema-webos/releases/latest/download/com.sendspin.cinema.manifest.json
+category: multimedia
+pool: main
+description: |
+  A cinema-inspired **Music Assistant** player for LG webOS TVs.
+
+  Connects to your [Music Assistant](https://music-assistant.io/) server and provides
+  a stunning full-screen playback experience optimized for TV screens and remote controls.
+
+  ## Features
+
+  * **Dynamic theming** — extracts accent colors from album art using Vibrant.js
+  * **Cinema UI** — blurred background, shrinking cover art when controls appear
+  * **Remote optimized** — fully navigable via Magic Remote or standard D-pad
+  * **Screensaver friendly** — UI auto-hides after 5 seconds during playback
+  * **Easy setup** — enter your MA server IP directly on the TV screen
+
+  ## Requirements
+
+  * [Music Assistant](https://music-assistant.io/) 2.x or later (Sendspin protocol support)
+  * LG webOS TV
+
+
+
+funding:
+  github: [zonya]
