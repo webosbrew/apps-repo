@@ -1,6 +1,6 @@
 title: webOS Terminal
 iconUri: https://raw.githubusercontent.com/gprot42/webos-terminal/main/webos-meta/icon-large.png
-manifestUrl: https://github.com/gprot42/webos-terminal/releases/latest/download/org.webosbrew.terminal.manifest.json
+manifestUrl: https://github.com/gprot42/webos-terminal/releases/latest/download/com.github.gprot42.webosterminal.manifest.json
 category: utility
 pool: main
 requirements:
