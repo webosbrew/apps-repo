@@ -25,7 +25,7 @@ description: |
   ## Requirements
 
   - Rooted LG webOS TV with [Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel/)
-  - webOS 4.x or newer recommended
+  - webOS 4.x or newer (v0.0.8+)
 
   For full PTY/TUI support, elevate the shell service to root — see the [install guide](https://github.com/gprot42/webos-terminal/blob/main/README.install.md#running-as-root).
 
