@@ -20,6 +20,7 @@ description: |
   - Multiple tabs, each with its own shell session
   - Remote-friendly key bar (Ctrl, Esc, Tab, arrow keys)
   - Native PTY support via `ptybridge` for job control and TUI apps (`vim`, `htop`, `less`, `tmux`)
+  - Shell automation API for remote `luna-send` control (SSH scripting, session listing, command execution)
 
   ## Requirements
 
