@@ -8,6 +8,9 @@ manifestUrl: https://github.com/aneeshtigga/immich-webos/releases/latest/downloa
 category: multimedia
 # If this is an open source application, use main, otherwise non-free
 pool: main
+# Minimum webOS release. The bundle uses ES2017, supported on webOS 5.0+ (Chromium 68+).
+requirements:
+  webosRelease: '>=5.0'
 # Long description for your application, in Markdown format
 description: |
   Native webOS TV client for Immich, the self-hosted photo and video backup
