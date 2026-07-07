@@ -1,0 +1,30 @@
+title: Sora TV
+iconUri: https://raw.githubusercontent.com/MXFia19/sora-tv/main/v2/icon.png
+manifestUrl: https://github.com/MXFia19/sora-tv/releases/latest/download/com.mxfia.soratv.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=5.0'
+description: |
+  # Sora TV
+
+  A modular anime & video streaming app for LG webOS TVs, with full AniList
+  integration. Browse, search and watch from community‑made streaming sources,
+  and keep your AniList lists, progress and scores in sync — all from the remote.
+
+  > Sora TV ships **no content and no sources**. Streaming sources are
+  > community‑made scripts you choose to install. Use responsibly.
+
+  ## Features
+  - **Modular sources** installed from a built‑in library (no scrapers bundled)
+  - **Multi‑source search** with automatic season detection
+  - **AniList login** (your own account) with automatic watch‑progress sync
+  - Personalized **home** (your lists + Trending / Popular / Top rated)
+  - **Quick panel** to set status, progress and score 
+  - **Resume playback**, **auto next‑episode**, server picker
+  - Two player engines: **Video.js** or **native** (hardware decoder)
+  - **English / French** UI, TV‑first D‑pad navigation
+  - Profile page: stats, favorite genres, score distribution, recommendations
+
+  ## Source
+  https://github.com/MXFia19/sora-tv
