@@ -19,14 +19,15 @@ description: |
   - Interactive shell on your TV using the remote and on-screen keyboard
   - Multiple tabs, each with its own shell session
   - Remote-friendly key bar (Ctrl, Esc, Tab, arrow keys)
-  - Native PTY support via `ptybridge` for job control and TUI apps (`vim`, `htop`, `less`, `tmux`)
+  - Native PTY via `ptybridge` with **raw keystroke passthrough** when elevated — shell history, tab completion, job control, and full-screen apps (`vim`, `htop`, `less`, `tmux`)
+  - Piped-shell fallback with client-side line history when a PTY is unavailable
   - Shell automation API for remote `luna-send` control (SSH scripting, session listing, command execution)
   - Bundled monospace font selection (JetBrains Mono, IBM Plex Mono, Cascadia Mono, DejaVu Sans Mono, Fira Mono) with live preview
 
   ## Requirements
 
   - Rooted LG webOS TV with [Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel/)
-  - webOS 4.x or newer (v0.0.9+)
+  - webOS 4.x or newer (v0.0.11+)
 
   For full PTY/TUI support, elevate the shell service to root — see the [install guide](https://github.com/gprot42/webos-terminal/blob/main/README.install.md#running-as-root).
 
