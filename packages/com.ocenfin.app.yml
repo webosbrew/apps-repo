@@ -4,7 +4,7 @@ manifestUrl: https://github.com/seluce/OcenFin/releases/latest/download/com.ocen
 category: multimedia
 pool: main
 requirements:
-  webosRelease: '>=7.0'
+  webosRelease: '>=10.0'
 description: |
   OcenFin is a lightweight and fast native Jellyfin client for LG TVs, built with Svelte. It focuses on a clean, minimalist design by hiding less important details.
 
