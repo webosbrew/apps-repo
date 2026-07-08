@@ -1,0 +1,30 @@
+# Display name of your application
+title: Immich
+# Publicly accesible HTTP/HTTPS URL, or data uri to icon image.
+iconUri: https://raw.githubusercontent.com/aneeshtigga/immich-webos/main/src/assets/logo-sm.png
+# Publicly accessible manifest file of your application
+manifestUrl: https://github.com/aneeshtigga/immich-webos/releases/latest/download/com.immich.webos.manifest.json
+# Category for your application
+category: multimedia
+# If this is an open source application, use main, otherwise non-free
+pool: main
+# Minimum webOS release. The bundle uses ES2017, supported on webOS 5.0+ (Chromium 68+).
+requirements:
+  webosRelease: '>=5.0'
+# Long description for your application, in Markdown format
+description: |
+  Native webOS TV client for Immich, the self-hosted photo and video backup
+  solution. Browse your library, albums, and search your Immich server directly
+  from your LG TV.
+
+  - Timeline and album browsing optimised for the 10-foot / remote experience
+  - Full-text and metadata search
+  - Email + password or API key sign-in, via on-screen form or QR code for mobile input
+
+  Requires your own Immich server. Not affiliated with the Immich project.
+
+  ## Screenshots
+  ![Timeline grid](https://raw.githubusercontent.com/aneeshtigga/immich-webos/main/screenshots/grid.png)
+# Sponsor information, like .github/FUNDING.yml
+funding:
+  github: [ aneeshtigga ]
