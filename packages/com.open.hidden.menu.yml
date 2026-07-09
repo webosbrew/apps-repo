@@ -4,6 +4,7 @@ description: |
   //!// Do not change anything in the hidden menu unless you know what you are doing //!//
   App made by Kzu. Thanks!
 iconUri: "https://raw.githubusercontent.com/nguy3nloan1986-dotcom/Open-Service-Menu/main/icon.png"
-manifestUrl: "https://github.com/nguy3nloan1986-dotcom/Open-Service-Menu/releases/download/1.0.0/com.open.hidden.menu_1.0.0_all.ipk"
+manifestUrl: "https://github.com/Kzuismee/Open-Service-Menu/releases/download/1.0.0/com.open.hidden.menu.manifest.json"
+
 category: utility
 pool: main
