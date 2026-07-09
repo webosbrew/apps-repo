@@ -1,5 +1,5 @@
 title: webOS Terminal
-iconUri: https://raw.githubusercontent.com/gprot42/webos-terminal/main/webos-meta/icon-large.png
+iconUri: https://cdn.jsdelivr.net/gh/gprot42/webos-terminal@main/webos-meta/icon-large.png
 manifestUrl: https://github.com/gprot42/webos-terminal/releases/latest/download/com.github.gprot42.webosterminal.manifest.json
 category: utility
 pool: main
@@ -10,7 +10,7 @@ description: |
 
   A native terminal app for LG webOS TVs. Open a shell right on your TV — no laptop required.
 
-  ![Screenshot](https://raw.githubusercontent.com/gprot42/webos-terminal/main/docs/images/screengrab1.jpg)
+  ![Screenshot](https://cdn.jsdelivr.net/gh/gprot42/webos-terminal@main/docs/images/screengrab1.jpg)
 
   **Root required.** This app only works on a **rooted** LG webOS TV with **Homebrew Channel** installed.
 
