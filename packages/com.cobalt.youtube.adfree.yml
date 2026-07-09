@@ -1,0 +1,21 @@
+title: YouTube Cobalt AdFree
+iconUri: https://raw.githubusercontent.com/RF1705/youtube-webos-cobalt-adfree/main/assets/largeIcon.png
+manifestUrl: https://github.com/RF1705/youtube-webos-cobalt-adfree/releases/download/v1.0.0/com.cobalt.youtube.adfree.manifest.json
+
+category: multimedia
+
+pool: main
+
+description: |
+  # YouTube Cobalt AdFree
+
+  Unofficial Cobalt-based YouTube app for LG webOS TVs with ad blocking and SponsorBlock support.
+
+  ## Features
+
+  * Cobalt-based YouTube TV app
+  * Advertisement blocking
+  * SponsorBlock integration
+  * Can be installed next to the official YouTube app
+
+  **Note:** This is a new Cobalt-based approach and not the legacy WebView-based YouTube AdFree app.
