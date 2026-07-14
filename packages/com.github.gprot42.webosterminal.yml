@@ -4,7 +4,7 @@ manifestUrl: https://github.com/gprot42/webos-terminal/releases/latest/download/
 category: utility
 pool: main
 requirements:
-  webosRelease: '>=4.0'
+  webosRelease: '>=1.0'
 description: |
   # webOS Terminal
 
@@ -17,17 +17,19 @@ description: |
   ## Features
 
   - Interactive shell on your TV using the remote and on-screen keyboard
-  - Multiple tabs, each with its own shell session
+  - Multiple tabs, each with its own shell session (full UI on webOS 3+)
   - Remote-friendly key bar (Ctrl, Esc, Tab, arrow keys)
   - Native PTY via `ptybridge` with **raw keystroke passthrough** when elevated — shell history, tab completion, job control, and full-screen apps (`vim`, `htop`, `less`, `tmux`)
   - Piped-shell fallback with client-side line history when a PTY is unavailable
   - Shell automation API for remote `luna-send` control (SSH scripting, session listing, command execution)
   - Bundled monospace font selection (JetBrains Mono, IBM Plex Mono, Cascadia Mono, DejaVu Sans Mono, Fira Mono) with live preview
+  - **webOS 1–2 support** via dual-boot **cut-down legacy shell** (vanilla ES5) — confirmed on webOS 2
+  - Compact package — IPK is about **~1.7 MB** (pruned locales/fonts)
 
   ## Requirements
 
   - Rooted LG webOS TV with [Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel/)
-  - webOS 4.x or newer (v0.0.11+)
+  - **webOS 4+** for the full multi-tab React/xterm UI; **webOS 3** experimental; **webOS 1–2** use the cut-down legacy shell (v0.0.12+)
 
   For full PTY/TUI support, elevate the shell service to root — see the [install guide](https://github.com/gprot42/webos-terminal/blob/main/README.install.md#running-as-root).
 
