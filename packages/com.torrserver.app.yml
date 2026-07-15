@@ -1,0 +1,27 @@
+# Display name of your application
+title: TorrServer
+# Publicly accessible HTTP/HTTPS URL, or data uri to icon image.
+iconUri: https://raw.githubusercontent.com/6ebeng/torrserver-webos/main/icon.png
+# Publicly accessible manifest file of your application
+manifestUrl: https://github.com/6ebeng/torrserver-webos/releases/latest/download/org.webosbrew.torrserver.manifest.json
+# Category for your application
+category: multimedia
+# If this is an open source application, use main, otherwise non-free
+pool: main
+# Long description for your application, in Markdown format
+description: |
+  **TorrServer for webOS**
+
+  TorrServer is a torrent streaming server: it downloads and seeds torrents on
+  the fly so you can start watching immediately, without waiting for the whole
+  file. This port brings the official [YouROK/TorrServer](https://github.com/YouROK/TorrServer)
+  build directly to your webOS TV. The matching architecture is downloaded at
+  runtime, so the app stays tiny and always up to date.
+
+  Manage it from any device on your network at `http://<tv-ip>:8090`.
+
+  *Note: Please ensure you comply with all local regulations and webosbrew
+  community guidelines when streaming content.*
+# Sponsor information, like .github/FUNDING.yml
+funding:
+  github: [ 6ebeng ]
