@@ -1,0 +1,36 @@
+title: Aerial webOS screensaver
+iconUri: https://raw.githubusercontent.com/rchalaaa/custom-screensaver/refs/heads/main/assets/icon_130x130.png
+manifestUrl: https://github.com/rchalaaa/custom-screensaver/releases/download/v1.0.3/org.rchalaaa.webos.custom-screensaver.manifest.json
+category: screensaver
+pool: main
+description: |
+  # Aerial webOS Screensaver
+
+  Modern fork of [custom-screensaver-aerial](https://github.com/aabytt/custom-screensaver-aerial)
+
+  ## Features
+
+  - 190+ aerial videos from multiple sources
+  - Completely redesigned modern UI
+  - Simplified enable/disable workflow
+  - Toggle screensaver texts individually: title, description, time and date
+  - Adjustable text scaling
+  - Built-in and custom font support
+  - 40+ supported locales
+  - Instant screensaver preview for testing
+  - Compatible with webOS 5 (2020), webOS 6 (2021), webOS 22 (2022), webOS 23 (2023)
+
+  ## Screenshots
+
+  ![Main](https://github.com/rchalaaa/custom-screensaver/blob/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/1.png)
+  ![Screenshot](https://github.com/rchalaaa/custom-screensaver/blob/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/2.png)
+  ![Settings](https://github.com/rchalaaa/custom-screensaver/blob/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/3.png)
+
+  ## Credits
+
+  Original project by aabytt:
+
+  https://github.com/aabytt/custom-screensaver-aerial
+# Sponsor information, like .github/FUNDING.yml
+funding:
+  github: rchalaaa
