@@ -1,0 +1,36 @@
+title: WoL Keeper
+iconUri: https://raw.githubusercontent.com/dangerouslaser/wolkeeper/main/src/largeIcon.png
+manifestUrl: https://github.com/dangerouslaser/wolkeeper/releases/latest/download/org.webosbrew.wolkeeper.manifest.json
+category: utility
+pool: main
+description: |
+  ## ⚡ WoL Keeper
+  Keep ethernet **Wake-on-LAN working forever** in standby.
+
+  On recent LG TVs, WoL only works for ~15 minutes after you turn the TV off —
+  then the TV descends into a deep "zero-watt" standby that powers off the
+  ethernet PHY entirely, drops off your network, and can only be turned back on
+  with the remote.
+
+  WoL Keeper fixes this by combining two mechanisms:
+  - Enables the TV's native **Always Ready** mode (the sanctioned 24/7 warm
+    standby, so the micom's ~4 h warm-standby watchdog never force-kills it)
+    and neutralizes its nightly deep-off window, which is not exposed in the
+    TV's settings UI.
+  - Installs a small self-healing keepalive daemon (a transient systemd unit,
+    recreated each boot via a Homebrew Channel startup hook) that renews a
+    sleepd activity so the suspend path never executes.
+
+  The TV then stays reachable on ethernet and wakes from magic packets at any
+  time — verified across 17+ hour overnight standbys, including the TV's own
+  scheduled standby maintenance reboots.
+
+  ### Requirements
+  - Rooted TV with [Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel)
+  - Verified on webOS 25 (2025 G5 OLED); other recent versions should work — reports welcome
+
+  ### Notes
+  - Standby power consumption is higher than the deep zero-watt state — that is
+    inherent to keeping the network interface powered.
+  - Fully reversible via the Disable button; the read-only rootfs is never
+    modified.
