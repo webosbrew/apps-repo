@@ -1,0 +1,33 @@
+title: DTS Enabler
+iconUri: https://raw.githubusercontent.com/josippapez/dts_restore_plus/main/assets/icon160.png
+manifestUrl: https://github.com/josippapez/dts_restore_plus/releases/latest/download/org.webosbrew.dtsenabler.manifest.json
+category: multimedia
+pool: main
+description: |
+  ## DTS Enabler — DTS + Dolby TrueHD/MLP audio for webOS 25
+
+  Restores **DTS** and **Dolby TrueHD / MLP** audio playback on rooted **LG
+  webOS 25** TVs (C5-class, chassis o22n3), where LG ships no DTS or TrueHD
+  decoder. Audio is decoded to native **discrete 5.1** PCM — there is no stereo
+  downmix in the pipeline.
+
+  ### Features
+  - DTS and DTS-HD (core) playback, including DTS in **MKV, MP4, TS and M2TS** containers
+  - Dolby **TrueHD / MLP** playback (MKV)
+  - Native discrete **5.1** delivered to LG's audio sink (HDMI eARC / optical carries multichannel PCM)
+  - **Fully reversible** — every change is a bind-mount over an original file; no stock
+    firmware file is modified in place. Clean Enable / Disable / Uninstall.
+  - **Fail-safe boot hook** — re-applies automatically on reboot, and if a firmware update
+    changes the GStreamer version it stands down on its own so normal playback is never affected.
+  - Built-in self-test and a play-by-ear check.
+
+  ### Requirements
+  - A **rooted** LG **webOS 25** TV with the Homebrew Channel (uses its root exec service)
+  - webOS 10 or newer
+
+  ### Notes
+  - Decode-to-PCM only; DTS/TrueHD **bitstream passthrough** is out of scope.
+  - DTS-HD MA decodes its lossy core (no XLL lossless extension).
+  - Open source. DTS/TrueHD decoding uses libdca and ffmpeg, cross-built from source in the project repo.
+
+  Source and documentation: https://github.com/josippapez/dts_restore_plus
