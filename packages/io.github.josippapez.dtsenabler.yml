@@ -1,6 +1,6 @@
 title: DTS Enabler
 iconUri: https://raw.githubusercontent.com/josippapez/dts_restore_plus/main/assets/icon160.png
-manifestUrl: https://github.com/josippapez/dts_restore_plus/releases/latest/download/org.webosbrew.dtsenabler.manifest.json
+manifestUrl: https://github.com/josippapez/dts_restore_plus/releases/latest/download/io.github.josippapez.dtsenabler.manifest.json
 category: multimedia
 pool: main
 description: |
