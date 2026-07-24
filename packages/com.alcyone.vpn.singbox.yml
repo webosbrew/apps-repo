@@ -1,0 +1,37 @@
+title: Alcyone sing-box
+iconUri: https://ichikanya.github.io/Alcyone/icon.png
+manifestUrl: https://ichikanya.github.io/Alcyone/com.alcyone.vpn.singbox.manifest.json
+category: system
+pool: non-free
+requirements:
+  webosRelease: '>=4.0'
+description: |
+  # Alcyone sing-box
+
+  A low-resource VPN client for rooted LG webOS TVs. This edition uses sing-box
+  with a native system TUN process and is optimized for low-powered TVs, stable
+  resource use, and fast startup. It imports user-provided VLESS, VMess, Trojan,
+  Shadowsocks, SOCKS5, and Hysteria2 profiles and subscriptions.
+
+  **Root is required.** While connected, Alcyone creates a system-wide `tun0`
+  interface and changes the TV routing table. Disconnecting stops the VPN
+  process and removes its tunnel routes. Autostart is optional and can be
+  removed in the app. Uninstalling does not promise to erase profiles stored
+  under `/var/lib/alcyone-singbox`, so users should remove sensitive local data
+  separately if needed.
+
+  Requires webOS 4 or newer because earlier webOS releases do not provide the
+  required TUN kernel module. Installation, VPN connection, network restoration,
+  and autostart after reboot were tested successfully on an LG 55UK6200PLA
+  running webOS release 4.4.3-22.
+
+  Profiles and subscription URLs are stored locally on the TV. Subscription
+  updates contact the provider URL configured by the user. External-IP checks
+  contact public IP-check services. The LAN web importer listens on port 8081,
+  so it should only be enabled on a trusted local network.
+
+  Alcyone does not include VPN accounts, media, piracy services, or DRM-bypass
+  functionality. Users supply and are responsible for their own VPN service.
+
+  Source and installation details:
+  [github.com/ichikanya/Alcyone](https://github.com/ichikanya/Alcyone)
