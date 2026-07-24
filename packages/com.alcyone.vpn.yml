@@ -3,6 +3,8 @@ iconUri: https://ichikanya.github.io/Alcyone/icon.png
 manifestUrl: https://ichikanya.github.io/Alcyone/com.alcyone.vpn.manifest.json
 category: system
 pool: non-free
+requirements:
+  webosRelease: '>=4.0'
 description: |
   # Alcyone XRay
 
@@ -16,6 +18,11 @@ description: |
   removed in the app. Uninstalling does not promise to erase profiles stored
   under `/var/lib/alcyone`, so users should remove sensitive local data
   separately if needed.
+
+  Requires webOS 4 or newer because earlier webOS releases do not provide the
+  required TUN kernel module. Installation, VPN connection, network restoration,
+  and autostart after reboot were tested successfully on an LG 55UK6200PLA
+  running webOS release 4.4.3-22.
 
   Profiles and subscription URLs are stored locally on the TV. Subscription
   updates contact the provider URL configured by the user. External-IP checks
