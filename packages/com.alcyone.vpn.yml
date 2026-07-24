@@ -1,0 +1,29 @@
+title: Alcyone XRay
+iconUri: https://ichikanya.github.io/Alcyone/icon.png
+manifestUrl: https://ichikanya.github.io/Alcyone/com.alcyone.vpn.manifest.json
+category: system
+pool: non-free
+description: |
+  # Alcyone XRay
+
+  A VPN client for rooted LG webOS TVs. It imports user-provided VLESS, VMess,
+  Trojan, Shadowsocks, SOCKS5, and Hysteria2 profiles and subscriptions, then
+  routes TV traffic through the selected server using Xray and tun2socks.
+
+  **Root is required.** While connected, Alcyone creates a system-wide `tun0`
+  interface and changes the TV routing table. Disconnecting stops the VPN
+  processes and removes its tunnel routes. Autostart is optional and can be
+  removed in the app. Uninstalling does not promise to erase profiles stored
+  under `/var/lib/alcyone`, so users should remove sensitive local data
+  separately if needed.
+
+  Profiles and subscription URLs are stored locally on the TV. Subscription
+  updates contact the provider URL configured by the user. External-IP checks
+  contact public IP-check services. The LAN web importer listens on port 8080,
+  so it should only be enabled on a trusted local network.
+
+  Alcyone does not include VPN accounts, media, piracy services, or DRM-bypass
+  functionality. Users supply and are responsible for their own VPN service.
+
+  Source and installation details:
+  [github.com/ichikanya/Alcyone](https://github.com/ichikanya/Alcyone)
