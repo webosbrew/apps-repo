@@ -1,0 +1,7 @@
+title: Dial Player
+iconUri: https://dialplayer.com/assets/icon.png
+manifestUrl: https://raw.githubusercontent.com/Dial-Player/releases/refs/heads/main/com.dialplayer.app.manifest.json
+category: multimedia
+pool: non-free
+description: |
+  # Dial Player
