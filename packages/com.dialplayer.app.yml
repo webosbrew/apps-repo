@@ -3,5 +3,52 @@ iconUri: https://dialplayer.com/assets/icon.png
 manifestUrl: https://raw.githubusercontent.com/Dial-Player/releases/refs/heads/main/com.dialplayer.app.manifest.json
 category: multimedia
 pool: non-free
+requirements:
+  webosRelease: '>=3.0'
 description: |
   # Dial Player
+
+  A fast, TiviMate-style **IPTV player** for LG webOS TVs, built with Blits
+  (Lightning 3 / WebGL) for smooth scrolling and a remote-first interface.
+
+  > **Bring your own content.** Dial Player is a *player only*. It ships with no
+  > channels, playlists, streams or EPG data, and it does **not** provide, host,
+  > index, resell or facilitate access to any content whatsoever. You supply your
+  > own M3U playlist / Xtream Codes credentials and XMLTV guide from a provider
+  > you are legally entitled to use. Nothing is preloaded and no content
+  > directory is bundled or suggested.
+
+  ## Features
+
+  * **EPG** — virtualized XMLTV program guide with a TiviMate-style timeline,
+    now/next, program details and group navigation (gzipped XMLTV supported)
+  * **Catch-up** — replay past programmes straight from the guide on providers
+    that expose an archive (standard M3U `catchup` attributes and Xtream timeshift)
+  * **Search** — find channels, movies and shows across your own lists
+  * **Parental controls** — PIN-protected channel blocking that survives playlist
+    refreshes
+  * **Customization** — favorites, hidden channels, manual channel ordering,
+    per-group layout, playback preferences and a bit of theming to make the
+    guide look the way you want
+  * **QR code setup** — scan an on-screen QR code with your phone and send your
+    own playlist to the TV, instead of typing long URLs with the remote
+  * **VOD & series** — poster grid, detail views, resume and *My list* when your
+    playlist exposes on-demand entries
+  * **Playback** — hooks straight into the native webOS media pipeline, so you
+    get the TV's own decoding: HDR, multi-channel audio, multiple audio tracks
+    and subtitles
+  * **Remote optimized** — colour buttons, number zapping and D-pad/Magic Remote
+    navigation throughout
+
+  ## Requirements
+
+  * An LG webOS TV running webOS3 or newer
+
+  ## Screenshots
+
+  ### Guide
+  ![Guide](https://raw.githubusercontent.com/Dial-Player/releases/refs/heads/main/screenshots/guide.png)
+
+  ## Website
+
+  https://dialplayer.com
