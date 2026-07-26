@@ -1,0 +1,18 @@
+title: Network Storage
+iconUri: https://raw.githubusercontent.com/RF1705/webos-network-storage/main/app/icon.png
+manifestUrl: https://github.com/RF1705/webos-network-storage/releases/latest/download/com.rf1705.networkstorage.manifest.json
+category: utility
+pool: main
+description: |
+  Mount SMB and NFS network shares directly on an LG webOS TV and expose them
+  to homebrew applications such as ScummVM and RetroArch.
+
+  Features include multiple storage profiles, connection tests, read-only
+  mounts, automatic reconnects, and a TV-friendly interface for the Magic
+  Remote. The app uses stable paths below
+  `/media/developer/network-storage/<mount-name>`.
+
+  Root access and the Homebrew Channel are required for FUSE/NFS mounts and
+  for exposing mounted shares inside application jails.
+funding:
+  github: [RF1705]
