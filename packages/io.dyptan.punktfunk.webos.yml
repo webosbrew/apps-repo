@@ -1,0 +1,29 @@
+title: punktfunk
+iconUri: https://raw.githubusercontent.com/dyptan-io/punktfunk-webos/main/assets/logo/logo-sidebar.png
+manifestUrl: https://github.com/dyptan-io/punktfunk-webos/releases/latest/download/io.dyptan.punktfunk.webos.manifest.json
+category: game
+pool: main
+description: |
+  Native LG webOS TV client for [punktfunk](https://git.unom.io/unom/punktfunk) — low-latency desktop & game streaming.
+
+  Targets webOS 5.x+ (developed and verified on an LG CX, webOS 5.6). Built on the punktfunk project
+  by Enrico Bühler — this is the webOS-specific client with SDL2 UI, NDL DirectMedia hardware video
+  decode, and webOS packaging.
+
+  ## Features
+
+  * LAN discovery (mDNS) or manual host addition by IP; PIN pairing with persisted trust
+  * Hardware H.264/H.265 decode via NDL DirectMedia API
+  * Configurable resolution (1080p/1440p/4K), frame rate, bitrate, HDR, and audio channels
+  * Game library browsing with cover art and direct launch
+  * Network speed test with one-press recommended bitrate
+  * Wake-on-LAN for offline hosts
+  * Magic Remote friendly: d-pad, pointer, number-pad entry
+
+  ## Screenshots
+
+  ![Home](https://raw.githubusercontent.com/dyptan-io/punktfunk-webos/main/assets/screenshots/home.jpg)
+  ![Settings](https://raw.githubusercontent.com/dyptan-io/punktfunk-webos/main/assets/screenshots/settings.jpg)
+
+funding:
+  github: [dyptan-io]
