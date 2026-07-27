@@ -4,6 +4,8 @@ manifestUrl: https://github.com/dyptan-io/punktfunk-webos/releases/latest/downlo
 category: game
 pool: main
 description: |
+  ![punktfunk](https://raw.githubusercontent.com/dyptan-io/punktfunk-webos/main/assets/logo/logo-sidebar.png)
+
   Low-latency desktop & game streaming for LG webOS.
 
   ![Home screen](https://raw.githubusercontent.com/dyptan-io/punktfunk-webos/main/assets/screenshots/home.jpg)
