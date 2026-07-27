@@ -1,0 +1,23 @@
+title: Maré TV
+iconUri: https://raw.githubusercontent.com/jhonnatanwillyan76-cell/mare-tv-webos/main/largeIcon.png
+manifestUrl: https://github.com/jhonnatanwillyan76-cell/mare-tv-webos/releases/latest/download/com.maretv.app.manifest.json
+category: multimedia
+pool: main
+description: |
+  Maré TV é o cliente de TV ao vivo (IPTV) do serviço **Maré TV** para Smart
+  TVs LG com webOS. É um app cliente: exige uma **conta ativa da Maré TV** para
+  entrar e assistir.
+
+  ## Recursos
+
+  * Login por usuário e senha (o teclado da TV abre ao focar os campos). A
+    sessão fica salva e é revalidada sozinha na próxima abertura.
+  * Categorias à esquerda e canais em grade à direita.
+  * Player em tela cheia usando o elemento `<video>` nativo do webOS (HLS),
+    navegável 100% pelo controle remoto — as setas para cima/baixo trocam de
+    canal dentro da mesma categoria.
+
+  ## Requisitos
+
+  * Uma conta ativa da Maré TV.
+  * Conexão com a internet.
