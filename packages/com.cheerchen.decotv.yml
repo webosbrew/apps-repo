@@ -1,0 +1,14 @@
+title: DecoTV
+iconUri: https://raw.githubusercontent.com/CheerChen/decotv-webos/main/assets/icons/icon-large.png
+manifestUrl: https://github.com/CheerChen/decotv-webos/releases/latest/download/com.cheerchen.decotv.manifest.json
+category: multimedia
+pool: main
+description: |
+  Native [DecoTV](https://github.com/Decohererk/DecoTV) client for LG webOS TVs.
+  Connects to a self-hosted DecoTV server (public auth mode). No built-in media
+  sources — configure sources on the server.
+
+  Features: Douban catalog, multi-source probe ranking, continue watching,
+  D-pad navigation, hardware HLS decode.
+
+  Source: https://github.com/CheerChen/decotv-webos (MIT)
