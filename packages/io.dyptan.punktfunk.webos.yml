@@ -1,29 +1,25 @@
-title: punktfunk
-iconUri: https://raw.githubusercontent.com/dyptan-io/punktfunk-webos/main/assets/logo/logo-sidebar.png
+title: Punktfunk
+iconUri: https://raw.githubusercontent.com/dyptan-io/punktfunk-webos/main/packaging/icon_large.png
 manifestUrl: https://github.com/dyptan-io/punktfunk-webos/releases/latest/download/io.dyptan.punktfunk.webos.manifest.json
 category: game
 pool: main
 description: |
-  Native LG webOS TV client for [punktfunk](https://git.unom.io/unom/punktfunk) — low-latency desktop & game streaming.
+  Low-latency desktop & game streaming for LG webOS.
 
-  Targets webOS 5.x+ (developed and verified on an LG CX, webOS 5.6). Built on the punktfunk project
-  by Enrico Bühler — this is the webOS-specific client with SDL2 UI, NDL DirectMedia hardware video
-  decode, and webOS packaging.
+  ![Home screen](https://raw.githubusercontent.com/dyptan-io/punktfunk-webos/main/assets/screenshots/home.jpg)
 
-  ## Features
+  * Find hosts on your network automatically, or add one by IP; pair once with a PIN.
+  * Choose resolution (1080p/1440p/4K), frame rate, bitrate, and HDR.
+  * Browse the host's game library with cover art and launch straight into a game.
+  * Smooth hardware-accelerated video with low latency.
+  * Control it with the Magic Remote, a gamepad, keyboard, or mouse.
 
-  * LAN discovery (mDNS) or manual host addition by IP; PIN pairing with persisted trust
-  * Hardware H.264/H.265 decode via NDL DirectMedia API
-  * Configurable resolution (1080p/1440p/4K), frame rate, bitrate, HDR, and audio channels
-  * Game library browsing with cover art and direct launch
-  * Network speed test with one-press recommended bitrate
-  * Wake-on-LAN for offline hosts
-  * Magic Remote friendly: d-pad, pointer, number-pad entry
+  Needs a [punktfunk](https://git.unom.io/unom/punktfunk) host running on your PC — see the
+  [host setup guide](https://git.unom.io/unom/punktfunk#readme) to get started.
 
-  ## Screenshots
-
-  ![Home](https://raw.githubusercontent.com/dyptan-io/punktfunk-webos/main/assets/screenshots/home.jpg)
-  ![Settings](https://raw.githubusercontent.com/dyptan-io/punktfunk-webos/main/assets/screenshots/settings.jpg)
+  webOS client by [dyptan-io](https://github.com/dyptan-io).
+  punktfunk is created by Enrico Bühler ([unom](https://unom.io)).
+  MIT / Apache-2.0.
 
 funding:
   github: [dyptan-io]
