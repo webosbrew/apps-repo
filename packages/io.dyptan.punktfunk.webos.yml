@@ -25,3 +25,6 @@ description: |
 
 funding:
   github: [dyptan-io]
+
+requirements:
+  webosRelease: '>=5'
