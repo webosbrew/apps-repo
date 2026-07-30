@@ -57,8 +57,9 @@ def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, 
 
     def package_item(p_info: PackageInfo, in_apps_dir: bool, is_details: bool) -> PackageInfo:
         package = {k: p_info[k] for k in MANIFEST_KEYS if k in p_info}
-        package['shortDescription'] = p_info['manifest'].get(
-            'appDescription', None)
+        # Prefer the manifest's appDescription, fall back to the package's shortDescription.
+        package['shortDescription'] = p_info['manifest'].get('appDescription') or p_info.get(
+            'shortDescription')
         if is_details:
             package['fullDescriptionUrl'] = f'../full_description.html'
         elif in_apps_dir:

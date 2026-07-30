@@ -29,7 +29,7 @@
             <div class="carousel-item{% if loop.first %} active{% endif %}">
                 <div class="card border-0 rounded-4 overflow-hidden hero-banner">
                     <div class="card-body p-4 p-md-5">
-                        <div class="row align-items-center g-4 flex-column flex-sm-row">
+                        <div class="row align-items-center g-4 flex-column flex-sm-row flex-grow-1">
                             <div class="col-auto">
                                 <img src="{{ package.iconUri }}" width="104" height="104" class="rounded-4"
                                      alt="{{ package.title }}">
@@ -37,11 +37,14 @@
                             <div class="col">
                                 <div class="text-uppercase small fw-semibold text-primary mb-1" style="letter-spacing:.1em">Featured</div>
                                 <h2 class="h3 mb-1 text-white">{{ package.title }}</h2>
-                                {% if package.manifest.appDescription %}
-                                <p class="mb-3" style="color:rgba(255,255,255,.75)">{{ package.manifest.appDescription }}</p>
+                                {% set short = package.manifest.appDescription or package.shortDescription %}
+                                {% if short %}
+                                <p class="mb-0" style="color:rgba(255,255,255,.75)">{{ short }}</p>
                                 {% endif %}
-                                <a href="{{ SITEURL }}/apps/{{ package.id }}" class="btn btn-primary px-4">View app</a>
                             </div>
+                        </div>
+                        <div class="text-center text-sm-end pt-3">
+                            <a href="{{ SITEURL }}/apps/{{ package.id }}" class="btn btn-primary">View app</a>
                         </div>
                     </div>
                 </div>

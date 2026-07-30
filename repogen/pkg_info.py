@@ -60,6 +60,7 @@ class PackageInfo(TypedDict):
     manifestUrlBeta: NotRequired[str]
     category: str
     description: str
+    shortDescription: NotRequired[str]
     detailIconUri: NotRequired[str]
     funding: NotRequired[dict]
     pool: str
@@ -80,7 +81,7 @@ def load_registry(info_path: Path, offline: bool = False) -> tuple[str, PackageR
     else:
         raise ValueError(f'Unrecognized info format {extension}')
     validator = validators.for_schema('packages/PackageInfo.json')
-    validator.validate(content)
+    validators.validate(validator, content)
     return pkgid, content
 
 
@@ -101,6 +102,8 @@ def from_package_info(pkgid: str, content: PackageRegistry, offline=False) -> Pa
         # Raw markdown source; sanitized after conversion via sanitize_description().
         'description': content.get('description', ''),
     }
+    if 'shortDescription' in content:
+        pkginfo['shortDescription'] = content['shortDescription']
     if 'detailIconUri' in content:
         pkginfo['detailIconUri'] = content['detailIconUri']
     if 'funding' in content:

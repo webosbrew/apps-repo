@@ -15,6 +15,7 @@ from repogen.pkg_manifest import PackageManifest
 from repogen.pkg_registery import PackageRegistry
 
 title = 'Kodi'
+shortDescription = 'Award-winning free and open source home theater/media center software'
 iconUri = 'https://raw.githubusercontent.com/xbmc/xbmc/master/media/icon120x120.png'
 detailIconUri = 'https://raw.githubusercontent.com/xbmc/xbmc/master/media/icon256x256.png'
 category = 'multimedia'
@@ -96,6 +97,7 @@ def load() -> PackageRegistry:
             json.dump(manifest, f)
     return {
         'title': title,
+        'shortDescription': shortDescription,
         'iconUri': iconUri,
         'detailIconUri': detailIconUri,
         'category': category,

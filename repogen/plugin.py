@@ -15,7 +15,7 @@ from repogen.icons import obtain_icon
 log = logging.getLogger(__name__)
 
 # Bump when the cached shape or parse logic changes, to invalidate stale caches.
-_PKGINFO_CACHE_VERSION = 2
+_PKGINFO_CACHE_VERSION = 3
 _PKGINFO_CACHE_DIR = Path(__file__).parent.parent / 'cache'
 
 

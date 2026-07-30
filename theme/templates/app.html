@@ -36,15 +36,20 @@
                 </div>
                 <div class="col">
                     <h1 class="h2 mb-1 text-white">{{ page.title }}</h1>
-                    <div class="text-body-secondary mb-3">{{ info.category|capitalize }} &middot; v{{ m.version }}</div>
+                    {% set short = m.appDescription or info.shortDescription %}
+                    {% if short %}
+                    <div class="text-body-secondary">{{ short }}</div>
+                    {% endif %}
                     {% if info.pool == 'non-free' %}
-                    <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-sm-start mb-3">
+                    <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-sm-start mt-3">
                         <span class="badge text-bg-secondary">Non-free</span>
                     </div>
                     {% endif %}
-                    <a href="{{ m.ipkUrl }}" class="btn btn-primary btn-lg px-4" target="_blank" rel="noopener">
+                </div>
+                <div class="col-auto align-self-sm-end">
+                    <a href="{{ m.ipkUrl }}" class="btn btn-primary" target="_blank" rel="noopener">
                         <i class="bi bi-download me-2"></i>Download IPK
-                        <span class="opacity-75 small ms-1">{{ filesize(m.ipkSize) }}</span>
+                        <span class="badge text-bg-light ms-2">{{ filesize(m.ipkSize) }}</span>
                     </a>
                 </div>
             </div>
@@ -54,12 +59,6 @@
     <div class="app-description">
         {{ page.content }}
     </div>
-
-    {% if page.modified %}
-    <p class="text-body-secondary small mt-4 mb-0">Last updated
-        <time class="relative-time" datetime="{{ page.modified.isoformat() }}"
-              title="{{ page.modified.strftime('%Y/%m/%d %H:%M %Z') }}">{{ page.modified.strftime('%Y/%m/%d') }}</time></p>
-    {% endif %}
 {% endblock %}
 
 {% block scripts %}
@@ -112,6 +111,11 @@
                 <dt class="col-5 fw-normal text-body-secondary">Source</dt>
                 <dd class="col-7 text-truncate"><a href="{{ m.sourceUrl }}" target="_blank" rel="noopener">Repository</a></dd>
                 {% endif %}
+                {% if page.modified %}
+                <dt class="col-5 fw-normal text-body-secondary">Updated</dt>
+                <dd class="col-7"><time class="relative-time" datetime="{{ page.modified.isoformat() }}"
+                    title="{{ page.modified.strftime('%Y/%m/%d %H:%M %Z') }}">{{ page.modified.strftime('%Y/%m/%d') }}</time></dd>
+                {% endif %}
             </dl>
         </div>
     </div>
@@ -126,7 +130,7 @@
                     {% elif m.rootRequired == 'optional' %}Optional
                     {% else %}Not required{% endif %}
                 </dd>
-                {% if req and req.webosRelease %}
+                {% if req and req.webosRelease and not (req.webosRelease.startswith('>=1.') or req.webosRelease.startswith('1.')) %}
                 <dt class="col-5 fw-normal text-body-secondary">webOS</dt>
                 <dd class="col-7">{{ req.webosRelease|replace('>=', '≥ ')|replace('<=', '≤ ') }}</dd>
                 {% endif %}
