@@ -98,9 +98,20 @@ def devserver(c):
 def livereload(c):
     """Serve the site and reload the browser on changes. Stops cleanly on Ctrl-C."""
     from livereload import Server
+    from livereload.handlers import StaticFileHandler
+
+    class CleanUrlStaticFileHandler(StaticFileHandler):
+        """Serve /foo as /foo.html when the extensionless path is missing, matching
+        GitHub Pages' clean URLs so links like /submit resolve in local dev too."""
+
+        def validate_absolute_path(self, root, absolute_path):
+            if not os.path.exists(absolute_path) and os.path.isfile(absolute_path + '.html'):
+                absolute_path += '.html'
+            return super().validate_absolute_path(root, absolute_path)
 
     build(c)
     server = Server()
+    server.SFH = CleanUrlStaticFileHandler
     # Rebuild on any source that affects output. Avoid watching output/, cache/,
     # and content/apps/icons (icons are written during the build) to prevent loops.
     watched_globs = [
