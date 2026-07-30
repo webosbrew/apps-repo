@@ -14,6 +14,43 @@ from repogen.pkg_registery import PackageRequirements, PackageRegistry, parse_ym
 
 locale.setlocale(locale.LC_TIME, '')
 
+# Attributes kept when sanitizing rendered description HTML. 'class' and 'id' are
+# allowed on every tag so markdown-generated heading anchors and code-highlighting
+# spans survive sanitization.
+_DESCRIPTION_ATTRIBUTES = {
+    '*': {'class', 'id'},
+    'a': {'href', 'hreflang', 'title'},
+    'bdo': {'dir'},
+    'blockquote': {'cite'},
+    'col': {'align', 'char', 'charoff', 'span'},
+    'colgroup': {'align', 'char', 'charoff', 'span'},
+    'del': {'cite', 'datetime'},
+    'h1': {'align'},
+    'hr': {'align', 'size', 'width'},
+    'img': {'align', 'alt', 'height', 'src', 'width'},
+    'ins': {'cite', 'datetime'},
+    'ol': {'start'},
+    'p': {'align'},
+    'q': {'cite'},
+    'table': {'align', 'char', 'charoff', 'summary'},
+    'tbody': {'align', 'char', 'charoff'},
+    'td': {'align', 'char', 'charoff', 'colspan', 'headers', 'rowspan'},
+    'tfoot': {'align', 'char', 'charoff'},
+    'th': {'align', 'char', 'charoff', 'colspan', 'headers', 'rowspan', 'scope'},
+    'thead': {'align', 'char', 'charoff'},
+    'tr': {'align', 'char', 'charoff'},
+}
+
+
+def sanitize_description(html: str) -> str:
+    """Sanitize rendered description HTML.
+
+    Run this AFTER markdown conversion, never on the markdown source: an HTML
+    sanitizer escapes markdown control characters (e.g. the '>' of a blockquote),
+    which silently breaks the rendered output.
+    """
+    return nh3.clean(html, attributes=_DESCRIPTION_ATTRIBUTES, link_rel=None)
+
 
 class PackageInfo(TypedDict):
     id: str
@@ -61,28 +98,8 @@ def from_package_info(pkgid: str, content: PackageRegistry, offline=False) -> Pa
         'iconUri': content['iconUri'],
         'manifestUrl': manifest_url,
         'category': content['category'],
-        'description': nh3.clean(content.get('description', ''), attributes={
-            'a': {'href', 'hreflang'},
-            'bdo': {'dir'},
-            'blockquote': {'cite'},
-            'col': {'align', 'char', 'charoff', 'span'},
-            'colgroup': {'align', 'char', 'charoff', 'span'},
-            'del': {'cite', 'datetime'},
-            'h1': {'align'},
-            'hr': {'align', 'size', 'width'},
-            'img': {'align', 'alt', 'height', 'src', 'width'},
-            'ins': {'cite', 'datetime'},
-            'ol': {'start'},
-            'p': {'align'},
-            'q': {'cite'},
-            'table': {'align', 'char', 'charoff', 'summary'},
-            'tbody': {'align', 'char', 'charoff'},
-            'td': {'align', 'char', 'charoff', 'colspan', 'headers', 'rowspan'},
-            'tfoot': {'align', 'char', 'charoff'},
-            'th': {'align', 'char', 'charoff', 'colspan', 'headers', 'rowspan', 'scope'},
-            'thead': {'align', 'char', 'charoff'},
-            'tr': {'align', 'char', 'charoff'}
-        }, link_rel=None),
+        # Raw markdown source; sanitized after conversion via sanitize_description().
+        'description': content.get('description', ''),
     }
     if 'detailIconUri' in content:
         pkginfo['detailIconUri'] = content['detailIconUri']

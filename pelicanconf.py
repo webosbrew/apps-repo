@@ -66,7 +66,7 @@ CACHE_CONTENT = False
 LOAD_CONTENT_CACHE = False
 
 # Home/logo link target and top-nav items, consumed by the theme navbar.
-HOME_URL = 'https://www.webosbrew.org/'
+HOME_URL = '/'
 
 MENUITEMS = (
     ('Apps', '/apps'),

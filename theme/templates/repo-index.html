@@ -3,6 +3,8 @@
 
 {% block title %}{{ page.title|striptags }} | {{ SITENAME }}{% endblock %}
 
+{% block head %}{{ super() }}{% include "site-styles.html" %}{% endblock %}
+
 {# Full-width Google Play–style homepage: no sidebar. #}
 {% block main %}
 <main>
@@ -27,7 +29,7 @@
             <div class="carousel-item{% if loop.first %} active{% endif %}">
                 <div class="card border-0 rounded-4 overflow-hidden hero-banner">
                     <div class="card-body p-4 p-md-5">
-                        <div class="row align-items-start g-4 flex-column flex-sm-row">
+                        <div class="row align-items-center g-4 flex-column flex-sm-row">
                             <div class="col-auto">
                                 <img src="{{ package.iconUri }}" width="104" height="104" class="rounded-4"
                                      alt="{{ package.title }}">
@@ -57,7 +59,7 @@
     <section class="py-3" id="cat-{{ loop.index }}">
         <div class="d-flex align-items-center justify-content-between mb-3">
             <h5 class="mb-0">{{ category.title }}</h5>
-            <a href="{{ SITEURL }}/apps" class="small text-primary text-decoration-none fw-semibold">See all ({{ category.packages|length }})</a>
+            <a href="{{ SITEURL }}/apps?category={{ category.slug }}" class="small text-primary text-decoration-none fw-semibold">See all ({{ category.packages|length }})</a>
         </div>
         <div class="position-relative">
             <div class="app-shelf pb-2">
@@ -88,7 +90,7 @@
         <div class="col-12 col-md-6">
             <div class="card h-100 bg-body-tertiary border">
                 <div class="card-body p-4 d-flex flex-column">
-                    <div class="cta-icon mb-3">
+                    <div class="cta-icon cta-icon-amber mb-3">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2Z"/></svg>
                     </div>
@@ -96,7 +98,7 @@
                     <p class="text-body-secondary small mb-3">Missing an app you'd love on your TV? Suggest it and the
                         community can pick it up.</p>
                     <a href="https://github.com/webosbrew/apps-repo/issues/new/choose"
-                       class="btn btn-outline-primary mt-auto align-self-start">Suggest an idea</a>
+                       class="btn btn-outline-warning mt-auto align-self-start">Suggest an idea</a>
                 </div>
             </div>
         </div>
@@ -120,3 +122,29 @@
 
 </main>
 {% endblock main %}
+
+{% block scripts %}
+<script>
+    // Shrink the right-edge fade as a shelf nears its end; hide it when there's no overflow.
+    (function () {
+        function update(shelf) {
+            var wrap = shelf.parentElement;
+            var end = wrap.querySelector('.shelf-fade');
+            var start = wrap.querySelector('.shelf-fade-start');
+            var max = shelf.scrollWidth - shelf.clientWidth;
+            if (end) end.style.opacity = max <= 1 ? 0 : Math.max(0, Math.min(1, (max - shelf.scrollLeft) / 48));
+            if (start) start.style.opacity = max <= 1 ? 0 : Math.max(0, Math.min(1, shelf.scrollLeft / 48));
+        }
+        function updateAll() { document.querySelectorAll('.app-shelf').forEach(update); }
+        function init() {
+            document.querySelectorAll('.app-shelf').forEach(function (shelf) {
+                update(shelf);
+                shelf.addEventListener('scroll', function () { update(shelf); }, { passive: true });
+            });
+        }
+        window.addEventListener('resize', updateAll);
+        if (document.readyState !== 'loading') init();
+        else document.addEventListener('DOMContentLoaded', init);
+    })();
+</script>
+{% endblock scripts %}

@@ -90,33 +90,29 @@ def preview(c):
 
 @task
 def devserver(c):
-    """Build local version of site"""
-    pelican_run('-lr -s {settings_base} -p {port} -b {host}'.format(**CONFIG))
+    """Serve the site and live-reload the browser on changes (see `livereload`)."""
+    livereload(c)
 
 
 @task
 def livereload(c):
-    """Automatically reload browser tab upon file modification."""
+    """Serve the site and reload the browser on changes. Stops cleanly on Ctrl-C."""
     from livereload import Server
 
-    rebuild(c)
+    build(c)
     server = Server()
-    theme_path = SETTINGS['THEME']
+    # Rebuild on any source that affects output. Avoid watching output/, cache/,
+    # and content/apps/icons (icons are written during the build) to prevent loops.
     watched_globs = [
-        CONFIG['settings_base'],
-        '{}/templates/**/*.html'.format(theme_path),
+        CONFIG['settings_base'],           # pelicanconf.py
+        'theme/templates/**/*.html',       # local template overrides
+        'theme/styles/**/*.scss',          # local styles
+        'content/**/*.md',
+        'content/**/*.html',
+        '../packages/*.yml',               # package definitions
+        '../packages/*.py',
+        'repogen/**/*.py',                 # plugin / readers
     ]
-
-    content_file_extensions = ['.md', '.rst']
-    for extension in content_file_extensions:
-        content_glob = '{0}/**/*{1}'.format(SETTINGS['PATH'], extension)
-        watched_globs.append(content_glob)
-
-    static_file_extensions = ['.css', '.scss', '.js']
-    for extension in static_file_extensions:
-        static_file_glob = '{0}/static/**/*{1}'.format(theme_path, extension)
-        watched_globs.append(static_file_glob)
-
     for glob in watched_globs:
         server.watch(glob, lambda: build(c))
     server.serve(host=CONFIG['host'], port=CONFIG['port'], root=CONFIG['deploy_path'])

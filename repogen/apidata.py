@@ -100,7 +100,7 @@ def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, 
                 json.dump(package_item(item, True, True), f)
             desc_html = api_app_dir.joinpath('full_description.html')
             with ensure_open(desc_html, 'w', encoding='utf-8') as f:
-                f.write(markdown.convert(item['description']))
+                f.write(pkg_info.sanitize_description(markdown.convert(item['description'])))
         save_page(index + 1, chunk)
     print('Generated json data for %d packages.' % len(packages))
 
