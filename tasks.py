@@ -26,8 +26,9 @@ CONFIG = {
     # GitHub Pages configuration
     'github_pages_branch': 'gh-pages',
     'commit_message': "'Publish site on {}'".format(datetime.date.today().isoformat()),
-    # Host and port for `serve`
-    'host': 'localhost',
+    # Host and port for `serve` / `devserver`. Default localhost-only; set
+    # HOST=0.0.0.0 (e.g. in the run config env) to reach it from the LAN.
+    'host': os.getenv('HOST', 'localhost'),
     'port': int(os.getenv('PORT', '8000')),
 }
 
@@ -90,7 +91,7 @@ def preview(c):
 @task
 def devserver(c):
     """Build local version of site"""
-    pelican_run('-lr -s {settings_base} -p {port}'.format(**CONFIG))
+    pelican_run('-lr -s {settings_base} -p {port} -b {host}'.format(**CONFIG))
 
 
 @task

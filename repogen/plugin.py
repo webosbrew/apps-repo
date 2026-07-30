@@ -1,5 +1,7 @@
+import json
 import logging
 import os
+from datetime import datetime
 from pathlib import Path
 
 from markdown import Markdown
@@ -14,6 +16,10 @@ from repogen.icons import obtain_icon
 
 log = logging.getLogger(__name__)
 
+# Bump when the cached shape or parse logic changes, to invalidate stale caches.
+_PKGINFO_CACHE_VERSION = 1
+_PKGINFO_CACHE_DIR = Path(__file__).parent.parent / 'cache'
+
 
 class PackageInfoReader(BaseReader):
     enabled = True
@@ -25,9 +31,10 @@ class PackageInfoReader(BaseReader):
         self._md = Markdown(**self.settings['MARKDOWN'])
 
     def read(self, filename: str):
-        info = pkg_info.from_package_info_file(Path(filename), offline='CI' not in os.environ)
-        info['iconUri'] = obtain_icon(info['id'], info['iconUri'], self.settings['SITEURL'])
-        info['manifest']['iconUri'] = info['iconUri']
+        offline = 'CI' not in os.environ
+        siteurl = self.settings['SITEURL']
+        info, content = self._read_package(Path(filename), offline, siteurl)
+
         metadata = {
             'title': info['title'],
             'override_save_as': f'apps/{info["id"]}/index.html',
@@ -42,7 +49,45 @@ class PackageInfoReader(BaseReader):
         if 'PACKAGES' not in self.settings:
             self.settings['PACKAGES'] = {}
         self.settings['PACKAGES'][info['id']] = info
-        return self._md.convert(info['description']), metadata
+        return content, metadata
+
+    def _read_package(self, path: Path, offline: bool, siteurl: str) -> tuple[dict, str]:
+        """Return (info, rendered_description_html), reusing a disk cache when possible.
+
+        Parsing a package (manifest read, sanitize, markdown, icon fetch) runs for
+        every package on every regen. Offline (local dev) we cache the result keyed
+        on the source file's mtime, so unchanged packages skip the work. CI always
+        parses fresh, since offline is False there.
+        """
+        mtime = path.stat().st_mtime
+        cache_file = _PKGINFO_CACHE_DIR / f'pkginfo_{path.stem}.json'
+        if offline and cache_file.exists():
+            try:
+                with cache_file.open(encoding='utf-8') as f:
+                    cached = json.load(f)
+                if (cached.get('version') == _PKGINFO_CACHE_VERSION
+                        and cached.get('mtime') == mtime and cached.get('siteurl') == siteurl):
+                    info = cached['info']
+                    info['lastmodified'] = datetime.fromisoformat(info['lastmodified'])
+                    return info, cached['content']
+            except (OSError, ValueError, KeyError):
+                pass  # fall through and reparse on any cache problem
+
+        info = pkg_info.from_package_info_file(path, offline=offline)
+        info['iconUri'] = obtain_icon(info['id'], info['iconUri'], siteurl)
+        info['manifest']['iconUri'] = info['iconUri']
+        content = self._md.convert(info['description'])
+
+        serialized = dict(info)
+        serialized['lastmodified'] = info['lastmodified'].isoformat()
+        try:
+            _PKGINFO_CACHE_DIR.mkdir(exist_ok=True)
+            with cache_file.open('w', encoding='utf-8') as f:
+                json.dump({'version': _PKGINFO_CACHE_VERSION, 'mtime': mtime,
+                           'siteurl': siteurl, 'info': serialized, 'content': content}, f)
+        except OSError:
+            pass
+        return info, content
 
 
 def readers_init(readers: Readers):

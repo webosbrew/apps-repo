@@ -65,9 +65,12 @@ AUTHOR_FEED_RSS = None
 CACHE_CONTENT = False
 LOAD_CONTENT_CACHE = False
 
+# Home/logo link target and top-nav items, consumed by the theme navbar.
+HOME_URL = 'https://www.webosbrew.org/'
+
 MENUITEMS = (
-    ('Applications', '/apps'),
-    ('Submit', '/submit'),
+    ('Apps', '/apps'),
+    ('Develop', 'https://www.webosbrew.org/develop'),
 )
 
 LINKS = (
@@ -76,6 +79,23 @@ LINKS = (
     ('RootMy.TV', 'https://rootmy.tv/'),
     ('openlgtv', 'https://openlgtv.github.io/'),
 )
+
+# Footer columns, consumed by the theme footer.
+FOOTER_SECTIONS = [
+    {'title': 'Guides', 'links': [
+        {'text': 'Rooting', 'href': 'https://www.webosbrew.org/rooting'},
+        {'text': 'Dev Mode', 'href': 'https://www.webosbrew.org/devmode'},
+    ]},
+    {'title': 'Resources', 'links': [
+        {'text': 'Develop', 'href': 'https://www.webosbrew.org/develop'},
+        {'text': 'Submit an App', 'href': '/submit'},
+    ]},
+    {'title': 'Links', 'links': [
+        {'text': 'webosbrew', 'href': 'https://github.com/webosbrew/', 'icon': 'bi-github'},
+        {'text': 'OpenLGTV', 'href': 'https://github.com/OpenLGTV', 'icon': 'bi-github'},
+        {'text': 'Discord', 'href': 'https://discord.gg/xWqRVEm', 'icon': 'bi-discord'},
+    ]},
+]
 
 INDEX_APP_CATEGORIES = [
     ('multimedia', 'Multimedia'),
