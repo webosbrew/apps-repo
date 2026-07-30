@@ -3,6 +3,8 @@ iconUri: https://github.com/Informatic/webos-vncserver/raw/main/assets/largeIcon
 manifestUrl: https://github.com/Informatic/webos-vncserver/releases/latest/download/org.webosbrew.vncserver.manifest.json
 category: utility
 pool: main
+requirements:
+  webosRelease: '>=4.0'
 description: |
   Minimal webOS VNC server. Supports mouse and keyboard/remote control.
   **Only captures UI layers!**
