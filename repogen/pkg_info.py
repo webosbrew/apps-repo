@@ -1,6 +1,7 @@
 import locale
 import sys
 from datetime import datetime
+from itertools import repeat
 from pathlib import Path
 from typing import TypedDict, List, NotRequired
 
@@ -32,13 +33,13 @@ class PackageInfo(TypedDict):
     lastmodified_str: str
 
 
-def load_registry(info_path: Path) -> tuple[str, PackageRegistry]:
+def load_registry(info_path: Path, offline: bool = False) -> tuple[str, PackageRegistry]:
     extension = info_path.suffix
     content: PackageRegistry
     if extension == '.yml':
         pkgid, content = parse_yml_package(info_path)
     elif extension == '.py':
-        pkgid, content = load_py_package(info_path)
+        pkgid, content = load_py_package(info_path, offline)
     else:
         raise ValueError(f'Unrecognized info format {extension}')
     validator = validators.for_schema('packages/PackageInfo.json')
@@ -47,7 +48,7 @@ def load_registry(info_path: Path) -> tuple[str, PackageRegistry]:
 
 
 def from_package_info_file(info_path: Path, offline=False) -> PackageInfo:
-    pkgid, content = load_registry(info_path)
+    pkgid, content = load_registry(info_path, offline)
     return from_package_info(pkgid, content, offline)
 
 
@@ -108,7 +109,7 @@ def list_packages(pkgdir: Path, packages: List[str] | None = None, offline: bool
     paths: List[Path] = [f for f in pkgdir.iterdir() if f.is_file()]
 
     def map_package_info(p: Path) -> PackageInfo | None:
-        pkgid, content = load_registry(p)
+        pkgid, content = load_registry(p, offline)
         if packages and pkgid not in packages:
             return None
         try:
@@ -117,7 +118,8 @@ def list_packages(pkgdir: Path, packages: List[str] | None = None, offline: bool
             print(f'Error loading package info file {p.name}: {e}', file=sys.stderr)
             return None
 
-    return sorted(filter(lambda x: x, map(map_package_info, paths)), key=lambda x: x['title'])
+    pkgs = sorted(filter(lambda x: x, map(map_package_info, paths)), key=lambda x: x['title'])
+    return pkgs * 20
 
 
 def valid_pool(value: str) -> str:

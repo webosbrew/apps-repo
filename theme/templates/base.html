@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="{% block html_lang %}{{ DEFAULT_LANG }}{% endblock html_lang %}">
+<head>
+    {% block head %}
+    <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="generator" content="Pelican"/>
+    {# Unified look with www.webosbrew.org (website-ng): Bootstrap 5.3.7 + bootstrap-icons.
+       Pinned to the versions website-ng uses. TODO: vendor these locally instead of CDN. #}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root { --bs-primary: #cf0652; --bs-primary-rgb: 207, 6, 82; --navbar-height: 65px; }
+        .btn-primary { --bs-btn-bg: #cf0652; --bs-btn-border-color: #cf0652;
+            --bs-btn-hover-bg: #b0053f; --bs-btn-hover-border-color: #b0053f;
+            --bs-btn-active-bg: #b0053f; --bs-btn-active-border-color: #b0053f; }
+        .btn-outline-primary { --bs-btn-color: #ef2f7e; --bs-btn-border-color: #cf0652;
+            --bs-btn-hover-bg: #cf0652; --bs-btn-hover-border-color: #cf0652; --bs-btn-hover-color: #fff;
+            --bs-btn-active-bg: #cf0652; --bs-btn-active-border-color: #cf0652; }
+        .text-primary { color: #ef2f7e !important; }
+        a { color: #cf0652; }
+        .navbar .logo { height: 32px; width: 32px; }
+        .pagination {
+            --bs-pagination-color: #cf0652;
+            --bs-pagination-hover-color: #b0053f;
+            --bs-pagination-focus-color: #b0053f;
+            --bs-pagination-focus-box-shadow: 0 0 0 .25rem rgba(207, 6, 82, .25);
+            --bs-pagination-active-bg: #cf0652;
+            --bs-pagination-active-border-color: #cf0652;
+        }
+
+        /* Google Play–style tiles: shared by home shelves (horizontal) and /apps grid */
+        .app-shelf { display: flex; gap: 1rem; overflow-x: auto;
+            scrollbar-width: none; scroll-snap-type: x proximity; }
+        .app-shelf::-webkit-scrollbar { display: none; }
+        .app-shelf > * { scroll-snap-align: start; }
+        .app-grid { display: grid; gap: 1rem; justify-items: center;
+            grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+        .shelf-card { flex: 0 0 auto; width: 112px; text-align: center; }
+        .shelf-thumb { position: relative; width: 96px; height: 96px; margin: 0 auto .5rem; }
+        .shelf-icon { width: 96px; height: 96px; object-fit: cover; background: var(--bs-tertiary-bg); }
+        .shelf-fade, .shelf-fade-start { position: absolute; top: 0; bottom: .5rem; width: 3rem;
+            pointer-events: none; transition: opacity .15s ease; }
+        .shelf-fade { right: 0; background: linear-gradient(90deg, transparent, var(--bs-body-bg)); }
+        .shelf-fade-start { left: 0; opacity: 0;
+            background: linear-gradient(90deg, var(--bs-body-bg), transparent); }
+        .hero-banner { background:
+            radial-gradient(120% 140% at 85% -20%, rgba(207,6,82,.35), transparent 60%),
+            linear-gradient(120deg, #1b1420, #141419); }
+        /* Featured carousel: uniform slide height, dots clear of content, solid round dots */
+        #featured-carousel .carousel-item .card { aspect-ratio: 4 / 3; }
+        @media (min-width: 576px) {
+            #featured-carousel .carousel-item .card { aspect-ratio: 16 / 9; }
+        }
+        @media (min-width: 768px) {
+            #featured-carousel .carousel-item .card { aspect-ratio: 2 / 1; }
+        }
+        @media (min-width: 992px) {
+            #featured-carousel .carousel-item .card { aspect-ratio: 21 / 9; }
+        }
+        @media (min-width: 1200px) {
+            #featured-carousel .carousel-item .card { aspect-ratio: 3 / 1; }
+        }
+        #featured-carousel .carousel-item .card-body { padding-bottom: 2.75rem; }
+        #featured-carousel .carousel-indicators { margin-bottom: .5rem; }
+        #featured-carousel .carousel-indicators [data-bs-target] {
+            width: 8px; height: 8px; border-radius: 50%; border: 0;
+            margin-left: 5px; margin-right: 5px; background-color: #fff; opacity: .5; }
+        #featured-carousel .carousel-indicators .active { opacity: 1; }
+        .cta-icon { width: 48px; height: 48px; display: grid; place-items: center;
+            background: rgba(207,6,82,.15); color: #ef2f7e; border-radius: 12px; }
+    </style>
+    {% endblock head %}
+</head>
+
+<body data-bs-theme="dark">
+<nav class="navbar navbar-expand-md bg-body-tertiary sticky-top border-bottom">
+    <div class="container">
+        <a class="navbar-brand d-md-none" href="https://www.webosbrew.org/">
+            <img class="bi" width="32" height="32" src="{{ SITEURL }}/theme/images/icon80.png" alt="webOS Homebrew"/>
+            webOS Homebrew
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse"
+                aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item d-none d-md-inline-block"><a class="nav-link" href="https://www.webosbrew.org/">
+                    <img class="logo" width="32" height="32" src="{{ SITEURL }}/theme/images/icon80.png" alt="webOS Homebrew"/>
+                </a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ SITEURL }}/apps">Apps</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://www.webosbrew.org/develop">Develop</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% block main %}
+<main class="container py-4">
+    <div class="row">
+        <div class="col-lg-9">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <aside class="col-lg-3">
+            {% block sidebar %}
+            {% include "sidebar.html" %}
+            {% endblock %}
+        </aside>
+    </div>
+</main>
+{% endblock main %}
+
+<footer class="py-5 bg-body-tertiary border-top mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md">
+                <img class="logo" width="32" height="32" src="{{ SITEURL }}/theme/images/icon80.png" alt="webOS Homebrew">
+                <small class="d-block mb-3 text-body-secondary" translate="no">&copy; 2020-{{ COPYRIGHT_YEAR }}</small>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Guides</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="link-secondary text-decoration-none" href="https://www.webosbrew.org/rooting">Rooting</a></li>
+                    <li><a class="link-secondary text-decoration-none" href="https://www.webosbrew.org/devmode">Dev Mode</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Resources</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="link-secondary text-decoration-none" href="https://www.webosbrew.org/develop">Develop</a></li>
+                    <li><a class="link-secondary text-decoration-none" href="{{ SITEURL }}/submit">Submit an App</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Links</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="link-secondary text-decoration-none" href="https://github.com/webosbrew/">
+                        <i class="bi bi-github me-2"></i>webosbrew</a></li>
+                    <li><a class="link-secondary text-decoration-none" href="https://github.com/OpenLGTV">
+                        <i class="bi bi-github me-2"></i>OpenLGTV</a></li>
+                    <li><a class="link-secondary text-decoration-none" href="https://discord.gg/xWqRVEm">
+                        <i class="bi bi-discord me-2"></i>Discord</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+<script>
+    // Shrink the right-edge fade as a shelf nears its end; hide it when there's no overflow.
+    (function () {
+        function update(shelf) {
+            var wrap = shelf.parentElement;
+            var end = wrap.querySelector('.shelf-fade');
+            var start = wrap.querySelector('.shelf-fade-start');
+            var max = shelf.scrollWidth - shelf.clientWidth;
+            if (end) end.style.opacity = max <= 1 ? 0 : Math.max(0, Math.min(1, (max - shelf.scrollLeft) / 48));
+            if (start) start.style.opacity = max <= 1 ? 0 : Math.max(0, Math.min(1, shelf.scrollLeft / 48));
+        }
+        function updateAll() { document.querySelectorAll('.app-shelf').forEach(update); }
+        function init() {
+            document.querySelectorAll('.app-shelf').forEach(function (shelf) {
+                update(shelf);
+                shelf.addEventListener('scroll', function () { update(shelf); }, { passive: true });
+            });
+        }
+        window.addEventListener('resize', updateAll);
+        if (document.readyState !== 'loading') init();
+        else document.addEventListener('DOMContentLoaded', init);
+    })();
+</script>
+</body>
+</html>

@@ -76,12 +76,17 @@ def add_app_indices(generator: PagesGenerator):
             })
         return entries
 
+    packages_by_id = generator.settings['PACKAGES']
+    featured = [packages_by_id[pkgid] for pkgid in generator.settings.get('FEATURED_APPS', [])
+                if pkgid in packages_by_id]
+
     metadata = {
         'title': 'Apps Repository',
         'override_save_as': 'index.html',
         'template': 'repo-index',
         'status': 'hidden',
         'categories': get_category_entries(),
+        'featured': featured,
     }
     generator.hidden_pages.append(Page('', metadata=metadata, settings=generator.settings,
                                        source_path=f'repo-index.html', context=generator.context))

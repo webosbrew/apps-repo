@@ -8,8 +8,7 @@ from tempfile import gettempdir
 from typing import List
 
 import requests
-from lxml import etree
-from lxml.etree import Element
+import re
 
 from repogen import ipk_file, cache
 from repogen.pkg_manifest import PackageManifest
@@ -61,11 +60,10 @@ visualizations. Once installed, your computer or HTPC will become a fully functi
 
 
 def load() -> PackageRegistry:
+    base_url = 'https://mirrors.kodi.tv/releases/webos/'
     with requests.get('https://mirrors.kodi.tv/releases/webos/') as resp:
-        doc: etree.ElementBase = etree.parse(StringIO(resp.text), parser=etree.HTMLParser())
-        anchors: List[Element] = doc.xpath('//table[@id="list"]/tbody/tr/td[1]/a[@href!="../"]')
-        urls: List[str] = list(map(lambda a: urllib.parse.urljoin(resp.url, a.attrib['href']), anchors))
-    ipk_url = urls[0]
+        urls: List[str] = re.findall(r'<a href="([^"]+\.ipk)"', resp.text)
+    ipk_url = f'{base_url}{urls[0]}'
     url_hash = hashlib.sha256(ipk_url.encode(encoding='utf-8')).hexdigest()
     manifest_name = f'manifest_org.xbmc.kodi_snapshot_{url_hash[:10]}.json'
     manifest_path = cache.path(manifest_name)

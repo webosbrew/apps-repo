@@ -85,6 +85,14 @@ INDEX_APP_CATEGORIES = [
     ('utility', 'Utilities'),
 ]
 
+# App IDs featured on the homepage, in display order. The blurb for each is
+# taken from the package's manifest (appDescription).
+FEATURED_APPS = [
+    'org.webosbrew.hbchannel',
+    'org.xbmc.kodi',
+    'com.limelight.webos',
+]
+
 # Following packages will have their IPKs downloaded and hosted on the site
 HOST_PACKAGES: set[str] = {
     'org.webosbrew.hbchannel',

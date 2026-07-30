@@ -5,26 +5,32 @@
 
 {% block head %}
   {{ super() }}
-  {% assets filters="pyscss,cssmin", output="styles/apps.css", "apps.scss" %}
-  <link href="{{ SITEURL }}/{{ ASSET_URL }}" type="text/css" rel="stylesheet">
-  {% endassets %}
-
   {% import 'translations.html' as translations with context %}
   {% if translations.entry_hreflang(page) %}
     {{ translations.entry_hreflang(page) }}
   {% endif %}
 {% endblock %}
 
-{% block content %}
-    <h1>{{ page.title }}</h1>
+{# Full-width grid of the same Google Play tile used on the home shelves — no sidebar. #}
+{% block main %}
+<main class="container py-4">
+    <h1 class="h3 mb-4">All apps</h1>
 
-    <ul class="apps-list">
+    <div class="app-grid">
     {% for package in page.metadata.packages %}
-        {% include "app-item.html" %}
+        <a href="{{ SITEURL }}/apps/{{ package.id }}" class="shelf-card text-decoration-none text-body">
+            <div class="shelf-thumb">
+                <img src="{{ package.iconUri }}" class="rounded-4 shelf-icon" alt="{{ package.title }}">
+                {% if package.pool == 'non-free' %}
+                <span class="badge text-bg-primary position-absolute bottom-0 end-0" style="font-size:.6rem">Non-free</span>
+                {% endif %}
+            </div>
+            <div class="fw-medium text-truncate">{{ package.title }}</div>
+        </a>
     {% endfor %}
-    </ul>
+    </div>
 
     {% set pagination = page.metadata.pagination %}
     {% include "pagination.html" %}
-
-{% endblock %}
+</main>
+{% endblock main %}

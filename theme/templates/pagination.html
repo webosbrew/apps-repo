@@ -1,0 +1,33 @@
+{% if pagination and pagination.entries %}
+<nav aria-label="App pages" class="mt-4">
+    <ul class="pagination justify-content-center flex-wrap">
+        {% if pagination.prev %}
+        {% if pagination.prev.disabled %}
+        <li class="page-item disabled"><span class="page-link"><i class="bi bi-chevron-left"></i></span></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="{{ pagination.prev.href }}" aria-label="Previous">
+            <i class="bi bi-chevron-left"></i></a></li>
+        {% endif %}
+        {% endif %}
+
+        {% for entry in pagination.entries %}
+        {% if entry.gap %}
+        <li class="page-item disabled"><span class="page-link">&hellip;</span></li>
+        {% elif entry.current %}
+        <li class="page-item active" aria-current="page"><span class="page-link">{{ entry.page }}</span></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="{{ entry.href }}">{{ entry.page }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if pagination.next %}
+        {% if pagination.next.disabled %}
+        <li class="page-item disabled"><span class="page-link"><i class="bi bi-chevron-right"></i></span></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="{{ pagination.next.href }}" aria-label="Next">
+            <i class="bi bi-chevron-right"></i></a></li>
+        {% endif %}
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
