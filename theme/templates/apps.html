@@ -49,10 +49,7 @@
         </aside>
 
         <div class="col-lg-9">
-            <div class="d-flex align-items-baseline justify-content-between mb-4">
-                <h1 class="h3 mb-0">All apps</h1>
-                <span class="text-body-secondary small"><span id="apps-count">{{ page.metadata.packages|length }}</span> apps</span>
-            </div>
+            <h1 class="h3 mb-4">All apps</h1>
 
             <div class="app-grid" id="apps-grid">
             {% for package in page.metadata.packages %}
@@ -83,7 +80,6 @@
         var search = document.getElementById('app-search');
         var catButtons = Array.prototype.slice.call(document.querySelectorAll('#cat-filter [data-filter-cat]'));
         var rootRadios = Array.prototype.slice.call(document.querySelectorAll('input[name="root-filter"]'));
-        var count = document.getElementById('apps-count');
         var empty = document.getElementById('apps-empty');
         var cat = 'all';
 
@@ -102,7 +98,6 @@
                 c.style.display = ok ? '' : 'none';
                 if (ok) shown++;
             });
-            count.textContent = shown;
             empty.style.display = shown ? 'none' : '';
         }
 
