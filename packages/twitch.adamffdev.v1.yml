@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/adamff-dev/twitch-adfree-webos/main/a
 manifestUrl: https://github.com/adamff-dev/twitch-adfree-webos/releases/latest/download/twitch.adamffdev.v1.manifest.json
 category: internet
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 description: |
   Modded Twitch application with extended features
 

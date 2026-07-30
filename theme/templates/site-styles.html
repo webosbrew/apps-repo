@@ -1,0 +1,52 @@
+{# Site-specific presentation for the apps catalog (home shelves, /apps grid,
+   featured carousel, app detail header). Kept in this repo so the theme package
+   only carries styling common to all webosbrew sites. #}
+<style>
+    /* Google Play–style tiles: shared by home shelves (horizontal) and /apps grid */
+    .app-shelf { display: flex; gap: 1rem; overflow-x: auto;
+        scrollbar-width: none; scroll-snap-type: x proximity; }
+    .app-shelf::-webkit-scrollbar { display: none; }
+    .app-shelf > * { scroll-snap-align: start; }
+    .app-grid { display: grid; gap: 1rem; justify-items: center;
+        grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+    .shelf-card { flex: 0 0 auto; width: 112px; text-align: center; }
+    .shelf-thumb { position: relative; width: 96px; height: 96px; margin: 0 auto .5rem; }
+    .shelf-icon { width: 96px; height: 96px; object-fit: cover; background: var(--bs-tertiary-bg); }
+    .shelf-fade, .shelf-fade-start { position: absolute; top: 0; bottom: .5rem; width: 3rem;
+        pointer-events: none; transition: opacity .15s ease; }
+    .shelf-fade { right: 0; background: linear-gradient(90deg, transparent, var(--bs-body-bg)); }
+    .shelf-fade-start { left: 0; opacity: 0;
+        background: linear-gradient(90deg, var(--bs-body-bg), transparent); }
+    .hero-banner { background:
+        radial-gradient(120% 140% at 85% -20%, rgba(207,6,82,.35), transparent 60%),
+        linear-gradient(120deg, #1b1420, #141419); }
+    /* Featured carousel: height is fixed by aspect ratio (changes only with the
+       viewport, never with slide content); content is centered inside it. */
+    #featured-carousel .carousel-item .card { aspect-ratio: 4 / 3; }
+    @media (min-width: 576px) { #featured-carousel .carousel-item .card { aspect-ratio: 5 / 2; } }
+    @media (min-width: 768px) { #featured-carousel .carousel-item .card { aspect-ratio: 3 / 1; } }
+    @media (min-width: 992px) { #featured-carousel .carousel-item .card { aspect-ratio: 7 / 2; } }
+    @media (min-width: 1200px) { #featured-carousel .carousel-item .card { aspect-ratio: 4 / 1; } }
+    #featured-carousel .carousel-item .card-body {
+        display: flex; flex-direction: column; justify-content: center; padding-bottom: 2.25rem; }
+    #featured-carousel .carousel-indicators { margin: 0 auto .9rem; }
+    #featured-carousel .carousel-indicators [data-bs-target] {
+        width: 10px; height: 10px; border-radius: 50%; border: 0;
+        margin: 0 5px; background-color: #fff; opacity: .4; transition: opacity .2s ease; }
+    #featured-carousel .carousel-indicators .active { opacity: 1; }
+    .cta-icon { width: 48px; height: 48px; display: grid; place-items: center;
+        background: rgba(207,6,82,.15); color: #ef2f7e; border-radius: 12px; }
+    /* Amber accent (website-ng yellow-500) for the "Have an app idea?" card. */
+    .cta-icon-amber { background: rgba(255,193,7,.15); color: #ffc107; }
+    /* App description heading permalinks: hide the pilcrow, reveal a link icon on hover. */
+    .app-description .headerlink {
+        visibility: hidden; margin-left: .4rem; font-size: 0; text-decoration: none;
+        color: var(--bs-secondary-color); }
+    .app-description .headerlink::before {
+        font-family: "bootstrap-icons"; content: "\f470"; font-size: 1rem; }
+    .app-description .headerlink:hover { color: var(--bs-primary); }
+    .app-description :is(h1, h2, h3, h4, h5, h6):hover > .headerlink { visibility: visible; }
+    .app-description blockquote {
+        border-left: .25rem solid var(--bs-border-color); padding-left: 1rem;
+        color: var(--bs-secondary-color); }
+</style>

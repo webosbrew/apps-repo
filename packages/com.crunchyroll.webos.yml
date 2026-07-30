@@ -4,6 +4,8 @@ detailIconUri: https://raw.githubusercontent.com/mateussouzaweb/crunchyroll-webo
 manifestUrl: https://github.com/mateussouzaweb/crunchyroll-webos/releases/latest/download/webosbrew.manifest.json
 category: multimedia
 pool: main
+requirements:
+  webosRelease: '>=4.0'
 description: |
   # Crunchyroll - WebOS TV App
 

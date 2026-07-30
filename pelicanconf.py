@@ -65,9 +65,12 @@ AUTHOR_FEED_RSS = None
 CACHE_CONTENT = False
 LOAD_CONTENT_CACHE = False
 
+# Home/logo link target and top-nav items, consumed by the theme navbar.
+HOME_URL = '/'
+
 MENUITEMS = (
-    ('Applications', '/apps'),
-    ('Submit', '/submit'),
+    ('Apps', '/apps'),
+    ('Develop', 'https://www.webosbrew.org/develop'),
 )
 
 LINKS = (
@@ -77,12 +80,37 @@ LINKS = (
     ('openlgtv', 'https://openlgtv.github.io/'),
 )
 
+# Footer columns, consumed by the theme footer.
+FOOTER_SECTIONS = [
+    {'title': 'Guides', 'links': [
+        {'text': 'Rooting', 'href': 'https://www.webosbrew.org/rooting'},
+        {'text': 'Dev Mode', 'href': 'https://www.webosbrew.org/devmode'},
+    ]},
+    {'title': 'Resources', 'links': [
+        {'text': 'Develop', 'href': 'https://www.webosbrew.org/develop'},
+        {'text': 'Submit an App', 'href': '/submit'},
+    ]},
+    {'title': 'Links', 'links': [
+        {'text': 'webosbrew', 'href': 'https://github.com/webosbrew/', 'icon': 'bi-github'},
+        {'text': 'OpenLGTV', 'href': 'https://github.com/OpenLGTV', 'icon': 'bi-github'},
+        {'text': 'Discord', 'href': 'https://discord.gg/xWqRVEm', 'icon': 'bi-discord'},
+    ]},
+]
+
 INDEX_APP_CATEGORIES = [
     ('multimedia', 'Multimedia'),
     ('game', 'Games'),
     ('amblight', 'Ambient Light'),
     ('screensaver', 'Screensavers'),
     ('utility', 'Utilities'),
+]
+
+# App IDs featured on the homepage, in display order. The blurb for each is
+# taken from the package's manifest (appDescription).
+FEATURED_APPS = [
+    'org.webosbrew.hbchannel',
+    'org.xbmc.kodi',
+    'com.limelight.webos',
 ]
 
 # Following packages will have their IPKs downloaded and hosted on the site

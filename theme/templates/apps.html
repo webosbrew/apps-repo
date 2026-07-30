@@ -5,26 +5,124 @@
 
 {% block head %}
   {{ super() }}
-  {% assets filters="pyscss,cssmin", output="styles/apps.css", "apps.scss" %}
-  <link href="{{ SITEURL }}/{{ ASSET_URL }}" type="text/css" rel="stylesheet">
-  {% endassets %}
-
+  {% include "site-styles.html" %}
   {% import 'translations.html' as translations with context %}
   {% if translations.entry_hreflang(page) %}
     {{ translations.entry_hreflang(page) }}
   {% endif %}
 {% endblock %}
 
-{% block content %}
-    <h1>{{ page.title }}</h1>
+{% block main %}
+<main class="container py-4">
+    <div class="row g-4">
+        <aside class="col-lg-3">
+            <div class="mb-3">
+                <label for="app-search" class="visually-hidden">Search apps</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-body-tertiary"><i class="bi bi-search"></i></span>
+                    <input type="search" id="app-search" class="form-control" placeholder="Search apps" autocomplete="off">
+                </div>
+            </div>
 
-    <ul class="apps-list">
-    {% for package in page.metadata.packages %}
-        {% include "app-item.html" %}
-    {% endfor %}
-    </ul>
+            <h6 class="text-uppercase small text-body-secondary mb-2">Category</h6>
+            <div class="list-group mb-4" id="cat-filter">
+                <button type="button" class="list-group-item list-group-item-action active d-flex justify-content-between align-items-center"
+                        data-filter-cat="all">All
+                    <span class="badge text-bg-secondary rounded-pill">{{ page.metadata.packages|length }}</span></button>
+                {% for cat in page.metadata.filter_categories %}
+                <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                        data-filter-cat="{{ cat.slug }}">{{ cat.title }}
+                    <span class="badge text-bg-secondary rounded-pill">{{ cat.count }}</span></button>
+                {% endfor %}
+            </div>
 
-    {% set pagination = page.metadata.pagination %}
-    {% include "pagination.html" %}
+            <h6 class="text-uppercase small text-body-secondary mb-2">Root access</h6>
+            <div class="d-flex flex-column gap-1" id="root-filter">
+                {% for value, label in [('all', 'All'), ('required', 'Required'), ('optional', 'Optional'), ('none', 'None')] %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="root-filter" id="root-{{ value }}"
+                           value="{{ value }}"{% if value == 'all' %} checked{% endif %}>
+                    <label class="form-check-label" for="root-{{ value }}">{{ label }}</label>
+                </div>
+                {% endfor %}
+            </div>
+        </aside>
 
-{% endblock %}
+        <div class="col-lg-9">
+            <h1 class="h3 mb-4">All apps</h1>
+
+            <div class="app-grid" id="apps-grid">
+            {% for package in page.metadata.packages %}
+                {% set root = 'required' if package.manifest.rootRequired == True else ('optional' if package.manifest.rootRequired == 'optional' else 'none') %}
+                <a href="{{ SITEURL }}/apps/{{ package.id }}" class="shelf-card text-decoration-none text-body"
+                   data-title="{{ package.title|lower }}" data-category="{{ package.category }}" data-root="{{ root }}">
+                    <div class="shelf-thumb">
+                        <img src="{{ package.iconUri }}" class="rounded-4 shelf-icon" alt="{{ package.title }}">
+                        {% if package.pool == 'non-free' %}
+                        <span class="badge text-bg-primary position-absolute bottom-0 end-0">Non-free</span>
+                        {% endif %}
+                    </div>
+                    <div class="fw-medium text-truncate">{{ package.title }}</div>
+                </a>
+            {% endfor %}
+            </div>
+
+            <p id="apps-empty" class="text-body-secondary text-center py-5" style="display:none">
+                No apps match your filters.</p>
+        </div>
+    </div>
+</main>
+
+<script>
+    (function () {
+        var grid = document.getElementById('apps-grid');
+        var cards = Array.prototype.slice.call(grid.querySelectorAll('[data-title]'));
+        var search = document.getElementById('app-search');
+        var catButtons = Array.prototype.slice.call(document.querySelectorAll('#cat-filter [data-filter-cat]'));
+        var rootRadios = Array.prototype.slice.call(document.querySelectorAll('input[name="root-filter"]'));
+        var empty = document.getElementById('apps-empty');
+        var cat = 'all';
+
+        function currentRoot() {
+            for (var i = 0; i < rootRadios.length; i++) if (rootRadios[i].checked) return rootRadios[i].value;
+            return 'all';
+        }
+        function apply() {
+            var q = (search.value || '').trim().toLowerCase();
+            var root = currentRoot();
+            var shown = 0;
+            cards.forEach(function (c) {
+                var ok = (cat === 'all' || c.dataset.category === cat)
+                    && (root === 'all' || c.dataset.root === root)
+                    && (!q || c.dataset.title.indexOf(q) !== -1);
+                c.style.display = ok ? '' : 'none';
+                if (ok) shown++;
+            });
+            empty.style.display = shown ? 'none' : '';
+        }
+
+        catButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                catButtons.forEach(function (b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+                cat = btn.dataset.filterCat;
+                apply();
+            });
+        });
+        rootRadios.forEach(function (r) { r.addEventListener('change', apply); });
+        search.addEventListener('input', apply);
+
+        // Pre-select a category from the ?category=<slug> query param (home "See all" links).
+        var initialCat = new URLSearchParams(window.location.search).get('category');
+        if (initialCat) {
+            var target = catButtons.filter(function (b) { return b.dataset.filterCat === initialCat; })[0];
+            if (target) {
+                catButtons.forEach(function (b) { b.classList.remove('active'); });
+                target.classList.add('active');
+                cat = initialCat;
+            }
+        }
+        apply();
+    })();
+</script>
+{% endblock main %}
