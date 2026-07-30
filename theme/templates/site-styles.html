@@ -20,9 +20,9 @@
     .hero-banner { background:
         radial-gradient(120% 140% at 85% -20%, rgba(207,6,82,.35), transparent 60%),
         linear-gradient(120deg, #1b1420, #141419); }
-    /* Featured carousel: height is fixed by aspect ratio (changes only with the
-       viewport, never with slide content); content is centered inside it. */
-    #featured-carousel .carousel-item .card { aspect-ratio: 4 / 3; }
+    /* Featured carousel: from sm up (icon and text side by side) height is fixed by
+       aspect ratio, so it changes only with the viewport, not slide content. On xs the
+       content stacks, so height is left auto to avoid clipping the button. */
     @media (min-width: 576px) { #featured-carousel .carousel-item .card { aspect-ratio: 5 / 2; } }
     @media (min-width: 768px) { #featured-carousel .carousel-item .card { aspect-ratio: 3 / 1; } }
     @media (min-width: 992px) { #featured-carousel .carousel-item .card { aspect-ratio: 7 / 2; } }

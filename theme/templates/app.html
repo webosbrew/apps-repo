@@ -148,7 +148,7 @@
             <div class="d-flex flex-column gap-2">
                 {% for link in page.metadata.sponsor_links %}
                 <a href="{{ link.href }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">
-                    <i class="bi bi-heart-fill me-1"></i>{{ link.text }}</a>
+                    <i class="bi {{ link.icon or 'bi-heart-fill' }} me-1"></i>{{ link.text }}</a>
                 {% endfor %}
             </div>
         </div>
