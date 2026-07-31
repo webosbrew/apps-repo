@@ -5,7 +5,6 @@
 
 {% block head %}
   {{ super() }}
-  {% include "site-styles.html" %}
   {% import 'translations.html' as translations with context %}
   {% if translations.entry_hreflang(page) %}
     {{ translations.entry_hreflang(page) }}
