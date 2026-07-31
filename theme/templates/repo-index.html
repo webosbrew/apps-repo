@@ -16,14 +16,6 @@
 <div class="container py-4">
     <div id="featured-carousel" class="carousel slide carousel-fade"
          {% if multiple %}data-bs-ride="carousel" data-bs-interval="6000"{% endif %}>
-        {% if multiple %}
-        <div class="carousel-indicators">
-            {% for package in featured %}
-            <button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="{{ loop.index0 }}"
-                    {% if loop.first %}class="active" aria-current="true"{% endif %} aria-label="{{ package.title }}"></button>
-            {% endfor %}
-        </div>
-        {% endif %}
         <div class="carousel-inner rounded-4">
             {% for package in featured %}
             <div class="carousel-item{% if loop.first %} active{% endif %}">
@@ -51,6 +43,14 @@
             </div>
             {% endfor %}
         </div>
+        {% if multiple %}
+        <div class="carousel-indicators">
+            {% for package in featured %}
+            <button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="{{ loop.index0 }}"
+                    {% if loop.first %}class="active" aria-current="true"{% endif %} aria-label="{{ package.title }}"></button>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endif %}

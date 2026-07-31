@@ -28,8 +28,9 @@
     @media (min-width: 992px) { #featured-carousel .carousel-item .card { aspect-ratio: 7 / 2; } }
     @media (min-width: 1200px) { #featured-carousel .carousel-item .card { aspect-ratio: 4 / 1; } }
     #featured-carousel .carousel-item .card-body {
-        display: flex; flex-direction: column; justify-content: center; padding-bottom: 2.25rem; }
-    #featured-carousel .carousel-indicators { margin: 0 auto .9rem; }
+        display: flex; flex-direction: column; justify-content: center; }
+    /* Indicators sit below the banner (outside the card) so they never overlap the CTA. */
+    #featured-carousel .carousel-indicators { position: static; margin: .75rem 0 0; }
     #featured-carousel .carousel-indicators [data-bs-target] {
         width: 10px; height: 10px; border-radius: 50%; border: 0;
         margin: 0 5px; background-color: #fff; opacity: .4; transition: opacity .2s ease; }
