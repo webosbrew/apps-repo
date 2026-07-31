@@ -4,10 +4,13 @@
 
 Before submitting your application, please make sure it complies following basic rules:
 
-1. **NO PIRACY**. We refuse to endorse or host any kind of information related to piracy, as well as breaking DRM
+1. **NO AI SLOP**. Applications made primarily by AI and submitted without meaningful human development,
+   testing, and review will be rejected. AI tools may be used, but the submitter is responsible for the code and
+   must disclose that use in the pull request.
+2. **NO PIRACY**. We refuse to endorse or host any kind of information related to piracy, as well as breaking DRM
    protected content and applications. For IPTV services **only legal IPTV services are allowed**.
-2. Be considerate to users' TV. It's not a cheap toy, so try your best not breaking it.
-3. If you are making a port to existing applications, please make sure that you are following the original project's
+3. Be considerate to users' TV. It's not a cheap toy, so try your best not breaking it.
+4. If you are making a port to existing applications, please make sure that you are following the original project's
    open source license.
 
 To submit your application to this central repository, refer to following steps:
@@ -23,7 +26,7 @@ Create a file named `your-package-name.yml` in `packages`. Example:
 ```yaml
 # Display name of your application
 title: Homebrew Channel
-# Publicly accesible HTTP/HTTPS URL, or data uri to icon image.
+# Publicly accessible HTTP/HTTPS URL, or data uri to icon image.
 iconUri: https://raw.githubusercontent.com/webosbrew/webos-homebrew-channel/main/assets/icon160.png
 # Publicly accessible manifest file of your application
 manifestUrl: https://github.com/webosbrew/webos-homebrew-channel/releases/latest/download/org.webosbrew.hbchannel.manifest.json

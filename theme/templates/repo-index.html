@@ -1,32 +1,152 @@
 {% extends "page.html" %}
 {% block html_lang %}{{ page.lang }}{% endblock %}
 
-{% block title %}{{ page.title|striptags }} | {{ SITENAME }}{%endblock%}
+{% block title %}{{ page.title|striptags }} | {{ SITENAME }}{% endblock %}
 
-{% block head %}
-  {{ super() }}
-  {% assets filters="pyscss,cssmin", output="styles/apps.css", "apps.scss" %}
-  <link href="{{ SITEURL }}/{{ ASSET_URL }}" type="text/css" rel="stylesheet">
-  {% endassets %}
 
-  {% import 'translations.html' as translations with context %}
-  {% if translations.entry_hreflang(page) %}
-    {{ translations.entry_hreflang(page) }}
-  {% endif %}
-{% endblock %}
+{# Full-width Google Play–style homepage: no sidebar. #}
+{% block main %}
+<main>
 
-{% block content %}
-    <h1>{{ page.title }}</h1>
-    <p>Unofficial webOS applications</p>
+<!-- FEATURED -->
+{% if page.metadata.featured %}
+{% set featured = page.metadata.featured %}
+{% set multiple = featured|length > 1 %}
+<div class="container py-4">
+    <div id="featured-carousel" class="carousel slide carousel-fade"
+         {% if multiple %}data-bs-ride="carousel" data-bs-interval="6000"{% endif %}>
+        <div class="carousel-inner rounded-4">
+            {% for package in featured %}
+            <div class="carousel-item{% if loop.first %} active{% endif %}">
+                <div class="card border-0 rounded-4 overflow-hidden hero-banner">
+                    <div class="card-body p-4 p-md-5">
+                        <div class="row align-items-center g-4 flex-column flex-sm-row flex-grow-1">
+                            <div class="col-auto">
+                                <img src="{{ package.iconUri }}" width="104" height="104" class="rounded-4"
+                                     alt="{{ package.title }}">
+                            </div>
+                            <div class="col">
+                                <div class="text-uppercase small fw-semibold text-primary mb-1" style="letter-spacing:.1em">Featured</div>
+                                <h2 class="h3 mb-1 text-white">{{ package.title }}</h2>
+                                {% set short = package.manifest.appDescription or package.shortDescription %}
+                                {% if short %}
+                                <p class="mb-0" style="color:rgba(255,255,255,.75)">{{ short }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="text-center text-sm-end pt-3">
+                            <a href="{{ SITEURL }}/apps/{{ package.id }}" class="btn btn-primary">View app</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% if multiple %}
+        <div class="carousel-indicators">
+            {% for package in featured %}
+            <button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="{{ loop.index0 }}"
+                    {% if loop.first %}class="active" aria-current="true"{% endif %} aria-label="{{ package.title }}"></button>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
 
+<!-- SHELVES -->
+<div class="container">
     {% for category in page.metadata.categories %}
-    <h3>{{ category.title }}</h3>
-    <ul class="apps-horizontal">
-    {% for package in category.packages %}
-        {% include "app-item.html" %}
+    {% if category.packages %}
+    <section class="py-3" id="cat-{{ loop.index }}">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <h5 class="mb-0">{{ category.title }}</h5>
+            <a href="{{ SITEURL }}/apps?category={{ category.slug }}" class="small text-primary text-decoration-none fw-semibold">See all ({{ category.packages|length }})</a>
+        </div>
+        <div class="position-relative">
+            <div class="app-shelf pb-2">
+                {% for package in category.packages %}
+                <a href="{{ SITEURL }}/apps/{{ package.id }}" class="shelf-card text-decoration-none text-body">
+                    <div class="shelf-thumb">
+                        <img src="{{ package.iconUri }}" class="rounded-4 shelf-icon" alt="{{ package.title }}">
+                        {% if package.pool == 'non-free' %}
+                        <span class="badge text-bg-primary position-absolute bottom-0 end-0" style="font-size:.6rem">Non-free</span>
+                        {% endif %}
+                    </div>
+                    <div class="fw-medium text-truncate">{{ package.title }}</div>
+                </a>
+                {% endfor %}
+            </div>
+            <div class="shelf-fade-start"></div>
+            <div class="shelf-fade"></div>
+        </div>
+    </section>
+    {% endif %}
     {% endfor %}
-    </ul>
-    {% endfor %}
+</div>
 
+<!-- GET INVOLVED -->
+<section class="container py-4">
+    <h5 class="mb-3">Get involved</h5>
+    <div class="row g-3">
+        <div class="col-12 col-md-6">
+            <div class="card h-100 bg-body-tertiary border">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="cta-icon cta-icon-amber mb-3">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2Z"/></svg>
+                    </div>
+                    <h6 class="mb-1">Have an app idea?</h6>
+                    <p class="text-body-secondary small mb-3">Missing an app you'd love on your TV? Suggest it and the
+                        community can pick it up.</p>
+                    <a href="https://github.com/webosbrew/apps-repo/issues/new/choose"
+                       class="btn btn-outline-warning mt-auto align-self-start">Suggest an idea</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card h-100 bg-body-tertiary border">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="cta-icon mb-3">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg>
+                    </div>
+                    <h6 class="mb-1">Want to build one?</h6>
+                    <p class="text-body-secondary small mb-3">Everything you need to start making webOS homebrew apps —
+                        SDK, guides and API reference.</p>
+                    <a href="https://www.webosbrew.org/develop"
+                       class="btn btn-primary mt-auto align-self-start">Read the dev docs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-{% endblock %}
+</main>
+{% endblock main %}
+
+{% block scripts %}
+<script>
+    // Shrink the right-edge fade as a shelf nears its end; hide it when there's no overflow.
+    (function () {
+        function update(shelf) {
+            var wrap = shelf.parentElement;
+            var end = wrap.querySelector('.shelf-fade');
+            var start = wrap.querySelector('.shelf-fade-start');
+            var max = shelf.scrollWidth - shelf.clientWidth;
+            if (end) end.style.opacity = max <= 1 ? 0 : Math.max(0, Math.min(1, (max - shelf.scrollLeft) / 48));
+            if (start) start.style.opacity = max <= 1 ? 0 : Math.max(0, Math.min(1, shelf.scrollLeft / 48));
+        }
+        function updateAll() { document.querySelectorAll('.app-shelf').forEach(update); }
+        function init() {
+            document.querySelectorAll('.app-shelf').forEach(function (shelf) {
+                update(shelf);
+                shelf.addEventListener('scroll', function () { update(shelf); }, { passive: true });
+            });
+        }
+        window.addEventListener('resize', updateAll);
+        if (document.readyState !== 'loading') init();
+        else document.addEventListener('DOMContentLoaded', init);
+    })();
+</script>
+{% endblock scripts %}
