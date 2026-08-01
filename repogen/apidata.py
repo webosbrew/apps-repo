@@ -57,8 +57,9 @@ def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, 
 
     def package_item(p_info: PackageInfo, in_apps_dir: bool, is_details: bool) -> PackageInfo:
         package = {k: p_info[k] for k in MANIFEST_KEYS if k in p_info}
-        package['shortDescription'] = p_info['manifest'].get(
-            'appDescription', None)
+        # Prefer the manifest's appDescription, fall back to the package's shortDescription.
+        package['shortDescription'] = p_info['manifest'].get('appDescription') or p_info.get(
+            'shortDescription')
         if is_details:
             package['fullDescriptionUrl'] = f'../full_description.html'
         elif in_apps_dir:
@@ -100,7 +101,7 @@ def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, 
                 json.dump(package_item(item, True, True), f)
             desc_html = api_app_dir.joinpath('full_description.html')
             with ensure_open(desc_html, 'w', encoding='utf-8') as f:
-                f.write(markdown.convert(item['description']))
+                f.write(pkg_info.sanitize_description(markdown.convert(item['description'])))
         save_page(index + 1, chunk)
     print('Generated json data for %d packages.' % len(packages))
 
