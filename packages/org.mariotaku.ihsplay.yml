@@ -1,4 +1,5 @@
-title: IHSplay - App for Steam Link
+title: IHSplay
+shortDescription: SDL2-based Steam Link client for webOS TV
 iconUri: https://raw.githubusercontent.com/mariotaku/ihsplay/master/deploy/webos/largeIcon.png
 detailIconUri: https://raw.githubusercontent.com/mariotaku/ihsplay/master/deploy/webos/largeIcon.png
 manifestUrl: https://github.com/mariotaku/ihsplay/releases/latest/download/org.mariotaku.ihsplay.manifest.json

@@ -9,7 +9,7 @@ import requests
 from markdown import Markdown
 from markdown.treeprocessors import Treeprocessor
 
-from repogen import pkg_info
+from repogen import pkg_info, validators
 from repogen.pkg_info import PackageInfo
 
 
@@ -95,6 +95,11 @@ if __name__ == '__main__':
 
     try:
         lint_pkginfo = pkg_info.from_package_info_file(Path(args.file))
+    except validators.SchemaValidationError as e:
+        # Report every schema violation at once, not just the first.
+        for msg in e.errors:
+            print(' * :x: %s' % msg)
+        exit(1)
     except requests.exceptions.RequestException as e:
         print(f'Could not download package info: {e}', file=sys.stderr)
         exit(5)
