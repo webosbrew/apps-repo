@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/TBSniller/piccap/main/frontend/assets
 manifestUrl: https://github.com/TBSniller/piccap/releases/latest/download/org.webosbrew.piccap.manifest.json
 category: amblight
 pool: main
+requirements:
+  webosRelease: '>=4.0'
 description: |
  ## PicCap - Hyperion Sender App  
  The idea is to have an ambilight on our LG webOS TVs like it's known from Philipps TVs.  
