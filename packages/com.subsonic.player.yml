@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/pando85/subsonic-player-webos/main/we
 manifestUrl: https://github.com/pando85/subsonic-player-webos/releases/latest/download/com.subsonic.player.v1.manifest.json
 category: multimedia
 pool: main
+requirements:
+  webosRelease: '>=7.0'
 description: |
   Subsonic Player WebOS is a minimal fork of
   [Subsonic player](https://github.com/VD39/subsonic-player), designed to stay closely compatible

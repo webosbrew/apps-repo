@@ -8,6 +8,8 @@ manifestUrl: https://github.com/sekrell/lgtv-vpn/releases/latest/download/webosb
 category: system
 # If this is an open source application, use main, otherwise non-free
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 # Long description for your application, in Markdown format
 description: |
   # lgtv-vpn

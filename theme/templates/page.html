@@ -1,0 +1,20 @@
+{# Generic content pages (e.g. /submit). Styled to match the app detail page:
+   content wrapped in .app-description so headings, code, and links get the same
+   treatment. App/apps/repo-index templates extend this and override the blocks
+   below, so their layout is unaffected. #}
+{% extends "base.html" %}
+
+{% block html_lang %}{{ page.lang }}{% endblock %}
+{% block title %}{{ page.title|striptags }} | {{ SITENAME }}{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    {% include "site-styles.html" %}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">{{ page.title }}</h1>
+    <div class="app-description">
+        {{ page.content }}
+    </div>
+{% endblock %}
