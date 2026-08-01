@@ -151,3 +151,4 @@ cache/
 .project
 .pydevproject
 .settings/
+/.mcp.json
