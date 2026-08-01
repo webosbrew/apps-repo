@@ -1,0 +1,15 @@
+title: Decoder bench
+iconUri: https://raw.githubusercontent.com/beatcracker/decoder-bench/master/assets/webos/icon_large.png
+manifestUrl: https://github.com/beatcracker/decoder-bench/releases/latest/download/io.github.beatcracker.decoderbench.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=5.0'
+description: |
+  Native decoder benchmark for rooted LG webOS TVs.
+
+  Runs bundled or USB benchmark suites against the local video decoder pipeline and writes CSV/log results for codec, resolution, frame-rate, and bitrate limits. Built while chasing a Moonlight/Sunshine bitrate limit on an LG C1.
+
+  Requires root for USB access.
+
+  Download the full USB test suite from the [GitHub releases](https://github.com/beatcracker/decoder-bench/releases).

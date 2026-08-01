@@ -4,19 +4,20 @@ manifestUrl: https://github.com/Oted/idlegif/releases/latest/download/org.oted.i
 category: screensaver
 pool: main
 description: |
-  > **Requires a rooted TV** via [Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel). Tested on webOS 9.2.1.
+  **Requires a rooted TV** via [Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel), tested on webOS 9 but lower versions should work.
 
   Replaces the LG webOS screensaver with a looping GIF of your choice. Browse GIPHY, or paste any direct `.gif` URL. The selected GIF persists across reboots.
 
-  A [GIPHY API key](https://developers.giphy.com) is required to use the browse grid.
+  A [GIPHY API key](https://developers.giphy.com) is required to use the browse grid, otherwise only 4 defaults are available.
 
   ## Features
 
+  - **SSH GIPHY key injection** — optionally set your GIPHY API key via `luna-send` you have SSH access, see project README for instructions
   - **Browse** — curated 2×2 grid of cinemagraphs, nature loops, and ambient animations via GIPHY
   - **Custom URL** — paste any direct `.gif` link and download it directly
   - **Persistent** — selected GIF survives reboots
   - **Test** — preview the screensaver from the app
-  - **Uninstall** — cleanly removes the screensaver
+  - **Uninstall** — cleanly removes the screensaver (if you want to remove the app, please run Uninstall first)
 
   ![Idlegif running on an LG webOS TV](https://raw.githubusercontent.com/Oted/idlegif/main/assets/screenshot.png)
 funding:
