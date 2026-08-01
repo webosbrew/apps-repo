@@ -3,5 +3,7 @@ iconUri: https://raw.githubusercontent.com/Moonfin-Client/Smart-TV/main/packages
 manifestUrl: https://github.com/Moonfin-Client/Smart-TV/releases/latest/download/org.moonfin.webos.manifest.json
 category: multimedia
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 description: |
   Moonfin is an enhanced Jellyfin client for LG Smart TVs supporting webOS 3+
