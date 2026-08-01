@@ -3,5 +3,7 @@ iconUri: https://raw.githubusercontent.com/jellyfin/jellyfin-webos/master/fronte
 manifestUrl: https://github.com/jellyfin/jellyfin-webos/releases/latest/download/org.jellyfin.webos.manifest.json
 category: multimedia
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 description: |
   Wrapper around [Jellyfin](https://jellyfin.org) Web project

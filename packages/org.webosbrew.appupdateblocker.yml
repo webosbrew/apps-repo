@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/dr0dr1dr2dr3/lgappupdateblocker/maste
 manifestUrl: https://github.com/dr0dr1dr2dr3/lgappupdateblocker/releases/download/1.0.0/org.webosbrew.appupdateblocker.manifest.json
 category: utility
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 description: |
  # LG App Update Blocker
  
