@@ -1,82 +1,21 @@
-@import "variables";
-
-$icon-size: 160px;
-$icon-size-small: 80px;
-
-#content .main {
-  overflow-x: hidden;
+/* App detail page: constrain user-provided description content so wide media
+   and code blocks don't overflow the layout. Sizing/spacing is left to Bootstrap. */
+.app-description {
+  overflow-wrap: break-word;
 
   img {
     max-width: 100%;
+    height: auto;
+  }
+
+  pre {
+    overflow-x: auto;
+  }
+
+  table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
   }
 }
 
-.app-icon {
-  width: $icon-size;
-  height: $icon-size;
-  float: left;
-  margin-right: 20px;
-  margin-bottom: 10px;
-}
-
-.app-title {
-  margin-top: 10px;
-}
-
-.app-info {
-  display: flex;
-  flex-flow: column;
-  margin-bottom: 10px;
-
-  .app-actions {
-    margin: auto 10px 10px auto;
-    padding-top: 10px;
-
-    .app-action {
-      height: 48px;
-      padding: 5px 10px;
-      box-sizing: border-box;
-
-      overflow: hidden;
-
-      background-color: $color-accent;
-      border-radius: 5px;
-      color: white;
-    }
-
-    .download-ipk {
-      .title {
-        font-size: 15px;
-        border-bottom: 1px rgba(255, 255, 255, 0.5) solid;
-        padding-bottom: 2px;
-        margin-bottom: 2px;
-      }
-
-      .version {
-        display: inline-block;
-        font-size: 12px;
-        float: left;
-      }
-
-      .size {
-        display: inline-block;
-        font-size: 12px;
-        float: right;
-        margin-left: 5px;
-      }
-
-    }
-  }
-}
-
-@media (max-width: $desktop-small-width) {
-
-  .app-icon {
-    width: $icon-size-small;
-    height: $icon-size-small;
-  }
-
-  .app-title {
-    margin-bottom: 5px;
-  }
-}
