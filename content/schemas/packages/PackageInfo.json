@@ -28,6 +28,11 @@
       "type": "string",
       "description": "Markdown/HTML formatted description"
     },
+    "shortDescription": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Short one-line tagline shown on the app card and detail header. Overrides the package manifest's appDescription."
+    },
     "detailIconUri": {
       "type": "string",
       "description": "Icon uri for application detail page, in higher resolution"

@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/zonya/sendspin-cinema-webos/main/icon
 manifestUrl: https://github.com/zonya/sendspin-cinema-webos/releases/latest/download/com.sendspin.cinema.manifest.json
 category: multimedia
 pool: main
+requirements:
+  webosRelease: '>=7.0'
 description: |
   A cinema-inspired **Music Assistant** player for LG webOS TVs.
 

@@ -26,8 +26,9 @@ CONFIG = {
     # GitHub Pages configuration
     'github_pages_branch': 'gh-pages',
     'commit_message': "'Publish site on {}'".format(datetime.date.today().isoformat()),
-    # Host and port for `serve`
-    'host': 'localhost',
+    # Host and port for `serve` / `devserver`. Default localhost-only; set
+    # HOST=0.0.0.0 (e.g. in the run config env) to reach it from the LAN.
+    'host': os.getenv('HOST', 'localhost'),
     'port': int(os.getenv('PORT', '8000')),
 }
 
@@ -89,33 +90,40 @@ def preview(c):
 
 @task
 def devserver(c):
-    """Build local version of site"""
-    pelican_run('-lr -s {settings_base} -p {port}'.format(**CONFIG))
+    """Serve the site and live-reload the browser on changes (see `livereload`)."""
+    livereload(c)
 
 
 @task
 def livereload(c):
-    """Automatically reload browser tab upon file modification."""
+    """Serve the site and reload the browser on changes. Stops cleanly on Ctrl-C."""
     from livereload import Server
+    from livereload.handlers import StaticFileHandler
 
-    rebuild(c)
+    class CleanUrlStaticFileHandler(StaticFileHandler):
+        """Serve /foo as /foo.html when the extensionless path is missing, matching
+        GitHub Pages' clean URLs so links like /submit resolve in local dev too."""
+
+        def validate_absolute_path(self, root, absolute_path):
+            if not os.path.exists(absolute_path) and os.path.isfile(absolute_path + '.html'):
+                absolute_path += '.html'
+            return super().validate_absolute_path(root, absolute_path)
+
+    build(c)
     server = Server()
-    theme_path = SETTINGS['THEME']
+    server.SFH = CleanUrlStaticFileHandler
+    # Rebuild on any source that affects output. Avoid watching output/, cache/,
+    # and content/apps/icons (icons are written during the build) to prevent loops.
     watched_globs = [
-        CONFIG['settings_base'],
-        '{}/templates/**/*.html'.format(theme_path),
+        CONFIG['settings_base'],           # pelicanconf.py
+        'theme/templates/**/*.html',       # local template overrides
+        'theme/styles/**/*.scss',          # local styles
+        'content/**/*.md',
+        'content/**/*.html',
+        '../packages/*.yml',               # package definitions
+        '../packages/*.py',
+        'repogen/**/*.py',                 # plugin / readers
     ]
-
-    content_file_extensions = ['.md', '.rst']
-    for extension in content_file_extensions:
-        content_glob = '{0}/**/*{1}'.format(SETTINGS['PATH'], extension)
-        watched_globs.append(content_glob)
-
-    static_file_extensions = ['.css', '.scss', '.js']
-    for extension in static_file_extensions:
-        static_file_glob = '{0}/static/**/*{1}'.format(theme_path, extension)
-        watched_globs.append(static_file_glob)
-
     for glob in watched_globs:
         server.watch(glob, lambda: build(c))
     server.serve(host=CONFIG['host'], port=CONFIG['port'], root=CONFIG['deploy_path'])
