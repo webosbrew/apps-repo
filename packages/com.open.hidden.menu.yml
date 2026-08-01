@@ -8,3 +8,5 @@ manifestUrl: "https://github.com/Kzuismee/Open-Service-Menu/releases/download/1.
 
 category: utility
 pool: main
+requirements:
+  webosRelease: '>=4.0'
