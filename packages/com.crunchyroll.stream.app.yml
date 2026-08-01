@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/ediaz23/crunchyroll-webos-stream/mast
 manifestUrl: https://github.com/ediaz23/crunchyroll-webos-stream/releases/latest/download/org.webosbrew.manifest.json
 category: multimedia
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 description: |
   # Crunchyroll Stream
 

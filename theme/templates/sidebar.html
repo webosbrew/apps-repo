@@ -1,0 +1,12 @@
+{% if LINKS %}
+<div class="card bg-body-tertiary border rounded-4 mb-3">
+    <div class="card-body">
+        <h6 class="card-title mb-3">Links</h6>
+        <div class="d-flex flex-column gap-2">
+            {% for name, link in LINKS %}
+            <a href="{{ link }}" class="link-secondary text-decoration-none">{{ name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
