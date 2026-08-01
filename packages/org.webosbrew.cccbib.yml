@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/volkovmqx/cccbib/main/assets/icon130.
 manifestUrl: https://github.com/volkovmqx/cccbib/releases/latest/download/org.webosbrew.cccbib.manifest.json
 category: multimedia
 pool: main
+requirements:
+  webosRelease: '>=4.0'
 description: |
   [media.ccc.de](https://media.ccc.de) media library application for webOS..
 

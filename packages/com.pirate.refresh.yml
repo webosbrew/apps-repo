@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/LucifersCircle/WebOS-Token-Refresh-Ap
 manifestUrl: https://github.com/LucifersCircle/WebOS-Token-Refresh-App/releases/latest/download/manifest.json
 category: system
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 description: |
 
   # WebOS Token Refresher
