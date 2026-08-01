@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/depau/webos-sound-mode-fix/main/icon.
 manifestUrl: https://github.com/depau/webos-sound-mode-fix/releases/latest/download/eu.depau.webos.soundmodefix.manifest.json
 category: system
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 description: |
   # LG webOS TV Sound Mode Fix app
 
