@@ -3,4 +3,6 @@ iconUri: https://raw.githubusercontent.com/Simulate-X/ZUI_IPTV_Player/main/icon.
 manifestUrl: https://github.com/Simulate-X/ZUI_IPTV_Player/releases/latest/download/com.zui.player.manifest.json
 category: multimedia
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 description: A modern, zero-ui, ad-free IPTV player with spatial navigation and seamless VOD/Live integration.
