@@ -3,6 +3,11 @@
 
 {% block title %}{{ page.title|striptags }} | {{ SITENAME }}{%endblock%}
 
+{# Human-readable byte size: KB below 1 MB, otherwise MB with one decimal. #}
+{% macro filesize(bytes) -%}
+{%- if bytes < 1000000 -%}{{ (bytes / 1000)|round|int }} KB{%- else -%}{{ "%.1f"|format(bytes / 1000000) }} MB{%- endif -%}
+{%- endmacro %}
+
 {% block head %}
   {{ super() }}
   {% assets filters="pyscss,cssmin", output="styles/app.css", "app.scss" %}
@@ -18,48 +23,134 @@
 {% block content %}
     {% import 'translations.html' as translations with context %}
     {{ translations.translations_for(page) }}
-    <img src="{{page.metadata.detailIcon}}" class="app-icon" alt="{{title}} Icon"/>
-    <h1 class="app-title">{{ page.title }}</h1>
-    <p class="app-version">Version {{page.metadata.manifest.version }}</p>
-    <div class="app-info">
-        <p>Source: <a href="{{ page.metadata.manifest.sourceUrl }}" target="_blank">{{ page.metadata.manifest.sourceUrl }}</a></p>
-        {% if page.metadata.package_info.pool == 'non-free' %}
-        <p><strong>Non-free</strong></p>
-        {% endif %}
-        {% if page.metadata.manifest.rootRequired == True %}
-        <p><strong>Root required</strong></p>
-        {% elif page.metadata.manifest.rootRequired == 'optional' %}
-        <p><strong>Optional root</strong></p>
-        {% endif %}
+    {% set m = page.metadata.manifest %}
+    {% set info = page.metadata.package_info %}
 
-        <div class="app-actions">
-            <a href="{{ page.metadata.manifest.ipkUrl }}" target="_blank">
-                <div class="app-action download-ipk">
-                    <div class="title">Download IPK</div>
-                    <div class="version">{{page.metadata.manifest.version }}</div>
-                    <div class="size">{{"%.1f" % (page.metadata.manifest.ipkSize / 1000000)}} MB</div>
+    <div class="card border-0 rounded-4 hero-banner overflow-hidden mb-4">
+        <div class="card-body p-4 p-md-5">
+            <div class="row align-items-center g-4 flex-column flex-sm-row text-center text-sm-start">
+                <div class="col-auto">
+                    <img src="{{ page.metadata.detailIcon }}" width="112" height="112"
+                         class="rounded-4" alt="{{ page.title }} icon">
                 </div>
-            </a>
+                <div class="col">
+                    <h1 class="h2 mb-1 text-white">{{ page.title }}</h1>
+                    {% set short = m.appDescription or info.shortDescription %}
+                    {% if short %}
+                    <div class="text-body-secondary">{{ short }}</div>
+                    {% endif %}
+                    {% if info.pool == 'non-free' %}
+                    <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-sm-start mt-3">
+                        <span class="badge text-bg-secondary">Non-free</span>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-auto align-self-sm-end">
+                    <a href="{{ m.ipkUrl }}" class="btn btn-primary" target="_blank" rel="noopener">
+                        <i class="bi bi-download me-2"></i>Download IPK
+                        <span class="badge text-bg-light ms-2">{{ filesize(m.ipkSize) }}</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-    <hr>
 
-    {{ page.content }}
-
-    <hr>
-    {% if page.modified %}
-    <p>Last Updated: {{ page.modified.strftime('%Y/%m/%d %H:%M:%S %Z') }}</p>
-    {% endif %}
+    <div class="app-description">
+        {{ page.content }}
+    </div>
 {% endblock %}
 
+{% block scripts %}
+<script>
+    // Render <time class="relative-time"> as a relative string (e.g. "3 days ago").
+    (function () {
+        function relative(date) {
+            var seconds = Math.round((Date.now() - date.getTime()) / 1000);
+            var future = seconds < 0;
+            seconds = Math.abs(seconds);
+            var units = [['year', 31536000], ['month', 2592000], ['week', 604800],
+                ['day', 86400], ['hour', 3600], ['minute', 60]];
+            for (var i = 0; i < units.length; i++) {
+                var value = Math.floor(seconds / units[i][1]);
+                if (value >= 1) {
+                    var text = value + ' ' + units[i][0] + (value > 1 ? 's' : '');
+                    return future ? 'in ' + text : text + ' ago';
+                }
+            }
+            return 'just now';
+        }
+        document.querySelectorAll('time.relative-time').forEach(function (el) {
+            var date = new Date(el.getAttribute('datetime'));
+            if (!isNaN(date.getTime())) el.textContent = relative(date);
+        });
+    })();
+</script>
+{% endblock scripts %}
+
 {% block sidebar %}
-{% if page.metadata.sponsor_links %}
-<h3>Sponsor</h3>
-<ul class="links">
-    {% for link in page.metadata.sponsor_links %}
-    <li><a href="{{link.href}}" target="_blank">{{link.text}}</a></li>
-    {% endfor %}
-</ul>
-{% endif %}
-{{ super() }}
+    {% set m = page.metadata.manifest %}
+    {% set info = page.metadata.package_info %}
+    <div class="card bg-body-tertiary border rounded-4 mb-3">
+        <div class="card-body">
+            <h6 class="card-title mb-3">Information</h6>
+            <dl class="row small mb-0">
+                <dt class="col-5 fw-normal text-body-secondary">Version</dt>
+                <dd class="col-7">{{ m.version }}</dd>
+                {% if m.ipkSize %}
+                <dt class="col-5 fw-normal text-body-secondary">Download</dt>
+                <dd class="col-7">{{ filesize(m.ipkSize) }}</dd>
+                {% endif %}
+                {% if m.installedSize %}
+                <dt class="col-5 fw-normal text-body-secondary">Installed</dt>
+                <dd class="col-7">{{ filesize(m.installedSize) }}</dd>
+                {% endif %}
+                <dt class="col-5 fw-normal text-body-secondary">Category</dt>
+                <dd class="col-7">{{ info.category|capitalize }}</dd>
+                {% if m.sourceUrl %}
+                <dt class="col-5 fw-normal text-body-secondary">Source</dt>
+                <dd class="col-7 text-truncate"><a href="{{ m.sourceUrl }}" target="_blank" rel="noopener">Repository</a></dd>
+                {% endif %}
+                {% if page.modified %}
+                <dt class="col-5 fw-normal text-body-secondary">Updated</dt>
+                <dd class="col-7"><time class="relative-time" datetime="{{ page.modified.isoformat() }}"
+                    title="{{ page.modified.strftime('%Y/%m/%d %H:%M %Z') }}">{{ page.modified.strftime('%Y/%m/%d') }}</time></dd>
+                {% endif %}
+            </dl>
+        </div>
+    </div>
+    {% set req = info.requirements %}
+    <div class="card bg-body-tertiary border rounded-4 mb-3">
+        <div class="card-body">
+            <h6 class="card-title mb-3">Requirements</h6>
+            <dl class="row small mb-0">
+                <dt class="col-5 fw-normal text-body-secondary">Root</dt>
+                <dd class="col-7">
+                    {% if m.rootRequired == True %}Required
+                    {% elif m.rootRequired == 'optional' %}Optional
+                    {% else %}Not required{% endif %}
+                </dd>
+                {% if req and req.webosRelease and not (req.webosRelease.startswith('>=1.') or req.webosRelease.startswith('1.')) %}
+                <dt class="col-5 fw-normal text-body-secondary">webOS</dt>
+                <dd class="col-7">{{ req.webosRelease|replace('>=', '≥ ')|replace('<=', '≤ ') }}</dd>
+                {% endif %}
+                {% if req and req.deviceSoC %}
+                <dt class="col-5 fw-normal text-body-secondary">SoC</dt>
+                <dd class="col-7">{% for soc in req.deviceSoC %}{% if soc[0] == '!' %}Not {{ soc[1:] }}{% else %}{{ soc }}{% endif %}{{ ', ' if not loop.last }}{% endfor %}</dd>
+                {% endif %}
+            </dl>
+        </div>
+    </div>
+    {% if page.metadata.sponsor_links %}
+    <div class="card bg-body-tertiary border rounded-4 mb-3">
+        <div class="card-body">
+            <h6 class="card-title mb-3">Sponsor</h6>
+            <div class="d-flex flex-column gap-2">
+                {% for link in page.metadata.sponsor_links %}
+                <a href="{{ link.href }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">
+                    <i class="bi {{ link.icon or 'bi-heart-fill' }} me-1"></i>{{ link.text }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
