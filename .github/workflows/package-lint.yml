@@ -20,20 +20,21 @@ jobs:
       issues: read # Only needed for private repository
     steps:
       - name: Check out repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.11'
           cache: 'pip'
 
       - name: Download Homebrew Toolbox
-        uses: robinraju/release-downloader@v1.9
+        uses: robinraju/release-downloader@v1.13
         with:
           repository: 'webosbrew/dev-toolbox-cli'
           latest: true
-          fileName: 'webosbrew-toolbox-*.deb'
+          # Releases ship both amd64 and arm64 packages. Only take the runner's own architecture.
+          fileName: 'webosbrew-toolbox-*_${{ runner.arch == ''ARM64'' && ''arm64'' || ''amd64'' }}.deb'
           out-file-path: 'temp'
 
       - name: Install dependencies
@@ -72,7 +73,7 @@ jobs:
       - name: Upload lint results
         # Skip on act or when previous step cancelled
         if: ${{ !env.ACT && (success() || failure()) }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: package-lint-results
           path: |
