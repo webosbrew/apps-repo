@@ -79,7 +79,8 @@ def load_registry(info_path: Path, offline: bool = False) -> tuple[str, PackageR
     elif extension == '.py':
         pkgid, content = load_py_package(info_path, offline)
     else:
-        raise ValueError(f'Unrecognized info format {extension}')
+        raise ValueError(f'Unsupported package file `{info_path.name}` — package files must be '
+                         f'named `<package id>.yml`')
     validator = validators.for_schema('packages/PackageInfo.json')
     validators.validate(validator, content)
     return pkgid, content
