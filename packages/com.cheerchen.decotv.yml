@@ -8,10 +8,12 @@ requirements:
   webosRelease: '>=7.0'
 description: |
   Native [DecoTV](https://github.com/Decohererk/DecoTV) client for LG webOS TVs.
-  Connects to a self-hosted DecoTV server (public auth mode). No built-in media
-  sources — configure sources on the server.
+  Connects to a self-hosted DecoTV server in public or password auth mode.
+  Public mode supports anonymous browsing; password mode enables account sync.
+  No built-in media sources — configure sources on the server.
 
-  Features: Douban catalog, multi-source probe ranking, continue watching,
-  D-pad navigation, hardware HLS decode.
+  Features: Douban catalog, source probing and failover, poster caching,
+  continue watching, episode and outro playback controls, D-pad navigation,
+  and hardware HLS decode.
 
   Source: https://github.com/CheerChen/decotv-webos (MIT)
