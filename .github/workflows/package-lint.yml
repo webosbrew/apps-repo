@@ -44,8 +44,30 @@ jobs:
 
       - name: Lint package information
         shell: bash
+        env:
+          # Lets the licence check use the API's authenticated rate limit instead of
+          # the 60/hour shared between everything on the runner's IP.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           export lint_retcode=0
+
+          # Exit code 1 means the submission needs fixing, so fail the check. Anything
+          # else means our own tooling could not run: annotate it and leave the PR alone,
+          # a re-run will settle it. See repogen/common.py.
+          run_check() {
+            local what="$1"; shift
+            local code=0
+            "$@" >> /tmp/lint-report.md || code=$?
+            if [ "${code}" -eq 0 ]; then
+              return 0
+            elif [ "${code}" -eq 1 ]; then
+              export lint_retcode=1
+            else
+              echo "::warning::${what} could not complete (exit ${code})"
+            fi
+            return "${code}"
+          }
+
           for changed_file in ${{ inputs.packages }}; do
             echo "# Check Results for $(basename "${changed_file}"):" >> /tmp/lint-report.md
             echo >> /tmp/lint-report.md
@@ -53,15 +75,17 @@ jobs:
             echo '## Package Metadata' >> /tmp/lint-report.md
             echo >> /tmp/lint-report.md
 
-            python3 -m repogen.lintpkg -f "${changed_file}" >> /tmp/lint-report.md || export lint_retcode=1
+            run_check "lint of ${changed_file}" python3 -m repogen.lintpkg -f "${changed_file}" || true
             echo >> /tmp/lint-report.md
 
             ipkfile=/tmp/$(sha256sum "${changed_file}" | cut -d ' ' -f 1).ipk
-            python3 -m repogen.downloadipk -i "${changed_file}" -o "${ipkfile}" >> /tmp/lint-report.md || { export lint_retcode=1; continue; }
+            run_check "IPK download for ${changed_file}" \
+              python3 -m repogen.downloadipk -i "${changed_file}" -o "${ipkfile}" || continue
 
             echo '## Compatibility Check' >> /tmp/lint-report.md
 
-            python3 -m repogen.check_compat -i "${changed_file}" -p "${ipkfile}" >> /tmp/lint-report.md || export lint_retcode=1
+            run_check "compatibility check for ${changed_file}" \
+              python3 -m repogen.check_compat -i "${changed_file}" -p "${ipkfile}" || true
           done
           exit ${lint_retcode}
 
