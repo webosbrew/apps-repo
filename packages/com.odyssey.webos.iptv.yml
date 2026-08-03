@@ -1,0 +1,29 @@
+title: IPTV for webOS
+iconUri: https://raw.githubusercontent.com/ladepensy/IPTV-for-webOS/main/largeIcon.png
+manifestUrl: https://github.com/ladepensy/IPTV-for-webOS/releases/latest/download/com.odyssey.webos.iptv.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=5.0'
+description: |
+  # IPTV for webOS
+
+  A lightweight IPTV player for LG webOS TVs. Users provide their own M3U
+  playlists and XMLTV programme sources; the application does not bundle
+  channels, playlists, or copyrighted media.
+
+  ## Legal use
+
+  Only use sources that you own or are legally authorized to access. The app
+  does not bypass DRM or provide unauthorized broadcasts.
+
+  ## Privacy
+
+  Playlist, programme, image, and media requests are sent to the endpoints
+  configured by the user. Source settings may be stored in local TV app
+  storage so the app can remember them. The project does not intentionally
+  include advertising or analytics services.
+
+  ## Source code
+
+  [GitHub](https://github.com/ladepensy/IPTV-for-webOS) — MIT License
