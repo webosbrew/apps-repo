@@ -1,5 +1,5 @@
 title: IPTV for webOS
-iconUri: https://raw.githubusercontent.com/ladepensy/IPTV-for-webOS/main/largeIcon.png
+iconUri: https://media.githubusercontent.com/media/ladepensy/IPTV-for-webOS/refs/heads/main/largeIcon.png
 manifestUrl: https://github.com/ladepensy/IPTV-for-webOS/releases/latest/download/com.odyssey.webos.iptv.manifest.json
 category: multimedia
 pool: main
