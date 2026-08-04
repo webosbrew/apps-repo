@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/cfernande1470/webos-wireguard/main/ap
 manifestUrl: https://github.com/cfernande1470/webos-wireguard/releases/latest/download/org.wireguard.manifest.json
 category: system
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 description: |
   WireGuard VPN client for rooted LG webOS TVs using Homebrew Channel.
 
