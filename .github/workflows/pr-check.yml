@@ -13,6 +13,7 @@ jobs:
     outputs:
       need-package: ${{ steps.changed_files.outputs.packages }}
       packages-files: ${{ steps.changed_files.outputs.packages_files }}
+      added-packages-files: ${{ steps.changed_files.outputs.packages_added_files }}
       need-site: ${{ steps.changed_files.outputs.site }}
     steps:
       - name: Check changed files
@@ -25,6 +26,10 @@ jobs:
           filters: |
             packages:
               - added|modified: 'packages/**'
+            # Rules that would orphan existing installs apply only to packages being
+            # added, so the lint needs to tell the two apart.
+            packages_added:
+              - added: 'packages/**'
             site:
               - '**'
               - '!packages/**'
@@ -36,6 +41,7 @@ jobs:
     uses: ./.github/workflows/package-lint.yml
     with:
       packages: ${{ needs.filter-paths.outputs.packages-files }}
+      added-packages: ${{ needs.filter-paths.outputs.added-packages-files }}
 
   site-check:
     needs: filter-paths
