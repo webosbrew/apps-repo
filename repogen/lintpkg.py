@@ -15,6 +15,7 @@ from repogen.common import EXIT_OK, EXIT_PACKAGE_PROBLEM, EXIT_TOOL_PROBLEM
 from repogen.pkg_info import PackageInfo
 
 
+_WEBOSBREW_PREFIX = 'org.webosbrew.'
 _SOURCE_HELP = ('`pool: main` declares the app as open source, so its source must be publicly '
                 'available. Point `sourceUrl` at the source repository, or set `pool: non-free`.')
 _LICENSE_HELP = ('`pool: main` declares the app as open source, so its source repository should carry '
@@ -100,6 +101,38 @@ class PackageInfoLinter:
         elif resp.status_code >= 500:
             warnings.append(f'Could not reach sourceUrl {source_url}: HTTP {resp.status_code}')
 
+    def _check_id_namespace(self, info: PackageInfo, new_package: bool,
+                            errors: List[str], warnings: List[str]):
+        """`org.webosbrew.*` is the project's own namespace.
+
+        An app carrying it looks official in the TV's launcher and in the Homebrew
+        Channel listing, so packages from outside github.com/webosbrew must not claim it.
+
+        Only enforced on newly added packages. Several listed apps predate the rule, and
+        an id is what Homebrew Channel matches an install against — renaming one orphans
+        every TV that already has it, which is a worse outcome than the squatted name.
+        """
+        if not info['id'].startswith(_WEBOSBREW_PREFIX):
+            return
+        source_url = info['manifest'].get('sourceUrl', None)
+        if source_url and source_url.startswith('https://github.com/webosbrew/'):
+            return
+        message = (f'`{info["id"]}` uses the `{_WEBOSBREW_PREFIX}` namespace, which is reserved for '
+                   f'packages from github.com/webosbrew.')
+        repo = self._github_repo(source_url) if source_url else None
+        if repo:
+            suggestion = f'com.github.{repo[0].lower()}.{info["id"][len(_WEBOSBREW_PREFIX):]}'
+            message += f' Rename it to something under your own namespace, e.g. `{suggestion}`.'
+        else:
+            message += ' Rename it to something under your own namespace, e.g. `com.github.<username>.<package>`.'
+        if not new_package:
+            warnings.append(message + ' It predates this rule, so it keeps the id it is '
+                                      'already installed under.')
+            return
+        message += (' The id must be changed in the app itself (appinfo.json) and its manifest, '
+                    'not just in this file.')
+        errors.append(message)
+
     class ImageProcessor(Treeprocessor):
 
         def __init__(self, errors: [str]):
@@ -113,7 +146,9 @@ class PackageInfoLinter:
                     self.errors.append("Use HTTPS URL for %s" % src)
             return None
 
-    def lint(self, info: PackageInfo) -> Tuple[List[str], List[str]]:
+    def lint(self, info: PackageInfo, new_package: bool = False) -> Tuple[List[str], List[str]]:
+        """Lint `info`. `new_package` marks a package being added by this change, which
+        some rules only apply to — see _check_id_namespace."""
         errors: List[str] = []
         warnings: List[str] = []
 
@@ -136,11 +171,7 @@ class PackageInfoLinter:
             errors.append('iconUrl must be data URI or use HTTPS')
 
         # Process manifest
-        manifest = info['manifest']
-        if info['id'].startswith('org.webosbrew.'):
-            source_url = manifest.get('sourceUrl', None)
-            if not source_url or not source_url.startswith('https://github.com/webosbrew/'):
-                warnings.append('Only package from github.com/webosbrew can have id starting with `org.webosbrew.`')
+        self._check_id_namespace(info, new_package, errors, warnings)
 
         self._check_source_license(info, errors, warnings)
 
@@ -173,6 +204,9 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', '--file', required=True)
+    parser.add_argument('-n', '--new', action='store_true',
+                        help='the package is being added, not edited — enables rules that '
+                             'would orphan existing installs if applied retroactively')
     args = parser.parse_args()
 
     try:
@@ -201,7 +235,7 @@ if __name__ == '__main__':
         exit(EXIT_TOOL_PROBLEM)
 
     linter = PackageInfoLinter()
-    lint_errors, lint_warnings = linter.lint(lint_pkginfo)
+    lint_errors, lint_warnings = linter.lint(lint_pkginfo, new_package=args.new)
 
     for err in lint_errors:
         print(' * :x: %s' % err)
