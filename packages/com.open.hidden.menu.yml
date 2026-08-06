@@ -7,6 +7,6 @@ iconUri: "https://raw.githubusercontent.com/nguy3nloan1986-dotcom/Open-Service-M
 manifestUrl: "https://github.com/Kzuismee/Open-Service-Menu/releases/download/1.0.0/com.open.hidden.menu.manifest.json"
 
 category: utility
-pool: main
+pool: non-free
 requirements:
   webosRelease: '>=4.0'
