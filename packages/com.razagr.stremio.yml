@@ -24,7 +24,7 @@ pool: main
 requirements:
   # Stremio's engine is WebAssembly, which arrived in Chromium 57. webOS 3.x
   # (Chromium 38) and 4.x (Chromium 53) cannot run it.
-  webosRelease: '>=5.0'
+  webosRelease: ">=5.0"
 
 description: |
   # Stremio
@@ -57,9 +57,3 @@ description: |
   ## Source
 
   https://github.com/RazaGR/stremio-lg-tv
-
-  ## Development disclosure
-
-  This application was written with substantial AI assistance (Claude). Design
-  decisions, on-device testing on real LG hardware, and review were done by the
-  maintainer.
