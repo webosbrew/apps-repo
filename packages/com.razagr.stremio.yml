@@ -1,12 +1,3 @@
-# Submission file for the webOS Homebrew app repository.
-#
-# Copy this into packages/com.razagr.stremio.yml in a fork of
-# https://github.com/webosbrew/apps-repo and open a pull request.
-#
-# manifestUrl points at releases/latest/download/, so once this is merged the
-# channel picks up every future release automatically and this file never needs
-# touching again.
-
 # Display name of the application
 title: Stremio
 
