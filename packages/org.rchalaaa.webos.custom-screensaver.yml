@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/rchalaaa/custom-screensaver/refs/head
 manifestUrl: https://github.com/rchalaaa/custom-screensaver/releases/download/v1.0.3/org.rchalaaa.webos.custom-screensaver.manifest.json
 category: screensaver
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 description: |
   # Aerial webOS Screensaver
 
@@ -22,9 +24,9 @@ description: |
 
   ## Screenshots
 
-  ![Main](https://github.com/rchalaaa/custom-screensaver/blob/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/1.png)
-  ![Screenshot](https://github.com/rchalaaa/custom-screensaver/blob/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/2.png)
-  ![Settings](https://github.com/rchalaaa/custom-screensaver/blob/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/3.png)
+  ![Main](https://raw.githubusercontent.com/rchalaaa/custom-screensaver/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/1.png)
+  ![Screenshot](https://raw.githubusercontent.com/rchalaaa/custom-screensaver/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/2.png)
+  ![Settings](https://raw.githubusercontent.com/rchalaaa/custom-screensaver/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/3.png)
 
   ## Credits
 
