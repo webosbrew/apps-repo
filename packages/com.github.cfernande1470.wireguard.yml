@@ -1,0 +1,38 @@
+title: WireGuard VPN
+iconUri: https://raw.githubusercontent.com/cfernande1470/webos-wireguard/main/app/com.github.cfernande1470.wireguard/icon.png
+manifestUrl: https://github.com/cfernande1470/webos-wireguard/releases/latest/download/com.github.cfernande1470.wireguard.manifest.json
+category: system
+pool: main
+requirements:
+  webosRelease: '>=5.0'
+description: |
+  WireGuard VPN client for rooted LG webOS TVs using Homebrew Channel.
+
+  The app runs WireGuard in userspace through `wireguard-go`, because LG webOS stock kernels usually do not include
+  the WireGuard kernel module.
+
+  Features:
+
+  - Bundled 32-bit ARMv7 `wg`, `wireguard-go`, and configuration upload server, compatible with supported 32-bit and
+    64-bit LG TVs
+  - English and Spanish TV interface
+  - PIN-protected `wg0.conf` upload from a phone or computer
+  - Start, stop, status, routes, configuration, and logs from the TV UI
+  - Optional start on boot
+  - Runtime uninstall support
+
+  Requirements:
+
+  - Rooted LG webOS TV running webOS 5.0 or later
+  - Homebrew Channel root service
+  - `/dev/net/tun` support
+
+  Notes:
+
+  - DNS handling is not currently implemented.
+  - IPv6 addresses and routes are currently ignored.
+  - This app is intended for trusted personal VPN configurations.
+
+  Source: https://github.com/cfernande1470/webos-wireguard (MIT)
+funding:
+  github: [cfernande1470]
