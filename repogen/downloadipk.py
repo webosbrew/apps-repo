@@ -12,8 +12,9 @@ from repogen import ipk_file, pkg_info
 from repogen.common import EXIT_OK, EXIT_PACKAGE_PROBLEM, EXIT_TOOL_PROBLEM
 from repogen.ipk_file import AppInfo
 
-# Height of the icon preview in the report, in pixels. Icons are 130x130.
-_ICON_HEIGHT = 65
+# Icon preview in the report, in pixels. App icons are 130x130.
+_ICON_WIDTH = 80
+_ICON_CELL_WIDTH = 100
 
 
 def verify_ipk_id(appinfo: AppInfo, expected_id: str) -> str | None:
@@ -35,9 +36,9 @@ def verify_ipk_id(appinfo: AppInfo, expected_id: str) -> str | None:
     return None
 
 
-def _cell(text: str) -> str:
-    """Fit arbitrary text into one markdown table cell."""
-    escaped = html.escape(text.strip(), quote=False).replace('|', '\\|')
+def _text(text: str) -> str:
+    """Turn app-supplied text into inline HTML, keeping its line breaks."""
+    escaped = html.escape(text.strip(), quote=False)
     return escaped.replace('\r\n', '\n').replace('\n', '<br>')
 
 
@@ -47,23 +48,29 @@ def print_appinfo_table(appinfo: AppInfo, icon_uri: str):
     The title and the description come from appinfo.json in the IPK. Those are what
     the TV and Homebrew Channel show, and nothing in the package file overrides them,
     so a reviewer cannot see them without opening the package.
+
+    Written as raw HTML, not a markdown table: it puts the icon beside the title the
+    way a launcher does, and a markdown cell cannot hold a heading.
     """
-    print('## App Info')
-    print()
-    print('| | |')
-    print('| --- | --- |')
-    if icon_uri.startswith('https://'):
-        print(f'| Icon | <img src="{html.escape(icon_uri)}" height="{_ICON_HEIGHT}" alt="App icon"> |')
-    else:
-        # A data: URI does not render in a comment, so point at the package file instead.
-        print('| Icon | Data URI, see the package file |')
-    print(f'| Title | {_cell(appinfo.get("title", ""))} |')
+    detail = f'<h3>{_text(appinfo.get("title", ""))}</h3>'
     description = appinfo.get('appDescription', '')
     if description:
-        print(f'| Description | {_cell(description)} |')
+        detail += f'\n{_text(description)}'
+    print('## App Info')
     print()
-    print('Icon comes from the package file. Title and description come from `appinfo.json` '
-          'in the IPK, which the package file cannot change.')
+    print('<table><tr>')
+    if icon_uri.startswith('https://'):
+        print(f'<td width="{_ICON_CELL_WIDTH}" align="center">'
+              f'<img src="{html.escape(icon_uri)}" width="{_ICON_WIDTH}" alt="App icon"></td>')
+    else:
+        # A data: URI does not render in a comment, so point at the package file instead.
+        print(f'<td width="{_ICON_CELL_WIDTH}" align="center"><sub>Data URI,<br>see the '
+              f'package file</sub></td>')
+    print(f'<td>{detail}</td>')
+    print('</tr></table>')
+    print()
+    print('<sub>Icon comes from the package file. Title and description come from '
+          '<code>appinfo.json</code> in the IPK, which the package file cannot change.</sub>')
     print()
 
 
