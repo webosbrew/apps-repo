@@ -1,3 +1,4 @@
+import html
 import json.decoder
 import tarfile
 from pathlib import Path
@@ -9,9 +10,13 @@ from jsonschema.exceptions import ValidationError
 
 from repogen import ipk_file, pkg_info
 from repogen.common import EXIT_OK, EXIT_PACKAGE_PROBLEM, EXIT_TOOL_PROBLEM
+from repogen.ipk_file import AppInfo
+
+# Height of the icon preview in the report, in pixels. Icons are 130x130.
+_ICON_HEIGHT = 65
 
 
-def verify_ipk_id(ipk_path: str, expected_id: str) -> str | None:
+def verify_ipk_id(appinfo: AppInfo, expected_id: str) -> str | None:
     """Return an error message if the IPK does not install as `expected_id`.
 
     The manifest is a separate file from the package it points at, so an id renamed
@@ -20,10 +25,6 @@ def verify_ipk_id(ipk_path: str, expected_id: str) -> str | None:
     updates — an app listed under one id and installed under another never registers
     as installed.
     """
-    try:
-        _, appinfo = ipk_file.get_appinfo(ipk_path)
-    except (ArchiveError, KeyError, ValueError, tarfile.TarError, OSError) as e:
-        return f'Could not read appinfo.json from the IPK: {e}'
     actual_id = appinfo.get('id', None)
     if not actual_id:
         return 'The IPK has no id in its appinfo.json'
@@ -32,6 +33,38 @@ def verify_ipk_id(ipk_path: str, expected_id: str) -> str | None:
                 f'Rebuild the IPK with the id set in appinfo.json, so the listed app and the '
                 f'installed app are the same — otherwise updates will never be offered.')
     return None
+
+
+def _cell(text: str) -> str:
+    """Fit arbitrary text into one markdown table cell."""
+    escaped = html.escape(text.strip(), quote=False).replace('|', '\\|')
+    return escaped.replace('\r\n', '\n').replace('\n', '<br>')
+
+
+def print_appinfo_table(appinfo: AppInfo, icon_uri: str):
+    """Print what the app says about itself, for a reviewer to read.
+
+    The title and the description come from appinfo.json in the IPK. Those are what
+    the TV and Homebrew Channel show, and nothing in the package file overrides them,
+    so a reviewer cannot see them without opening the package.
+    """
+    print('## App Info')
+    print()
+    print('| | |')
+    print('| --- | --- |')
+    if icon_uri.startswith('https://'):
+        print(f'| Icon | <img src="{html.escape(icon_uri)}" height="{_ICON_HEIGHT}" alt="App icon"> |')
+    else:
+        # A data: URI does not render in a comment, so point at the package file instead.
+        print('| Icon | Data URI, see the package file |')
+    print(f'| Title | {_cell(appinfo.get("title", ""))} |')
+    description = appinfo.get('appDescription', '')
+    if description:
+        print(f'| Description | {_cell(description)} |')
+    print()
+    print('Icon comes from the package file. Title and description come from `appinfo.json` '
+          'in the IPK, which the package file cannot change.')
+    print()
 
 
 if __name__ == '__main__':
@@ -85,7 +118,15 @@ if __name__ == '__main__':
 
     print(f'IPK file downloaded: {args.output}', file=stderr)
 
-    id_error = verify_ipk_id(args.output, pkginfo['id'])
+    try:
+        _, ipk_appinfo = ipk_file.get_appinfo(args.output)
+    except (ArchiveError, KeyError, ValueError, tarfile.TarError, OSError) as e:
+        print(' * :x: Could not read appinfo.json from the IPK: %s' % e)
+        exit(EXIT_PACKAGE_PROBLEM)
+
+    print_appinfo_table(ipk_appinfo, pkginfo['iconUri'])
+
+    id_error = verify_ipk_id(ipk_appinfo, pkginfo['id'])
     if id_error:
         print(' * :x: %s' % id_error)
         exit(EXIT_PACKAGE_PROBLEM)
