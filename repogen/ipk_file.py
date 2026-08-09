@@ -18,6 +18,7 @@ class AppInfo(TypedDict):
     version: str
     type: str
     appDescription: NotRequired[str]
+    icon: NotRequired[str]
 
 
 def get_appinfo(ipk_path: str) -> tuple[Control, AppInfo]:
