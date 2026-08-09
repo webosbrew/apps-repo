@@ -1,6 +1,5 @@
 import html
 import json.decoder
-import re
 import tarfile
 from pathlib import Path
 from sys import stderr, exit
@@ -9,7 +8,7 @@ import requests.exceptions
 from ar.archive import ArchiveError
 from jsonschema.exceptions import ValidationError
 
-from repogen import ipk_file, pkg_info
+from repogen import ipk_file, pkg_info, report
 from repogen.common import EXIT_OK, EXIT_PACKAGE_PROBLEM, EXIT_TOOL_PROBLEM
 from repogen.ipk_file import AppInfo
 
@@ -21,11 +20,6 @@ _ICON_WIDTH = 28
 # short enough that a padded one cannot bury the rest of the comment.
 _TITLE_LIMIT = 80
 _DESCRIPTION_LIMIT = 600
-
-# Characters that let text read as something it is not: C0 and C1 controls, bidi
-# overrides and isolates, and zero-width marks. A line feed survives, nothing else.
-_INVISIBLE = re.compile('[\x00-\x09\x0b-\x1f\x7f-\x9f'
-                        '\\u200b-\\u200f\\u202a-\\u202e\\u2060-\\u2064\\u2066-\\u2069\\ufeff]')
 
 
 def verify_ipk_id(appinfo: AppInfo, expected_id: str) -> str | None:
@@ -47,23 +41,6 @@ def verify_ipk_id(appinfo: AppInfo, expected_id: str) -> str | None:
     return None
 
 
-def _text(value, limit: int) -> str:
-    """Turn app-supplied text into one line of inline HTML.
-
-    The IPK belongs to the submitter and the report becomes a comment on this
-    repository, so treat every field as hostile. Drop the characters that can make
-    text read as something else, escape the rest, and cap the length.
-
-    Every line feed becomes a `<br>`, which also keeps the surrounding raw HTML block
-    free of blank lines. That is what stops the renderer from reading app text as
-    markdown, so keep it that way.
-    """
-    text = _INVISIBLE.sub('', str(value)).strip()
-    if len(text) > limit:
-        text = text[:limit].rstrip() + ' … (truncated)'
-    return html.escape(text, quote=False).replace('\n', '<br>')
-
-
 def print_appinfo_table(appinfo: AppInfo, icon_uri: str):
     """Print what the app says about itself, for a reviewer to read.
 
@@ -81,10 +58,10 @@ def print_appinfo_table(appinfo: AppInfo, icon_uri: str):
     print('## App Info')
     print()
     print('<table><tr><td>')
-    print(f'<h3>{icon}{_text(appinfo.get("title", ""), _TITLE_LIMIT)}</h3>')
+    print(f'<h3>{icon}{report.as_html(appinfo.get("title", ""), _TITLE_LIMIT)}</h3>')
     description = appinfo.get('appDescription', '')
     if description:
-        print(_text(description, _DESCRIPTION_LIMIT))
+        print(report.as_html(description, _DESCRIPTION_LIMIT))
     print('</td></tr></table>')
     print()
     print('<sub>Icon comes from the package file. Title and description come from '

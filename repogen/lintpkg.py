@@ -10,7 +10,7 @@ import requests
 from markdown import Markdown
 from markdown.treeprocessors import Treeprocessor
 
-from repogen import pkg_info, validators
+from repogen import pkg_info, report, validators
 from repogen.common import EXIT_OK, EXIT_PACKAGE_PROBLEM, EXIT_TOOL_PROBLEM
 from repogen.pkg_info import PackageInfo
 
@@ -23,22 +23,6 @@ _LICENSE_HELP = ('`pool: main` declares the app as open source, so its source re
 # A 130x130 icon does not need more than this. Anything larger is a mistake, or an
 # attempt to hand the site and the PR comment something other than an icon.
 _ICON_SIZE_LIMIT = 512 * 1024
-# How much of an untrusted value a message repeats back. Enough to recognise a URL,
-# not enough to fill a comment.
-_QUOTE_LIMIT = 200
-
-
-def _quote(value) -> str:
-    """Repeat an untrusted value back in a report message, as inline code.
-
-    Manifests belong to their submitter and the report becomes a comment on this
-    repository. A backtick or a line break would end the code span and let the value
-    add markup of its own, so neither survives.
-    """
-    text = str(value).replace('`', "'").replace('\r', ' ').replace('\n', ' ')
-    if len(text) > _QUOTE_LIMIT:
-        text = text[:_QUOTE_LIMIT] + '…'
-    return f'`{text}`'
 
 
 class PackageInfoLinter:
@@ -77,7 +61,8 @@ class PackageInfoLinter:
         if not repo:
             # Elsewhere only reachability can be checked; the licence needs a manual look.
             self._check_url_reachable(source_url, errors, warnings)
-            warnings.append(f'Could not check the licence of {_quote(source_url)} automatically. {_LICENSE_HELP}')
+            warnings.append(f'Could not check the licence of {report.as_code(source_url)} automatically. '
+                            f'{_LICENSE_HELP}')
             return
         owner, name = repo
         headers = {'Accept': 'application/vnd.github+json'}
@@ -89,21 +74,23 @@ class PackageInfoLinter:
         try:
             resp = requests.get(f'https://api.github.com/repos/{owner}/{name}', headers=headers, timeout=30)
         except requests.exceptions.RequestException as e:
-            warnings.append(f'Could not check the licence of {_quote(source_url)}: {_quote(e)}')
+            warnings.append(f'Could not check the licence of {report.as_code(source_url)}: {report.as_code(e)}')
             return
         if resp.status_code == 404:
-            errors.append(f'sourceUrl {_quote(source_url)} is not a publicly accessible repository. {_SOURCE_HELP}')
+            errors.append(f'sourceUrl {report.as_code(source_url)} is not a publicly accessible repository. '
+                          f'{_SOURCE_HELP}')
             return
         if resp.status_code != 200:
-            warnings.append(f'Could not check the licence of {_quote(source_url)}: HTTP {resp.status_code}')
+            warnings.append(f'Could not check the licence of {report.as_code(source_url)}: HTTP {resp.status_code}')
             return
         spdx = ((resp.json().get('license', None) or {}).get('spdx_id', None))
         if not spdx:
-            warnings.append(f'No licence found in {_quote(source_url)}. {_LICENSE_HELP}')
+            warnings.append(f'No licence found in {report.as_code(source_url)}. {_LICENSE_HELP}')
         elif spdx == 'NOASSERTION':
             # A licence file exists but GitHub could not identify it — custom or modified
             # terms are still a licence, so this only warrants a look, not a rejection.
-            warnings.append(f'Licence of {_quote(source_url)} could not be identified, please review it manually')
+            warnings.append(f'Licence of {report.as_code(source_url)} could not be identified, '
+                            f'please review it manually')
 
     @staticmethod
     def _check_icon(icon_uri: str, errors: List[str], warnings: List[str]):
@@ -126,7 +113,7 @@ class PackageInfoLinter:
                 return
             content_type = resp.headers.get('Content-Type', '').split(';')[0].strip()
             if not content_type.startswith('image/'):
-                errors.append(f'iconUri must serve an image, but it serves {_quote(content_type)}')
+                errors.append(f'iconUri must serve an image, but it serves {report.as_code(content_type)}')
             if len(resp.content) > _ICON_SIZE_LIMIT:
                 warnings.append(f'iconUri is {len(resp.content) // 1024} KiB. Icons show at 130x130, '
                                 f'so anything over {_ICON_SIZE_LIMIT // 1024} KiB is wasted download.')
@@ -138,13 +125,13 @@ class PackageInfoLinter:
             resp = requests.get(source_url, timeout=30)
         except requests.exceptions.RequestException as e:
             # Can't distinguish "gone" from "having a bad minute" — don't fail the PR.
-            warnings.append(f'Could not reach sourceUrl {_quote(source_url)}: {_quote(e)}')
+            warnings.append(f'Could not reach sourceUrl {report.as_code(source_url)}: {report.as_code(e)}')
             return
         if 400 <= resp.status_code < 500:
-            errors.append(f'sourceUrl {_quote(source_url)} is not publicly accessible '
+            errors.append(f'sourceUrl {report.as_code(source_url)} is not publicly accessible '
                           f'(HTTP {resp.status_code}). {_SOURCE_HELP}')
         elif resp.status_code >= 500:
-            warnings.append(f'Could not reach sourceUrl {_quote(source_url)}: HTTP {resp.status_code}')
+            warnings.append(f'Could not reach sourceUrl {report.as_code(source_url)}: HTTP {resp.status_code}')
 
     def _check_id_namespace(self, info: PackageInfo, new_package: bool,
                             errors: List[str], warnings: List[str]):
@@ -167,7 +154,7 @@ class PackageInfoLinter:
         repo = self._github_repo(source_url) if source_url else None
         if repo:
             suggestion = f'com.github.{repo[0].lower()}.{info["id"][len(_WEBOSBREW_PREFIX):]}'
-            message += f' Rename it to something under your own namespace, e.g. {_quote(suggestion)}.'
+            message += f' Rename it to something under your own namespace, e.g. {report.as_code(suggestion)}.'
         else:
             message += ' Rename it to something under your own namespace, e.g. `com.github.<username>.<package>`.'
         if not new_package:
@@ -188,7 +175,7 @@ class PackageInfoLinter:
             for img in root.findall('.//img'):
                 src = img.attrib['src']
                 if urlparse(src).scheme != 'https':
-                    self.errors.append('Use HTTPS URL for %s' % _quote(src))
+                    self.errors.append('Use HTTPS URL for %s' % report.as_code(src))
             return None
 
     def lint(self, info: PackageInfo, new_package: bool = False) -> Tuple[List[str], List[str]]:
