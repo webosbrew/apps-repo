@@ -3,12 +3,19 @@ import subprocess
 from pathlib import Path
 from typing import Optional, List, Dict
 
-from repogen import pkg_info
+from repogen import pkg_info, report
 from repogen.common import EXIT_OK, EXIT_PACKAGE_PROBLEM, EXIT_TOOL_PROBLEM
 from repogen.pkg_info import PackageInfo
 
 # Cells of the markdown compatibility table, e.g. '| ES2015 support | :x: | :ok: |'.
 _TABLE_ROW = re.compile(r'^\|(.+)\|$')
+
+# Shapes webosbrew-ipk-verify writes: headings, bullets, tables, and collapsible
+# sections. Everything else in its output is plain text.
+_HEADING = re.compile(r'^(#{1,6}) +(.*)$')
+_BULLET = re.compile(r'^([*+-] +)(.*)$')
+_SUMMARY = re.compile(r'^<summary>(.*)</summary>$')
+_DETAILS = ('<details>', '</details>')
 
 # webosbrew-ipk-verify exit codes. Only INCOMPATIBLE says anything about the package;
 # the rest mean the tool itself could not do its job.
@@ -25,6 +32,56 @@ _VERIFY_REASONS = {
     _VERIFY_NO_FW_DATA: 'no firmware data is available',
     _VERIFY_WRITE_FAILED: 'the tool could not write its output',
 }
+
+
+def sanitize(output: str) -> str:
+    """Rebuild the compatibility report from shapes this code recognises.
+
+    webosbrew-ipk-verify reads names out of the package and writes them into its
+    report: the app and service ids, the file names of the binaries, the symbols
+    they import, the URLs a web app loads. All of that belongs to the submitter, and
+    the report becomes a comment on this repository, so keep the structure the tool
+    produced and escape everything it carries.
+
+    A value holding a line break can still forge a line of its own, and a forged
+    line that looks like a heading stays a heading. It cannot carry content, which
+    is what matters, and telling the two apart from out here is not possible.
+    """
+    lines: List[str] = []
+    for line in output.splitlines():
+        stripped = line.strip()
+        if not stripped:
+            lines.append('')
+            continue
+        if stripped in _DETAILS:
+            lines.append(stripped)
+            continue
+        summary = _SUMMARY.match(stripped)
+        if summary:
+            lines.append(f'<summary>{report.as_markdown(summary.group(1))}</summary>')
+            continue
+        heading = _HEADING.match(stripped)
+        if heading:
+            lines.append(f'{heading.group(1)} {report.as_markdown(heading.group(2))}')
+            continue
+        row = _TABLE_ROW.match(stripped)
+        if row:
+            cells = row.group(1).split('|')
+            if set(''.join(cells)) <= set('-: '):
+                lines.append(stripped)  # separator row, nothing to escape
+            else:
+                lines.append('| %s |' % ' | '.join(report.as_markdown(c.strip()) for c in cells))
+            continue
+        bullet = _BULLET.match(stripped)
+        if bullet:
+            lines.append(f'{bullet.group(1)}{report.as_markdown(bullet.group(2))}')
+            continue
+        text = report.as_markdown(stripped)
+        if text[:1] in '#>=~`+-0123456789':
+            # Plain text, so nothing here may start a block of its own.
+            text = f'\\{text}'
+        lines.append(text)
+    return '\n'.join(lines)
 
 
 def _split_row(line: str) -> Optional[List[str]]:
@@ -74,15 +131,15 @@ def check(info_file: Path, package_file: Path):
         compat_check_args.extend(['--fw-releases', declared_release])
     p = subprocess.run(args=['webosbrew-ipk-verify', *compat_check_args, str(package_file.absolute())],
                        shell=False, stdout=subprocess.PIPE, universal_newlines=True)
-    for line in p.stdout.splitlines():
-        if line.startswith('## Package'):
-            continue
-        print(line)
+    # The package id is already the section this report sits in.
+    verify_report = sanitize('\n'.join(line for line in p.stdout.splitlines()
+                                       if not line.startswith('## Package')))
+    print(verify_report)
     if p.returncode == _VERIFY_OK:
         exit(EXIT_OK)
 
     if p.returncode == _VERIFY_INCOMPATIBLE:
-        _print_release_tip(p.stdout, declared_release)
+        _print_release_tip(verify_report, declared_release)
         exit(EXIT_PACKAGE_PROBLEM)
 
     if p.returncode == _VERIFY_NO_FW_DATA and declared_release:
