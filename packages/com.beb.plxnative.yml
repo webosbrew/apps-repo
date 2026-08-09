@@ -4,9 +4,9 @@ detailIconUri: https://raw.githubusercontent.com/GLinnik21/plx-native/main/pkg/i
 manifestUrl: https://github.com/GLinnik21/plx-native/releases/latest/download/com.beb.plxnative.manifest.json
 category: multimedia
 pool: main
-shortDescription: A native, Apple-TV-style Plex client for LG webOS 4.x — no browser
+shortDescription: A native, Apple-TV-style Plex client for LG webOS — no browser
 requirements:
-  webosRelease: '>=4.0, <5.0'
+  webosRelease: '>=4.0'
 description: |
   # PlxNative
 
@@ -29,9 +29,9 @@ description: |
   - **Movies and TV shows only.** No music, photos, live TV or DVR.
   - **A server on your local network.** The app connects only to a server it finds on the LAN.
     Remote-only and relay servers will not connect, and there is nowhere to enter an address.
-  - **webOS 4.x only.** webOS 5.0 replaced the LG library that binds decoded video to the
-    hardware plane. A replacement is implemented but does not work yet: on webOS 6 and 10 the app
-    fails to start. Support for 5 and newer will come back when it has been fixed and tested.
+  - **webOS 4.x is what is tested.** The app runs and the library browses on webOS 6 and 10, but
+    playback does not start there yet — webOS 5.0 replaced the LG library that binds decoded video
+    to the hardware plane, and the replacement is still being worked out.
   - **Codec capability is asserted, not probed.** The app tells your server it can handle HEVC, 4K
     and 10-bit because that is what the author's set does; on a lower-end panel that will be
     wrong.
