@@ -48,8 +48,10 @@ def print_appinfo_table(appinfo: AppInfo, icon_uri: str):
     the TV and Homebrew Channel show, and nothing in the package file overrides them,
     so a reviewer cannot see them without opening the package.
 
-    Written as raw HTML, not a markdown table: the icon belongs on the title line the
-    way a launcher shows it, and a markdown cell cannot hold a heading.
+    Written as raw HTML: the icon belongs on the title line the way a launcher shows
+    it, and markdown has no heading that can hold one. Keeping it one unbroken HTML
+    block is also what stops the renderer from reading the app's text as markdown,
+    so do not put a blank line in the middle of it.
     """
     icon = ''
     if icon_uri.startswith('https://'):
@@ -57,12 +59,10 @@ def print_appinfo_table(appinfo: AppInfo, icon_uri: str):
     # A data: URI never renders in a comment, so that case shows the title alone.
     print('## App Info')
     print()
-    print('<table><tr><td>')
     print(f'<h3>{icon}{report.as_html(appinfo.get("title", ""), _TITLE_LIMIT)}</h3>')
     description = appinfo.get('appDescription', '')
     if description:
-        print(report.as_html(description, _DESCRIPTION_LIMIT))
-    print('</td></tr></table>')
+        print(f'<p>{report.as_html(description, _DESCRIPTION_LIMIT)}</p>')
     print()
 
 
