@@ -64,9 +64,6 @@ def print_appinfo_table(appinfo: AppInfo, icon_uri: str):
         print(report.as_html(description, _DESCRIPTION_LIMIT))
     print('</td></tr></table>')
     print()
-    print('<sub>Icon comes from the package file. Title and description come from '
-          '<code>appinfo.json</code> in the IPK, which the package file cannot change.</sub>')
-    print()
 
 
 if __name__ == '__main__':
