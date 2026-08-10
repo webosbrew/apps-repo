@@ -69,6 +69,8 @@ class PackageInfo(TypedDict):
     manifestBeta: NotRequired[PackageManifest]
     lastmodified: datetime
     lastmodified_str: str
+    # Only set on API output, for packages listed in FEATURED_APPS.
+    featured: NotRequired[bool]
 
 
 def load_registry(info_path: Path, offline: bool = False) -> tuple[str, PackageRegistry]:
