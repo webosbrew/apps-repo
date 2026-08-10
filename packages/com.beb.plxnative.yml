@@ -10,7 +10,7 @@ requirements:
 description: |
   # PlxNative
 
-  An unofficial, native Plex client for LG webOS 4.x televisions.
+  An unofficial, native Plex client for LG webOS televisions.
 
   The official Plex app on these sets runs in Chromium, and on older hardware you can feel it —
   shelves stutter and posters open a beat late. PlxNative draws its interface directly on the GPU
@@ -29,9 +29,14 @@ description: |
   - **Movies and TV shows only.** No music, photos, live TV or DVR.
   - **A server on your local network.** The app connects only to a server it finds on the LAN.
     Remote-only and relay servers will not connect, and there is nowhere to enter an address.
-  - **webOS 4.x is what is tested.** The app runs and the library browses on webOS 6 and 10, but
-    playback does not start there yet — webOS 5.0 replaced the LG library that binds decoded video
-    to the hardware plane, and the replacement is still being worked out.
+  - **webOS 4 is what playback is tested on.** The app starts and the library browses on
+    webOS 5, 6 and 10 as well, but **playback does not start there yet** — webOS 5.0 removed the
+    LG library that binds decoded video to the hardware plane, and the replacement is written but
+    has never run on a real set of that generation.
+  - **If you have a webOS 5+ television, you can help.** During playback press **…** on the
+    on-screen controls and tick **Stats for nerds**. A small panel appears showing where the
+    playback pipeline stops. Photographing it and opening an issue is the whole bug report — the
+    panel deliberately shows no server name, address, account details or media title.
   - **Codec capability is asserted, not probed.** The app tells your server it can handle HEVC, 4K
     and 10-bit because that is what the author's set does; on a lower-end panel that will be
     wrong.
