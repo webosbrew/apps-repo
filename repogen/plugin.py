@@ -9,7 +9,7 @@ from pelican import signals, Readers, PagesGenerator, StaticGenerator
 from pelican.contents import Page
 from pelican.readers import BaseReader
 
-from repogen import funding, apidata, pkg_info
+from repogen import funding, apidata, pkg_info, sitemap
 from repogen.icons import obtain_icon
 
 log = logging.getLogger(__name__)
@@ -36,6 +36,9 @@ class PackageInfoReader(BaseReader):
         metadata = {
             'title': info['title'],
             'override_save_as': f'apps/{info["id"]}/index.html',
+            # Keep the trailing slash: GitHub Pages 301-redirects the slashless form.
+            'override_url': f'apps/{info["id"]}/',
+            'description': info['manifest'].get('appDescription') or info.get('shortDescription'),
             'template': 'app',
             'status': 'hidden',
             'modified': info['lastmodified'],
@@ -106,6 +109,9 @@ def add_app_indices(generator: PagesGenerator):
     generator.hidden_pages.append(Page('', metadata={
         'title': 'Apps',
         'override_save_as': 'apps/index.html',
+        'override_url': 'apps/',
+        'description': f'Browse all {len(packages)} homebrew apps for LG webOS TVs, '
+                       f'installable through the Homebrew Channel.',
         'template': 'apps',
         'status': 'hidden',
         'packages': packages,
@@ -129,6 +135,9 @@ def add_app_indices(generator: PagesGenerator):
     metadata = {
         'title': 'Apps Repository',
         'override_save_as': 'index.html',
+        'override_url': '',
+        'description': 'Homebrew apps for LG webOS TVs. Install media players, games, '
+                       'ambient light tools and utilities through the Homebrew Channel.',
         'template': 'repo-index',
         'status': 'hidden',
         'categories': get_category_entries(),
@@ -142,15 +151,26 @@ def add_app_api_data(generator: StaticGenerator):
     packages = generator.settings['PACKAGES'].values()
     output_path = generator.settings['OUTPUT_PATH']
     host_packages = generator.settings.get('HOST_PACKAGES', None)
+    featured_packages = set(generator.settings.get('FEATURED_APPS', []))
 
     def pool_list(pool: str):
         return list(sorted(filter(lambda pkg: pkg['pool'] == pool, packages), key=lambda pkg: pkg['title'].lower()))
 
-    apidata.generate(pool_list('main'), Path(output_path, 'api'), Path(output_path, 'apps'), host_packages)
+    apidata.generate(pool_list('main'), Path(output_path, 'api'), Path(output_path, 'apps'), host_packages,
+                     featured_packages)
     apidata.generate(pool_list('non-free'), Path(output_path, 'api', 'non-free'))
+
+
+def add_crawler_files(generator: StaticGenerator):
+    packages = list(generator.settings['PACKAGES'].values())
+    output_path = Path(generator.settings['OUTPUT_PATH'])
+    siteurl = generator.settings['SITEURL']
+    sitemap.generate(packages, output_path, siteurl)
+    sitemap.generate_robots(output_path, siteurl)
 
 
 def register():
     signals.readers_init.connect(readers_init)
     signals.page_generator_finalized.connect(add_app_indices)
     signals.static_generator_finalized.connect(add_app_api_data)
+    signals.static_generator_finalized.connect(add_crawler_files)
