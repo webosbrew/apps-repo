@@ -30,14 +30,21 @@ WEBASSETS_CONFIG = [
 
 PATH = 'content'
 
-STATIC_PATHS = ['extra/CNAME', 'extra/favicon.ico', 'schemas', 'apps/icons']
-ARTICLE_EXCLUDES = ['api']
-PAGE_PATHS = ['pages', 'apps', '../packages']
+STATIC_PATHS = ['extra/CNAME', 'extra/favicon.ico', 'extra/llms.txt', 'schemas', 'apps/icons']
+# App pages come from ../packages through the repogen reader. content/apps only
+# holds generated icons, so it is not a page path.
+PAGE_PATHS = ['pages', '../packages']
+
+# The repo has no articles, so Pelican's article-driven templates would only emit
+# empty tags/categories/authors/archives pages for crawlers to index. The plugin
+# writes index.html itself.
+DIRECT_TEMPLATES = []
 
 EXTRA_PATH_METADATA = {
     'apps/icons': {'path': 'apps/icons/'},
     'extra/CNAME': {'path': 'CNAME'},
     'extra/favicon.ico': {'path': 'favicon.ico'},
+    'extra/llms.txt': {'path': 'llms.txt'},
 }
 
 MARKDOWN = {
@@ -68,8 +75,10 @@ LOAD_CONTENT_CACHE = False
 # Home/logo link target and top-nav items, consumed by the theme navbar.
 HOME_URL = '/'
 
+# Directory pages keep the trailing slash. GitHub Pages 301-redirects the
+# slashless form, so linking it directly saves a round trip.
 MENUITEMS = (
-    ('Apps', '/apps'),
+    ('Apps', '/apps/'),
     ('Develop', 'https://www.webosbrew.org/develop'),
 )
 

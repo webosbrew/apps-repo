@@ -10,7 +10,7 @@ import requests
 from markdown import Markdown
 from markdown.treeprocessors import Treeprocessor
 
-from repogen import pkg_info, validators
+from repogen import pkg_info, report, validators
 from repogen.common import EXIT_OK, EXIT_PACKAGE_PROBLEM, EXIT_TOOL_PROBLEM
 from repogen.pkg_info import PackageInfo
 
@@ -20,6 +20,9 @@ _SOURCE_HELP = ('`pool: main` declares the app as open source, so its source mus
                 'available. Point `sourceUrl` at the source repository, or set `pool: non-free`.')
 _LICENSE_HELP = ('`pool: main` declares the app as open source, so its source repository should carry '
                  'a licence. Add a LICENSE file, or set `pool: non-free`.')
+# A 130x130 icon does not need more than this. Anything larger is a mistake, or an
+# attempt to hand the site and the PR comment something other than an icon.
+_ICON_SIZE_LIMIT = 512 * 1024
 
 
 class PackageInfoLinter:
@@ -58,7 +61,8 @@ class PackageInfoLinter:
         if not repo:
             # Elsewhere only reachability can be checked; the licence needs a manual look.
             self._check_url_reachable(source_url, errors, warnings)
-            warnings.append(f'Could not check the licence of {source_url} automatically. {_LICENSE_HELP}')
+            warnings.append(f'Could not check the licence of {report.as_code(source_url)} automatically. '
+                            f'{_LICENSE_HELP}')
             return
         owner, name = repo
         headers = {'Accept': 'application/vnd.github+json'}
@@ -70,21 +74,49 @@ class PackageInfoLinter:
         try:
             resp = requests.get(f'https://api.github.com/repos/{owner}/{name}', headers=headers, timeout=30)
         except requests.exceptions.RequestException as e:
-            warnings.append(f'Could not check the licence of {source_url}: {e}')
+            warnings.append(f'Could not check the licence of {report.as_code(source_url)}: {report.as_code(e)}')
             return
         if resp.status_code == 404:
-            errors.append(f'sourceUrl {source_url} is not a publicly accessible repository. {_SOURCE_HELP}')
+            errors.append(f'sourceUrl {report.as_code(source_url)} is not a publicly accessible repository. '
+                          f'{_SOURCE_HELP}')
             return
         if resp.status_code != 200:
-            warnings.append(f'Could not check the licence of {source_url}: HTTP {resp.status_code}')
+            warnings.append(f'Could not check the licence of {report.as_code(source_url)}: HTTP {resp.status_code}')
             return
         spdx = ((resp.json().get('license', None) or {}).get('spdx_id', None))
         if not spdx:
-            warnings.append(f'No licence found in {source_url}. {_LICENSE_HELP}')
+            warnings.append(f'No licence found in {report.as_code(source_url)}. {_LICENSE_HELP}')
         elif spdx == 'NOASSERTION':
             # A licence file exists but GitHub could not identify it — custom or modified
             # terms are still a licence, so this only warrants a look, not a rejection.
-            warnings.append(f'Licence of {source_url} could not be identified, please review it manually')
+            warnings.append(f'Licence of {report.as_code(source_url)} could not be identified, '
+                            f'please review it manually')
+
+    @staticmethod
+    def _check_icon(icon_uri: str, errors: List[str], warnings: List[str]):
+        """Confirm the icon is an image, and small enough to show.
+
+        The PR check renders this URL in a comment on this repository, so what it
+        serves has to be an image and nothing else. Size is only advisory: a heavy
+        icon is a waste, not a reason to reject a package.
+        """
+        scheme = urlparse(icon_uri).scheme
+        if scheme == 'data':
+            # Inline data, nothing to fetch. The schema already checks the syntax.
+            return
+        if scheme != 'https':
+            errors.append('iconUri must be a data URI or use HTTPS')
+            return
+        with requests.get(icon_uri, timeout=30) as resp:
+            if resp.status_code != 200:
+                errors.append(f'iconUri must be accessible (HTTP {resp.status_code})')
+                return
+            content_type = resp.headers.get('Content-Type', '').split(';')[0].strip()
+            if not content_type.startswith('image/'):
+                errors.append(f'iconUri must serve an image, but it serves {report.as_code(content_type)}')
+            if len(resp.content) > _ICON_SIZE_LIMIT:
+                warnings.append(f'iconUri is {len(resp.content) // 1024} KiB. Icons show at 130x130, '
+                                f'so anything over {_ICON_SIZE_LIMIT // 1024} KiB is wasted download.')
 
     @staticmethod
     def _check_url_reachable(source_url: str, errors: List[str], warnings: List[str]):
@@ -93,13 +125,13 @@ class PackageInfoLinter:
             resp = requests.get(source_url, timeout=30)
         except requests.exceptions.RequestException as e:
             # Can't distinguish "gone" from "having a bad minute" — don't fail the PR.
-            warnings.append(f'Could not reach sourceUrl {source_url}: {e}')
+            warnings.append(f'Could not reach sourceUrl {report.as_code(source_url)}: {report.as_code(e)}')
             return
         if 400 <= resp.status_code < 500:
-            errors.append(f'sourceUrl {source_url} is not publicly accessible '
+            errors.append(f'sourceUrl {report.as_code(source_url)} is not publicly accessible '
                           f'(HTTP {resp.status_code}). {_SOURCE_HELP}')
         elif resp.status_code >= 500:
-            warnings.append(f'Could not reach sourceUrl {source_url}: HTTP {resp.status_code}')
+            warnings.append(f'Could not reach sourceUrl {report.as_code(source_url)}: HTTP {resp.status_code}')
 
     def _check_id_namespace(self, info: PackageInfo, new_package: bool,
                             errors: List[str], warnings: List[str]):
@@ -122,7 +154,7 @@ class PackageInfoLinter:
         repo = self._github_repo(source_url) if source_url else None
         if repo:
             suggestion = f'com.github.{repo[0].lower()}.{info["id"][len(_WEBOSBREW_PREFIX):]}'
-            message += f' Rename it to something under your own namespace, e.g. `{suggestion}`.'
+            message += f' Rename it to something under your own namespace, e.g. {report.as_code(suggestion)}.'
         else:
             message += ' Rename it to something under your own namespace, e.g. `com.github.<username>.<package>`.'
         if not new_package:
@@ -143,7 +175,7 @@ class PackageInfoLinter:
             for img in root.findall('.//img'):
                 src = img.attrib['src']
                 if urlparse(src).scheme != 'https':
-                    self.errors.append("Use HTTPS URL for %s" % src)
+                    self.errors.append('Use HTTPS URL for %s' % report.as_code(src))
             return None
 
     def lint(self, info: PackageInfo, new_package: bool = False) -> Tuple[List[str], List[str]]:
@@ -160,15 +192,7 @@ class PackageInfoLinter:
             errors.append('id in manifest must match id in info')
 
         # Process icon
-        icon_uri = urlparse(info['iconUri'])
-        if icon_uri.scheme == 'data' or icon_uri.scheme == 'https':
-            with requests.get(info['iconUri']) as resp:
-                if resp.status_code == 200:
-                    pass
-                else:
-                    errors.append("iconUri must be accessible")
-        else:
-            errors.append('iconUrl must be data URI or use HTTPS')
+        self._check_icon(info['iconUri'], errors, warnings)
 
         # Process manifest
         self._check_id_namespace(info, new_package, errors, warnings)
