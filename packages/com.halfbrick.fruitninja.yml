@@ -1,0 +1,36 @@
+title: Fruit Ninja
+iconUri: https://raw.githubusercontent.com/mariotaku/FruitNinja/main/deploy/webos/icon_large.png
+manifestUrl: https://github.com/mariotaku/FruitNinja/releases/latest/download/com.halfbrick.fruitninja.manifest.json
+category: game
+pool: main
+description: |
+  Fruit Ninja v1.6.1 for Samsung Bada, reverse-engineered from the ARM binary and rewritten from scratch in C++11.
+  The goal is a close to 100% faithful recreation, with the minimum of optional additions to fit modern platforms
+  and form factors.
+
+  Unofficial fan project, not affiliated with Halfbrick. You need your own copy of the game data.
+
+  ![Download Stats](https://img.shields.io/github/downloads/mariotaku/FruitNinja/total)
+  ![GitHub Stars](https://img.shields.io/github/stars/mariotaku/FruitNinja?style=social)
+
+  ## Features
+
+  * Plays with the Magic Remote -- point to aim, flick to cut
+  * Optional widescreen (16:9) layout, or the original 3:2 pillarboxed
+  * Native refresh rate: the sim keeps the original's 60 Hz tick and frames interpolate on top
+  * All the original game modes, screens and scoring
+
+  ## Screenshots
+
+  ![Main menu](https://raw.githubusercontent.com/mariotaku/FruitNinja/main/docs/screenshots/main-menu.png)
+
+  ![Arcade mode](https://raw.githubusercontent.com/mariotaku/FruitNinja/main/docs/screenshots/arcade-frenzy.png)
+
+  Widescreen (16:9):
+
+  ![Main menu in widescreen](https://raw.githubusercontent.com/mariotaku/FruitNinja/main/docs/screenshots/main-menu-wide.png)
+
+  ![Arcade mode in widescreen](https://raw.githubusercontent.com/mariotaku/FruitNinja/main/docs/screenshots/arcade-wide.png)
+
+funding:
+  github: [mariotaku]
