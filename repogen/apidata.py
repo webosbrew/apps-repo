@@ -49,7 +49,8 @@ def save_ipk(item: PackageInfo, apps_dir: Path, site_url: str):
     manifest['ipkUrl'] = f'{site_url.removesuffix("/")}/{"/".join(app_ipk.parts[-4:])}'
 
 
-def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, host_packages: Set[str] = None):
+def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, host_packages: Set[str] = None,
+             featured_packages: Set[str] = None):
     markdown = Markdown()
 
     appsdir: Path = api_dir.joinpath('apps')
@@ -60,6 +61,9 @@ def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, 
         # Prefer the manifest's appDescription, fall back to the package's shortDescription.
         package['shortDescription'] = p_info['manifest'].get('appDescription') or p_info.get(
             'shortDescription')
+        # Present only on featured packages, so clients can highlight them.
+        if featured_packages and p_info['id'] in featured_packages:
+            package['featured'] = True
         if is_details:
             package['fullDescriptionUrl'] = f'../full_description.html'
         elif in_apps_dir:
@@ -72,20 +76,48 @@ def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, 
         return package
 
     packages_length = len(packages)
-    max_page = math.ceil(packages_length / ITEMS_PER_PAGE)
+    # An empty pool still writes page 1, so never report fewer than one page.
+    max_page = max(1, math.ceil(packages_length / ITEMS_PER_PAGE))
 
-    def save_page(page: int, items: [PackageInfo]):
-        json_file = appsdir.joinpath('%d.json' % page) if page > 1 else api_dir.joinpath('apps.json')
+    def write_json(json_file: Path, items: [PackageInfo], in_apps_dir: bool, paging: dict):
         with ensure_open(json_file, 'w', encoding='utf-8') as pf:
             json.dump({
-                'paging': {
-                    'page': page,
-                    'count': len(items),
-                    'maxPage': max_page,
-                    'itemsTotal': packages_length,
-                },
-                'packages': list(map(lambda x: package_item(x, page > 1, False), items))
+                'paging': paging,
+                'packages': list(map(lambda x: package_item(x, in_apps_dir, False), items))
             }, pf, indent=2)
+
+    def save_all(items: [PackageInfo]):
+        """
+        apps.json lists every package at once.
+
+        The Homebrew Channel reads this file and never asks for another page,
+        so it must hold the whole repository. It reports itself as a single
+        page, which keeps paginating clients away from the apps/ tree.
+        """
+        write_json(api_dir.joinpath('apps.json'), items, False, {
+            'page': 1,
+            'count': len(items),
+            'maxPage': 1,
+            'itemsTotal': packages_length,
+            'prevUrl': None,
+            'nextUrl': None,
+        })
+
+    def save_page(page: int, items: [PackageInfo]):
+        """
+        apps/<page>.json is the paginated view. Page 1 is part of it, so every
+        page has the same URL shape and clients can build it from the number.
+        """
+        write_json(appsdir.joinpath('%d.json' % page), items, True, {
+            'page': page,
+            'count': len(items),
+            'maxPage': max_page,
+            'itemsTotal': packages_length,
+            # Null on the first and last page. Lets clients walk the pages
+            # without knowing how the URLs are laid out.
+            'prevUrl': '%d.json' % (page - 1) if page > 1 else None,
+            'nextUrl': '%d.json' % (page + 1) if page < max_page else None,
+        })
 
     chunks = more_itertools.chunked(packages, ITEMS_PER_PAGE) if packages else [[]]
     for index, chunk in enumerate(chunks):
@@ -103,6 +135,8 @@ def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, 
             with ensure_open(desc_html, 'w', encoding='utf-8') as f:
                 f.write(pkg_info.sanitize_description(markdown.convert(item['description'])))
         save_page(index + 1, chunk)
+    # Runs last: the loop above rewrites manifestUrl of every package.
+    save_all(packages)
     print('Generated json data for %d packages.' % len(packages))
 
 

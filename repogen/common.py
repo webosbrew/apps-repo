@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import urllib
 from os import PathLike
 from pathlib import Path
@@ -7,7 +8,15 @@ from urllib.parse import urljoin
 
 import requests
 
-ITEMS_PER_PAGE: int = 50
+# Set ITEMS_PER_PAGE to test pagination locally, e.g. ITEMS_PER_PAGE=30 with
+# make devserver. The site itself always builds with the default.
+ITEMS_PER_PAGE: int = int(os.getenv('ITEMS_PER_PAGE', '50'))
+
+# Exit codes shared by the check entry points (lintpkg, check_compat), so CI can tell
+# "the submitter must fix something" apart from "our tooling could not run".
+EXIT_OK: int = 0
+EXIT_PACKAGE_PROBLEM: int = 1
+EXIT_TOOL_PROBLEM: int = 2
 
 F = TypeVar("F", bound=Callable)
 
