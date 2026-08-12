@@ -49,7 +49,8 @@ def save_ipk(item: PackageInfo, apps_dir: Path, site_url: str):
     manifest['ipkUrl'] = f'{site_url.removesuffix("/")}/{"/".join(app_ipk.parts[-4:])}'
 
 
-def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, host_packages: Set[str] = None):
+def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, host_packages: Set[str] = None,
+             featured_packages: Set[str] = None):
     markdown = Markdown()
 
     appsdir: Path = api_dir.joinpath('apps')
@@ -60,6 +61,9 @@ def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, 
         # Prefer the manifest's appDescription, fall back to the package's shortDescription.
         package['shortDescription'] = p_info['manifest'].get('appDescription') or p_info.get(
             'shortDescription')
+        # Present only on featured packages, so clients can highlight them.
+        if featured_packages and p_info['id'] in featured_packages:
+            package['featured'] = True
         if is_details:
             package['fullDescriptionUrl'] = f'../full_description.html'
         elif in_apps_dir:
