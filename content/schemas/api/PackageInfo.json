@@ -38,6 +38,10 @@
     },
     "requirements": {
       "$ref": "../packages/PackageInfo.json#/properties/requirements"
+    },
+    "featured": {
+      "type": "boolean",
+      "description": "True when the package is featured on the repository homepage. The key is absent for every other package."
     }
   },
   "allOf": [
