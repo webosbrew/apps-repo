@@ -69,6 +69,8 @@ class PackageInfo(TypedDict):
     manifestBeta: NotRequired[PackageManifest]
     lastmodified: datetime
     lastmodified_str: str
+    # Only set on API output, for packages listed in FEATURED_APPS.
+    featured: NotRequired[bool]
 
 
 def load_registry(info_path: Path, offline: bool = False) -> tuple[str, PackageRegistry]:
@@ -79,7 +81,8 @@ def load_registry(info_path: Path, offline: bool = False) -> tuple[str, PackageR
     elif extension == '.py':
         pkgid, content = load_py_package(info_path, offline)
     else:
-        raise ValueError(f'Unrecognized info format {extension}')
+        raise ValueError(f'Unsupported package file `{info_path.name}` — package files must be '
+                         f'named `<package id>.yml`')
     validator = validators.for_schema('packages/PackageInfo.json')
     validators.validate(validator, content)
     return pkgid, content
@@ -139,7 +142,7 @@ def list_packages(pkgdir: Path, packages: List[str] | None = None, offline: bool
             return None
 
     pkgs = sorted(filter(lambda x: x, map(map_package_info, paths)), key=lambda x: x['title'])
-    return pkgs * 20
+    return pkgs
 
 
 def valid_pool(value: str) -> str:
