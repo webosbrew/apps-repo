@@ -16,7 +16,8 @@ description: |
   - Bundled 32-bit ARMv7 `wg`, `wireguard-go`, and configuration upload server, compatible with supported 32-bit and
     64-bit LG TVs
   - English and Spanish TV interface
-  - PIN-protected `wg0.conf` upload from a phone or computer
+  - Time-limited `wg0.conf` upload using a random access code, failed-attempt lockout, and automatic shutdown after a
+    successful upload
   - Start, stop, status, routes, configuration, and logs from the TV UI
   - Optional start on boot
   - Runtime uninstall support
