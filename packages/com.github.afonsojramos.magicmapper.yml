@@ -1,0 +1,28 @@
+title: Magic Mapper
+iconUri: https://raw.githubusercontent.com/afonsojramos/magic-mapper-webos/main/largeIcon.png
+manifestUrl: https://github.com/afonsojramos/magic-mapper-webos/releases/latest/download/com.github.afonsojramos.magicmapper.manifest.json
+category: utility
+pool: main
+shortDescription: Remap LG Magic Remote buttons from a TV-native interface
+description: |
+  Magic Mapper provides a TV-native interface for discovering, disabling, and remapping buttons on
+  an LG Magic Remote. It wraps the open-source
+  [Magic Mapper](https://github.com/andrewfraley/magic_mapper) runtime so mappings can be managed
+  without editing JSON over SSH.
+
+  ![Remote button mappings](https://raw.githubusercontent.com/afonsojramos/magic-mapper-webos/main/assets/screenshots/remote-buttons.png)
+
+  ## Features
+
+  - Discover a remote button while suppressing its normal action.
+  - Disable branded shortcuts such as Netflix, Prime Video, Disney+, Rakuten TV, or Alexa.
+  - Launch an installed app or make one remote button behave like another.
+  - Adjust OLED light, energy saving, eye comfort, Dynamic Tone Mapping, and screen power.
+  - Send IR, HDMI-CEC, TCP, and webhook commands, or toggle PicCap.
+  - Restore individual buttons and remove the mapper cleanly from the TV.
+
+  ![Action catalogue](https://raw.githubusercontent.com/afonsojramos/magic-mapper-webos/main/assets/screenshots/action-catalog.png)
+
+  Root access, Homebrew Channel running as root, and Python 3 on the TV are required. The current
+  hardware target is an LG C3 running webOS 25; wider hardware compatibility has not yet been
+  claimed.
