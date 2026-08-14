@@ -4,6 +4,8 @@ manifestUrl: https://github.com/afonsojramos/magic-mapper-webos/releases/latest/
 category: utility
 pool: main
 shortDescription: Remap LG Magic Remote buttons from a TV-native interface
+requirements:
+  webosRelease: ">=7.4"
 description: |
   Magic Mapper provides a TV-native interface for discovering, disabling, and remapping buttons on
   an LG Magic Remote. It wraps the open-source
