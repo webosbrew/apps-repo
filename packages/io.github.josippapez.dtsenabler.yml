@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/josippapez/dts_restore_plus/main/asse
 manifestUrl: https://github.com/josippapez/dts_restore_plus/releases/latest/download/io.github.josippapez.dtsenabler.manifest.json
 category: multimedia
 pool: main
+requirements:
+  webosRelease: '>=10.0'
 description: |
   ## DTS Enabler — DTS + Dolby TrueHD/MLP audio for webOS 25
 
@@ -14,11 +16,25 @@ description: |
   ### Features
   - DTS and DTS-HD (core) playback, including DTS in **MKV, MP4, TS and M2TS** containers
   - Dolby **TrueHD / MLP** playback (MKV)
-  - Native discrete **5.1** delivered to LG's audio sink (HDMI eARC / optical carries multichannel PCM)
-  - **Fully reversible** — every change is a bind-mount over an original file; no stock
-    firmware file is modified in place. Clean Enable / Disable / Uninstall.
-  - **Fail-safe boot hook** — re-applies automatically on reboot, and if a firmware update
-    changes the GStreamer version it stands down on its own so normal playback is never affected.
+  - Decoded to native discrete **5.1** PCM into LG's audio sink — no stereo downmix anywhere in the
+    GStreamer path. What leaves the TV is then LG's own output stage: the built-in speakers are
+    downmixed by the TV as usual, and what reaches an AVR over HDMI eARC depends on the TV's
+    *Digital Sound Output* setting. (Optical/S-PDIF carries two channels of PCM, so multichannel
+    over optical is not a thing this — or any — decode-to-PCM path can deliver.)
+  - **Reversible, with one stated exception** — the codec/demuxer/config overrides are
+    bind-mounts over the stock files, so Disable/Uninstall (or a reboot) revert them. The one
+    persistent write is the GStreamer plugin registry, a `cp -f`; Disable/Uninstall revert it by
+    regenerating a clean stock registry from the pristine on-disk plugins. If a bind is busy
+    because a live process has it mapped, the fallback is a lazy detach and a reboot clears it.
+  - **Applies only to verified TVs** — before binding anything, the installer and the boot hook
+    fingerprint the stock plugins they would shadow and compare them against a table of verified
+    sets. An unrecognised set is **refused** with the probed values shown for reporting, and can
+    only be overridden by an explicit two-step "Try anyway (experimental)" opt-in, which itself
+    requires the payload's dynamic dependencies to resolve on that TV.
+  - **Fail-safe boot hook** — re-applies automatically on reboot, and stands itself down if a
+    firmware update changes the GStreamer version or the stock plugins it was verified against, so
+    normal playback is never affected. It also self-heals: if the app is removed while still
+    enabled, the next boot drops the binds, regenerates the stock registry and unlinks the hook.
   - Built-in self-test and a play-by-ear check.
 
   ### Requirements
@@ -28,6 +44,10 @@ description: |
   ### Notes
   - Decode-to-PCM only; DTS/TrueHD **bitstream passthrough** is out of scope.
   - DTS-HD MA decodes its lossy core (no XLL lossless extension).
-  - Open source. DTS/TrueHD decoding uses libdca and ffmpeg, cross-built from source in the project repo.
+  - While enabled, gst-libav's software decoders come from our ffmpeg 4.4 build rather than LG's
+    ffmpeg 5 build, because the TrueHD-capable `libgstlibav.so` replaces LG's.
+  - Open source, mixed licenses: the app, the demuxers and the libav/ffmpeg payload are
+    LGPL-2.1-or-later; the DTS decoder links libdca and is GPL-2.0-or-later. Build scripts and
+    patched sources are in the project repo, which is the corresponding-source offer.
 
   Source and documentation: https://github.com/josippapez/dts_restore_plus
