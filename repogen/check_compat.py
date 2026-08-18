@@ -17,14 +17,15 @@ _BULLET = re.compile(r'^([*+-] +)(.*)$')
 _SUMMARY = re.compile(r'^<summary>(.*)</summary>$')
 _DETAILS = ('<details>', '</details>')
 
-# webosbrew-ipk-verify exit codes. Only INCOMPATIBLE says anything about the package;
-# the rest mean the tool itself could not do its job.
+# webosbrew-ipk-verify exit codes. Only INCOMPATIBLE and MALFORMED say anything
+# about the package; the rest mean the tool itself could not do its job.
 _VERIFY_OK = 0
 _VERIFY_INCOMPATIBLE = 1
 _VERIFY_BAD_ARGS = 2
 _VERIFY_BAD_INPUT = 3
 _VERIFY_NO_FW_DATA = 4
 _VERIFY_WRITE_FAILED = 5
+_VERIFY_MALFORMED = 6
 
 _VERIFY_REASONS = {
     _VERIFY_BAD_ARGS: 'the tool rejected its command line',
@@ -140,6 +141,12 @@ def check(info_file: Path, package_file: Path):
 
     if p.returncode == _VERIFY_INCOMPATIBLE:
         _print_release_tip(verify_report, declared_release)
+        exit(EXIT_PACKAGE_PROBLEM)
+
+    if p.returncode == _VERIFY_MALFORMED:
+        # The package will not install on any TV, so there is no release tip to
+        # give: no `webosRelease` makes it installable. The report already names
+        # the fault and what to do about it.
         exit(EXIT_PACKAGE_PROBLEM)
 
     if p.returncode == _VERIFY_NO_FW_DATA and declared_release:
