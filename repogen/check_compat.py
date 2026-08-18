@@ -164,29 +164,16 @@ def check(info_file: Path, package_file: Path):
 
 
 def _print_packager_tip():
-    """Name a packager that does not produce a package the TV refuses.
+    """Name the packagers that do not produce a package the TV refuses.
 
     Every such package seen so far came out of `@webosose/ares-cli`, the old
-    package name. Its node-tar 2 takes the file timestamps from a stat object
-    that fstream fills with `Object.keys`, and Node 22 moved those fields to the
-    prototype, so every file ends up dated 1970-01-01. Its successor and
-    `ares-cli-rs` both read the timestamps themselves and are unaffected.
-
-    Worded as a maybe: the exit code says the package will not install, not what
-    built it.
+    package name, which dates every file 1970-01-01 on Node.js 22 and later.
     """
     print()
     print('> [!TIP]')
-    print('> If this package was built with `@webosose/ares-cli`, that is the likely cause — on '
-          'Node.js 22 and later it dates every file 1970-01-01. Build it with the successor to '
-          'that package, which takes the same `ares-package` command:')
-    print('>')
-    print('> ```sh')
-    print('> npm uninstall @webosose/ares-cli && npm install --save-dev @webos-tools/cli')
-    print('> ```')
-    print('>')
-    print('> [`ares-cli-rs`](https://github.com/webosbrew/ares-cli-rs) works too. Building in CI '
-          'rather than by hand keeps the toolchain pinned.')
+    print('> Build the package with the latest '
+          '[`@webos-tools/cli`](https://www.npmjs.com/package/@webos-tools/cli) or '
+          '[`ares-cli-rs`](https://github.com/webosbrew/ares-cli-rs).')
 
 
 def _print_release_tip(report: str, declared_release: Optional[str]):
