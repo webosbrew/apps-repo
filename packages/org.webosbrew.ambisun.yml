@@ -1,0 +1,34 @@
+title: AmbiSun
+iconUri: https://raw.githubusercontent.com/Serjio193/AmbiSun/main/assets/icon.png
+manifestUrl: https://github.com/Serjio193/AmbiSun/releases/latest/download/org.webosbrew.ambisun.manifest.json
+category: amblight
+pool: main
+description: |
+  ## AmbiSun
+
+  Smart Ambilight automation for HyperHDR on LG webOS.
+
+  AmbiSun automatically controls HyperHDR LED output based on local sunrise and sunset times, with individual rules for HDMI inputs and webOS applications.
+
+  ![AmbiSun Home Screen](https://raw.githubusercontent.com/Serjio193/AmbiSun/main/assets/store/home-en.png)
+
+  ### Features
+
+  - Sunrise and sunset based Ambilight automation
+  - Adjustable sunrise and sunset offsets
+  - Individual rules for HDMI inputs
+  - Individual rules for webOS applications
+  - HyperHDR control
+  - 39 built-in offline languages
+  - LG Magic Remote / D-pad navigation
+  - Signed in-app updates
+
+  ### Requirements
+
+  - Rooted LG webOS TV
+  - Homebrew Channel
+  - HyperHDR
+
+  ### Project
+
+  https://github.com/Serjio193/AmbiSun
