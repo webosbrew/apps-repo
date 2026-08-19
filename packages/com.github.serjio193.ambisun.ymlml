@@ -1,8 +1,10 @@
 title: AmbiSun
 iconUri: https://raw.githubusercontent.com/Serjio193/AmbiSun/main/assets/icon.png
-manifestUrl: https://github.com/Serjio193/AmbiSun/releases/latest/download/org.webosbrew.ambisun.manifest.json
+manifestUrl: https://github.com/Serjio193/AmbiSun/releases/latest/download/com.github.serjio193.ambisun.manifest.json
 category: amblight
 pool: main
+requirements:
+  webosRelease: '>=7.4'
 description: |
   ## AmbiSun
 
@@ -28,6 +30,7 @@ description: |
   - Rooted LG webOS TV
   - Homebrew Channel
   - HyperHDR
+  - webOS 7.4 or newer
 
   ### Project
 
