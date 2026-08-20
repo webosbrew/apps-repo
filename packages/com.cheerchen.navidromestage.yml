@@ -1,0 +1,18 @@
+title: Navidrome Stage
+iconUri: https://raw.githubusercontent.com/CheerChen/navidrome-stage-webos/main/assets/icons/icon-large.png
+manifestUrl: https://github.com/CheerChen/navidrome-stage-webos/releases/latest/download/com.cheerchen.navidromestage.manifest.json
+category: multimedia
+pool: main
+# ES2020 (optional chaining, nullish coalescing); Chromium 87+ / webOS 7.0+
+requirements:
+  webosRelease: '>=7.0'
+description: |
+  Full-screen lyric visualizer for LG webOS TVs, backed by a self-hosted
+  [Navidrome](https://github.com/navidrome/navidrome) (or Subsonic-compatible) server.
+  Plays a random queue and hands timed lyrics to one of nine visualizer stages.
+
+  Features: nine lyric stages, word- and phrase-level synced lyric highlighting,
+  cover-art color palettes, audio-reactive backgrounds, full D-pad and media-key
+  control, and English/Chinese UI. No root required; a Navidrome server is required.
+
+  Source: https://github.com/CheerChen/navidrome-stage-webos (AGPL-3.0)
