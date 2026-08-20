@@ -17,14 +17,15 @@ _BULLET = re.compile(r'^([*+-] +)(.*)$')
 _SUMMARY = re.compile(r'^<summary>(.*)</summary>$')
 _DETAILS = ('<details>', '</details>')
 
-# webosbrew-ipk-verify exit codes. Only INCOMPATIBLE says anything about the package;
-# the rest mean the tool itself could not do its job.
+# webosbrew-ipk-verify exit codes. Only INCOMPATIBLE and MALFORMED say anything
+# about the package; the rest mean the tool itself could not do its job.
 _VERIFY_OK = 0
 _VERIFY_INCOMPATIBLE = 1
 _VERIFY_BAD_ARGS = 2
 _VERIFY_BAD_INPUT = 3
 _VERIFY_NO_FW_DATA = 4
 _VERIFY_WRITE_FAILED = 5
+_VERIFY_MALFORMED = 6
 
 _VERIFY_REASONS = {
     _VERIFY_BAD_ARGS: 'the tool rejected its command line',
@@ -142,6 +143,12 @@ def check(info_file: Path, package_file: Path):
         _print_release_tip(verify_report, declared_release)
         exit(EXIT_PACKAGE_PROBLEM)
 
+    if p.returncode == _VERIFY_MALFORMED:
+        # No release tip here: no `webosRelease` makes such a package installable.
+        # Point at a packager that does not produce one instead.
+        _print_packager_tip()
+        exit(EXIT_PACKAGE_PROBLEM)
+
     if p.returncode == _VERIFY_NO_FW_DATA and declared_release:
         # --fw-releases matched nothing. With a declared range that is the input we can
         # attribute, so report it as the submitter's to fix rather than a broken runner.
@@ -154,6 +161,19 @@ def check(info_file: Path, package_file: Path):
     print('> [!NOTE]')
     print(f'> The compatibility check could not run — {reason}. This is not a problem with the submission.')
     exit(EXIT_TOOL_PROBLEM)
+
+
+def _print_packager_tip():
+    """Name the packagers that do not produce a package the TV refuses.
+
+    Every such package seen so far came out of `@webosose/ares-cli`, the old
+    package name, which dates every file 1970-01-01 on Node.js 22 and later.
+    """
+    print()
+    print('> [!TIP]')
+    print('> Build the package with the latest '
+          '[`@webos-tools/cli`](https://www.npmjs.com/package/@webos-tools/cli) or '
+          '[`ares-cli-rs`](https://github.com/webosbrew/ares-cli-rs).')
 
 
 def _print_release_tip(report: str, declared_release: Optional[str]):
