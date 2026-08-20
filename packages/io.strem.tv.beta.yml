@@ -1,0 +1,47 @@
+title: StremioBrew
+iconUri: https://simussu9-wq.github.io/stremiobrew/icon.png
+manifestUrl: https://simussu9-wq.github.io/stremiobrew/api/apps/io.strem.tv.beta/manifest.json
+category: multimedia
+pool: non-free
+description: |
+  # StremioBrew
+
+  *Stremio&trade; is a trademark of Smart Code UG. This project is unofficial and is
+  not affiliated with, endorsed by, or sponsored by Stremio. The name is used only to
+  describe compatibility.*
+
+  ## About
+
+  An unofficial, community-built Stremio client for **old, rooted LG webOS TVs** — the
+  pre-WebAssembly generation (webOS 4.x) that the official Stremio app does not support.
+
+  > ⚠️ **Work in progress / still being tested.** It runs well on the model it was built
+  > on, but it has **not** been tested widely. Expect rough edges.
+
+  ## How it works
+
+  You bring your own **Stremio account** and your **own addons** — the app ships empty and
+  hosts or indexes nothing itself. It only plays the stream links your installed addons
+  return, and syncs your library/watched state with your own Stremio account. A **debrid**
+  service is recommended (debrid streams are direct links and play reliably).
+
+  ## Compatibility
+
+  - **webOS 4.x** (Chromium 53), **32-bit ARM (armv7)** — the tested target.
+  - **Requires a rooted TV** with the Homebrew Channel.
+  - **webOS 3.x** — probably won't work (untested, older browser).
+  - **64-bit (aarch64) TVs** — won't work; the bundled binaries are 32-bit ARM only.
+  - **webOS 5+** — use the official Stremio app instead (no root needed).
+  - **Low-RAM models may crash** under heavy use; this is a hardware limit of these TVs.
+
+  ## Licensing note
+
+  Marked **non-free**: the app bundles open-source **Node.js** and **ffmpeg** (with their
+  licenses) alongside Stremio's streaming-server component, which is **not open source** —
+  hence this is not listed as an open-source package.
+
+  ## Source
+
+  https://github.com/simussu9-wq/stremiobrew
+funding:
+  github: [ simussu9-wq ]
