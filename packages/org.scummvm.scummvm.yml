@@ -1,0 +1,19 @@
+title: ScummVM
+iconUri: https://raw.githubusercontent.com/scummvm/scummvm/v2026.3.0/dists/emscripten/assets/scummvm-192.png
+manifestUrl: https://github.com/RF1705/scummvm-webos/releases/latest/download/org.scummvm.scummvm.manifest.json
+category: game
+pool: main
+description: |
+  ScummVM allows many classic graphical adventure games to run on modern
+  systems using their original game data files.
+
+  This package provides a native ARMv7 build of ScummVM for rooted LG webOS
+  TVs. It includes engines for many classic point-and-click adventures,
+  including Monkey Island, Full Throttle, The Dig, Myst, Riven, Blade Runner,
+  Broken Sword, Simon the Sorcerer and many others.
+
+  The application supports the LG Magic Remote and can use game data from
+  locations visible to the application, such as USB storage or network shares
+  exposed through a compatible network-storage application.
+
+  Game files are not included. Legally obtained original game data is required.
