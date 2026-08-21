@@ -4,7 +4,7 @@ description: |
   App ported by Kzu.
 iconUri: "https://raw.githubusercontent.com/Kzuismee/2048-Port-for-WebOS/main/com.gabrielecirulli.app2048.webos/icon.png"
 manifestUrl: "https://github.com/Kzuismee/2048-Port-for-WebOS/releases/latest/download/manifest.json"
-category: Games
+category: game
 pool: main
 requirements:
   webosRelease: '>=4.0'
