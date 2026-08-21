@@ -20,6 +20,9 @@ description: |
   - Adjustable sunrise and sunset offsets
   - Individual rules for HDMI inputs
   - Individual rules for webOS applications
+  - Application icons for webOS applications
+  - Per-application HyperHDR effect selection
+  - Hide applications from the AmbiSun interface
   - HyperHDR control
   - 39 built-in offline languages
   - LG Magic Remote / D-pad navigation
