@@ -4,7 +4,7 @@ manifestUrl: https://github.com/josippapez/dts_restore_plus/releases/latest/down
 category: multimedia
 pool: main
 requirements:
-  webosRelease: '>=10.0'
+  webosRelease: '>=7.4'
 description: |
   ## DTS Enabler — DTS + Dolby TrueHD/MLP audio for webOS 25
 
