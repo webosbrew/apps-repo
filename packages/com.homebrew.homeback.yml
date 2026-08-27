@@ -1,9 +1,10 @@
-# CI retrigger: upstream IPK now includes Installed-Size (see webos-HomeBack release fix)
 title: HomeBack
 iconUri: https://raw.githubusercontent.com/angelcode1/webos-HomeBack/main/packages/app/manifests/icon130.png
 manifestUrl: https://github.com/angelcode1/webos-HomeBack/releases/latest/download/com.homebrew.homeback.manifest.json
 category: launcher
 pool: main
+requirements:
+ webosRelease: '>=6.0'
 shortDescription: Fast replacement Home launcher with remote-button remapping
 description: |
  # HomeBack
