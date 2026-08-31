@@ -4,6 +4,6 @@ manifestUrl: https://github.com/PelagicaApp/pelagica/releases/latest/download/ap
 category: multimedia
 pool: main
 requirements:
-  webosRelease: '>=5.0'
+  webosRelease: '>=7.4'
 description: |
   A fast, modern, and customizable Jellyfin client for webOS.
