@@ -43,8 +43,15 @@ description: |
 
   ## Privacy
   Your library never leaves your network. The app talks to your own Plex Media Server, to plex.tv
-  to sign in, and to discover.provider.plex.tv for cast biographies. There is no analytics, no
-  telemetry and no crash reporting.
+  to sign in, and to discover.provider.plex.tv for cast biographies.
+
+  Error reporting and anonymous usage reporting are optional and independently configurable. The
+  app sends nothing until you explicitly save the reporting settings; choosing Continue without
+  reporting keeps both off. Reporting can be changed later under Account → Reporting settings.
+  Reports never contain media titles, search terms, subtitle text, server names or addresses.
+  See the complete data schemas and privacy statement in the source repository's PRIVACY.md.
+
+  Error monitoring is sponsored by Sentry through Sentry for Good.
 
   Not affiliated with, endorsed by, or sponsored by Plex GmbH or LG Electronics.
 
