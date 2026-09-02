@@ -5,26 +5,38 @@ category: game
 pool: main
 description: |
   ![punktfunk](https://raw.githubusercontent.com/dyptan-io/punktfunk-webos/main/assets/logo/logo-sidebar.png)
-
-  Low-latency desktop & game streaming for LG webOS.
-
+  
+  Low-latency desktop and game streaming for LG webOS.
+  
   ![Home screen](https://raw.githubusercontent.com/dyptan-io/punktfunk-webos/main/assets/screenshots/home.jpg)
-
-  * Find hosts on your network automatically, or add one by IP; pair once with a PIN.
-  * Choose resolution (1080p/1440p/4K), frame rate, bitrate, and HDR.
-  * Browse the host's game library with cover art and launch straight into a game.
-  * Smooth hardware-accelerated video with low latency.
-  * Control it with the Magic Remote, a gamepad, keyboard, or mouse.
-
+  
+  * **Video.** Up to 4K120 with HDR. HEVC or H.264, decoded by the TV's media pipeline.
+  * **Bitrate.** Automatic mode adapts to the network, or set a fixed rate up to 200 Mbps.
+  * **Audio.** Stereo, 5.1 or 7.1 (webOS 5+), decoded in software or offloaded to media pipeline.
+  * **Per-game overrides.** Any game can override the global resolution, frame rate, bitrate, codec, HDR, audio or controller settings.
+  * **Input.** Magic Remote pointer, gamepads, USB keyboard and mouse. Cursor capture for games or absolute for the desktop, gestures.
+  * **DualSense.** Adaptive triggers, lightbar, player LEDs, touchpad, gyro and rumble over Bluetooth.
+  * **Host power.** Wake-on-LAN, and configurable host power management for sleep or full shut down.
+  * **Game mode (rooted TVs).** Switches picture and sound to Game mode while streaming, and restores the previous settings on exit.
+  * **Easy Pairing.** Hosts are found on your network automatically, or added by IP.
+  * **Library.** Browse the host's games and launch straight into it, custom game collections.
+  
+  Some features are limited on older webOS versions:
+  
+  * **Spatial Audio.** 5.1 and 7.1 are only available on webOS 5+.
+  * **HEVC and HDR** are only available on webOS 5+.
+  * **DualSense.** Rumble, triggers, haptics, gyro and lightbar are only available on webOS 11+.
+  
   Needs a [punktfunk](https://git.unom.io/unom/punktfunk) host running on your PC — see the
   [host setup guide](https://git.unom.io/unom/punktfunk#readme) to get started.
-
-  webOS client by [dyptan-io](https://github.com/dyptan-io).
-  punktfunk is created by Enrico Bühler ([unom](https://unom.io)).
+  
+  This app is created by [dyptan-io](https://github.com/dyptan-io).
+  **Punktfunk** is created by Enrico Bühler ([unom](https://unom.io)).
+  
   MIT / Apache-2.0.
 
 funding:
   github: [dyptan-io]
 
 requirements:
-  webosRelease: '>=5'
+  webosRelease: '>=4'
