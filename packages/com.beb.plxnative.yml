@@ -61,6 +61,16 @@ description: |
   video to the TV's own hardware decoder — the same silicon the built-in apps use — so the picture
   sits on the video plane with the interface composited over it.
 
+  **Screenshots**
+
+  ![Home](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/home.jpg)
+
+  ![Library](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/library.jpg)
+
+  ![Search](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/search.jpg)
+
+  ![Player](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/player.jpg)
+
   **What it does**
 
   * Sign in on the TV with an on-screen QR code, pick a Plex Home profile, browse and play
@@ -109,16 +119,6 @@ description: |
   settings, the question shows the exact messages before anything can be enabled, and no title,
   search term, server name or address can appear in one. Sign-in to your Plex account is
   encrypted; traffic to a media server is not (above).
-
-  **Screenshots**
-
-  ![Home](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/home.jpg)
-
-  ![Library](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/library.jpg)
-
-  ![Search](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/search.jpg)
-
-  ![Player](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/player.jpg)
 
   Not affiliated with, endorsed by, or sponsored by Plex GmbH or LG Electronics.
 
