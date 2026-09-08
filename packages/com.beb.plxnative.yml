@@ -15,7 +15,7 @@ category: multimedia
 pool: main
 
 # Max 80 characters (schema-enforced).
-shortDescription: A native, Apple-TV-style Plex client for LG webOS TVs — no browser
+shortDescription: A fast, native Plex client for LG webOS TVs — no browser
 
 requirements:
   # Passed VERBATIM to `webosbrew-ipk-verify --fw-releases`, the same tool and flag the release CI
@@ -54,62 +54,47 @@ requirements:
   webosRelease: '>=4.0'
 
 description: |
-  An unofficial, native Plex client for LG webOS televisions.
+  PlxNative is an unofficial Plex client for LG webOS televisions. Its interface is rendered
+  directly on the GPU, without Chromium, JavaScript or a WebView, while video is handled by the
+  television's hardware decoder.
 
-  The official Plex app on these sets runs in Chromium, and on older hardware it shows: shelves
-  stutter, posters open a beat late. PlxNative draws its interface directly on the GPU and hands
-  video to the TV's own hardware decoder — the same silicon the built-in apps use — so the picture
-  sits on the video plane with the interface composited over it.
+  <p align="center">
+    <strong>
+      <a href="https://plxnative.com/">website</a>
+      •
+      <a href="https://github.com/GLinnik21/plx-native/blob/main/PRIVACY.md">privacy</a>
+      •
+      <a href="https://github.com/GLinnik21/plx-native/issues">report an issue</a>
+    </strong>
+  </p>
 
-  **What it does**
+  ## Screenshots
 
-  * Sign in on the TV with an on-screen QR code, pick a Plex Home profile, browse and play
-  * Every server your account can reach, at once — your own and any a friend has shared with you,
-    merged on the home screen and side by side in the library list
-  * Search across all of them from one field, typed with the television's own keyboard
-  * Direct play wherever the TV can decode it, including HEVC, 4K and 10-bit; the server is asked
-    to transcode only when it genuinely cannot
-  * Resume, seek and scrub, chapters, audio and subtitle track switching (including image
-    subtitles), Skip Intro / Skip Credits, Up Next with auto-advance, and progress reported back
-    to your server
-  * Dolby Vision and Dolby Atmos are declared to the television rather than sent down unlabelled,
-    so a Dolby Vision file is no longer played as if it were ordinary HDR, and the panel is
-    confirmed to switch into its Dolby Vision mode on one television — see the scope note below
+  ![Home](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/home.jpg)
 
-  **Scope — please read before installing**
+  ![Library](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/library.jpg)
 
-  * **Movies and TV shows only.** No music, photos, live TV or DVR.
-  * **Unencrypted connections to your server, including over the internet.** The app speaks plain
-    HTTP to a numeric address, with your access token in the URL — it has no TLS and no name
-    resolver. Your own server on your own LAN is reached there, as before; a library a friend has
-    shared is normally reached at a public address, and that traffic crosses the internet in clear
-    text. Servers behind Plex Relay, servers that require secure connections, and servers reachable
-    only by hostname or IPv6 cannot be dialled at all, and there is nowhere to enter an address.
-  * **Two televisions have been watched, out of every set this installs on.** Video is verified on
-    a 2019 LG (platform release 4.10.2) by the author, and reported working on a 2021 LG
-    65UP7560AUD (6.5.2) by a webosbrew reviewer. Everything from webOS 4.0 up is checked only for
-    whether the app *starts*, which says nothing about whether a picture appears. If you are on
-    5.x, 10 or 11, you are the first — and a report either way is welcome.
-  * **Dolby Vision is confirmed on ONE television.** On the 2019 set this is developed against, a
-    Profile 5 or Profile 8 film moves the panel into its Dolby Vision picture mode, and a Profile 7
-    film — the dual-layer kind this app cannot feed — is refused and lands on HDR10, which is what
-    refusing it should produce. That is one set. If yours is a different year or a different panel,
-    that is still the report worth sending.
-  * **Seeking on webOS 5 and newer takes a slower route.** It reloads the stream rather than
-    moving within it. It works; it has not been watched on hardware.
-  * **Bit depth is asserted, not probed.** The app reads the codec table your television publishes
-    and reports the codecs and resolutions it actually lists — but that table has no column for
-    bit depth, so 10-bit is still claimed without asking.
+  ![Search](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/search.jpg)
 
-  The app talks to the Plex Media Servers your account can reach, to plex.tv to sign in, and to
-  discover.provider.plex.tv for cast biographies. Error reports and usage are two separate
-  switches. The first question presents both selected, but that is only an inert draft: nothing is
-  collected or sent until you explicitly save reporting settings, BACK cancels, and Continue
-  without reporting records both as off. The choices remain reversible under Account → Reporting
-  settings, the question shows the exact messages before anything can be enabled, and no title,
-  search term, server name or address can appear in one. Sign-in to your Plex account is
-  encrypted; traffic to a media server is not (above).
+  ![Player](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/player.jpg)
 
-  Not affiliated with, endorsed by, or sponsored by Plex GmbH or LG Electronics.
+  ## Features
 
-  Source, screenshots and issues: https://github.com/GLinnik21/plx-native
+  * Sign in with an on-screen QR code and choose a Plex Home profile
+  * Browse and play media from your own and shared Plex Media Servers
+  * Search across all available servers
+  * Direct Play using the television's supported formats, with transcoding when needed
+  * 4K, HEVC, Dolby Vision and Dolby Atmos on compatible televisions
+  * Resume, seek and scrub, chapters, audio and subtitle tracks, Skip Intro, Skip Credits and
+    Up Next
+
+  Features and media compatibility may vary between television models and webOS releases. See
+  Project Page for current compatibility information and known limitations.
+
+  ## Privacy
+
+  Crash reports and product analytics are separate, optional choices and remain off unless
+  enabled. Use the privacy link above for complete and current information.
+
+  PlxNative is an unofficial, third-party client. It is not affiliated with, endorsed by, or
+  sponsored by Plex GmbH, Plex, Inc. or LG Electronics.
