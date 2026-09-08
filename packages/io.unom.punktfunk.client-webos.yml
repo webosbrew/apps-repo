@@ -1,6 +1,6 @@
 title: Punktfunk
 iconUri: https://raw.githubusercontent.com/punktfunk/client-webos/main/packaging/icon_large.png
-manifestUrl: https://github.com/punktfunk/client-webos/releases/download/latest/io.unom.punktfunk.client-webos.manifest.json
+manifestUrl: https://github.com/punktfunk/client-webos/releases/latest/download/io.unom.punktfunk.client-webos.manifest.json
 category: game
 pool: main
 description: |
