@@ -9,7 +9,7 @@ shortDescription: Fast replacement Home launcher with remote-button remapping
 description: |
  # HomeBack
 
- HomeBack is a fast replacement Home launcher for rooted LG TVs running webOS 6+. It gives you a compact app ribbon, a scrollable app drawer, quick access to Inputs and remote colour keys, a numeric keypad, and configurable short/long-press remote-button mappings.
+ HomeBack is a fast replacement Home launcher for rooted LG TVs running webOS 6+. It gives you a compact app ribbon, a scrollable app drawer, quick access to Inputs and remote colour keys, a numeric keypad, configurable short/long-press remote-button mappings, and optional Home Assistant camera integration.
 
  ## Features
 
@@ -20,12 +20,19 @@ description: |
  - **Keypad tile** — open the LG numeric on-screen keyboard and send 0–9 as TV remote key presses
  - **Red / Green / Yellow / Blue tiles** — send the matching LG colour key
  - **Custom remote mappings** — launch apps, replace keys, ignore keys, run short/long actions, or execute shell commands
+ - **Home Assistant cameras** — receive passive camera notifications and open the latest camera in LG native PiP from the HomeBack Cameras tile
 
  HomeBack includes its own remote-input service, so it should not be run alongside the standalone LG Input Hook app.
 
+ ## Optional Home Assistant camera support
+
+ Install the separate **HomeBack Camera** package (`com.homebrew.homeback.camera`) alongside HomeBack if you want the supported Home Assistant camera workflow. The companion is required to render camera stills/streams in LG's native Picture-in-Picture / Multi View surface when you select **Cameras** from the HomeBack ribbon.
+
+ The main HomeBack package works normally without the camera companion.
+
  ## Requirements
 
- A rooted LG webOS TV (webOS 6+) with the webOS Homebrew Channel installed. HomeBack uses Homebrew's root capabilities and boot hooks.
+ A rooted LG webOS TV (webOS 6+) with the webOS Homebrew Channel installed. HomeBack uses Homebrew's root capabilities and boot hooks. Camera PiP additionally requires LG native Multi View / Picture-in-Picture support on the TV/firmware.
 
  ## Credits and upstream projects
 
