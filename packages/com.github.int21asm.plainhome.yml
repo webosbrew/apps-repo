@@ -8,10 +8,11 @@ description: |
 
   It lists installed applications in a compact grid, supports custom, LG-order, and
   alphabetical sorting, hide/unhide controls, a resettable custom order, configurable
-  focus colors, a clock, localized date, connected named inputs, and optional custom
-  header text.
+  focus and tile colors, configurable clock and date displays, connected named inputs,
+  optional custom header text, launch at TV startup, and Home-button takeover.
 
   Root is required for application discovery, icon access, input discovery, and guarded
-  removal of applications that webOS marks removable.
+  removal of applications that webOS marks removable. Startup and Home-button features
+  are optional and disabled by default.
 
   Source: https://github.com/int21asm/plainhome-webos
