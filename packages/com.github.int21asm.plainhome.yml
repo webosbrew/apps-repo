@@ -1,0 +1,17 @@
+title: PlainHome
+iconUri: https://raw.githubusercontent.com/int21asm/plainhome-webos/main/app/icon512.png
+manifestUrl: https://github.com/int21asm/plainhome-webos/releases/latest/download/com.github.int21asm.plainhome.manifest.json
+category: system
+pool: main
+description: |
+  PlainHome is a minimal customizable home launcher for rooted LG webOS TVs.
+
+  It lists installed applications in a compact grid, supports custom, LG-order, and
+  alphabetical sorting, hide/unhide controls, a resettable custom order, configurable
+  focus colors, a clock, localized date, connected named inputs, and optional custom
+  header text.
+
+  Root is required for application discovery, icon access, input discovery, and guarded
+  removal of applications that webOS marks removable.
+
+  Source: https://github.com/int21asm/plainhome-webos
