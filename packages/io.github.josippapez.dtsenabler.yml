@@ -1,0 +1,74 @@
+title: DTS Enabler
+iconUri: https://raw.githubusercontent.com/josippapez/dts_restore_plus/main/assets/icon160.png
+manifestUrl: https://github.com/josippapez/dts_restore_plus/releases/latest/download/io.github.josippapez.dtsenabler.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=7.4'
+description: |
+  ## DTS Enabler — DTS + Dolby TrueHD/MLP audio for rooted LG TVs
+
+  LG removed DTS decoding from some TV generations and kept it in others. This app
+  works out which one you have and, where the decoder is missing, restores **DTS** and
+  **Dolby TrueHD / MLP** playback. Audio is decoded to native **discrete multichannel**
+  PCM — there is no stereo downmix in the pipeline.
+
+  It also tells you when you do **not** need it, rather than reporting a working TV as
+  unsupported.
+
+  ### What you get, by generation
+  - **C5 / G5 and later (webOS 25)** — LG ships no DTS or TrueHD decoder. This is the
+    **verified** target: DTS and DTS-HD (core) in **MKV, MP4, TS and M2TS**, and Dolby
+    **TrueHD / MLP** in **MKV, TS and M2TS**. Includes loudness controls (make-up gain,
+    a DRC preset and a dialogue boost), a self-test and a play-by-ear check.
+  - **C4 / G4 / M4 / T4 (2024)** — DTS is **native and working**. Reported as needing
+    nothing; no mechanism is offered.
+  - **C3 / G3 / M3 (2023)** — LG restored DTS here, but on some builds the decoder is
+    present and switched off. Reported as such, with no mechanism shipped for that
+    generation yet.
+  - **C2 / G2 (2022)** — an **experimental** profile for one exact analyzed firmware,
+    behind a two-step opt-in. Firmware-matched only; **never** reported as hardware
+    verified, because no rooted C2/G2 was available to test on.
+  - **B2 / B3** — recognised and explicitly refused, with family-specific reasons.
+  - **CX-class (webOS 3–6)** — the inherited mechanism, carried over and unverified by
+    this fork. The original `lgstreamer/dts_restore` is the better tool there.
+
+  ### Safety
+  - **Reversible, with one stated exception** — the codec/demuxer/config overrides are
+    bind-mounts over the stock files, so Disable/Uninstall (or a reboot) revert them. The
+    one persistent write is the GStreamer plugin registry, a `cp -f`; Disable/Uninstall
+    revert it by regenerating a clean stock registry from the pristine on-disk plugins. If
+    a bind is busy because a live process has it mapped, the fallback is a lazy detach and
+    a reboot clears it.
+  - **Applies its mechanism only to TVs it should** — before binding anything, the
+    installer and boot hook fingerprint the stock plugins they would shadow and check them
+    against a table of verified sets, **and** check the model. Stock plugins can be
+    byte-identical across models, so a hash match on a model nobody has tested is reported
+    as exactly that and requires the explicit two-step "Try anyway (experimental)" opt-in,
+    which itself requires the payload's dynamic dependencies to resolve on that TV.
+    Anything unrecognised is refused with the probed values shown for reporting.
+  - **Fail-safe boot hook** — re-applies automatically on reboot, and stands itself down
+    if a firmware update changes the GStreamer version or the stock plugins it was verified
+    against, so normal playback is never affected. It also self-heals: if the app is removed
+    while still enabled, the next boot drops the binds, regenerates the stock registry and
+    unlinks the hook.
+
+  ### Requirements
+  - A **rooted** LG TV with the Homebrew Channel (uses its root exec service)
+  - webOS 7.4 or newer
+
+  ### Notes
+  - Decode-to-PCM only; DTS/TrueHD **bitstream passthrough** is out of scope, and DTS:X /
+    TrueHD-Atmos **object audio** cannot be delivered — LG's only Atmos-capable decoder
+    accepts neither DTS nor TrueHD input.
+  - DTS-HD MA decodes its lossy core (no XLL lossless extension). TrueHD decodes its full
+    base channel bed; Atmos objects are dropped.
+  - Loudness controls are webOS 25 only, by design: they exist inside decoders this project
+    builds, and on generations where LG's own decoder still works it handles loudness itself.
+  - While enabled, gst-libav's software decoders come from our ffmpeg 4.4 build rather than
+    LG's ffmpeg 5 build, because the TrueHD-capable `libgstlibav.so` replaces LG's.
+  - Open source, mixed licenses: the app, the demuxers and the libav/ffmpeg payload are
+    LGPL-2.1-or-later; the DTS decoder links libdca and is GPL-2.0-or-later. Build scripts
+    and patched sources are in the project repo, which is the corresponding-source offer.
+
+  Source and documentation: https://github.com/josippapez/dts_restore_plus
