@@ -1,0 +1,16 @@
+title: Life's Good Without Spying
+iconUri: "https://raw.githubusercontent.com/lewisdoesstuff/lifesgoodwithoutspying/main/app/largeIcon.png"
+manifestUrl: https://github.com/lewisdoesstuff/lifesgoodwithoutspying/releases/latest/download/ooo.lew.lifesgoodwithoutspying.manifest.json
+category: system
+pool: main
+requirements:
+  webosRelease: '>=9.2'
+description: |
+  Disables telemetry, ACR, and ad services on LG webOS TVs.
+
+  - Blackholes LG ad/ACR/telemetry domains
+  - Stops the on-TV ad and voice services and kills them if they're restarted
+  - Wipes locally buffered ACR and voice residue
+  - Re-applies at boot
+
+  Requires root and the Homebrew Channel.
