@@ -73,7 +73,12 @@ class PackageInfo(TypedDict):
     featured: NotRequired[bool]
 
 
-def load_registry(info_path: Path, offline: bool = False) -> tuple[str, PackageRegistry]:
+def parse_registry(info_path: Path, offline: bool = False) -> tuple[str, PackageRegistry]:
+    """Read a package file, without checking it against the schema.
+
+    Split out of load_registry so a caller that reports problems instead of aborting
+    on the first one — the linter — can hold the parsed registry and keep going after
+    a schema violation."""
     extension = info_path.suffix
     content: PackageRegistry
     if extension == '.yml':
@@ -83,8 +88,20 @@ def load_registry(info_path: Path, offline: bool = False) -> tuple[str, PackageR
     else:
         raise ValueError(f'Unsupported package file `{info_path.name}` — package files must be '
                          f'named `<package id>.yml`')
+    return pkgid, content
+
+
+def validate_registry(content: PackageRegistry) -> None:
+    """Check a parsed registry against the package schema.
+
+    Raises validators.SchemaValidationError listing every violation at once."""
     validator = validators.for_schema('packages/PackageInfo.json')
     validators.validate(validator, content)
+
+
+def load_registry(info_path: Path, offline: bool = False) -> tuple[str, PackageRegistry]:
+    pkgid, content = parse_registry(info_path, offline)
+    validate_registry(content)
     return pkgid, content
 
 
