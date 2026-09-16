@@ -111,6 +111,7 @@ INDEX_APP_CATEGORIES = [
     ('game', 'Games'),
     ('amblight', 'Ambient Light'),
     ('screensaver', 'Screensavers'),
+    ('launcher', 'Launchers'),
     ('utility', 'Utilities'),
 ]
 
