@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/HCLGitHub/qoder-iptv-releases/main/la
 manifestUrl: https://github.com/HCLGitHub/qoder-iptv-releases/releases/latest/download/com.qoder.iptv.manifest.json
 category: multimedia
 pool: non-free
+requirements:
+  webosRelease: '>=5.3'
 shortDescription: M3U player with EPG, catch-up playback and remote-friendly controls.
 description: |
   A remote-friendly M3U media player for LG webOS TVs.
