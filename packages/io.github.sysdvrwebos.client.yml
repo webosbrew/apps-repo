@@ -1,0 +1,10 @@
+title: SysDVR WebOS
+iconUri: https://raw.githubusercontent.com/laurorual/sysdvr-webos/main/webos/icon.png
+manifestUrl: https://github.com/laurorual/sysdvr-webos/releases/latest/download/io.github.sysdvrwebos.client.manifest.json
+category: utility
+pool: main
+description: |
+  Native SysDVR client for LG webOS TVs. Streams H.264 video and PCM audio
+  from a Nintendo Switch running SysDVR in TCP Bridge mode, with automatic
+  LAN discovery, console selection, A/V synchronization, and reconnect after
+  sleep/wake or transient transport failures.
