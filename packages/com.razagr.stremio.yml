@@ -1,0 +1,43 @@
+title: Stremio Launcher (Unofficial)
+iconUri: https://raw.githubusercontent.com/RazaGR/stremio-lg-tv/main/assets/icon160.png
+manifestUrl: https://github.com/RazaGR/stremio-lg-tv/releases/latest/download/com.razagr.stremio.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: ">=5.0"
+description: |
+  # Stremio Launcher (Unofficial)
+
+  Opens the official Stremio TV interface on LG webOS televisions, so Stremio
+  can be used with the TV remote instead of casting from a phone or PC.
+
+  **This is not the official Stremio app and is not affiliated with Stremio.**
+  Stremio publishes an official LG TV app in the LG Content Store for webOS 5.0+
+  models — if it is available in your region, prefer it. This launcher exists for
+  sets where that listing is not offered.
+
+  ## Features
+
+  - Boots straight into the remote-friendly Stremio TV layout
+  - Signs in once and stays signed in — your account, library and addon
+    collection persist across restarts
+  - Reports a network problem plainly instead of leaving a black screen, and
+    still opens Stremio if the check is inconclusive
+  - Detects TVs too old to run Stremio's engine and says so, rather than
+    hanging on a page that can never load
+
+  ## Requirements
+
+  webOS 5.0 or newer (2020 models and later). Older sets cannot run Stremio's
+  WebAssembly engine.
+
+  ## Notes
+
+  This is a launcher. It contains no media, no addons and no Stremio code — it
+  opens Stremio's own official web interface, and everything after that is
+  Stremio's software governed by Stremio's terms. Addons are configured in your
+  Stremio account, not in this app.
+
+  ## Source
+
+  https://github.com/RazaGR/stremio-lg-tv
