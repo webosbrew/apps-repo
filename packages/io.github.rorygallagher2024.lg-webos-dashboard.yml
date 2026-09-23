@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/rorygallagher2024/lg-webos-dashboard/
 manifestUrl: https://github.com/rorygallagher2024/lg-webos-dashboard/releases/latest/download/io.github.rorygallagher2024.lg-webos-dashboard.manifest.json
 category: system
 pool: main
+requirements:
+  webosRelease: '>=4.4'
 description: |
   # Glasshouse
 
@@ -14,7 +16,7 @@ description: |
   - Apps: uninstall, and switch off background services
   - Service menu: opens LG's service menus; unlocking the full menu asks first
   - Home Assistant bridge over MQTT, set up from a phone
-  - Tested on webOS 3.4 to 25, OLED and LCD
+  - Requires webOS 4.4 or later. Installed with `deploy.sh` from its repository, the dashboard also runs on webOS 3.4 and 3.9
 
   Requires root. On first launch the app installs a small server under `/var/lib/tvweb` with a boot hook, and answers only on the TV until setup opens it to the network. Everything it can change on the TV is opt-in and listed in [TV-CHANGES.md](https://github.com/rorygallagher2024/lg-webos-dashboard/blob/main/docs/TV-CHANGES.md). Uninstalling the app removes the server within a few minutes.
 
