@@ -1,0 +1,21 @@
+title: Glasshouse
+iconUri: https://raw.githubusercontent.com/rorygallagher2024/lg-webos-dashboard/main/server/assets/dashboard-app/assets/icon130.png
+manifestUrl: https://github.com/rorygallagher2024/lg-webos-dashboard/releases/latest/download/io.github.rorygallagher2024.lg-webos-dashboard.manifest.json
+category: system
+pool: main
+description: |
+  # Glasshouse
+
+  **Own the glass.** A dashboard for the TV itself, with the remote or from a browser on the home network.
+
+  - Readings: SoC temperature, CPU, memory, storage, uptime, HDMI signal details
+  - Privacy: LG's data consents, each explained and switchable; screen content recognition; an ad and telemetry blocker; LG's background data services
+  - OLED care: panel hours, pixel refresher, burn-in protections
+  - Apps: uninstall, and switch off background services
+  - Service menu: opens LG's service menus; unlocking the full menu asks first
+  - Home Assistant bridge over MQTT, set up from a phone
+  - Tested on webOS 3.4 to 25, OLED and LCD
+
+  Requires root. On first launch the app installs a small server under `/var/lib/tvweb` with a boot hook, and answers only on the TV until setup opens it to the network. Everything it can change on the TV is opt-in and listed in [TV-CHANGES.md](https://github.com/rorygallagher2024/lg-webos-dashboard/blob/main/docs/TV-CHANGES.md). Uninstalling the app removes the server within a few minutes.
+
+  ![System tab](https://raw.githubusercontent.com/rorygallagher2024/lg-webos-dashboard/main/docs/screenshots/dashboard.png)
