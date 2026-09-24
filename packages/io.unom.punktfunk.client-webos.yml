@@ -12,11 +12,11 @@ description: |
 
   ## Features
   
-  * **Video.** Up to 4K120 with HDR. HEVC or H.264, decoded by the TV's media pipeline.
+  * **Video.** Up to 4K165 with HDR. HEVC or H.264, decoded by the TV's media pipeline.
   * **Bitrate.** Automatic mode adapts to the network, or set a fixed rate up to 200 Mbps.
   * **Audio.** Stereo, 5.1 or 7.1 (webOS 5+), decoded in software or offloaded to media pipeline.
-  * **Per-game profiles.** Any game can override the global resolution, frame rate, bitrate, codec, HDR, audio or controller settings.
-  * **Input.** Magic Remote pointer, gamepads, USB keyboard and mouse. Cursor capture for games or absolute for the desktop, gestures.
+  * **Per-game presets.** Any game can override the global resolution, frame rate, bitrate, codec, HDR, audio or controller settings.
+  * **Input.** Magic Remote, multiple gamepads, USB keyboard and mouse. Cursor capture for games or absolute for the desktop, gestures.
   * **DualSense.** Adaptive triggers, lightbar, player LEDs, touchpad, gyro, speakers and haptics over Bluetooth or wired.
   * **Host power.** Wake-on-LAN, and configurable host power management for sleep or full shut down.
   * **Game mode (rooted TVs).** Switches picture and sound to Game mode while streaming, and restores the previous settings on exit.
