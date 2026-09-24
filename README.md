@@ -36,7 +36,14 @@ category: system
 pool: main
 # Long description for your application, in Markdown format
 description: |
-  Description in markdown format, we suggest you to add some screenshots to help users understand
+  Description in markdown format
+# Suggested: screenshots shown at the top of the app's page, in order. Each is a publicly
+# accessible HTTPS URL to the full-size image, optionally with a caption. Leaving this out
+# is a lint warning, not an error.
+screenshots:
+  - https://example.com/main.png
+  - url: https://example.com/player.png
+    caption: Playback
 # Sponsor information, like .github/FUNDING.yml
 funding:
   github: [ your-name ]

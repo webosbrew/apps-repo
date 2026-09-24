@@ -19,3 +19,25 @@
   }
 }
 
+
+/* Screenshot strip between the header and the description. A fixed height keeps
+   mixed aspect ratios in one row; the strip scrolls sideways when it overflows. */
+.app-screenshots {
+  figure {
+    max-width: 90%;
+  }
+
+  img {
+    display: block;
+    height: 240px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  /* Wrap to the image's width instead of widening the figure. */
+  figcaption {
+    width: 0;
+    min-width: 100%;
+  }
+}

@@ -194,6 +194,24 @@ class PackageInfoLinter:
                     'not just in this file.')
         errors.append(message)
 
+    @staticmethod
+    def _check_screenshots(info: PackageInfo, warnings: List[str]):
+        """Screenshots are suggested, not required, so their absence is only a warning.
+
+        Their shape is the schema's job. What is left is the scheme: the schema admits
+        plain HTTP, but the site is served over HTTPS and hotlinks them."""
+        if 'screenshots' not in info:
+            warnings.append('No `screenshots`. A few screenshots help users see what the app does '
+                            'before installing it, and are shown at the top of its page.')
+            return
+        screenshots = info['screenshots']
+        if not isinstance(screenshots, list):
+            return
+        for shot in screenshots:
+            url = shot.get('url', None) if isinstance(shot, dict) else shot
+            if isinstance(url, str) and urlparse(url).scheme == 'http':
+                warnings.append('Use HTTPS URL for screenshot %s' % report.as_code(url))
+
     class ImageProcessor(Treeprocessor):
 
         def __init__(self, errors: [str]):
@@ -246,6 +264,8 @@ class PackageInfoLinter:
         self._check_id_namespace(info, new_package, errors, warnings, skipped)
 
         self._check_source_license(info, errors, warnings, skipped)
+
+        self._check_screenshots(info, warnings)
 
         description = info.get('description', '')
         if isinstance(description, str):
@@ -329,7 +349,8 @@ if __name__ == '__main__':
     try:
         pkg_info.validate_registry(lint_registry)
     except validators.SchemaValidationError as e:
-        lint_errors.extend(e.errors)
+        # The messages quote the offending values, which are the submitter's.
+        lint_errors.extend(report.as_markdown(message) for message in e.errors)
     schema_failed = bool(lint_errors)
 
     # Stage C: resolve the package, which fetches the manifest over the network.
@@ -360,7 +381,7 @@ if __name__ == '__main__':
         # inventing a second complaint about a value the earlier stages already covered.
         registry = lint_registry if isinstance(lint_registry, dict) else {}
         partial: dict = {'id': lint_pkgid}
-        for field in ('title', 'iconUri', 'pool', 'description'):
+        for field in ('title', 'iconUri', 'pool', 'description', 'screenshots'):
             if field in registry:
                 partial[field] = registry[field]
         # Deliberately partial; every rule copes with missing keys.

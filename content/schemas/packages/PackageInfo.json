@@ -37,6 +37,38 @@
       "type": "string",
       "description": "Icon uri for application detail page, in higher resolution"
     },
+    "screenshots": {
+      "type": "array",
+      "description": "Screenshots shown on the app's page, in order. Each is an image URL, or an object with the URL and a caption",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "pattern": "^https?://",
+            "description": "Publicly accessible HTTP/HTTPS URL to the full-size image"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "pattern": "^https?://",
+                "description": "Publicly accessible HTTP/HTTPS URL to the full-size image"
+              },
+              "caption": {
+                "type": "string",
+                "description": "Short text shown under the screenshot"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
     "requirements": {
       "type": "object",
       "description": "System requirements",

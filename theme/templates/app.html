@@ -55,6 +55,23 @@
         </div>
     </div>
 
+    {% if info.screenshots %}
+    {# Values come from the package file, and Pelican does not autoescape. #}
+    <div class="app-screenshots d-flex gap-3 overflow-x-auto pb-2 mb-4">
+        {% for shot in info.screenshots %}
+        <figure class="flex-shrink-0 mb-0">
+            <a href="{{ shot.url|e }}" target="_blank" rel="noopener">
+                <img src="{{ shot.url|e }}" class="rounded-3 border" loading="lazy"
+                     alt="{{ (shot.caption or page.title ~ ' screenshot ' ~ loop.index)|e }}">
+            </a>
+            {% if shot.caption %}
+            <figcaption class="small text-body-secondary mt-1">{{ shot.caption|e }}</figcaption>
+            {% endif %}
+        </figure>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <div class="app-description">
         {{ page.content }}
     </div>

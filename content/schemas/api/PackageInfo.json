@@ -39,6 +39,30 @@
     "requirements": {
       "$ref": "../packages/PackageInfo.json#/properties/requirements"
     },
+    "screenshots": {
+      "type": "array",
+      "description": "Screenshots of the app, in display order. Absent when the package lists none.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL to the full-size image"
+          },
+          "caption": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Short text shown under the screenshot, or null"
+          }
+        },
+        "required": [
+          "url",
+          "caption"
+        ]
+      }
+    },
     "featured": {
       "type": "boolean",
       "description": "True when the package is featured on the repository homepage. The key is absent for every other package."
