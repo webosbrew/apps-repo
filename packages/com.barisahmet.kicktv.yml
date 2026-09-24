@@ -4,7 +4,7 @@ manifestUrl: https://github.com/barisahmet/kick-tv-webos/releases/latest/downloa
 category: multimedia
 pool: main
 requirements:
-  webosRelease: '>=7.0'
+  webosRelease: '>=10.0'
 description: |
   # Kick TV (Unofficial)
 
@@ -12,11 +12,16 @@ description: |
   keeps your channels in a sidebar, with no sign-in required.
 
   Features:
-  - Followed channels with live status, viewer counts, and pinning
-  - Live channel browser, filterable by language, and a categories view
-  - Past videos (VODs) for any channel
-  - Optional read-only chat overlay with real Kick emotes and badges
-  - Quality selection, low latency, and auto-advance to the next live channel
+  - Followed channels with live status, viewer counts, pinning, and live previews
+  - Live channel browser, filterable by language, with a categories view and
+    category blocking
+  - Rewind a live stream and jump back with Go live; past videos (VODs) for any channel
+  - Optional read-only chat overlay with real Kick emotes and badges, kept in
+    sync with the video
+  - Quality selection with a quality-drop alert, low latency, and auto-advance
+    to the next live channel
+
+  Requires webOS 10 or newer (webOS 25, or a 2022+ TV upgraded through webOS Re:New).
 
   This is an unofficial project. It is not affiliated with, authorized by, or
   endorsed by Kick, and it reads Kick's public web endpoints, so it can stop
