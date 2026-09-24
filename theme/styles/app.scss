@@ -25,18 +25,19 @@
    Each image fills that height and takes its width from its aspect ratio. The
    template sets the ratio inline from the size read at build time, so the box is
    right before the image loads, whether or not the browser derives a ratio from the
-   width/height attributes. */
+   width/height attributes. Nothing caps the width, which would letterbox the image;
+   phones get a lower strip so a 16:9 screenshot still fits the screen. */
 .app-screenshots {
-  figure {
-    max-width: 90%;
-  }
-
   img {
     display: block;
     height: 240px;
     width: auto;
-    max-width: 100%;
-    object-fit: contain;
+  }
+
+  @media (max-width: 575.98px) {
+    img {
+      height: 180px;
+    }
   }
 
   /* Wrap to the image's width instead of widening the figure. */
