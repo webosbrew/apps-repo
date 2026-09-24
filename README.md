@@ -38,8 +38,9 @@ pool: main
 description: |
   Description in markdown format
 # Suggested: screenshots shown at the top of the app's page, in order. Each is a publicly
-# accessible HTTPS URL to the full-size image, optionally with a caption. Leaving this out
-# is a lint warning, not an error.
+# accessible HTTPS URL to the full-size image, optionally with a caption, which becomes the
+# image's alt text and tooltip rather than visible text. Leaving this out is a lint warning,
+# not an error.
 screenshots:
   - https://example.com/main.png
   - url: https://example.com/player.png

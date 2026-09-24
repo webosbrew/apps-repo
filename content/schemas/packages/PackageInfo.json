@@ -58,7 +58,7 @@
               },
               "caption": {
                 "type": "string",
-                "description": "Short text shown under the screenshot"
+                "description": "Short description of the screenshot, used as its alt text and tooltip"
               }
             },
             "required": [

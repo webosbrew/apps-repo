@@ -39,10 +39,4 @@
       height: 180px;
     }
   }
-
-  /* Wrap to the image's width instead of widening the figure. */
-  figcaption {
-    width: 0;
-    min-width: 100%;
-  }
 }

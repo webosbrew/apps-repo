@@ -97,25 +97,25 @@ def screenshots_html(screenshots: List[Screenshot]) -> str:
 
     Clients go back to webOS 3.x webviews (Chromium 38), which know neither
     aspect-ratio nor a ratio derived from width/height attributes. So where the size is
-    known the width is computed here, which reserves the box before the image loads and
-    lets the caption wrap to it; where it is not, the width follows the image."""
+    known the width is computed here, which reserves the box before the image loads;
+    where it is not, the width follows the image.
+
+    The caption is not shown as text; it is the image's alt text and tooltip."""
     figures = []
     for shot in screenshots:
         url = escape(shot['url'])
         caption = escape(shot['caption'] or '')
-        figcaption = f'<figcaption>{caption}</figcaption>' if caption else ''
+        title = f' title="{caption}"' if caption else ''
         width, height = shot.get('width'), shot.get('height')
         if width and height:
             box_width = round(_SCREENSHOT_HEIGHT * width / height)
-            figure_style = f'flex:none;margin:0;width:{box_width}px'
             img_attrs = (f'width="{width}" height="{height}" '
                          f'style="height:{_SCREENSHOT_HEIGHT}px;width:{box_width}px"')
         else:
-            figure_style = 'flex:none;margin:0'
             img_attrs = f'style="height:{_SCREENSHOT_HEIGHT}px;width:auto"'
-        figures.append(f'<figure class="webosbrew-screenshot" style="{figure_style}">'
-                       f'<a href="{url}"><img src="{url}" alt="{caption}" '
-                       f'{img_attrs} loading="lazy"></a>{figcaption}</figure>')
+        figures.append(f'<figure class="webosbrew-screenshot" style="flex:none;margin:0">'
+                       f'<a href="{url}"><img src="{url}" alt="{caption}"{title} '
+                       f'{img_attrs} loading="lazy"></a></figure>')
     return ('<div class="webosbrew-screenshots" style="display:flex;gap:8px;overflow-x:auto">\n'
             + '\n'.join(figures) + '\n</div>')
 
