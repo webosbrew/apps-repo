@@ -62,7 +62,9 @@
         <figure class="flex-shrink-0 mb-0">
             <a href="{{ shot.url|e }}" target="_blank" rel="noopener">
                 <img src="{{ shot.url|e }}" class="rounded-3 border" loading="lazy"
-                     alt="{{ (shot.caption or page.title ~ ' screenshot ' ~ loop.index)|e }}">
+                     alt="{{ (shot.caption or page.title ~ ' screenshot ' ~ loop.index)|e }}"
+                     {%- if shot.width and shot.height %} width="{{ shot.width|int }}" height="{{ shot.height|int }}"
+                     style="aspect-ratio: {{ shot.width|int }} / {{ shot.height|int }}"{% endif %}>
             </a>
             {% if shot.caption %}
             <figcaption class="small text-body-secondary mt-1">{{ shot.caption|e }}</figcaption>

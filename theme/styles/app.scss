@@ -21,7 +21,11 @@
 
 
 /* Screenshot strip between the header and the description. A fixed height keeps
-   mixed aspect ratios in one row; the strip scrolls sideways when it overflows. */
+   mixed aspect ratios in one row; the strip scrolls sideways when it overflows.
+   Each image fills that height and takes its width from its aspect ratio. The
+   template sets the ratio inline from the size read at build time, so the box is
+   right before the image loads, whether or not the browser derives a ratio from the
+   width/height attributes. */
 .app-screenshots {
   figure {
     max-width: 90%;

@@ -57,6 +57,10 @@ class Screenshot(TypedDict):
     url: str
     # None when the package file gives a bare URL.
     caption: Optional[str]
+    # Pixel size, read from the image at build time (repogen.screenshots). Absent when
+    # it could not be read.
+    width: NotRequired[int]
+    height: NotRequired[int]
 
 
 def normalize_screenshots(value) -> List[Screenshot]:
@@ -78,6 +82,10 @@ def normalize_screenshots(value) -> List[Screenshot]:
     return screenshots
 
 
+# Height of the screenshot strip in full_description.html, in CSS pixels.
+_SCREENSHOT_HEIGHT = 240
+
+
 def screenshots_html(screenshots: List[Screenshot]) -> str:
     """Screenshots as a strip for full_description.html, where clients that do not read
     the JSON field still see them.
@@ -85,15 +93,29 @@ def screenshots_html(screenshots: List[Screenshot]) -> str:
     The inline styles are a default for webviews that bring no CSS; the classes let a
     client restyle or replace the strip. sanitize_description would strip both, so do
     not pass this through it: every value is escaped here, and the schema restricts the
-    URLs to http(s)."""
+    URLs to http(s).
+
+    Clients go back to webOS 3.x webviews (Chromium 38), which know neither
+    aspect-ratio nor a ratio derived from width/height attributes. So where the size is
+    known the width is computed here, which reserves the box before the image loads and
+    lets the caption wrap to it; where it is not, the width follows the image."""
     figures = []
     for shot in screenshots:
         url = escape(shot['url'])
         caption = escape(shot['caption'] or '')
         figcaption = f'<figcaption>{caption}</figcaption>' if caption else ''
-        figures.append(f'<figure class="webosbrew-screenshot" style="flex:none;margin:0">'
+        width, height = shot.get('width'), shot.get('height')
+        if width and height:
+            box_width = round(_SCREENSHOT_HEIGHT * width / height)
+            figure_style = f'flex:none;margin:0;width:{box_width}px'
+            img_attrs = (f'width="{width}" height="{height}" '
+                         f'style="height:{_SCREENSHOT_HEIGHT}px;width:{box_width}px"')
+        else:
+            figure_style = 'flex:none;margin:0'
+            img_attrs = f'style="height:{_SCREENSHOT_HEIGHT}px;width:auto"'
+        figures.append(f'<figure class="webosbrew-screenshot" style="{figure_style}">'
                        f'<a href="{url}"><img src="{url}" alt="{caption}" '
-                       f'style="height:240px;width:auto" loading="lazy"></a>{figcaption}</figure>')
+                       f'{img_attrs} loading="lazy"></a>{figcaption}</figure>')
     return ('<div class="webosbrew-screenshots" style="display:flex;gap:8px;overflow-x:auto">\n'
             + '\n'.join(figures) + '\n</div>')
 

@@ -55,6 +55,14 @@
               "null"
             ],
             "description": "Short text shown under the screenshot, or null"
+          },
+          "width": {
+            "type": "integer",
+            "description": "Width of the image in pixels. Present together with height, and absent when the build could not read the image"
+          },
+          "height": {
+            "type": "integer",
+            "description": "Height of the image in pixels. Present together with width, and absent when the build could not read the image"
           }
         },
         "required": [
