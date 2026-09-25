@@ -1,0 +1,10 @@
+title: Minecraft Beta 1.7.3
+iconUri: https://raw.githubusercontent.com/ballslober12/McbetacppWebos/b6095b53c31bdcc6db052bf6994f61e1004bf789/icon.png
+manifestUrl: "https://github.com/ballslober12/McbetacppWebos/releases/latest/download/manifest.json"
+category: game
+pool: main
+description: |
+  hey its me its minecraft for webos
+  
+funding:
+  github: [ballslober12]
