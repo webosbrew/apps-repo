@@ -1,0 +1,20 @@
+title: TV Tools
+iconUri: https://raw.githubusercontent.com/theo78825/tv-tools-public/main/app/largeIcon.png
+manifestUrl: https://github.com/theo78825/tv-tools-public/releases/latest/download/io.github.theo78825.tvtools.manifest.json
+category: system
+pool: main
+shortDescription: 'TV tweaks: custom home screen, remote cursor off, better screensaver & more'
+requirements:
+  webosRelease: '>=10.3'
+description: |
+  Small tweaks for a rooted LG webOS TV, all from one centralized tools app.
+
+  * **Health** checklist: root, update block, firmware, boot hook, and each tool's state
+  * **Magic Remote pointer** on/off (no cursor, even when shaking the remote)
+  * **Modify LG Home Screen** (Edit buttons, Recent Input)
+  * **Custom Home Screen**: replace LG's Home Screen with a clock, a big row of favorites and a grid of all your apps (hold OK to move, rename or hide one). The Home button on the remote brings you to the custom Home Screen when set.
+  * **Bouncing-ball Screensaver** replaces the LG clock screen saver with a bouncing ball and allows you to set a tv off timer after the tv has been idle for a period of time
+  * **Leaner LG**: switch off unnecessary bloat like Live Plus, ad tracking, debug log upload, promotions, LG Channels, sports alerts, and eight LG background services
+  * **Reboot** Shortcut to reboot the tv if needed
+
+  Uninstalling the app reverts any changes made by the app. This tool was only tested on an LG OLED65C5AUA with webOS 10.3.1.
