@@ -18,9 +18,9 @@ description: |
   - Apps: uninstall, and switch off background services
   - Service menu: opens LG's service menus; unlocking the full menu asks first
   - Home Assistant bridge over MQTT, set up from a phone
-  - Requires webOS 4.4 or later. Installed with `deploy.sh` from its repository, the dashboard also runs on webOS 3.4 and 3.9
+  - Requires webOS 4.4 or later
 
-  Requires root. On first launch the app installs a small server under `/var/lib/tvweb` with a boot hook, and answers only on the TV until setup opens it to the network. Everything it can change on the TV is opt-in and listed in [TV-CHANGES.md](https://github.com/rorygallagher2024/lg-webos-dashboard/blob/main/docs/TV-CHANGES.md). Uninstalling the app removes the server within a few minutes.
+  Requires root. The app installs a small server that starts with the TV. Everything it can change is opt-in, and removing the app removes the server. The full list of changes is in [TV-CHANGES.md](https://github.com/rorygallagher2024/lg-webos-dashboard/blob/main/docs/TV-CHANGES.md) in the project's repository.
 screenshots:
   - url: https://raw.githubusercontent.com/rorygallagher2024/lg-webos-dashboard/342ec0a70e3a167bc70c78b0072f0746bbc87622/docs/screenshots/hbc/web-game.png
     caption: Game tab in a browser, with the frame rate and Game Optimizer settings
@@ -32,3 +32,5 @@ screenshots:
     caption: OLED Care on the TV
   - url: https://raw.githubusercontent.com/rorygallagher2024/lg-webos-dashboard/342ec0a70e3a167bc70c78b0072f0746bbc87622/docs/screenshots/hbc/tv-game.png
     caption: Game Optimizer settings on the TV
+funding:
+  buy_me_a_coffee: rorygallagher2024
