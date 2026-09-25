@@ -13,10 +13,9 @@ screenshots:
   - url: https://raw.githubusercontent.com/mariotaku/Gallery3D/main/docs/webos/fullscreen.webp
     caption: Full screen photo
 description: |
-  A port of the Cooliris 3D photo wall from Android 2.3 to the TV. It browses
-  the photos on a USB drive as a wall of album stacks, with a grid, a
-  timeline and a full screen view for each album. Use the remote's pointer or
-  its arrow keys.
+  Take a trip back to the Android 2.2 Froyo days with Gallery3D, bringing the classic Cooliris 3D photo wall to your webOS TV. Browse photos on a USB drive as familiar stacks of albums, explore a grid or timeline, or enjoy a full screen view using your remote's pointer or arrow keys.
+
+  This nostalgic gallery also serves as a demo of SDL3 on webOS, showcasing how SDL3 works by bringing a little early-Android magic to the big screen.
 
   Photos in the screenshots are from [Pixabay](https://pixabay.com/).
 
