@@ -1,0 +1,23 @@
+title: Gallery3D
+iconUri: https://raw.githubusercontent.com/mariotaku/Gallery3D/main/webos/largeIcon.png
+manifestUrl: https://github.com/mariotaku/Gallery3D/releases/latest/download/me.mariotaku.gallery3d.manifest.json
+category: multimedia
+pool: main
+screenshots:
+  - url: https://raw.githubusercontent.com/mariotaku/Gallery3D/main/docs/webos/albums.webp
+    caption: Album wall
+  - url: https://raw.githubusercontent.com/mariotaku/Gallery3D/main/docs/webos/grid.webp
+    caption: Album grid
+  - url: https://raw.githubusercontent.com/mariotaku/Gallery3D/main/docs/webos/timeline.webp
+    caption: Timeline
+  - url: https://raw.githubusercontent.com/mariotaku/Gallery3D/main/docs/webos/fullscreen.webp
+    caption: Full screen photo
+description: |
+  A port of the Cooliris 3D photo wall from Android 2.3 to the TV. It browses
+  the photos on a USB drive as a wall of album stacks, with a grid, a
+  timeline and a full screen view for each album. Use the remote's pointer or
+  its arrow keys.
+
+  Photos in the screenshots are from [Pixabay](https://pixabay.com/).
+
+  ## [Source code](https://github.com/mariotaku/Gallery3D)
