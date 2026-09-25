@@ -6,6 +6,21 @@ pool: main
 shortDescription: 'TV tweaks: custom home screen, remote cursor off, better screensaver & more'
 requirements:
   webosRelease: '>=10.3'
+screenshots:
+  - url: https://raw.githubusercontent.com/theo78825/tv-tools-public/aec356584f9b6ad5de5344b8b6054268cfbd72c4/screenshots/1-home-screen.jpg
+    caption: "Custom home screen"
+  - url: https://raw.githubusercontent.com/theo78825/tv-tools-public/aec356584f9b6ad5de5344b8b6054268cfbd72c4/screenshots/2-tile-menu.jpg
+    caption: "Hold OK on an app to move, rename or hide it"
+  - url: https://raw.githubusercontent.com/theo78825/tv-tools-public/aec356584f9b6ad5de5344b8b6054268cfbd72c4/screenshots/3-health.jpg
+    caption: "Health checklist"
+  - url: https://raw.githubusercontent.com/theo78825/tv-tools-public/aec356584f9b6ad5de5344b8b6054268cfbd72c4/screenshots/4-home-screen-card.jpg
+    caption: "Choose which home screen the Home button opens"
+  - url: https://raw.githubusercontent.com/theo78825/tv-tools-public/aec356584f9b6ad5de5344b8b6054268cfbd72c4/screenshots/5-screensaver-card.jpg
+    caption: "Bouncing-ball screensaver and TV-off timer"
+  - url: https://raw.githubusercontent.com/theo78825/tv-tools-public/aec356584f9b6ad5de5344b8b6054268cfbd72c4/screenshots/6-leaner-lg.jpg
+    caption: "Leaner LG: switch off LG extras"
+  - url: https://raw.githubusercontent.com/theo78825/tv-tools-public/aec356584f9b6ad5de5344b8b6054268cfbd72c4/screenshots/7-bouncing-ball.jpg
+    caption: "The bouncing-ball screensaver"
 description: |
   Small tweaks for a rooted LG webOS TV, all from one centralized tools app.
 
