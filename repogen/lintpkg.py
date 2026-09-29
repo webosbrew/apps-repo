@@ -11,7 +11,7 @@ import yaml
 from markdown import Markdown
 from markdown.treeprocessors import Treeprocessor
 
-from repogen import pkg_info, report, validators
+from repogen import pkg_info, report, screenshots, validators
 from repogen.common import EXIT_OK, EXIT_PACKAGE_PROBLEM, EXIT_TOOL_PROBLEM
 from repogen.pkg_info import PackageInfo
 
@@ -194,6 +194,35 @@ class PackageInfoLinter:
                     'not just in this file.')
         errors.append(message)
 
+    @staticmethod
+    def _check_screenshots(info: PackageInfo, warnings: List[str]):
+        """Screenshots are suggested, not required, so their absence is only a warning.
+
+        Their shape is the schema's job. What is left is the scheme: the schema admits
+        plain HTTP, but the site is served over HTTPS and hotlinks them. And each has to
+        be an image the build can read the size of; it fetches them the same way, and
+        shows one it cannot read without a size. Only a warning, since a host having a
+        bad minute is not the submitter's to fix. This reads the URL as it is now,
+        bypassing the build's size cache."""
+        if 'screenshots' not in info:
+            warnings.append('No `screenshots`. A few screenshots help users see what the app does '
+                            'before installing it, and are shown at the top of its page.')
+            return
+        shots = info['screenshots']
+        if not isinstance(shots, list):
+            return
+        for shot in shots:
+            url = shot.get('url', None) if isinstance(shot, dict) else shot
+            if not isinstance(url, str) or urlparse(url).scheme not in ('http', 'https'):
+                continue  # the schema has already reported it
+            if urlparse(url).scheme == 'http':
+                warnings.append('Use HTTPS URL for screenshot %s' % report.as_code(url))
+            try:
+                screenshots.fetch_size(url)
+            except Exception as e:
+                warnings.append(f'Screenshot {report.as_code(url)} could not be read as an image: '
+                                f'{report.as_code(e)}')
+
     class ImageProcessor(Treeprocessor):
 
         def __init__(self, errors: [str]):
@@ -246,6 +275,8 @@ class PackageInfoLinter:
         self._check_id_namespace(info, new_package, errors, warnings, skipped)
 
         self._check_source_license(info, errors, warnings, skipped)
+
+        self._check_screenshots(info, warnings)
 
         description = info.get('description', '')
         if isinstance(description, str):
@@ -329,7 +360,8 @@ if __name__ == '__main__':
     try:
         pkg_info.validate_registry(lint_registry)
     except validators.SchemaValidationError as e:
-        lint_errors.extend(e.errors)
+        # The messages quote the offending values, which are the submitter's.
+        lint_errors.extend(report.as_markdown(message) for message in e.errors)
     schema_failed = bool(lint_errors)
 
     # Stage C: resolve the package, which fetches the manifest over the network.
@@ -360,7 +392,7 @@ if __name__ == '__main__':
         # inventing a second complaint about a value the earlier stages already covered.
         registry = lint_registry if isinstance(lint_registry, dict) else {}
         partial: dict = {'id': lint_pkgid}
-        for field in ('title', 'iconUri', 'pool', 'description'):
+        for field in ('title', 'iconUri', 'pool', 'description', 'screenshots'):
             if field in registry:
                 partial[field] = registry[field]
         # Deliberately partial; every rule copes with missing keys.

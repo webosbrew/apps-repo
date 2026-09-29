@@ -1,9 +1,10 @@
 import locale
 import sys
 from datetime import datetime
+from html import escape
 from itertools import repeat
 from pathlib import Path
-from typing import TypedDict, List, NotRequired
+from typing import TypedDict, List, NotRequired, Optional
 
 import nh3
 
@@ -52,6 +53,73 @@ def sanitize_description(html: str) -> str:
     return nh3.clean(html, attributes=_DESCRIPTION_ATTRIBUTES, link_rel=None)
 
 
+class Screenshot(TypedDict):
+    url: str
+    # None when the package file gives a bare URL.
+    caption: Optional[str]
+    # Pixel size, read from the image at build time (repogen.screenshots). Absent when
+    # it could not be read.
+    width: NotRequired[int]
+    height: NotRequired[int]
+
+
+def normalize_screenshots(value) -> List[Screenshot]:
+    """Bring the two forms a package file may use — a bare URL, or a mapping with a
+    url and optional caption — to one shape.
+
+    Items that are neither are dropped rather than raised on: the schema reports them,
+    and the linter still resolves a package that failed the schema, so a bad screenshot
+    must not take the manifest checks down with it."""
+    if not isinstance(value, list):
+        return []
+    screenshots: List[Screenshot] = []
+    for item in value:
+        if isinstance(item, str):
+            screenshots.append({'url': item, 'caption': None})
+        elif isinstance(item, dict) and isinstance(item.get('url', None), str):
+            caption = item.get('caption', None)
+            screenshots.append({'url': item['url'], 'caption': caption if isinstance(caption, str) else None})
+    return screenshots
+
+
+# Height of the screenshot strip in full_description.html, in CSS pixels.
+_SCREENSHOT_HEIGHT = 240
+
+
+def screenshots_html(screenshots: List[Screenshot]) -> str:
+    """Screenshots as a strip for full_description.html, where clients that do not read
+    the JSON field still see them.
+
+    The inline styles are a default for webviews that bring no CSS; the classes let a
+    client restyle or replace the strip. sanitize_description would strip both, so do
+    not pass this through it: every value is escaped here, and the schema restricts the
+    URLs to http(s).
+
+    Clients go back to webOS 3.x webviews (Chromium 38), which know neither
+    aspect-ratio nor a ratio derived from width/height attributes. So where the size is
+    known the width is computed here, which reserves the box before the image loads;
+    where it is not, the width follows the image.
+
+    The caption is not shown as text; it is the image's alt text and tooltip."""
+    figures = []
+    for shot in screenshots:
+        url = escape(shot['url'])
+        caption = escape(shot['caption'] or '')
+        title = f' title="{caption}"' if caption else ''
+        width, height = shot.get('width'), shot.get('height')
+        if width and height:
+            box_width = round(_SCREENSHOT_HEIGHT * width / height)
+            img_attrs = (f'width="{width}" height="{height}" '
+                         f'style="height:{_SCREENSHOT_HEIGHT}px;width:{box_width}px"')
+        else:
+            img_attrs = f'style="height:{_SCREENSHOT_HEIGHT}px;width:auto"'
+        figures.append(f'<figure class="webosbrew-screenshot" style="flex:none;margin:0">'
+                       f'<a href="{url}"><img src="{url}" alt="{caption}"{title} '
+                       f'{img_attrs} loading="lazy"></a></figure>')
+    return ('<div class="webosbrew-screenshots" style="display:flex;gap:8px;overflow-x:auto">\n'
+            + '\n'.join(figures) + '\n</div>')
+
+
 class PackageInfo(TypedDict):
     id: str
     title: str
@@ -63,6 +131,7 @@ class PackageInfo(TypedDict):
     shortDescription: NotRequired[str]
     detailIconUri: NotRequired[str]
     funding: NotRequired[dict]
+    screenshots: NotRequired[List[Screenshot]]
     pool: str
     requirements: NotRequired[PackageRequirements]
     manifest: PackageManifest
@@ -128,6 +197,8 @@ def from_package_info(pkgid: str, content: PackageRegistry, offline=False) -> Pa
         pkginfo['detailIconUri'] = content['detailIconUri']
     if 'funding' in content:
         pkginfo['funding'] = content['funding']
+    if 'screenshots' in content:
+        pkginfo['screenshots'] = normalize_screenshots(content['screenshots'])
     pkginfo['pool'] = valid_pool(content['pool'])
     if 'requirements' in content:
         pkginfo['requirements'] = content['requirements']
