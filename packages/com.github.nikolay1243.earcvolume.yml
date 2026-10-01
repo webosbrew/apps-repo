@@ -1,6 +1,6 @@
 title: eARC Volume Overlay
 iconUri: https://raw.githubusercontent.com/Nikolay1243/Webos-EARC-Volume-Overlay/main/app/largeIcon.png
-manifestUrl: https://raw.githubusercontent.com/Nikolay1243/Webos-EARC-Volume-Overlay/main/release/org.webosbrew.earcvolume.manifest.json
+manifestUrl: https://raw.githubusercontent.com/Nikolay1243/Webos-EARC-Volume-Overlay/main/release/com.github.nikolay1243.earcvolume.manifest.json
 category: system
 pool: main
 description: |
