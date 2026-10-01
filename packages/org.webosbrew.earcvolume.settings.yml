@@ -1,0 +1,11 @@
+title: eARC Volume Overlay Settings
+iconUri: https://raw.githubusercontent.com/Nikolay1243/Webos-EARC-Volume-Overlay/main/settings/largeIcon.png
+manifestUrl: https://raw.githubusercontent.com/Nikolay1243/Webos-EARC-Volume-Overlay/main/release/org.webosbrew.earcvolume.settings.manifest.json
+category: system
+pool: main
+description: |
+  Companion setup app for **eARC Volume Overlay**. Provides a normal launcher
+  icon and Enable, Disable, and Test overlay controls.
+
+  Install **eARC Volume Overlay** first. This settings app alone does not contain
+  the background watcher. Requires a rooted TV and Homebrew Channel.
