@@ -1,0 +1,33 @@
+title: HomeBack Camera
+iconUri: https://raw.githubusercontent.com/angelcode1/webos-HomeBack/main/packages/pip-app/manifests/icon130.png
+manifestUrl: https://github.com/angelcode1/webos-HomeBack/releases/latest/download/com.homebrew.homeback.camera.manifest.json
+category: multimedia
+pool: main
+requirements:
+ webosRelease: '>=6.0'
+shortDescription: Native PiP camera companion for HomeBack Home Assistant integration
+description: |
+ # HomeBack Camera
+
+ HomeBack Camera is the optional native PiP companion for [HomeBack](https://github.com/angelcode1/webos-HomeBack). Install it alongside the main HomeBack package when you want Home Assistant camera notifications and manual camera viewing in LG's native Picture-in-Picture / Multi View interface.
+
+ ## What it does
+
+ - Receives the latest camera state from the HomeBack service
+ - Opens the selected camera in LG's native PiP / Multi View surface when you choose **Cameras** from the HomeBack ribbon
+ - Supports camera stream URLs with still-image fallback
+ - Uses a dedicated HomeBack-red camera icon so the companion is easy to identify
+ - Leaves PiP open until you exit using LG's Back/X controls
+
+ ## Requirements
+
+ - The matching **HomeBack** package must also be installed
+ - A rooted LG webOS TV with the webOS Homebrew Channel
+ - Home Assistant camera integration configured as described in the HomeBack README
+ - LG native Multi View / Picture-in-Picture support on the TV/firmware
+
+ This package is not intended to replace HomeBack or operate as a standalone camera application. It is the rendering companion used by HomeBack's Home Assistant camera workflow.
+
+ ## Source and license
+
+ Source code and documentation are maintained in the [HomeBack repository](https://github.com/angelcode1/webos-HomeBack). HomeBack Camera is distributed under GNU GPL v2.0 only (`GPL-2.0-only`).
