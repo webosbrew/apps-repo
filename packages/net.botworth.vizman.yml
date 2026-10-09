@@ -1,0 +1,64 @@
+title: viz-man
+iconUri: https://raw.githubusercontent.com/mnestrud/viz-man/main/app/largeIcon.png
+manifestUrl: https://github.com/mnestrud/viz-man/releases/latest/download/net.botworth.vizman.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=5.0'
+description: |
+  # viz-man
+
+  A full-screen MilkDrop visualizer for [Music Assistant](https://music-assistant.io/).
+  It plays no audio: it draws what your speakers are playing, in time with it,
+  from the waveform Music Assistant's **MilkDrop Visualizer** plugin streams a few
+  seconds ahead.
+
+  ![A preset playing](https://raw.githubusercontent.com/mnestrud/viz-man/main/docs/screenshots/playing.jpg)
+
+  ## What it does
+
+  - Follows whichever speaker is playing, or the one you pick; sync groups are resolved the way Music Assistant does.
+  - Ships all 395 presets from the butterchurn-presets packs. **Scan presets** measures each one's frame rate on *your* TV (about 35 minutes, once) and builds a *validated* list of the ones it runs smoothly; add or remove presets by hand.
+  - Favorites, shared with Music Assistant's own MilkDrop favorites and between your TVs.
+  - Random order with a timer, or stay on the preset you chose.
+  - Shows the track (artist, title, album, label) when it starts, always, or never. Dims the picture and the track card independently for the evening.
+  - **Color: album art** gives each preset the hue of the track's artwork, from the palette Music Assistant sends with the stream, at the brightness the preset meant; a strength setting goes with it.
+  - Keeps the screensaver off while music plays; nudges the picture against OLED burn-in.
+
+  ![The menu](https://raw.githubusercontent.com/mnestrud/viz-man/main/docs/screenshots/menu.jpg)
+
+  ## Requirements
+
+  - Music Assistant 2.10 or newer, on the same network, with the MilkDrop Visualizer plugin added (Settings → Plugins).
+  - Speakers Music Assistant streams to itself (Sonos, Chromecast, AirPlay, Squeezelite, …). A speaker playing something on its own, such as Spotify straight from the Spotify app, carries nothing it can draw.
+  - A TV with WebGL2 (LG's 2020 models onward, many earlier). Tested on an LG CX (webOS 5). No root required.
+
+  ## Setting up
+
+  On first launch, sign in with Music Assistant's address and your username and password.
+  The TV gets its own long-lived token, named after it, which you can revoke in Music
+  Assistant's settings or with **Log out** in the menu; the password is not stored.
+  Then run **Scan presets** once. The [setup guide](https://github.com/mnestrud/viz-man/blob/main/docs/install.md)
+  walks through everything; [the preset scan](https://github.com/mnestrud/viz-man/blob/main/docs/preset-scan.md)
+  explains how the validated list works.
+
+  ![Sign in](https://raw.githubusercontent.com/mnestrud/viz-man/main/docs/screenshots/sign-in.jpg)
+
+  ## Source
+
+  [github.com/mnestrud/viz-man](https://github.com/mnestrud/viz-man) (MIT). Rendering by
+  the [Music Assistant fork](https://github.com/music-assistant/butterchurn) of
+  [Butterchurn](https://github.com/jberg/butterchurn) and the butterchurn-presets packs (MIT).
+screenshots:
+  - url: https://raw.githubusercontent.com/mnestrud/viz-man/main/docs/screenshots/playing.jpg
+    caption: A preset playing
+  - url: https://raw.githubusercontent.com/mnestrud/viz-man/main/docs/screenshots/track-card.jpg
+    caption: The track card sliding in at a track change
+  - url: https://raw.githubusercontent.com/mnestrud/viz-man/main/docs/screenshots/menu.jpg
+    caption: The menu
+  - url: https://raw.githubusercontent.com/mnestrud/viz-man/main/docs/screenshots/scan.jpg
+    caption: The preset scan measuring every preset on the TV
+  - url: https://raw.githubusercontent.com/mnestrud/viz-man/main/docs/screenshots/sign-in.jpg
+    caption: Signing in to Music Assistant on first launch
+funding:
+  github: [ mnestrud ]
