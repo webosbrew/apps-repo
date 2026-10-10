@@ -1,0 +1,28 @@
+title: Kick TV
+iconUri: https://raw.githubusercontent.com/barisahmet/kick-tv-webos/main/app/largeIcon.png
+manifestUrl: https://github.com/barisahmet/kick-tv-webos/releases/latest/download/org.webosbrew.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=10.0'
+description: |
+  # Kick TV (Unofficial)
+
+  Watch Kick livestreams on an LG webOS TV. It opens on your last stream and
+  keeps your channels in a sidebar, with no sign-in required.
+
+  Features:
+  - Followed channels with live status, viewer counts, pinning, and live previews
+  - Live channel browser, filterable by language, with a categories view and
+    category blocking
+  - Rewind a live stream and jump back with Go live; past videos (VODs) for any channel
+  - Optional read-only chat overlay with real Kick emotes and badges, kept in
+    sync with the video
+  - Quality selection with a quality-drop alert, low latency, and auto-advance
+    to the next live channel
+
+  Requires webOS 10 or newer (webOS 25, or a 2022+ TV upgraded through webOS Re:New).
+
+  This is an unofficial project. It is not affiliated with, authorized by, or
+  endorsed by Kick, and it reads Kick's public web endpoints, so it can stop
+  working if Kick changes something.
