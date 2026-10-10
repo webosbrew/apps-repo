@@ -23,6 +23,16 @@ class SchemaValidationError(Exception):
         super().__init__('\n'.join(errors))
 
 
+def _explain(error: jsonschema.ValidationError) -> list[jsonschema.ValidationError]:
+    """A oneOf/anyOf error only says that no branch matched. When the branches differ by
+    type, say why the branch of the value's own type rejected it instead."""
+    if error.context and any(e.validator == 'type' and not e.relative_path for e in error.context):
+        relevant = [e for e in error.context if not (e.validator == 'type' and not e.relative_path)]
+        if relevant:
+            return relevant
+    return [error]
+
+
 def _format_error(error: jsonschema.ValidationError) -> str:
     location = '/'.join(str(p) for p in error.absolute_path) or '(root)'
     return f'{location}: {error.message}'
@@ -31,7 +41,8 @@ def _format_error(error: jsonschema.ValidationError) -> str:
 def validate(validator: Validator, instance: Any) -> None:
     """Validate `instance`, collecting every error. Raises SchemaValidationError
     listing all violations so callers can report them at once."""
-    errors = sorted(validator.iter_errors(instance), key=lambda e: list(e.absolute_path))
+    errors = sorted((e for error in validator.iter_errors(instance) for e in _explain(error)),
+                    key=lambda e: list(e.absolute_path))
     if errors:
         raise SchemaValidationError([_format_error(e) for e in errors])
 

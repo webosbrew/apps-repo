@@ -1,0 +1,30 @@
+# webOS Homebrew Project - Apps Repository
+
+> Community repository of homebrew apps for LG webOS TVs. A TV installs these apps
+> through the Homebrew Channel, which reads the JSON API below.
+
+Use the JSON API instead of scraping the HTML pages. One request returns every
+package with its version, description, icon and download URL.
+
+## API
+
+- [All packages](/api/apps.json): every package in a single response. Fields per package:
+  `id`, `title`, `shortDescription`, `iconUri`, `manifestUrl`, `manifest` (version and
+  ipk download URL), `pool`, `fullDescriptionUrl`, and `featured` on homepage apps.
+- [Paginated list](/api/apps/1.json): the same packages in pages. Follow `paging.nextUrl`.
+- [Latest release of one app](/api/apps/org.webosbrew.hbchannel/releases/latest.json):
+  replace the id in the path with any package id.
+- [Non-free pool](/api/non-free/apps.json): packages that are not open source.
+
+## Schemas
+
+- [PackageInfo](/schemas/api/PackageInfo.json): one package as returned by the API.
+- [PackageManifest](/schemas/api/PackageManifest.json): version and ipk details.
+- [PackagesPage](/schemas/api/PackagesPage.json): the paginated response envelope.
+- [Package definition](/schemas/packages/PackageInfo.json): the source YAML each app is submitted as.
+
+## Pages
+
+- [App list](/apps/): all apps, with category filters.
+- [Submit an app](/submit): the rules and the pull request steps for adding an app.
+- [Source repository](https://github.com/webosbrew/apps-repo): app definitions live in `packages/`.

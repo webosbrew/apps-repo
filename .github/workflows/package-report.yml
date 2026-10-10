@@ -47,12 +47,11 @@ jobs:
             exit
           fi
 
+          # The report holds text the submitter controls, so it never goes through a
+          # step output. An expression pastes its value into the workflow before the
+          # YAML is parsed, and a crafted app description could add inputs of its own.
+          # The comment action reads the file instead.
           echo "issue-number=$(cat 'package-lint-results/issue-number.txt')" >> "${GITHUB_OUTPUT}"
-
-          delimiter="$(openssl rand -hex 16)"
-          echo "content<<${delimiter}" >> "${GITHUB_OUTPUT}"
-          cat 'package-lint-results/lint-report.md' >> "${GITHUB_OUTPUT}"
-          echo "${delimiter}" >> "${GITHUB_OUTPUT}"
 
       - id: find_comment
         name: Find package lint results comment
@@ -69,5 +68,5 @@ jobs:
         with:
           comment-id: ${{ steps.find_comment.outputs.comment-id }}
           issue-number: ${{ steps.extract_package_lint_results.outputs.issue-number }}
-          body: ${{ steps.extract_package_lint_results.outputs.content }}
+          body-path: artifacts/package-lint-results/lint-report.md
           edit-mode: replace

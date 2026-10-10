@@ -7,8 +7,18 @@
 {% block html_lang %}{{ page.lang }}{% endblock %}
 {% block title %}{{ page.title|striptags }} | {{ SITENAME }}{% endblock %}
 
+{# Search engines and agents read these two tags. page.url comes from
+   override_url, so it keeps the trailing slash the app pages are served on. #}
 {% block head %}
     {{ super() }}
+    {% if page.noindex %}
+    <meta name="robots" content="noindex"/>
+    {% else %}
+    <link rel="canonical" href="{{ SITEURL }}/{{ page.url }}"/>
+    {% endif %}
+    {% if page.description %}
+    <meta name="description" content="{{ page.description|striptags|truncate(160) }}"/>
+    {% endif %}
     {% include "site-styles.html" %}
 {% endblock %}
 

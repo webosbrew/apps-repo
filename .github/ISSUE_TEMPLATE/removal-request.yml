@@ -1,0 +1,27 @@
+name: App Removal Request
+description: Request that an app be removed from the repository
+title: '[REMOVAL]'
+labels:
+  - 'removal'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to ask us to remove an app that is already listed.
+
+        * For a broken app that can be fixed, open an issue in the app's own repository instead.
+        * Tell us who you are if it matters, for example the app author or the rights holder.
+  - type: input
+    attributes:
+      label: 'App ID or name'
+      description: 'The package ID, for example com.example.app. The app title also works.'
+      placeholder: 'com.example.app'
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 'Reason for removal'
+      description: 'Explain why the app should be removed. Add links to any evidence.'
+      placeholder: 'Please provide a detailed reason for the removal request'
+    validations:
+      required: true
