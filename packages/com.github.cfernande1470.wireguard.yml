@@ -1,6 +1,6 @@
 title: WireGuard VPN
-iconUri: https://raw.githubusercontent.com/cfernande1470/webos-wireguard/main/app/com.github.cfernande1470.wireguard/icon.png
-manifestUrl: https://github.com/cfernande1470/webos-wireguard/releases/latest/download/com.github.cfernande1470.wireguard.manifest.json
+iconUri: https://raw.githubusercontent.com/RodriguezCF/webos-wireguard/main/app/com.github.cfernande1470.wireguard/icon.png
+manifestUrl: https://github.com/RodriguezCF/webos-wireguard/releases/latest/download/com.github.cfernande1470.wireguard.manifest.json
 category: system
 pool: main
 requirements:
@@ -34,6 +34,6 @@ description: |
   - IPv6 addresses and routes are currently ignored.
   - This app is intended for trusted personal VPN configurations.
 
-  Source: https://github.com/cfernande1470/webos-wireguard (MIT)
+  Source: https://github.com/RodriguezCF/webos-wireguard (MIT)
 funding:
-  github: [cfernande1470]
+  github: [RodriguezCF]
