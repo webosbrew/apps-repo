@@ -4,7 +4,7 @@ manifestUrl: https://github.com/rorygallagher2024/glasshouse/releases/latest/dow
 category: system
 pool: main
 requirements:
-  webosRelease: '>=4.4'
+  webosRelease: '>=2.2'
 description: |
   # Glasshouse
 
