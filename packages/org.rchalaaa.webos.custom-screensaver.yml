@@ -22,17 +22,17 @@ description: |
   - Instant screensaver preview for testing
   - Compatible with webOS 5 (2020), webOS 6 (2021), webOS 22 (2022), webOS 23 (2023)
 
-  ## Screenshots
-
-  ![Main](https://raw.githubusercontent.com/rchalaaa/custom-screensaver/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/1.png)
-  ![Screenshot](https://raw.githubusercontent.com/rchalaaa/custom-screensaver/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/2.png)
-  ![Settings](https://raw.githubusercontent.com/rchalaaa/custom-screensaver/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/3.png)
-
   ## Credits
 
   Original project by aabytt:
 
   https://github.com/aabytt/custom-screensaver-aerial
+screenshots:
+  - url: https://raw.githubusercontent.com/rchalaaa/custom-screensaver/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/1.png
+    caption: Main
+  - https://raw.githubusercontent.com/rchalaaa/custom-screensaver/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/2.png
+  - url: https://raw.githubusercontent.com/rchalaaa/custom-screensaver/3eb0f8399aa3ec4142bcc438f0b0be0cfe58c40d/screenshots/3.png
+    caption: Settings
 # Sponsor information, like .github/FUNDING.yml
 funding:
   github: [ rchalaaa ]

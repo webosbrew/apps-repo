@@ -13,6 +13,11 @@ class PackageRequirements(TypedDict):
     deviceSoC: NotRequired[List[str]]
 
 
+class ScreenshotEntry(TypedDict):
+    url: str
+    caption: NotRequired[str]
+
+
 class PackageRegistry(TypedDict):
     title: str
     iconUri: str
@@ -25,6 +30,8 @@ class PackageRegistry(TypedDict):
     requirements: NotRequired[PackageRequirements]
     detailIconUri: NotRequired[str]
     funding: NotRequired[dict[str, List[str]]]
+    # Each item is a bare URL, or a mapping with a caption. See pkg_info.normalize_screenshots.
+    screenshots: NotRequired[List[str | ScreenshotEntry]]
 
 
 def parse_yml_package(p: Path) -> tuple[str, PackageRegistry]:

@@ -17,7 +17,7 @@ from repogen.pkg_info import PackageInfo
 from repogen.siteurl import siteurl
 
 MANIFEST_KEYS = ('id', 'title', 'iconUri', 'manifestUrl', 'manifest', 'manifestUrlBeta', 'manifestBeta', 'pool',
-                 'detailIconUri', 'requirements')
+                 'detailIconUri', 'requirements', 'screenshots')
 
 
 def fix_manifest_url(item: PackageInfo, app_dir: Path):
@@ -132,8 +132,13 @@ def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, 
             with ensure_open(app_info, 'w', encoding='utf-8') as f:
                 json.dump(package_item(item, True, True), f)
             desc_html = api_app_dir.joinpath('full_description.html')
+            desc = pkg_info.sanitize_description(markdown.convert(item['description']))
+            if item.get('screenshots'):
+                # Above the description, as on the site. Added after sanitizing, which
+                # would strip its inline styles.
+                desc = pkg_info.screenshots_html(item['screenshots']) + '\n' + desc
             with ensure_open(desc_html, 'w', encoding='utf-8') as f:
-                f.write(pkg_info.sanitize_description(markdown.convert(item['description'])))
+                f.write(desc)
         save_page(index + 1, chunk)
     # Runs last: the loop above rewrites manifestUrl of every package.
     save_all(packages)
