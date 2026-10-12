@@ -18,7 +18,7 @@ description: |
   - Apps: uninstall, and switch off background services
   - Service menu: opens LG's service menus; unlocking the full menu asks first
   - Home Assistant bridge over MQTT, set up from a phone
-  - Requires webOS 4.4 or later
+  - Requires webOS 2.2 or later
 
   Requires root. The app installs a small server that starts with the TV. Everything it can change is opt-in, and removing the app removes the server. The full list of changes is in [TV-CHANGES.md](https://github.com/rorygallagher2024/glasshouse/blob/main/docs/TV-CHANGES.md) in the project's repository.
 screenshots:
