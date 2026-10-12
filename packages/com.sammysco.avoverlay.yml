@@ -1,0 +1,80 @@
+title: AV Overlay
+
+iconUri: https://raw.githubusercontent.com/SammySco/webos-av-overlay/main/app/largeIcon.png
+
+manifestUrl: https://github.com/SammySco/webos-av-overlay/releases/latest/download/com.sammysco.avoverlay.manifest.json
+
+category: utility
+pool: main
+
+shortDescription: AV info overlay for LG webOS + Yamaha receiver over eARC
+
+requirements:
+  webosRelease: '>=4.0'
+
+screenshots:
+  - url: https://raw.githubusercontent.com/SammySco/webos-av-overlay/main/docs/images/bar-plex-dolby-vision.jpg
+    caption: Info bar over Dolby Vision from an Apple TV app — sound program, input, audio, Plex stream, processing, video and colour
+  - url: https://raw.githubusercontent.com/SammySco/webos-av-overlay/main/docs/images/bar-live-tv.jpg
+    caption: On Live TV — surround decoder, PCM audio format and broadcast video resolution
+  - url: https://raw.githubusercontent.com/SammySco/webos-av-overlay/main/docs/images/status-page.png
+    caption: Status page — current values, Show/Hide on TV, live view and Auto info switch
+  - url: https://raw.githubusercontent.com/SammySco/webos-av-overlay/main/docs/images/setup-receiver-plex.png
+    caption: Setup page — receiver address, optional Plex / Jellyfin, info bar position, collapsible sections
+  - url: https://raw.githubusercontent.com/SammySco/webos-av-overlay/main/docs/images/setup-sound-rules.png
+    caption: Per-app sound programs — a default and one rule per input, LG app or Apple TV app
+
+funding:
+  github: [SammySco]
+
+description: |
+  On-screen volume popup and info bar for a rooted LG webOS TV paired with a **Yamaha receiver**
+  over eARC or ARC. Tested on an RX-V485; other Yamaha MusicCast and recent RX-V models with the
+  Extended Control API should work.
+
+  ## What it shows
+
+  - **Volume popup** (bottom-right) whenever the receiver's volume or mute changes, including
+    half-steps.
+  - **Info bar** (top-left, or configurable corner) with:
+    - Receiver sound program and decoder
+    - TV source / input name
+    - Amp audio format, sample rate, bit depth, bitrate
+    - Plex or Jellyfin stream details (codec · channels · bitrate · video · Direct Play/Transcode)
+    - Amp processing (Enhancer, Adaptive DRC, Extra Bass, Dialogue lift, Sub trim, Bass/Treble)
+    - Video resolution, frame rate and HDR type
+    - Colour space
+
+  The bar appears when something changes (switchable), on demand, or pinned.
+
+  ## Per-app Yamaha sound programs
+
+  Automatically switches the receiver's sound program when you switch apps — one rule per input,
+  LG webOS app or Apple TV app. Apple TV app detection uses a small Home Assistant automation;
+  LG apps, Live TV and HDMI inputs are detected directly on the TV.
+
+  ## Status and setup pages
+
+  Served at `http://<tv>:41101/` (or `http://<docker-host>:41101/` in Docker mode):
+
+  - `/status` — current state, Show/Hide on TV, live-refresh toggle, Auto info switch
+  - `/setup` — receiver IP, optional Plex / Jellyfin, info bar position, per-app sound rules
+
+  Also accessible from the **AV Overlay Settings** icon on the TV home screen.
+
+  ## Deployment options
+
+  - **On the TV** (default): watcher runs as a background service on the rooted TV.
+  - **Docker**: watcher runs in a container on a home server or Raspberry Pi; the TV apps stay
+    installed and the watcher proxies luna-send calls back to the TV over SSH.
+
+  ## Requirements
+
+  - Rooted LG webOS TV with [Homebrew Channel](https://www.webosbrew.org/) and SSH access
+  - Yamaha receiver with the Extended Control API on the same LAN (eARC/ARC from the TV)
+  - Optional: Plex server, Jellyfin server, Home Assistant (for Apple TV app detection)
+
+  This is a fork of
+  [Nikolay1243/Webos-EARC-Volume-Overlay](https://github.com/Nikolay1243/Webos-EARC-Volume-Overlay),
+  which showed a numeric volume; this version reads the receiver directly and adds the info bar,
+  sound program switching and setup/status pages.
