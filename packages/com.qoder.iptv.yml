@@ -2,12 +2,12 @@ title: Qoder IPTV Player
 iconUri: https://raw.githubusercontent.com/HCLGitHub/qoder-iptv-releases/main/largeIcon.png
 manifestUrl: https://github.com/HCLGitHub/qoder-iptv-releases/releases/latest/download/com.qoder.iptv.manifest.json
 category: multimedia
-pool: non-free
+pool: main
 requirements:
   webosRelease: '>=5.3'
-shortDescription: M3U player with EPG, catch-up playback and remote-friendly controls.
+shortDescription: Open-source M3U player with EPG, catch-up playback and remote-friendly controls.
 description: |
-  A remote-friendly M3U media player for LG webOS TVs.
+  A remote-friendly, open-source M3U media player for LG webOS TVs.
 
 
   Features include multiple playlist management, XMLTV and DIYP EPG,
@@ -20,6 +20,5 @@ description: |
   legally obtained M3U and EPG services.
 
 
-  The application is closed-source commercial software (`non-free`). It
-  includes a three-day trial; continued use requires an activation code.
-  Activation instructions are displayed in the application.
+  Free and open source under the MIT license.
+  Source code: https://github.com/HCLGitHub/qoder-iptv
