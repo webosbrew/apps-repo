@@ -5,6 +5,17 @@ category: multimedia
 pool: main
 requirements:
   webosRelease: '>=5.3'
+screenshots:
+  - url: https://raw.githubusercontent.com/HCLGitHub/qoder-iptv/main/docs/screenshots/channels-epg.png
+    caption: Channel menu with groups, channels, EPG dates and catch-up programmes
+  - url: https://raw.githubusercontent.com/HCLGitHub/qoder-iptv/main/docs/screenshots/playback-osd.png
+    caption: Live playback with the channel info bar
+  - url: https://raw.githubusercontent.com/HCLGitHub/qoder-iptv/main/docs/screenshots/settings.png
+    caption: Settings panel
+  - url: https://raw.githubusercontent.com/HCLGitHub/qoder-iptv/main/docs/screenshots/tv-home-1.jpg
+    caption: App on the LG webOS home screen
+  - url: https://raw.githubusercontent.com/HCLGitHub/qoder-iptv/main/docs/screenshots/tv-home-2.jpg
+    caption: App icon on the home screen of another LG TV
 shortDescription: Open-source M3U player with EPG, catch-up playback and remote-friendly controls.
 description: |
   A remote-friendly, open-source M3U media player for LG webOS TVs.
