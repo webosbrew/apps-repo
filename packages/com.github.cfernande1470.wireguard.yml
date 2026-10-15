@@ -1,7 +1,7 @@
 title: WireGuard VPN
 iconUri: https://raw.githubusercontent.com/RodriguezCF/webos-wireguard/main/app/com.github.cfernande1470.wireguard/icon.png
 manifestUrl: https://github.com/RodriguezCF/webos-wireguard/releases/latest/download/com.github.cfernande1470.wireguard.manifest.json
-category: system
+category: utility
 pool: main
 requirements:
   webosRelease: '>=5.0'
