@@ -1,0 +1,50 @@
+title: HomeBack
+iconUri: https://raw.githubusercontent.com/angelcode1/webos-HomeBack/main/packages/app/manifests/icon130.png
+manifestUrl: https://github.com/angelcode1/webos-HomeBack/releases/latest/download/com.homebrew.homeback.manifest.json
+category: launcher
+pool: main
+requirements:
+ webosRelease: '>=6.0'
+shortDescription: Fast replacement Home launcher with remote-button remapping
+description: |
+ # HomeBack
+
+ HomeBack is a fast replacement Home launcher for rooted LG TVs running webOS 6+. It gives you a compact app ribbon, a scrollable app drawer, quick access to Inputs and remote colour keys, a numeric keypad, configurable short/long-press remote-button mappings, and optional Home Assistant camera integration.
+
+ ## Features
+
+ - **HOME tap** — show or hide the HomeBack ribbon
+ - **HOME hold** — open the stock LG Home screen
+ - **App drawer** — browse installed apps with the remote D-pad or Magic Remote wheel
+ - **Inputs tile** — open the LG input picker
+ - **Keypad tile** — open the LG numeric on-screen keyboard and send 0–9 as TV remote key presses
+ - **Red / Green / Yellow / Blue tiles** — send the matching LG colour key
+ - **Custom remote mappings** — launch apps, replace keys, ignore keys, run short/long actions, or execute shell commands
+ - **Home Assistant cameras** — receive passive camera notifications and open the latest camera in LG native PiP from the HomeBack Cameras tile
+
+ HomeBack includes its own remote-input service, so it should not be run alongside the standalone LG Input Hook app.
+
+ ## Optional Home Assistant camera support
+
+ Install the separate **HomeBack Camera** package (`com.homebrew.homeback.camera`) alongside HomeBack if you want the supported Home Assistant camera workflow. The companion is required to render camera stills/streams in LG's native Picture-in-Picture / Multi View surface when you select **Cameras** from the HomeBack ribbon.
+
+ The main HomeBack package works normally without the camera companion.
+
+ ## Requirements
+
+ A rooted LG webOS TV (webOS 6+) with the webOS Homebrew Channel installed. HomeBack uses Homebrew's root capabilities and boot hooks. Camera PiP additionally requires LG native Multi View / Picture-in-Picture support on the TV/firmware.
+
+ ## Credits and upstream projects
+
+ HomeBack stands on work from the webOS homebrew community:
+
+ - [AltHome by kitsuned](https://github.com/kitsuned/AltHome) — the replacement-launcher project HomeBack was originally derived from (GPL-2.0). HomeBack retains that GPL lineage.
+ - [LG Input Hook by Simon34545](https://github.com/Simon34545/lginputhook) — the original open-source LG remote-button remapper and native-hook lineage that inspired HomeBack's integrated remote interception (BSD-3-Clause).
+ - **smx-smx** — creator of `ezinject` / hookfactory.
+ - **Informatic** — creator of the original input-hook script.
+
+ HomeBack currently bundles `ezinject` and `libinputhookpp.so` from an unofficial community build commonly referred to as LG Input Hook 1.5.0, obtained from the webOS community after the public 1.4.0 project stopped working on newer TVs. The author of those binary modifications is not currently known, so HomeBack does not claim authorship of that bundled binary. See [THIRD_PARTY_NOTICES.md](https://github.com/angelcode1/webos-HomeBack/blob/main/THIRD_PARTY_NOTICES.md) for the full licensing breakdown.
+
+ ## License
+
+ HomeBack's source code is distributed under GNU GPL v2.0 only (`GPL-2.0-only`), consistent with the AltHome codebase from which it is derived. Third-party components and binaries keep their own rights and notices.
