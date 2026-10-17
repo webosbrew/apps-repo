@@ -1,0 +1,15 @@
+title: DVD Plus Settings/Installer
+iconUri: https://codeberg.org/exxxxkc/moe.exkc.dvd/raw/branch/main/appstore.png
+manifestUrl: https://codeberg.org/exxxxkc/moe.exkc.dvd/releases/download/latest/moe.exkc.dvd.manifest.json
+category: screensaver
+pool: main
+requirements:
+  webosRelease: '>=7.0'
+description: |
+  A experiment custom DVD screenshot for webos 7+
+
+  ![Demo](https://codeberg.org/exxxxkc/moe.exkc.dvd/media/branch/main/settings.png)
+
+  It is based on https://github.com/Anti-hero00/custom-screensaver and https://github.com/webosbrew/custom-screensaver.It has a settings page and it only work in webos 7+.However Only webos 26 is tested as of now.
+
+  Click the install screensaver to install it on your system.Keep in mind,It would replace life on screen (aka LG Gallery+). 
