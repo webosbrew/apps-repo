@@ -1,0 +1,36 @@
+title: Turbo Riviera
+iconUri: https://raw.githubusercontent.com/famcellini/Turbo-Riviera/main/app/largeIcon.png
+manifestUrl: https://raw.githubusercontent.com/famcellini/Turbo-Riviera/main/dist/com.cristian.turboriviera.manifest.json
+category: game
+pool: non-free
+description: |
+  An original 90s-style arcade road racer for LG webOS TVs: a red convertible,
+  a pseudo-3D road with curves and hills, traffic, a countdown timer and forks
+  that let you choose your route through the provinces of the Marche (Fermo,
+  Macerata, Ancona, Ascoli Piceno, Pesaro Urbino), repeated over 4 levels with
+  puddles and more traffic from level 2. Name, graphics and music are original
+  (no Sega assets). Road signs and billboards show towns, provinces and local
+  businesses of the Fermo area (Marche, Italy).
+
+  ## Controls
+
+  | Key | Action |
+  | --- | --- |
+  | ◀ ▶ | steer |
+  | ▼ | tap for 1/3 s: cut the throttle and hold speed; keep pressed: brake |
+  | ▲ | throttle on (manual mode; a single tap is enough, it stays on) |
+  | OK | gear LO / HI (manual mode) |
+  | Red | change radio station |
+  | Green | audio on/off |
+  | Yellow | auto / manual throttle (auto is the default) |
+  | Back | pause |
+
+  Source code: https://github.com/famcellini/Turbo-Riviera (CC BY-NC 4.0 license:
+  free to use, share and modify with credit, no commercial use)
+screenshots:
+  - url: https://raw.githubusercontent.com/famcellini/Turbo-Riviera/main/screenshots/title.png
+    caption: Title screen
+  - url: https://raw.githubusercontent.com/famcellini/Turbo-Riviera/main/screenshots/game.png
+    caption: Gameplay
+  - url: https://raw.githubusercontent.com/famcellini/Turbo-Riviera/main/screenshots/fork.png
+    caption: Choosing the route at a fork
