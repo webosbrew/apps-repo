@@ -1,0 +1,22 @@
+title: Gallery3D
+iconUri: https://raw.githubusercontent.com/mariotaku/Gallery3D/main/webos/largeIcon.png
+manifestUrl: https://github.com/mariotaku/Gallery3D/releases/latest/download/me.mariotaku.gallery3d.manifest.json
+category: multimedia
+pool: main
+screenshots:
+  - url: https://raw.githubusercontent.com/mariotaku/Gallery3D/main/docs/webos/albums.webp
+    caption: Album wall
+  - url: https://raw.githubusercontent.com/mariotaku/Gallery3D/main/docs/webos/grid.webp
+    caption: Album grid
+  - url: https://raw.githubusercontent.com/mariotaku/Gallery3D/main/docs/webos/timeline.webp
+    caption: Timeline
+  - url: https://raw.githubusercontent.com/mariotaku/Gallery3D/main/docs/webos/fullscreen.webp
+    caption: Full screen photo
+description: |
+  Take a trip back to the Android 2.2 Froyo days with Gallery3D, bringing the classic Cooliris 3D photo wall to your webOS TV. Browse photos on a USB drive as familiar stacks of albums, explore a grid or timeline, or enjoy a full screen view using your remote's pointer or arrow keys.
+
+  This nostalgic gallery also serves as a demo of SDL3 on webOS, showcasing how SDL3 works by bringing a little early-Android magic to the big screen.
+
+  Photos in the screenshots are from [Pixabay](https://pixabay.com/).
+
+  ## [Source code](https://github.com/mariotaku/Gallery3D)
