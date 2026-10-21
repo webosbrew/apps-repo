@@ -57,8 +57,10 @@ description: |
 
   Source code and details: https://github.com/Smeagolworms4/lg-jellyfin-homeapp
 
-  Written with the help of Claude (Anthropic); the code has been fully reviewed
-  and tested by the author on a real TV.
+  Claude (Anthropic) was used as an assistant for the implementation and
+  documentation. The maintainer is an experienced developer who led the
+  development, reviewed the generated code, and tested the app and its features
+  on a webOS 10.3 TV before release.
 screenshots:
   - url: https://raw.githubusercontent.com/Smeagolworms4/lg-jellyfin-homeapp/main/docs/accueil.jpg
     caption: Top carousel with Jellyfin artwork
