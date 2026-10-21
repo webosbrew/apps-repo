@@ -1,0 +1,82 @@
+# The webosbrew Homebrew Channel submission for this app.
+#
+# THIS FILE DOES NOT BELONG TO THIS REPOSITORY AT RUNTIME. It is kept here so the submission is
+# version-controlled and reviewable alongside the thing it describes. To submit, fork
+# https://github.com/webosbrew/apps-repo and copy this file to `packages/com.sostk.nativejelly.yml`.
+#
+# Schema: content/schemas/packages/PackageInfo.json in that repo.
+# Required: title, iconUri, manifestUrl, category, pool, description. Verified 2026-10-18.
+#
+# Every claim in `description` must be one the current release note makes
+# (docs/release-notes/), and no stronger. This file was carried over from PlxNative's listing and
+# rewritten for v0.8.0 on 2026-10-18: PlxNative's device evidence, issue numbers and features
+# (a 2019 set before every release, usage reports from every firmware line, Dolby Vision on one
+# panel, Skip Intro, Up Next) belong to a different app talking to a different server, and none of
+# it carries over.
+
+title: Native Jelly
+
+# Both icon URLs are raw links to THIS repository's default branch; `repogen.lintpkg` rejects a
+# submission whose iconUri does not return 200. 160 for the listing card, 320 for the detail page;
+# tools/mkicons.py cuts both from the master.
+iconUri: https://raw.githubusercontent.com/sostk/native-jelly/main/pkg/icon160.png
+detailIconUri: https://raw.githubusercontent.com/sostk/native-jelly/main/pkg/icon320.png
+
+# `releases/latest/download/...` always resolves to the newest release, which is how the channel
+# picks up an update without this file changing. The release workflow sets neither `draft` nor
+# `prerelease` precisely because either would exclude the release from `latest` and break this URL.
+manifestUrl: https://github.com/sostk/native-jelly/releases/latest/download/com.sostk.nativejelly.manifest.json
+
+category: multimedia
+pool: main
+
+# Max 80 characters (schema-enforced).
+shortDescription: A native Jellyfin client for LG webOS TVs, played by the TV's own decoder
+
+# Rendered by `make screenshots` from tests/demo_library: openly licensed films only, credited in
+# docs/screenshots/CREDITS.md and in the description below. Pinned to the release tag rather than
+# `main`, so the listing shows the release it describes; move the tag with each release.
+screenshots:
+  - url: https://raw.githubusercontent.com/sostk/native-jelly/v0.8.0/docs/screenshots/home.jpg
+    caption: Home
+  - url: https://raw.githubusercontent.com/sostk/native-jelly/v0.8.0/docs/screenshots/ux-detail.jpg
+    caption: A film's page
+  - url: https://raw.githubusercontent.com/sostk/native-jelly/v0.8.0/docs/screenshots/player.jpg
+    caption: Playback
+
+requirements:
+  # Passed VERBATIM to `webosbrew-ipk-verify --fw-releases`, the same tool and flag the release CI
+  # runs against the built binary. It is a STARTUP bound: the release run fails if any firmware
+  # image webosbrew has from 4.4.2 up would refuse the binary. 4.0 to 4.4.1 have no image and are
+  # inferred from webosbrew's own bucketing (all `goldilocks`). Playback is a separate, narrower
+  # claim and lives in the description.
+  webosRelease: '>=4.0'
+
+description: |
+  An unofficial, native Jellyfin client for LG webOS televisions.
+
+  Native Jelly draws its interface directly on the GPU and hands video to the television's own hardware decoder, the same one the built-in apps use. It is built from [PlxNative](https://github.com/GLinnik21/plx-native)'s native player and interface, rebuilt to sign in to and play from your own Jellyfin server.
+
+  **What it does**
+
+  * Sign in with your Jellyfin server's address, then a user name and password or a Quick Connect code approved from another device
+  * Up to twelve Jellyfin users on one television, with **Who's watching?** at start
+  * Your libraries, Home, Search and Continue Watching
+  * Plays a file directly when the television can decode it; anything else is remuxed or transcoded by your server, which also records where you stopped and what you finished
+  * Choose audio and subtitle tracks, including image subtitles, and adjust subtitle timing, size and position
+  * English, Spanish and Belarusian, following the television's language
+
+  **Scope — please read before installing**
+
+  * **Video playback is verified on one television:** an LG C1 (2021) on webOS 6.5.3, including transcoded films with subtitles, seeking and track changes. On every other firmware from webOS 4.0 up the app is only known to start. If you try it on another set, please [report what happened](https://github.com/sostk/native-jelly/issues), whether it worked or not.
+  * **Movies and TV shows only.** No music, photos or live TV.
+  * **A server reached over plain http receives your password unencrypted.** Native Jelly asks before it connects to one, with a stronger warning for an internet address, and **Settings → Unencrypted connections** lists and revokes what you allowed. Use your server's https address when it has one.
+  * **Known issues:** playback can fail from a server reached over https through a reverse proxy; a re-encode is always H.264; Auto quality away from home has not been tried on a television.
+
+  Crash reports and usage analytics are both off until you choose to share them; the [privacy policy](https://github.com/sostk/native-jelly/blob/main/PRIVACY.md) lists exactly what each contains.
+
+  Screenshots show openly licensed films from the Blender Foundation and others, credited in [CREDITS.md](https://github.com/sostk/native-jelly/blob/main/docs/screenshots/CREDITS.md).
+
+  Not affiliated with, endorsed by, or sponsored by the Jellyfin project or LG Electronics.
+
+  Source, release notes and issues: https://github.com/sostk/native-jelly
