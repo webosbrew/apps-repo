@@ -1,0 +1,26 @@
+title: Launcher
+iconUri: https://raw.githubusercontent.com/partridgeworks/webos-launcher/main/public/largeIcon.png
+manifestUrl: https://github.com/partridgeworks/webos-launcher/releases/latest/download/works.partridge.webos-launcher.manifest.json
+category: utility
+pool: main
+requirements:
+  webosRelease: '>=6.0'
+description: |
+  # Launcher
+
+  A minimalist home screen: a greeting and clock, a row of your apps, a row of your
+  inputs (Live TV and HDMI, with the names set in the TV's input settings), and a way
+  back to LG's own home.
+
+  - Choose which apps and inputs appear, and re-order them (hold OK)
+  - Follows the TV's 12/24-hour clock setting
+  - Remote-first navigation; the Magic Remote pointer still works
+  - **No root required.** No background service or startup scripts
+  - Optional (off by default): on rooted TVs, read the full installed-app list and real
+    icons through the Homebrew Channel
+
+  It doesn't take over the HOME button. On rooted TVs you can map a button to it with
+  LG Input Hook (app ID `works.partridge.webos-launcher`).
+
+  Tested on an LG OLED C1 (2021) with webOS 6.5 only. See the
+  [README](https://github.com/partridgeworks/webos-launcher#compatibility-and-testing).
