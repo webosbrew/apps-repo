@@ -1,0 +1,40 @@
+title: BT Unlock
+iconUri: https://raw.githubusercontent.com/lucaasdias/bt-unlock/main/icon.png
+manifestUrl: https://github.com/lucaasdias/bt-unlock/releases/latest/download/org.lucaasdias.btunlock.manifest.json
+category: utility
+pool: main
+description: |
+  Pair, connect, and manage Bluetooth accessories on a rooted LG webOS TV —
+  the ones the stock TV UI won't even show you.
+
+  LG's own webOS Bluetooth settings only expose a narrow set of "approved"
+  accessories. Plenty of perfectly good hardware — game controllers,
+  keyboards, mice, headphones and speakers — either doesn't show up in that
+  UI at all, or shows up and refuses to connect. BT Unlock talks to the same
+  Bluetooth stack LG's own settings app uses, just without the artificial
+  allow-list, so you can pair and use whatever you actually own.
+
+  **Features**
+  - Discover and pair any nearby Bluetooth device (HID controllers/keyboards/
+    mice, A2DP audio), not just LG's allow-listed subset
+  - Manage already-paired devices: reconnect, disconnect, forget
+  - Toggle whether Bluetooth starts automatically on TV boot
+  - A built-in log viewer for troubleshooting
+  - Portuguese (pt-BR), English, and Spanish
+
+  Requires root and Homebrew Channel. Tested on an LG 43LK5750PSA
+  (webOS 4.4.3-22, ARM Cortex-A53) — see the
+  [README](https://github.com/lucaasdias/bt-unlock#readme) for full details.
+screenshots:
+  - url: https://raw.githubusercontent.com/lucaasdias/bt-unlock/main/docs/screenshots/status.jpg
+    caption: Status
+  - url: https://raw.githubusercontent.com/lucaasdias/bt-unlock/main/docs/screenshots/discover.jpg
+    caption: Discover
+  - url: https://raw.githubusercontent.com/lucaasdias/bt-unlock/main/docs/screenshots/paired.jpg
+    caption: Paired devices
+  - url: https://raw.githubusercontent.com/lucaasdias/bt-unlock/main/docs/screenshots/settings.jpg
+    caption: Settings
+requirements:
+  webosRelease: '>=4.0'
+funding:
+  github: [lucaasdias]
