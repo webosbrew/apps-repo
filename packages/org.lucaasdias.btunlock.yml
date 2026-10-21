@@ -25,16 +25,15 @@ description: |
   Requires root and Homebrew Channel. Tested on an LG 43LK5750PSA
   (webOS 4.4.3-22, ARM Cortex-A53) — see the
   [README](https://github.com/lucaasdias/bt-unlock#readme) for full details.
-
-  ## Screenshots
-
-  ![Status screen](https://raw.githubusercontent.com/lucaasdias/bt-unlock/main/docs/screenshots/status.jpg)
-
-  ![Discover screen](https://raw.githubusercontent.com/lucaasdias/bt-unlock/main/docs/screenshots/discover.jpg)
-
-  ![Paired devices screen](https://raw.githubusercontent.com/lucaasdias/bt-unlock/main/docs/screenshots/paired.jpg)
-
-  ![Settings screen](https://raw.githubusercontent.com/lucaasdias/bt-unlock/main/docs/screenshots/settings.jpg)
+screenshots:
+  - url: https://raw.githubusercontent.com/lucaasdias/bt-unlock/main/docs/screenshots/status.jpg
+    caption: Status
+  - url: https://raw.githubusercontent.com/lucaasdias/bt-unlock/main/docs/screenshots/discover.jpg
+    caption: Discover
+  - url: https://raw.githubusercontent.com/lucaasdias/bt-unlock/main/docs/screenshots/paired.jpg
+    caption: Paired devices
+  - url: https://raw.githubusercontent.com/lucaasdias/bt-unlock/main/docs/screenshots/settings.jpg
+    caption: Settings
 requirements:
   webosRelease: '>=4.0'
 funding:
