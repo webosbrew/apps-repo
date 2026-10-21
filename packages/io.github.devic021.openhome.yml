@@ -1,0 +1,25 @@
+title: OpenHome
+iconUri: https://raw.githubusercontent.com/devic021/openhome-webos/main/src/largeIcon.png
+manifestUrl: https://github.com/devic021/openhome-webos/releases/latest/download/io.github.devic021.openhome.manifest.json
+category: launcher
+pool: main
+shortDescription: A home screen that also opens the settings LG hides
+description: |
+  A replacement home screen for rooted LG webOS TVs, and a way into the TV's own settings.
+
+  LG's menu shows **36** of the **838** settings the firmware keeps. OpenHome reads them straight
+  out of `com.webos.settingsservice`, with LG's own names and descriptions, and lets you change
+  them — the screen saver that has no on/off switch, Live Plus, HDMI Deep Colour, 4:4:4 pass
+  through per port, the "Sponsored" tiles on the home screen.
+
+  It also gives you a clock and weather, a system panel with network latency, CPU temperature and
+  storage, input shortcuts that list only the ports with something plugged in and show whether the
+  device is awake over HDMI-CEC, and wallpapers from a pool kept on a USB disk.
+
+  Without root it runs as an ordinary launcher. The TV settings, the system panel and replacing
+  the stock home screen all need the Homebrew Channel's root service.
+
+  A fork of [OpenLauncher](https://github.com/Shantil-K/OpenLauncher) by Shantil-K, itself based
+  on QwQHome by exkc.
+requirements:
+  webosRelease: ">=4.0"
