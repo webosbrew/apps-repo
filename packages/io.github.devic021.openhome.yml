@@ -21,5 +21,19 @@ description: |
 
   A fork of [OpenLauncher](https://github.com/Shantil-K/OpenLauncher) by Shantil-K, itself based
   on QwQHome by exkc.
+screenshots:
+  - url: https://raw.githubusercontent.com/devic021/openhome-webos/main/docs/screenshots/preview/home.jpg
+    caption: Home screen with clock, weather and input shortcuts
+  - url: https://raw.githubusercontent.com/devic021/openhome-webos/main/docs/screenshots/preview/tv-privacy.jpg
+    caption: Privacy settings LG's own menu does not show
+  - url: https://raw.githubusercontent.com/devic021/openhome-webos/main/docs/screenshots/preview/tv-picture.jpg
+    caption: Picture settings, per picture mode and input
+  - url: https://raw.githubusercontent.com/devic021/openhome-webos/main/docs/screenshots/preview/system.jpg
+    caption: System panel with network, CPU, storage and root health
+  - url: https://raw.githubusercontent.com/devic021/openhome-webos/main/docs/screenshots/preview/apps.jpg
+    caption: All apps, with folders
 requirements:
-  webosRelease: ">=4.0"
+  # The launcher uses async/await (ES2017). Chromium 53, which webOS 4.x ships, only reaches
+  # ES2016, so 4.x cannot run it - the repository's own compatibility check establishes 5.3 as
+  # the oldest release this package works on.
+  webosRelease: ">=5.3"
