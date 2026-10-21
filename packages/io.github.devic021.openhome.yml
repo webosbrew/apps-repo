@@ -1,5 +1,6 @@
 title: OpenHome
 iconUri: https://raw.githubusercontent.com/devic021/openhome-webos/main/src/largeIcon.png
+detailIconUri: https://raw.githubusercontent.com/devic021/openhome-webos/main/docs/icon.png
 manifestUrl: https://github.com/devic021/openhome-webos/releases/latest/download/io.github.devic021.openhome.manifest.json
 category: launcher
 pool: main
