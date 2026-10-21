@@ -1,0 +1,42 @@
+title: Home+
+iconUri: https://raw.githubusercontent.com/pbalazaar/home-plus/main/docs/icon.png
+manifestUrl: https://github.com/pbalazaar/home-plus/releases/latest/download/com.github.pbalazaar.homeplus.manifest.json
+category: launcher
+pool: main
+shortDescription: A tvOS-style home screen for rooted LG TVs, in a Liquid Glass look
+description: |
+  A home screen for LG webOS TVs modelled on tvOS: a dock of your apps under a Top Shelf that fills
+  the screen with the focused app's pictures, in a Liquid Glass look.
+
+  - **Top Shelf:** Stremio, Jellyfin and Plex show what you're partway through (with your Trakt
+    progress for Stremio); streaming apps show what's popular on them (with a free TMDB key); other
+    apps get a glow taken from their icon. You sign in with a code or a QR code.
+  - **Control Center:** power, the screen, sound output, picture and sound modes, the sleep timer and
+    the inputs, in Home+ and, with LG Input Hook, over any app (the remote's Settings and Input buttons).
+  - **Recents:** an App Switcher for the apps you opened that are still running.
+  - **Your layout:** move, hide or delete apps; app icons in four looks (Default, Dark, Clear, Tinted).
+  - **Home button:** optionally opens Home+ instead of LG's home screen.
+  - **OLED care:** the picture drifts by a pixel every minute, and an idle Home+ dims, then goes black.
+
+  It's a native app (C, SDL2, OpenGL ES 2) with a background service that runs as root: it lists
+  and opens apps and keeps your sign-ins in `/var/lib/homeplus`. The first start asks the Homebrew
+  Channel for root and links a boot script into its startup scripts. **Settings → Remove Home+**
+  undoes everything it set up; removed another way, what it leaves behind does nothing.
+
+  **Tested on:** LG C3 (OLED), webOS 9.2.1 (firmware 23.20.59). Other recent webOS TVs may well work,
+  but haven't been tried: please send a [compatibility report](https://github.com/pbalazaar/home-plus/issues/new?template=compatibility.yml),
+  whether it went well or not.
+
+  Not affiliated with LG, Apple, Stremio, Trakt, Jellyfin, Plex or TMDB. Source, documentation and
+  troubleshooting: [github.com/pbalazaar/home-plus](https://github.com/pbalazaar/home-plus).
+screenshots:
+  - url: https://raw.githubusercontent.com/pbalazaar/home-plus/main/docs/screenshots/popular.jpg
+    caption: What's popular on Netflix, in the Top Shelf
+  - url: https://raw.githubusercontent.com/pbalazaar/home-plus/main/docs/screenshots/control-center.jpg
+    caption: The Control Center
+  - url: https://raw.githubusercontent.com/pbalazaar/home-plus/main/docs/screenshots/app-icons.jpg
+    caption: App icons in four looks
+  - url: https://raw.githubusercontent.com/pbalazaar/home-plus/main/docs/screenshots/recents.jpg
+    caption: Recents
+requirements:
+  webosRelease: '>=9.2'
