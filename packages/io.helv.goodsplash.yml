@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/helv-io/good-splash-replacer/master/a
 manifestUrl: https://github.com/helv-io/good-splash-replacer/releases/latest/download/goodsplash.manifest.json
 category: system
 pool: main
+requirements:
+  webosRelease: '>=5.3'
 description: |
   Replace the LG logo on the power-off screen with your own image.
 
