@@ -56,6 +56,9 @@ description: |
   Homebrew Channel.
 
   Source code and details: https://github.com/Smeagolworms4/lg-jellyfin-homeapp
+
+  Written with the help of Claude (Anthropic); the code has been fully reviewed
+  and tested by the author on a real TV.
 screenshots:
   - url: https://raw.githubusercontent.com/Smeagolworms4/lg-jellyfin-homeapp/main/docs/accueil.jpg
     caption: Top carousel with Jellyfin artwork
