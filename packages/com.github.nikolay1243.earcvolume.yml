@@ -1,0 +1,13 @@
+title: eARC Volume Overlay
+iconUri: https://raw.githubusercontent.com/Nikolay1243/Webos-EARC-Volume-Overlay/main/app/largeIcon.png
+manifestUrl: https://raw.githubusercontent.com/Nikolay1243/Webos-EARC-Volume-Overlay/main/release/com.github.nikolay1243.earcvolume.manifest.json
+category: system
+pool: main
+description: |
+  Shows the numeric volume of an ARC/eARC soundbar or receiver in the bottom-right
+  corner of a rooted LG webOS TV. Updates live and hides about two seconds after
+  the final volume change. Requires a device that reports absolute volume to webOS.
+
+  Install the companion **eARC Volume Overlay Settings** app too, then open it
+  and select **Enable**. Select **Disable** before uninstalling. Requires root
+  and Homebrew Channel.
