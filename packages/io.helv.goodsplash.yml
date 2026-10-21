@@ -1,0 +1,35 @@
+title: Good Splash Replacer
+iconUri: https://raw.githubusercontent.com/helv-io/good-splash-replacer/master/app/icons/icon130.png
+manifestUrl: https://github.com/helv-io/good-splash-replacer/releases/latest/download/goodsplash.manifest.json
+category: system
+pool: main
+description: |
+  Replace the LG logo on the power-off screen with your own image.
+
+  **Requires root.**
+
+  - Send a logo from your phone: scan the QR code on the TV, pick an image, press Send.
+  - Works with a basic remote (arrows, OK, Back) and with the Magic Remote pointer.
+  - The target size is read from the TV at runtime (3840x2160 on a 4K set). Smaller images are centered on black; larger ones are scaled to fit, or cropped to fill.
+  - Restore LG, and a switch to hide the power-off logo.
+  - Report my TV: read-only diagnostics sent as a prefilled GitHub issue, to help support other models.
+
+  ## What it changes
+
+  Apply writes new images to `/mnt/lg/user/custom-logo/masterbrand/` and bind-mounts them over the stock
+  `com.webos.app.masterbrand` logo files. Nothing is written to flash and stock files are never modified.
+  To undo: press Restore LG, or remove `72-goodsplash-logo` and `73-goodsplash` from
+  `/var/lib/webosbrew/init.d/` and reboot. The first boot logo (bootloader) is not touched.
+
+  ## Tested on
+
+  LG 86UA9000AUC, firmware 33.31.75 (Realtek K24N), rooted. Other models are untested; please use Report my TV.
+screenshots:
+  - url: https://raw.githubusercontent.com/helv-io/good-splash-replacer/master/docs/tv-main.png
+    caption: TV app
+  - url: https://raw.githubusercontent.com/helv-io/good-splash-replacer/master/docs/phone.png
+    caption: Phone upload page
+  - url: https://raw.githubusercontent.com/helv-io/good-splash-replacer/master/docs/tv-editor.png
+    caption: TV editor
+  - url: https://raw.githubusercontent.com/helv-io/good-splash-replacer/master/docs/tv-menu.png
+    caption: Logo options
