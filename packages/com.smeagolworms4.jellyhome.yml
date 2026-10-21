@@ -6,8 +6,6 @@ pool: main
 description: |
   **Root required.** Puts your Jellyfin library on the webOS home screen.
 
-  ![Home screen](https://raw.githubusercontent.com/Smeagolworms4/lg-jellyfin-homeapp/main/docs/accueil.jpg)
-
   * **Top carousel** instead of LG ads: continue watching, next up, recently
     added, favorites or a random pick, with artwork composed on the TV
     (poster, backdrop, title logo).
@@ -19,9 +17,14 @@ description: |
   * Selecting an item opens it in the Jellyfin app.
   * Sign-in with **Quick Connect**, no password to type.
 
-  ![Trailer in the carousel](https://raw.githubusercontent.com/Smeagolworms4/lg-jellyfin-homeapp/main/docs/bande-annonce.jpg)
-
   The home app itself is not modified: a preloaded library rewrites its luna
   replies, and everything is undone on reboot if the patch is disabled. A
   crash-loop guard turns the patch off after three home screen crashes in a
   minute. Tested on webOS 10.3.
+screenshots:
+  - url: https://raw.githubusercontent.com/Smeagolworms4/lg-jellyfin-homeapp/main/docs/accueil.jpg
+    caption: Top carousel with Jellyfin artwork
+  - url: https://raw.githubusercontent.com/Smeagolworms4/lg-jellyfin-homeapp/main/docs/bande-annonce.jpg
+    caption: Trailer playing in the carousel
+  - url: https://raw.githubusercontent.com/Smeagolworms4/lg-jellyfin-homeapp/main/docs/rangees.jpg
+    caption: Jellyfin rows on the home screen
