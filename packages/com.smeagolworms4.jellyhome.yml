@@ -4,6 +4,8 @@ detailIconUri: https://raw.githubusercontent.com/Smeagolworms4/lg-jellyfin-homea
 manifestUrl: https://github.com/Smeagolworms4/lg-jellyfin-homeapp/releases/latest/download/com.smeagolworms4.jellyhome.manifest.json
 category: multimedia
 pool: main
+requirements:
+  webosRelease: '>=10.0'
 shortDescription: Your Jellyfin library on the webOS home screen (root)
 description: |
   **Root required.** Puts your Jellyfin library on the webOS home screen, in place
