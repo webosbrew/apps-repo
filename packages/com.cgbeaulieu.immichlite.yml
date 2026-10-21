@@ -1,0 +1,52 @@
+title: immich lite
+iconUri: https://raw.githubusercontent.com/cgbeaulieu/immich-lite/main/app/largeIcon.png
+manifestUrl: https://github.com/cgbeaulieu/immich-lite/releases/latest/download/com.cgbeaulieu.immichlite.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=3.0'
+description: |
+  Your [immich](https://immich.app) photos and videos on older LG TVs: the 2016–2019 sets
+  (webOS 3 and 4) that the other immich TV apps can't run on. It's written in plain ES5
+  JavaScript for the old Chrome 38 engine, so it runs smoothly on a 2016 TV.
+
+  **On webOS 5 or newer?** Use [Immich](https://github.com/aneeshtigga/immich-webos) or
+  [Immich TV](https://github.com/Seeky91/immich-tv-webos) instead. They're made for newer TVs.
+
+  ## Features
+
+  - **Photos:** your timeline in justified rows like immich's web app, grouped by day or month
+  - **Explore:** On this day, People, Places, Archive, Folders and Tags
+  - **Map:** where your photos were taken. Point and click with the Magic Remote
+  - **Favorites, Albums and smart Search**
+  - **Slideshow:** a photo frame from all photos, favorites, memories, a person or an album
+  - **Viewer:** full screen photos and videos, with details, star ratings and Add to album
+  - **Partner photos** in your timeline
+  - **Sign in with your phone:** scan a QR code instead of typing with the remote
+
+  ## Setup
+
+  You need your own immich server on the same network. Open the app, then scan the QR code
+  and sign in from your phone, or type your server address and sign in with the remote.
+
+  Tested on an LG UH7650 (webOS 3.4.3). webOS 4 hasn't been tried yet:
+  [let us know](https://github.com/cgbeaulieu/immich-lite/issues/new/choose) how it goes.
+
+  ## Disclaimer
+
+  Unofficial community app, not affiliated with or endorsed by immich or FUTO.
+screenshots:
+  - url: https://raw.githubusercontent.com/cgbeaulieu/immich-lite/main/docs/screenshots/timeline.jpg
+    caption: Photo timeline
+  - url: https://raw.githubusercontent.com/cgbeaulieu/immich-lite/main/docs/screenshots/explore.jpg
+    caption: Explore, with On this day and People
+  - url: https://raw.githubusercontent.com/cgbeaulieu/immich-lite/main/docs/screenshots/viewer.jpg
+    caption: Full screen viewer
+  - url: https://raw.githubusercontent.com/cgbeaulieu/immich-lite/main/docs/screenshots/details.jpg
+    caption: Photo details
+  - url: https://raw.githubusercontent.com/cgbeaulieu/immich-lite/main/docs/screenshots/map.jpg
+    caption: Map
+  - url: https://raw.githubusercontent.com/cgbeaulieu/immich-lite/main/docs/screenshots/slideshow.jpg
+    caption: Slideshow
+  - url: https://raw.githubusercontent.com/cgbeaulieu/immich-lite/main/docs/screenshots/signin.jpg
+    caption: Sign in with your phone
