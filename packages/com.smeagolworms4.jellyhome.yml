@@ -68,3 +68,7 @@ screenshots:
     caption: Trailer playing in the carousel
   - url: https://raw.githubusercontent.com/Smeagolworms4/lg-jellyfin-homeapp/main/docs/rangees.jpg
     caption: Jellyfin rows on the home screen
+funding:
+  github: [ Smeagolworms4 ]
+  buy_me_a_coffee: [ smeagolworms4 ]
+  custom: [ "https://www.paypal.com/donate/?business=SURRPGEXF4YVU&no_recurring=0" ]
