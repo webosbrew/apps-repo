@@ -1,0 +1,40 @@
+title: StremioBrew
+iconUri: https://simussu9-wq.github.io/stremiobrew/icon.png
+manifestUrl: https://simussu9-wq.github.io/stremiobrew/api/apps/tv.stremiobrew.app/manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=3.0'
+description: |
+  # StremioBrew
+
+  *Stremio&trade; is a trademark of Smart Code UG. This project is unofficial and is not
+  affiliated with, endorsed by, or sponsored by Stremio. The name is used only to describe
+  compatibility.*
+
+  An unofficial, Stremio-compatible client for **older, rooted LG webOS TVs** (webOS 3 and
+  later), built for the generation the official Stremio app does not support.
+
+  You bring your own **Stremio account** and your own **addons**. The app ships empty and hosts
+  or indexes nothing: it plays only the stream links your addons return, and keeps your library
+  and watched history in sync with your account.
+
+  ## Features
+
+  - Home, Discover, Library and Search from your addons, with artwork and trailers
+  - Debrid playback, and P2P playback through a bundled torrent engine
+  - Embedded and external subtitles, styling and one-press auto-sync
+  - Skip intro / recap / credits, next-episode card, audio and picture-size options
+  - 11 languages, including right-to-left Arabic
+
+  ## Requirements
+
+  - webOS 3.0 or later on **32-bit ARM (armv7)**, rooted, with the Homebrew Channel
+  - A Stremio account and your own addons (a debrid service gives the smoothest playback)
+
+  Built and tested on webOS 4.4 (one model so far); webOS 3 and 5+ should work but are untested.
+
+  ## Open source
+
+  Source, build scripts and the licences of every bundled component (ffmpeg LGPL, nuvio-engine
+  GPL-3.0, libtorrent BSD, ...): https://github.com/simussu9-wq/stremiobrew
