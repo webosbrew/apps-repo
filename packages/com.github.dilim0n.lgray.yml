@@ -1,0 +1,40 @@
+title: LGRay
+iconUri: https://raw.githubusercontent.com/Dilim0n/LGRay/main/app/icon-large.png
+manifestUrl: https://github.com/Dilim0n/LGRay/releases/latest/download/com.github.dilim0n.lgray.manifest.json
+category: utility
+pool: main
+requirements:
+  webosRelease: '>=3.5'
+description: |
+  High-performance Xray / VLESS / Reality VPN client designed natively for LG webOS Smart TVs.
+
+  LGRay provides seamless, system-wide VPN connectivity directly on your LG TV with a modern TV-optimized interface, full Magic Remote navigation, and deep system integration.
+
+  ### Key Features:
+  - **Modern Protocols**: Full support for VLESS, Reality, Trojan, and Shadowsocks.
+  - **System-Wide TUN Tunneling**: Routes TV traffic through a dedicated TUN interface (`tun0`) with zero performance overhead.
+  - **DNS Leak Prevention**: Complete DNS hijacking protection with strict routing and configurable DoH / upstream DNS servers (Cloudflare, Google, or subscription-defined DNS).
+  - **Smart Remote Navigation**: Fully customized spatial navigation tailored for LG Magic Remote (D-Pad, wheel, pointer, Back/Exit).
+  - **Background Persistence**: Native webOS background execution — keep watching YouTube, Plex, or IPTV while switching apps without VPN disconnects.
+  - **Subscription Management**: Easy QR-code import from mobile devices, clipboard paste, subscription auto-update intervals, and batch latency testing (TCP & HTTPS ping).
+  - **Themes**: OLED pure-black (#000000), Dark, and Light themes.
+  - **Multi-language**: Full Russian and English localization.
+
+  ### Requirements:
+  - Rooted LG webOS TV (webOS 3.5 or later)
+  - Homebrew Channel root service (`luna://org.webosbrew.hbchannel.service`)
+  - `/dev/net/tun` support (available on webOS kernels)
+
+  Source: https://github.com/Dilim0n/LGRay (MIT)
+screenshots:
+  - url: https://raw.githubusercontent.com/Dilim0n/LGRay/main/screenshots/dashboard.png
+    caption: Dashboard & Connection
+  - url: https://raw.githubusercontent.com/Dilim0n/LGRay/main/screenshots/servers.png
+    caption: Servers & Latency
+  - url: https://raw.githubusercontent.com/Dilim0n/LGRay/main/screenshots/settings.png
+    caption: Settings & DNS
+  - url: https://raw.githubusercontent.com/Dilim0n/LGRay/main/screenshots/subscriptions.png
+    caption: Subscriptions
+funding:
+  github:
+    - Dilim0n
