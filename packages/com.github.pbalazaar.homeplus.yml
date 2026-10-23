@@ -15,13 +15,14 @@ description: |
     the inputs, in Home+ and, with LG Input Hook, over any app (the remote's Settings and Input buttons).
   - **Recents:** an App Switcher for the apps you opened that are still running.
   - **Your layout:** move, hide or delete apps; app icons in four looks (Default, Dark, Clear, Tinted).
+  - **Settings:** sections and explanatory rows in two panes, with Left/Right adjustment for switches and timers.
   - **Home button:** optionally opens Home+ instead of LG's home screen.
   - **OLED care:** the picture drifts by a pixel every minute, and an idle Home+ dims, then goes black.
 
   It's a native app (C, SDL2, OpenGL ES 2) with a background service that runs as root: it lists
   and opens apps and keeps your sign-ins in `/var/lib/homeplus`. The first start asks the Homebrew
-  Channel for root and links a boot script into its startup scripts. **Settings → Remove Home+**
-  undoes everything it set up; removed another way, what it leaves behind does nothing.
+  Channel for root and links a boot script into its startup scripts. **Settings → About → Remove Home+**
+  removes its setup and uninstalls it; the README explains what a plain uninstall leaves behind.
 
   **Tested on:** LG C3 (OLED), webOS 9.2.1 (firmware 23.20.59). Other recent webOS TVs may well work,
   but haven't been tried: please send a [compatibility report](https://github.com/pbalazaar/home-plus/issues/new?template=compatibility.yml),
