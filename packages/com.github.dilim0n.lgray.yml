@@ -26,6 +26,15 @@ description: |
   - `/dev/net/tun` support (available on webOS kernels)
 
   Source: https://github.com/Dilim0n/LGRay (MIT)
+screenshots:
+  - url: https://raw.githubusercontent.com/Dilim0n/LGRay/main/screenshots/dashboard.png
+    caption: Dashboard & Connection
+  - url: https://raw.githubusercontent.com/Dilim0n/LGRay/main/screenshots/servers.png
+    caption: Servers & Latency
+  - url: https://raw.githubusercontent.com/Dilim0n/LGRay/main/screenshots/settings.png
+    caption: Settings & DNS
+  - url: https://raw.githubusercontent.com/Dilim0n/LGRay/main/screenshots/subscriptions.png
+    caption: Subscriptions
 funding:
   github:
     - Dilim0n
