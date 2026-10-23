@@ -4,10 +4,11 @@ detailIconUri: https://raw.githubusercontent.com/initcore0/gobnative/main/webos/
 manifestUrl: https://github.com/initcore0/gobnative/releases/latest/download/io.github.initcore0.gobnative.manifest.json
 category: game
 pool: main
-# OpenGL ES 3.0: webosbrew's ipk-verify finds its functions missing on some
-# older TVs (webOS 1.2, 2.2 and 4.4 firmware) and on none from 4.10 on.
+# The oldest release tested on a TV (an OLED C1, webOS 6.5.3). webosbrew's
+# ipk-verify passes every firmware it knows from 4.10 on (OpenGL ES 3.0), but
+# nothing older than 6 has been tried.
 requirements:
-  webosRelease: '>=4.10'
+  webosRelease: '>=6.0'
 screenshots:
   - url: https://raw.githubusercontent.com/initcore0/gobnative/main/docs/images/tv-library.jpg
     caption: The library on the TV, games installed from a USB stick
