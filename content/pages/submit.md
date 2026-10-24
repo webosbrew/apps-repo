@@ -1,7 +1,8 @@
 Title: Submit Application
-URL: 
+URL: submit
 save_as: submit.html
 status: hidden
+Description: How to submit your homebrew app to the webOS Homebrew Project repository.
 
 Before submitting your application, please make sure it complies following basic rules:
 
