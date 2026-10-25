@@ -29,12 +29,12 @@ description: |
   Review LG agreement choices and their documented effects. Dark mode is the
   default; your light-theme choice is saved on the TV.
 
-  LGPrivacyShield runs locally; the app and TV send no data during normal use.
-  Compatibility reports are prepared locally. Scan one QR code with a phone
-  to open a prefilled GitHub form. The report includes model, software,
-  service access, and control readability—not setting values or agreement
-  choices. Opening the link sends the report to GitHub; submitting the form
-  creates a public issue. This helps maintainers add support for your TV.
+  LGPrivacyShield runs locally through webOS settings services and sends no
+  app data during normal use. To report an unsupported TV, scan the single QR
+  code with a phone. The link opens a prefilled GitHub form with model,
+  software, service access, and control readability; it excludes setting
+  values and agreement choices. Submitting the form creates a public issue so
+  maintainers can investigate support for that TV.
 
   Expected to work on webOS 6 and later. Physical testing is on a C6 running
   webOS 26 (Rockhopper release 11.2.0-3512, firmware 43.21.79); earlier
