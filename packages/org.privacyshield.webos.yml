@@ -30,17 +30,18 @@ description: |
   default; your light-theme choice is saved on the TV.
 
   LGPrivacyShield runs locally through webOS settings services and sends no
-  app data during normal use. To report an unsupported TV, scan the single QR
-  code with a phone. Opening the link sends the report to GitHub and opens a
-  prefilled form. The report includes model, software, service access, and
-  control readability; it excludes setting values and agreement choices.
-  Submitting the form creates a public issue so maintainers can investigate
-  support for that TV.
+  app data during normal use. We expect it to support LG OLED B1–B6, C1–C6,
+  and G1–G6 TVs running webOS 6.x or 22–26. Controls vary by model, region,
+  firmware, and Homebrew access, and appear only when the TV returns a
+  recognized value. Physical testing has been on one C6 running webOS 26
+  (Rockhopper 11.2.0-3512, firmware 43.21.79).
 
-  Expected to work on webOS 6 and later. The Homebrew checker reports
-  compatibility on webOS 6.4.0 and later profiles. Physical testing is on a
-  C6 running webOS 26 (Rockhopper 11.2.0-3512, firmware 43.21.79); earlier
-  releases are untested. Controls depend on your model and Homebrew access.
+  To report a missing model or unreadable control, scan the QR code from
+  Controls. It opens a prefilled GitHub compatibility form with a report of
+  model/software, firmware, profile, service access, and control readability;
+  it excludes current setting values and agreement choices. Add the TV region
+  or an observation and submit a public issue so maintainers can review
+  coverage and improve the model maps.
   Support development on [Ko-fi](https://ko-fi.com/snapetech).
 funding:
   ko_fi: [snapetech]
