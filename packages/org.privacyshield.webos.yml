@@ -1,27 +1,27 @@
-title: PrivacyShield
-iconUri: https://raw.githubusercontent.com/snapetech-org/PrivacyShield/main/webos-app/assets/privacyshield-icon.png
-manifestUrl: https://github.com/snapetech-org/PrivacyShield/releases/latest/download/org.privacyshield.webos.manifest.json
+title: LGPrivacyShield
+iconUri: https://raw.githubusercontent.com/snapetech-org/LGPrivacyShield/main/webos-app/assets/lgprivacyshield-icon.png
+manifestUrl: https://github.com/snapetech-org/LGPrivacyShield/releases/latest/download/org.privacyshield.webos.manifest.json
 category: system
 pool: main
 requirements:
   webosRelease: '>=6.0'
 shortDescription: Review LG TV privacy settings and agreement choices.
 screenshots:
-  - url: https://raw.githubusercontent.com/snapetech-org/PrivacyShield/main/docs/screenshots/overview-dark.png
+  - url: https://raw.githubusercontent.com/snapetech-org/LGPrivacyShield/main/docs/screenshots/overview-dark.png
     caption: Overview in dark mode
-  - url: https://raw.githubusercontent.com/snapetech-org/PrivacyShield/main/docs/screenshots/overview-light.png
+  - url: https://raw.githubusercontent.com/snapetech-org/LGPrivacyShield/main/docs/screenshots/overview-light.png
     caption: Overview in light mode
-  - url: https://raw.githubusercontent.com/snapetech-org/PrivacyShield/main/docs/screenshots/controls-top-dark.png
+  - url: https://raw.githubusercontent.com/snapetech-org/LGPrivacyShield/main/docs/screenshots/controls-top-dark.png
     caption: Controls in dark mode
-  - url: https://raw.githubusercontent.com/snapetech-org/PrivacyShield/main/docs/screenshots/controls-top-light.png
+  - url: https://raw.githubusercontent.com/snapetech-org/LGPrivacyShield/main/docs/screenshots/controls-top-light.png
     caption: Controls in light mode
-  - url: https://raw.githubusercontent.com/snapetech-org/PrivacyShield/main/docs/screenshots/agreements-top-dark.png
+  - url: https://raw.githubusercontent.com/snapetech-org/LGPrivacyShield/main/docs/screenshots/agreements-top-dark.png
     caption: LG agreements in dark mode
-  - url: https://raw.githubusercontent.com/snapetech-org/PrivacyShield/main/docs/screenshots/agreements-top-light.png
+  - url: https://raw.githubusercontent.com/snapetech-org/LGPrivacyShield/main/docs/screenshots/agreements-top-light.png
     caption: LG agreements in light mode
-  - url: https://raw.githubusercontent.com/snapetech-org/PrivacyShield/main/docs/screenshots/about-dark.png
+  - url: https://raw.githubusercontent.com/snapetech-org/LGPrivacyShield/main/docs/screenshots/about-dark.png
     caption: About in dark mode
-  - url: https://raw.githubusercontent.com/snapetech-org/PrivacyShield/main/docs/screenshots/about-light.png
+  - url: https://raw.githubusercontent.com/snapetech-org/LGPrivacyShield/main/docs/screenshots/about-light.png
     caption: About in light mode
 description: |
   See your TV model, software, Live Plus, and voice status. Change settings
@@ -29,9 +29,9 @@ description: |
   Review LG agreement choices and their documented effects. Dark mode is the
   default; your light-theme choice is saved on the TV.
 
-  PrivacyShield runs locally. It does not upload TV settings or viewing
-  activity. Compatibility reports are prepared locally. Scan one QR code with
-  a phone to open a prefilled GitHub form. The report includes model, software,
+  LGPrivacyShield runs locally; the app and TV send no data during normal use.
+  Compatibility reports are prepared locally. Scan one QR code with a phone
+  to open a prefilled GitHub form. The report includes model, software,
   service access, and control readability—not setting values or agreement
   choices. Opening the link sends the report to GitHub; submitting the form
   creates a public issue. This helps maintainers add support for your TV.
