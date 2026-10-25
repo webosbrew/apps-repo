@@ -1,0 +1,16 @@
+title: PrivacyShield
+iconUri: https://raw.githubusercontent.com/snapetech-org/PrivacyShield/main/webos-app/assets/privacyshield-icon.png
+manifestUrl: https://github.com/snapetech-org/PrivacyShield/releases/latest/download/org.privacyshield.webos.manifest.json
+category: system
+pool: main
+requirements:
+  webosRelease: '>=6.0'
+description: |
+  Review 15 privacy settings, agreement status, local services, and installed
+  Homebrew apps. Settings can be changed only on the validated OLED77C6HUP
+  running SDK 11.2.0 and firmware 43.21.79. Other model and firmware
+  combinations remain read-only until their settings maps are verified.
+  PrivacyShield does not upload TV settings or viewing activity.
+  Support development on [Ko-fi](https://ko-fi.com/snapetech).
+funding:
+  ko_fi: [snapetech]
