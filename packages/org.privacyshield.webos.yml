@@ -37,8 +37,9 @@ description: |
   Submitting the form creates a public issue so maintainers can investigate
   support for that TV.
 
-  Expected to work on webOS 6 and later. Physical testing is on a C6 running
-  webOS 26 (Rockhopper release 11.2.0-3512, firmware 43.21.79); earlier
+  Expected to work on webOS 6 and later. The Homebrew checker reports
+  compatibility on webOS 6.4.0 and later profiles. Physical testing is on a
+  C6 running webOS 26 (Rockhopper 11.2.0-3512, firmware 43.21.79); earlier
   releases are untested. Controls depend on your model and Homebrew access.
   Support development on [Ko-fi](https://ko-fi.com/snapetech).
 funding:
