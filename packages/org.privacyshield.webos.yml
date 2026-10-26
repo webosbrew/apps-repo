@@ -30,12 +30,12 @@ description: |
   default; your light-theme choice is saved on the TV.
 
   LGPrivacyShield runs locally through webOS settings services and sends no
-  app data during normal use. We expect it to support all 18 LG OLED families
-  (B1–B6, C1–C6, and G1–G6) on webOS 6.x and 22–26. Each family is in scope
-  for every listed version, including versions newer than its launch year.
-  Controls vary by model, region, firmware, and Homebrew access, and appear
-  only when the TV returns a recognized value. Physical TV testing has been on
-  one C6 running webOS 26 (Rockhopper 11.2.0-3512, firmware 43.21.79).
+  app data during normal use. We expect it to support all 18 LG OLED families:
+  B1–B6, C1–C6, and G1–G6. For every family, the expected webOS versions are
+  6.x, 22, 23, 24, 25, and 26, including versions newer than the TV's launch
+  year. Controls vary by model, region, firmware, and Homebrew access, and
+  appear only when the TV returns a recognized value. Physical TV testing has
+  been on one C6 running webOS 26 (Rockhopper 11.2.0-3512, firmware 43.21.79).
 
   If a model is missing or a control cannot be read, choose Prepare
   compatibility report in Controls and scan the QR code. It opens a prefilled
@@ -43,8 +43,8 @@ description: |
   The report includes model, software and firmware, profile, service access,
   and whether each control could be read. It excludes current setting values
   and agreement choices. Owners can add the TV region or a menu-path note.
-  Submissions give us feedback across models, software versions, and regions,
-  helping us find coverage gaps and improve the maps.
+  These reports let us compare which controls are readable across models,
+  software versions, and regions, spot coverage gaps, and improve the maps.
   Support development on [Ko-fi](https://ko-fi.com/snapetech).
 funding:
   ko_fi: [snapetech]
