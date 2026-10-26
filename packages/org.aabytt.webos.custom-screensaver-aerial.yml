@@ -8,20 +8,24 @@ description: |
 
   _Forked from [custom-screensaver](https://github.com/webosbrew/custom-screensaver)_
 
-  - [190+ aerial videos](https://aabytt.github.io/aerial-preview/) from different sources.
+  - [330+ videos](https://aabytt.github.io/aerial-preview/) from different sources.
   - 40+ locales for OSD
   - Source type selection (FullHD/4k SDR or Dolby Vision)
   - Requires root and Homebrew channel
-  - Compatible with webOS 5 (2020), webOS 6 (2021), webOS 22 (2022), webOS 23 (2023)
+  - Compatible with webOS 5 (2020), webOS 6 (2021), webOS 22 (2022), webOS 23 (2023), webOS 25 (2025)
   
   ---
 
   **Disclaimer:** App replaces original webOS screensaver. Use at your own risk. 
   
   ---
+
+  Source: https://github.com/aabytt/custom-screensaver-aerial
 screenshots:
   - url: https://github.com/aabytt/custom-screensaver-aerial/assets/84480313/77daf2da-b528-41ba-8377-fff70e6e1fd3
     caption: Main
   - https://github.com/aabytt/custom-screensaver-aerial/assets/84480313/166f43e7-a3cf-4035-975a-931f282f5655
   - url: https://github.com/aabytt/custom-screensaver-aerial/assets/84480313/1b7f281b-efdc-4eed-b0f2-b06f4bd5929a
     caption: Settings
+funding:
+  github: [aabytt]
