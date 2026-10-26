@@ -30,18 +30,22 @@ description: |
   default; your light-theme choice is saved on the TV.
 
   LGPrivacyShield runs locally through webOS settings services and sends no
-  app data during normal use. We expect it to support LG OLED B1–B6, C1–C6,
-  and G1–G6 TVs running webOS 6.x or 22–26. Controls vary by model, region,
-  firmware, and Homebrew access, and appear only when the TV returns a
-  recognized value. Physical testing has been on one C6 running webOS 26
-  (Rockhopper 11.2.0-3512, firmware 43.21.79).
+  app data during normal use. We expect it to support all 18 LG OLED families
+  (B1–B6, C1–C6, and G1–G6) on webOS 6.x and 22, 23, 24, 25, or 26. Each
+  family is in scope for every listed version, including versions later than
+  its launch version. Controls vary by model, region, firmware, and Homebrew
+  access, and appear only when the TV returns a recognized value. Physical TV
+  testing has been on one C6 running webOS 26 (Rockhopper 11.2.0-3512,
+  firmware 43.21.79).
 
-  To report a missing model or unreadable control, scan the QR code from
-  Controls. It opens a prefilled GitHub compatibility form with a report of
-  model/software, firmware, profile, service access, and control readability;
-  it excludes current setting values and agreement choices. Add the TV region
-  or an observation and submit a public issue so maintainers can review
-  coverage and improve the model maps.
+  If a model is missing or a control cannot be read, choose Prepare
+  compatibility report in Controls and scan the QR code. It opens a prefilled
+  GitHub form; submitting it creates a public issue for maintainers to review.
+  The report includes model, software and firmware, profile, service access,
+  and whether each control could be read. It excludes current setting values
+  and agreement choices. Owners can add the TV region or a menu-path note,
+  giving maintainers feedback across models, software versions, and regions to
+  find coverage gaps and improve the maps.
   Support development on [Ko-fi](https://ko-fi.com/snapetech).
 funding:
   ko_fi: [snapetech]
