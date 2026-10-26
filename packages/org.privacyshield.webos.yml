@@ -5,7 +5,7 @@ category: system
 pool: main
 requirements:
   webosRelease: '>=6.0'
-shortDescription: Review LG TV privacy settings and agreement choices.
+shortDescription: "Expected support: LG OLED B1–B6, C1–C6, and G1–G6; QR feedback improves maps."
 screenshots:
   - url: https://raw.githubusercontent.com/snapetech-org/LGPrivacyShield/main/docs/screenshots/overview-dark.png
     caption: Overview in dark mode
