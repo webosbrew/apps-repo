@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/funnymataleao/luma-webos-launcher/mai
 manifestUrl: https://github.com/funnymataleao/luma-webos-launcher/releases/latest/download/com.denisefremov.luma.manifest.json
 category: multimedia
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 shortDescription: A native, customizable home screen for LG webOS televisions
 description: |
   Luma is a native, remote-first launcher for LG webOS televisions, with a customizable
@@ -11,13 +13,16 @@ description: |
   Install the separate Luma Player package to play Jellyfin and Plex videos.
   Most of the code was written with AI assistants Claude Code and OpenAI Codex under
   human direction, and the application has been tested on a real LG OLED C1 television.
-
-  ## Screenshots
-
-  ![Home](https://raw.githubusercontent.com/funnymataleao/luma-webos-launcher/main/docs/screenshots/home.jpg)
-
-  ![Media library](https://raw.githubusercontent.com/funnymataleao/luma-webos-launcher/main/docs/screenshots/home-jellyfin.jpg)
-
-  ![Movie details](https://raw.githubusercontent.com/funnymataleao/luma-webos-launcher/main/docs/screenshots/movie.jpg)
-
-  ![Appearance settings](https://raw.githubusercontent.com/funnymataleao/luma-webos-launcher/main/docs/screenshots/settings-appearance.jpg)
+screenshots:
+  - url: https://raw.githubusercontent.com/funnymataleao/luma-webos-launcher/main/docs/screenshots/home.jpg
+    caption: Home
+  - url: https://raw.githubusercontent.com/funnymataleao/luma-webos-launcher/main/docs/screenshots/home-jellyfin.jpg
+    caption: Media library
+  - url: https://raw.githubusercontent.com/funnymataleao/luma-webos-launcher/main/docs/screenshots/movie.jpg
+    caption: Movie details
+  - url: https://raw.githubusercontent.com/funnymataleao/luma-webos-launcher/main/docs/screenshots/settings-appearance.jpg
+    caption: Appearance settings
+funding:
+  github: [ funnymataleao ]
+  ko_fi: dennis_oizo
+  buy_me_a_coffee: denisefremov

@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/funnymataleao/luma-webos-launcher/mai
 manifestUrl: https://github.com/funnymataleao/luma-webos-launcher/releases/latest/download/com.denisefremov.luma.player.manifest.json
 category: multimedia
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 shortDescription: Companion video player for Jellyfin and Plex in Luma
 description: |
   Luma Player is a companion webOS application that plays video from Jellyfin
@@ -12,5 +14,10 @@ description: |
   review and is part of the Luma open source project tested on an LG OLED C1.
 
   **Requires the Luma launcher to select content.**
-
-  ![Luma movie details](https://raw.githubusercontent.com/funnymataleao/luma-webos-launcher/main/docs/screenshots/movie.jpg)
+screenshots:
+  - url: https://raw.githubusercontent.com/funnymataleao/luma-webos-launcher/main/docs/screenshots/movie.jpg
+    caption: Movie page in Luma, Play opens Luma Player
+funding:
+  github: [ funnymataleao ]
+  ko_fi: dennis_oizo
+  buy_me_a_coffee: denisefremov
