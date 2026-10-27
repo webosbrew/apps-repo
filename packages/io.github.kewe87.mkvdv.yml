@@ -1,0 +1,53 @@
+title: MKV Dolby Vision Patcher
+iconUri: https://raw.githubusercontent.com/kewe87/webos22-mkv-dolbyvision/main/app/largeIcon.png
+manifestUrl: https://github.com/kewe87/webos22-mkv-dolbyvision/releases/latest/download/io.github.kewe87.mkvdv.manifest.json
+category: multimedia
+pool: main
+shortDescription: Dolby Vision from MKV files on webOS 22 instead of HDR10 (root)
+requirements:
+  webosRelease: '>=7.0, <8.0'
+screenshots:
+  - url: https://raw.githubusercontent.com/kewe87/webos22-mkv-dolbyvision/main/docs/screenshots/app-status.png
+    caption: Status and controls
+  - url: https://raw.githubusercontent.com/kewe87/webos22-mkv-dolbyvision/main/docs/screenshots/app-disclaimer.png
+    caption: Disclaimer on first start
+  - url: https://raw.githubusercontent.com/kewe87/webos22-mkv-dolbyvision/main/docs/screenshots/app-status-de.png
+    caption: German interface
+description: |
+  > Patch for the webOS 22 system player: MKV files play in real Dolby Vision instead of HDR10.
+
+  LG's webOS 22 plays Dolby Vision from MP4 and TS, but the MKV demuxer of its system player
+  (GStreamer plugin `libgstmatroska.so`) ignores the Dolby Vision configuration in MKV files, so every
+  app falls back to HDR10. LG fixed this only in webOS 25.
+
+  This app puts an improved demuxer over LG's original at startup – built from **LG's own webOS 22
+  source** with LG's Dolby Vision detection from webOS 25. It works in every app that uses LG's media
+  pipeline: Emby, Plex, the LG media player, USB and DLNA. **Your MKV files are not changed.**
+
+  ## Features
+
+  - Switch on/off, status, logs, compatibility check, remove everything (English/German)
+  - Optional **profile 7 → 8.1** conversion for UHD Blu-ray remuxes (enhancement layer dropped,
+    RPU rewritten with libdovi like `dovi_tool -m 2`)
+  - Root check on every start; without root all actions are locked
+
+  ## Safety
+
+  - **RAM only:** a bind mount over the system file, started by a Homebrew Channel boot script.
+    Nothing is written to firmware partitions; switch off or reboot without the script and LG's
+    original is back.
+  - Only activates on LG originals with a known checksum. Other firmware can be accepted on a single
+    TV after an isolated load test.
+  - Unknown or unusual files keep LG's behaviour; the demuxer never posts an error.
+  - The patch is copied to `/media/developer/mkvdv/` and stays active when the app is uninstalled.
+    Press **Remove everything** first to remove it completely.
+
+  ## Status
+
+  **Beta.** Requires a **rooted** TV with **webOS 22**. Tested on an LG 86QNED916QE (firmware
+  04.60.91): profile 8.1 plays with the Dolby Vision logo. Profile 7 → 8.1 is verified with test
+  data, not yet with a real UHD Blu-ray remux. Reports from other webOS 22 models are welcome:
+  [issues](https://github.com/kewe87/webos22-mkv-dolbyvision/issues).
+
+  **Use at your own risk.** Unofficial community project, not affiliated with or endorsed by LG or
+  Dolby. Dolby Vision is a trademark of Dolby Laboratories.
