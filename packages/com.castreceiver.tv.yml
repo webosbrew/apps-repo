@@ -1,0 +1,33 @@
+title: Cast Receiver (投屏助手)
+iconUri: https://raw.githubusercontent.com/zeronex98/Cast-Receiver-for-webOS-TV/main/app/largeIcon.png
+manifestUrl: https://github.com/zeronex98/Cast-Receiver-for-webOS-TV/releases/latest/download/com.castreceiver.tv.manifest.json
+category: multimedia
+pool: main
+description: |
+  # Cast Receiver (投屏助手)
+
+  An open-source **DLNA/UPnP MediaRenderer** for LG webOS TVs. Cast video, music and photos from phone apps (iQIYI, Tencent Video, Youku, Bilibili, NetEase Cloud Music and other DLNA-capable apps) to the TV, and control playback from a mobile web remote.
+
+  ## Features
+
+  - Full UPnP MediaRenderer: SSDP discovery, AVTransport, RenderingControl, ConnectionManager and GENA eventing
+  - Playback queue (up to 200 items), repeat-all / repeat-one / shuffle modes
+  - SRT / VTT subtitles with a built-in subtitle proxy
+  - Mobile web remote (scan the QR code): play/pause/seek, volume/mute, queue, direct URL casting, device rename and WiFi settings
+  - Scan-to-join WiFi QR code for guests (iPhone Camera and Android WiFi settings; UTF-8 SSIDs)
+  - Full-screen video / music / photo player with a 5-second auto-hiding HUD, remote OK-key play/pause and click-to-seek progress bar
+  - Real TV system volume and mute via Luna; TV remote volume keys stay in sync
+  - AirPlay capability probe (reports "unsupported" on Chinese-market models; no false claims)
+
+  ## Compatibility
+
+  - Tested on LG OLED77C5PCA, webOS 10.3.1
+  - Code targets webOS 4+ (ES5 service, Node 0.12-compatible APIs)
+  - No root required; installs as a normal web app with its background JS service
+  - Phone and TV must be on the same LAN
+
+  ## Notes
+
+  AirPlay is **not** supported (Apple MFi); the app probes the local stack and tells the user explicitly. No piracy or DRM-related functionality is included.
+
+  Source code (MIT): https://github.com/zeronex98/Cast-Receiver-for-webOS-TV
