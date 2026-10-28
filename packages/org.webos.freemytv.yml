@@ -1,0 +1,14 @@
+# Package entry for https://github.com/webosbrew/apps-repo (packages/org.webos.freemytv.yml).
+# Copy this file into a fork of that repo and open a PR; see homebrew/README.md.
+title: Free My TV
+iconUri: https://raw.githubusercontent.com/danielthejoker18/FreeMyTvWebOS/main/docs/assets/icon-512.png
+manifestUrl: https://github.com/danielthejoker18/FreeMyTvWebOS/releases/latest/download/org.webos.freemytv.manifest.json
+category: system
+pool: main
+description: |
+  A fast, ad-free 60fps home screen for LG webOS TVs: a frosted glass shelf for the
+  apps and HDMI inputs you use, live weather, trending movies and shows, and an
+  OLED-safe screensaver. Runs unrooted; no telemetry.
+screenshots:
+  - url: https://raw.githubusercontent.com/danielthejoker18/FreeMyTvWebOS/main/docs/assets/preview.png
+    caption: Free My TV home screen
