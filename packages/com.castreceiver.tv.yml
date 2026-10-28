@@ -31,3 +31,11 @@ description: |
   AirPlay is **not** supported (Apple MFi); the app probes the local stack and tells the user explicitly. No piracy or DRM-related functionality is included.
 
   Source code (MIT): https://github.com/zeronex98/Cast-Receiver-for-webOS-TV
+
+screenshots:
+  - url: https://raw.githubusercontent.com/zeronex98/Cast-Receiver-for-webOS-TV/main/docs/screenshots/idle.png
+    caption: Idle guide with WiFi-join and remote QR codes
+  - url: https://raw.githubusercontent.com/zeronex98/Cast-Receiver-for-webOS-TV/main/docs/screenshots/player.png
+    caption: Playback HUD with progress bar and play/pause
+  - url: https://raw.githubusercontent.com/zeronex98/Cast-Receiver-for-webOS-TV/main/docs/screenshots/settings.png
+    caption: Settings panel with device name and WiFi QR
