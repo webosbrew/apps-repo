@@ -27,7 +27,8 @@ description: |
   - Pair a phone by scanning the QR code shown on the TV and using a temporary PIN.
   - Russian and English interface with remote-control-friendly TV dialogs.
   - One All-in-One IPK including the launcher, ARMv7 backend, Xray-core and
-    recovery scripts. The bundled components are prepared locally on first run.
+    recovery scripts. Components are prepared locally on first run, without
+    downloading extra executables onto the TV.
 
   **Requirements**
 
@@ -47,8 +48,9 @@ description: |
     see the tested-device documentation for details.
   - The oldest verified build is **webOS 4.4.3-22**; requiring 4.4+ does not
     certify every 4.4.x firmware. Root/Homebrew and TUN remain required.
-  - The application is **free to use**; `non-free` refers to the CVPN-authored
-    proprietary free-use license, not to an app price or CVPN payment.
+  - The application is **free to use**; `non-free` refers to CVPN's
+    proprietary free-use license, not the price. License notices are included
+    in the downloadable IPK and the source repository.
 
   **License (free use; proprietary source):** https://github.com/mikemandi/cvpn-webos/blob/main/LICENSE
   **Documentation:** https://github.com/mikemandi/cvpn-webos
