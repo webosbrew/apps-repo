@@ -1,0 +1,25 @@
+title: own-your-glass
+iconUri: https://raw.githubusercontent.com/JulioFerrero/own-your-glass/main/app/largeIcon.png
+manifestUrl: https://github.com/JulioFerrero/own-your-glass/releases/latest/download/org.ownyourglass.control.manifest.json
+category: system
+pool: main
+requirements:
+  webosRelease: '>=10.0'
+screenshots:
+  - url: https://raw.githubusercontent.com/JulioFerrero/own-your-glass/main/docs/images/tv-control-panel.png
+    caption: The control panel on the TV
+description: |
+  Stops your LG TV from listening, watching and reporting back. Everything it changes can be undone from the app.
+
+  - Blocks LG's ad, tracking and ThinQ servers with a DNS blocker that runs on the TV (IPv4 and IPv6)
+  - Turns off the Magic Remote microphone (the buttons still work)
+  - Locks the screen capture file the TV writes every 3 seconds
+  - Stops telemetry services and keeps them off after reboots
+  - Keeps YouTube and LG Channels from loading in the background, also after standby
+  - Clears the logs where your voice commands are saved as text
+
+  Apply hardening also blocks LG firmware updates. Undo hardening puts everything back,
+  and Restore network resets networking even when there is no connection.
+
+  Needs root and the Homebrew Channel. Tested on LG OLED TVs with webOS 10.3.
+  What each change does and how it was checked: https://github.com/JulioFerrero/own-your-glass/blob/main/docs/FINDINGS.md
