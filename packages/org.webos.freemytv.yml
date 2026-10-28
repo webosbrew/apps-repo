@@ -12,3 +12,7 @@ description: |
 screenshots:
   - url: https://raw.githubusercontent.com/danielthejoker18/FreeMyTvWebOS/main/docs/assets/preview.png
     caption: Free My TV home screen
+  - url: https://raw.githubusercontent.com/danielthejoker18/FreeMyTvWebOS/main/docs/assets/screenshot-customize.png
+    caption: Customize shelf, HDMI devices, theme, language
+  - url: https://raw.githubusercontent.com/danielthejoker18/FreeMyTvWebOS/main/docs/assets/screenshot-weather.png
+    caption: Weather and sun drawer
