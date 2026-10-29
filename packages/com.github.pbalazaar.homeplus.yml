@@ -24,9 +24,11 @@ description: |
   Channel for root and links a boot script into its startup scripts. **Settings → About → Remove Home+**
   removes its setup and uninstalls it; the README explains what a plain uninstall leaves behind.
 
-  **Tested on:** LG C3 (OLED), webOS 9.2.1 (firmware 23.20.59). Other recent webOS TVs may well work,
-  but haven't been tried: please send a [compatibility report](https://github.com/pbalazaar/home-plus/issues/new?template=compatibility.yml),
-  whether it went well or not.
+  **Tested on:** LG C3 (OLED), webOS 9.2.1 (firmware 23.20.59). Others have tried it on an LG C1
+  (webOS 6.5.3, [#37](https://github.com/pbalazaar/home-plus/issues/37)) and an LG C4 (webOS 26,
+  [#44](https://github.com/pbalazaar/home-plus/issues/44)). It needs webOS 5 (2020) or later: please send a
+  [compatibility report](https://github.com/pbalazaar/home-plus/issues/new?template=compatibility.yml)
+  from yours, whether it went well or not.
 
   Not affiliated with LG, Apple, Stremio, Trakt, Jellyfin, Plex or TMDB. Source, documentation and
   troubleshooting: [github.com/pbalazaar/home-plus](https://github.com/pbalazaar/home-plus).
@@ -40,4 +42,4 @@ screenshots:
   - url: https://raw.githubusercontent.com/pbalazaar/home-plus/main/docs/screenshots/recents.jpg
     caption: Recents
 requirements:
-  webosRelease: '>=9.2'
+  webosRelease: '>=5.0'
