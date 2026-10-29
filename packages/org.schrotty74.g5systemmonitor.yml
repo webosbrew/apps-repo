@@ -1,0 +1,19 @@
+title: G5 System Monitor
+iconUri: https://raw.githubusercontent.com/Schrotty74/LG-G5-Apps/main/apps/system-monitor/app/icon.png
+manifestUrl: https://raw.githubusercontent.com/Schrotty74/LG-G5-Apps/main/apps/system-monitor/org.schrotty74.g5systemmonitor.manifest.json
+category: system
+pool: main
+shortDescription: Read-only system statistics for rooted LG G5 TVs.
+description: |
+  A read-only dashboard for CPU and RAM usage, uptime, storage, network
+  information and running processes. Includes CPU and RAM history graphs
+  and a selectable refresh interval.
+
+  Requires root and the Homebrew Channel service. Tested on an LG G5 with
+  webOS 25. Temperature is not shown because no readable sensor was found
+  on the tested device. The preview image uses sample data.
+screenshots:
+  - url: https://raw.githubusercontent.com/Schrotty74/LG-G5-Apps/main/apps/system-monitor/preview.png
+    caption: Illustrative preview with sample data
+
+# IPK 0.9.3 fixes archive paths and includes installed-size metadata.
