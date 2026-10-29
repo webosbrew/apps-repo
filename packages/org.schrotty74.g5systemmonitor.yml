@@ -15,3 +15,5 @@ description: |
 screenshots:
   - url: https://raw.githubusercontent.com/Schrotty74/LG-G5-Apps/main/apps/system-monitor/preview.png
     caption: Illustrative preview with sample data
+
+# IPK 0.9.3 corrects archive paths for catalog validation.
