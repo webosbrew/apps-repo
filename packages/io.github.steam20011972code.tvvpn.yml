@@ -1,0 +1,54 @@
+title: MEDZH VPN
+iconUri: https://raw.githubusercontent.com/steam20011972-code/tv-vpn/main/app/icon.png
+manifestUrl: https://github.com/steam20011972-code/tv-vpn/releases/latest/download/io.github.steam20011972code.tvvpn.manifest.json
+category: system
+pool: main
+requirements:
+  webosRelease: '>=9.0'
+description: |
+  Whole-TV VPN client for rooted LG webOS TVs, built on [sing-box](https://github.com/SagerNet/sing-box).
+  Bring your own server: no VPN servers are provided.
+
+  Features:
+
+  - VLESS (TLS, Reality, Vision; TCP, WebSocket, gRPC, HTTPUpgrade), VMess, Trojan, Shadowsocks, Hysteria2 and TUIC
+    profiles, as share links, subscriptions or sing-box JSON outbounds; links from Marzban, 3x-ui, Remnawave and
+    Hiddify panels are accepted
+  - New links that turn off certificate checks are refused, so nobody on the network path can impersonate the server
+    (such profiles saved by 0.6.1 or older keep working and are labelled "no certificate check")
+  - Profiles are added from a phone by QR code over the local network, or from a USB stick
+  - All TV IPv4 traffic goes through the tunnel, with DNS over HTTPS inside it; external IPv6 is blocked while
+    connected; the local network stays reachable
+  - If the server fails, the normal network is restored and the connection is retried; an independent watchdog
+    restores the network if the controller hangs
+  - Optional connection when the TV turns on (off by default)
+  - The app installs and updates its components (sing-box core and controller) by itself when opened; it installs
+    them only from its signed package and checks the core against a pinned SHA-256
+  - Root work is done by the app's own Luna service with a fixed set of actions; the interface never builds shell
+    commands, and Homebrew Channel is used only to give that service root
+  - English and Russian interface, following the TV language
+  - "Remove MEDZH VPN completely" in the app stops the VPN, restores DNS and routes, and deletes its components
+
+  Requirements:
+
+  - Rooted TV with Homebrew Channel showing "Root OK"
+  - ARM processor, built-in Node.js 14 or newer (webOS 24 and later), `/dev/net/tun`, `ip rule` and `connmanctl`;
+    the app checks all of these before it installs its components
+
+  Notes:
+
+  - Beta: tested on one model so far (LG 55UA75009LA, webOS 25). Compatibility reports are welcome.
+  - No kill switch: while the VPN is not connected, TV traffic goes over the normal connection.
+  - While the QR code is shown, the TV serves a one-time import page over plain HTTP on the local network.
+  - To uninstall, use "Remove MEDZH VPN completely" in the app first. Removing the app only from the TV menu or
+    Homebrew Channel leaves its components and profiles in `/media/developer/tv-vpn`; the VPN then stays off after
+    the next restart.
+  - The app id changed in 0.7.0. If 0.6.x is installed, open the new app: it removes the old one and keeps profiles
+    and settings.
+
+  Source: https://github.com/steam20011972-code/tv-vpn (MIT). The bundled sing-box is GPL-3.0-or-later.
+screenshots:
+  - url: https://raw.githubusercontent.com/steam20011972-code/tv-vpn/main/docs/screenshots/main.png
+    caption: Connected
+  - url: https://raw.githubusercontent.com/steam20011972-code/tv-vpn/main/docs/screenshots/import.png
+    caption: Adding a profile from a phone by QR code
