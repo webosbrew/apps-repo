@@ -1,0 +1,44 @@
+# Draft entry for webosbrew/apps-repo (packages/com.viiees.mytvlauncher.yml). Submit it as a PR there
+# only after this repository is public: the channel's lint rejects an iconUri that does not answer 200.
+title: myTV
+iconUri: https://raw.githubusercontent.com/ViieeS/mytvlauncher/main/package/icon160.png
+detailIconUri: https://raw.githubusercontent.com/ViieeS/mytvlauncher/main/package/icon320.png
+manifestUrl: https://github.com/ViieeS/mytvlauncher/releases/latest/download/com.viiees.mytvlauncher.manifest.json
+category: launcher
+pool: main
+shortDescription: "Make your TV truly yours: a fast, native home screen for LG webOS"
+screenshots:
+  - url: https://raw.githubusercontent.com/ViieeS/mytvlauncher/main/docs/screenshots/home.jpg
+    caption: Home screen
+  - url: https://raw.githubusercontent.com/ViieeS/mytvlauncher/main/docs/screenshots/control-center.jpg
+    caption: Control Center
+  - url: https://raw.githubusercontent.com/ViieeS/mytvlauncher/main/docs/screenshots/settings.jpg
+    caption: Settings
+  - url: https://raw.githubusercontent.com/ViieeS/mytvlauncher/main/docs/screenshots/wallpapers.jpg
+    caption: Wallpapers
+  - url: https://raw.githubusercontent.com/ViieeS/mytvlauncher/main/docs/screenshots/standby.jpg
+    caption: StandBy clock
+requirements:
+  webosRelease: '>=6.0'
+description: |
+  **Your TV. Your home screen. No compromises.**
+
+  Smart TVs have become slow and cluttered: sluggish menus, web-based interfaces, and sponsored
+  content nobody asked for. myTV takes a different approach. It's a fast, native, tvOS-style home
+  screen, written in C and rendered directly on the TV's GPU with SDL2 and LVGL. No browser engine,
+  no JavaScript, no ads, accounts or analytics. Frame pacing keeps long lists at a steady 60 fps,
+  and CPU usage is near zero when idle.
+
+  * A glass dock of apps, a second row and recent apps, focus lift and running-app dots
+  * Hold OK to move, remove or uninstall an app; Magic Remote hover and drag
+  * Control Center: sound and picture mode, sleep timer, screen off, backlight
+  * Bundled public-domain paintings as wallpapers, night dimming
+  * Photo screensaver and StandBy clock faces
+  * Date, time and weather for a chosen city
+  * On rooted TVs, the Home button opens myTV
+
+  Tested on an LG OLED C1 (webOS 6.5.3). Root access is not required for basic functionality. On
+  rooted TVs, myTV can replace the default Home screen; Screen off and Start screensaver need root
+  too. Uninstalling restores the original behaviour, including the Home button. MIT-licensed.
+
+  myTV is not affiliated with or endorsed by LG Electronics or Apple.
