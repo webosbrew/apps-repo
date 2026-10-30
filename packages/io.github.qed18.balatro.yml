@@ -12,3 +12,10 @@ iconUri: "https://raw.githubusercontent.com/QED18/balatro-webos/main/app/icon.pn
 manifestUrl: "https://github.com/QED18/balatro-webos/releases/latest/download/io.github.qed18.balatro.manifest.json"
 category: game
 pool: main
+screenshots:
+  - url: "https://raw.githubusercontent.com/QED18/balatro-webos/main/assets/screenshots/tv-first-run-setup.jpg"
+    caption: "First-run owner setup on an LG webOS TV"
+  - url: "https://raw.githubusercontent.com/QED18/balatro-webos/main/assets/screenshots/tv-gameplay.jpg"
+    caption: "Owner-supplied game running on an LG webOS TV"
+  - url: "https://raw.githubusercontent.com/QED18/balatro-webos/main/assets/screenshots/tv-current-state.jpg"
+    caption: "Main menu running on an LG webOS TV"
