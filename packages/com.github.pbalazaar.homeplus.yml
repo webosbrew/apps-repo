@@ -12,17 +12,21 @@ description: |
     progress for Stremio); streaming apps show what's popular on them (with a free TMDB key); other
     apps get a glow taken from their icon. You sign in with a code or a QR code.
   - **Control Center:** power, the screen, sound output, picture and sound modes, the sleep timer and
-    the inputs, in Home+ and, with LG Input Hook, over any app (the remote's Settings and Input buttons).
+    the inputs, in Home+ and over any app, from the remote's Settings and Input buttons (on the C3 by
+    itself, elsewhere with LG Input Hook).
   - **Recents:** an App Switcher for the apps you opened that are still running.
   - **Your layout:** move, hide or delete apps; app icons in four looks (Default, Dark, Clear, Tinted).
   - **Settings:** sections and explanatory rows in two panes, with Left/Right adjustment for switches and timers.
-  - **Home button:** optionally opens Home+ instead of LG's home screen.
+  - **Home button:** optionally opens Home+ instead of LG's home screen; on the C3 (elsewhere with LG
+    Input Hook), without LG's home screen showing first.
   - **OLED care:** the picture drifts by a pixel every minute, and an idle Home+ dims, then goes black.
 
   It's a native app (C, SDL2, OpenGL ES 2) with a background service that runs as root: it lists
   and opens apps and keeps your sign-ins in `/var/lib/homeplus`. The first start asks the Homebrew
-  Channel for root and links a boot script into its startup scripts. **Settings → About → Remove Home+**
-  removes its setup and uninstalls it; the README explains what a plain uninstall leaves behind.
+  Channel for root and links a boot script into its startup scripts. To catch the remote's buttons, it
+  adds a key filter to LG's key handling, kept in memory only, which hands them back to LG when Home+
+  is gone. **Settings → About → Remove Home+** removes its setup and uninstalls it; the README explains
+  what a plain uninstall leaves behind.
 
   **Tested on:** LG C3 (OLED), webOS 9.2.1 (firmware 23.20.59). Others have tried it on an LG C1
   (webOS 6.5.3, [#37](https://github.com/pbalazaar/home-plus/issues/37)) and an LG C4 (webOS 26,
