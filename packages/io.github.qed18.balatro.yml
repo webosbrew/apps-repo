@@ -1,0 +1,21 @@
+title: Balatro for webOS
+shortDescription: Native launcher for your own legal Balatro copy.
+description: |
+  A native LG webOS launcher for an owner-supplied, legally obtained Steam copy of Balatro.
+
+  **Game-file-free:** this package contains no Balatro code, assets, music, saves, downloader, or cloud service. On first run, the TV provides a local pairing address and PIN; the owner transfers the required game archive directly from a computer on the same home network.
+
+  Supports macOS `Balatro.love` and Windows/Proton `Balatro.exe` imports, Magic Remote pointer input, a remote-controller fallback, and Bluetooth controllers.
+
+  **AI assistance disclosure:** AI tools (OpenAI Codex) assisted with development. The maintainer has run the app on a real LG webOS 9.2 TV, performed owner-file transfer testing, and is responsible for maintenance and review.
+iconUri: "https://raw.githubusercontent.com/QED18/balatro-webos/main/app/icon.png"
+manifestUrl: "https://github.com/QED18/balatro-webos/releases/latest/download/io.github.qed18.balatro.manifest.json"
+category: game
+pool: main
+screenshots:
+  - url: "https://raw.githubusercontent.com/QED18/balatro-webos/main/assets/screenshots/tv-first-run-setup.jpg"
+    caption: "First-run owner setup on an LG webOS TV"
+  - url: "https://raw.githubusercontent.com/QED18/balatro-webos/main/assets/screenshots/tv-gameplay.jpg"
+    caption: "Owner-supplied game running on an LG webOS TV"
+  - url: "https://raw.githubusercontent.com/QED18/balatro-webos/main/assets/screenshots/tv-current-state.jpg"
+    caption: "Main menu running on an LG webOS TV"
