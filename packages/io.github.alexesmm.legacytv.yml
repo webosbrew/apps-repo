@@ -30,13 +30,15 @@ description: |
 
   This project is not affiliated with or endorsed by Stremio or LG Electronics. [Source, compatibility list and notes](https://github.com/Alexesmm/stremcompat-lg-webos).
 screenshots:
-  - url: https://raw.githubusercontent.com/Alexesmm/stremcompat-lg-webos/v3.0.0/docs/assets/screens/home.jpg
+  - url: https://raw.githubusercontent.com/Alexesmm/stremcompat-lg-webos/main/docs/assets/screens/home.jpg
     caption: Home
-  - url: https://raw.githubusercontent.com/Alexesmm/stremcompat-lg-webos/v3.0.0/docs/assets/screens/series.jpg
+  - url: https://raw.githubusercontent.com/Alexesmm/stremcompat-lg-webos/main/docs/assets/screens/discover.jpg
+    caption: Discover
+  - url: https://raw.githubusercontent.com/Alexesmm/stremcompat-lg-webos/main/docs/assets/screens/series.jpg
     caption: Series page
-  - url: https://raw.githubusercontent.com/Alexesmm/stremcompat-lg-webos/v3.0.0/docs/assets/screens/sources.jpg
+  - url: https://raw.githubusercontent.com/Alexesmm/stremcompat-lg-webos/main/docs/assets/screens/sources.jpg
     caption: Sources
-  - url: https://raw.githubusercontent.com/Alexesmm/stremcompat-lg-webos/v3.0.0/docs/assets/screens/settings.jpg
+  - url: https://raw.githubusercontent.com/Alexesmm/stremcompat-lg-webos/main/docs/assets/screens/settings.jpg
     caption: Settings
 funding:
   buy_me_a_coffee: Alexesmm
