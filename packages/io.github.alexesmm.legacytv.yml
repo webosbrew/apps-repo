@@ -28,6 +28,8 @@ description: |
 
   About 6 MB to download and 13 MB installed. The local server runs on the TV's own Node.js. The FFmpeg and torrent engine in the package are built from source, and their licenses and build details are included.
 
+  **Screen smaller than Full HD?** The interface won't fit with this package. Use the 720p one instead: `https://alexesmm.github.io/stremcompat-lg-webos/720/apps.json`
+
   This project is not affiliated with or endorsed by Stremio or LG Electronics. [Source, compatibility list and notes](https://github.com/Alexesmm/stremcompat-lg-webos).
 screenshots:
   - url: https://raw.githubusercontent.com/Alexesmm/stremcompat-lg-webos/main/docs/assets/screens/home.jpg
