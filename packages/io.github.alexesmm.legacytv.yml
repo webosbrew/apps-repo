@@ -1,0 +1,42 @@
+title: StremCompat
+iconUri: https://alexesmm.github.io/stremcompat-lg-webos/icon.png
+manifestUrl: https://alexesmm.github.io/stremcompat-lg-webos/api/apps/io.github.alexesmm.legacytv/manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=3.0'
+description: |
+  # StremCompat
+
+  An unofficial client for older LG TVs that cannot install the official Stremio app. It works with your own Stremio account and the addons installed on it. It has no accounts, catalogs or sources of its own.
+
+  ## Features
+
+  - Sign in with a QR code or with email and password
+  - Home, Discover, Library, search and Continue Watching from your account
+  - Sources from your addons, with quality, language and compatibility shown
+  - Addon subtitles and subtitles inside the file; the audio and subtitle chosen are remembered for each title
+  - Interface in English, Brazilian Portuguese, Spanish, French, German, Italian and Russian
+  - Works with the remote and the Magic Remote
+
+  ## Requirements
+
+  - An LG TV with webOS 3 or 4 and an ARM processor. No root needed.
+  - A Stremio account with at least one addon that provides sources. Use only addons and media you are authorized to access.
+
+  ## Size
+
+  About 6 MB to download and 13 MB installed. The local server runs on the TV's own Node.js. The FFmpeg and torrent engine in the package are built from source, and their licenses and build details are included.
+
+  This project is not affiliated with or endorsed by Stremio or LG Electronics. [Source, compatibility list and notes](https://github.com/Alexesmm/stremcompat-lg-webos).
+screenshots:
+  - url: https://raw.githubusercontent.com/Alexesmm/stremcompat-lg-webos/v3.0.0/docs/assets/screens/home.jpg
+    caption: Home
+  - url: https://raw.githubusercontent.com/Alexesmm/stremcompat-lg-webos/v3.0.0/docs/assets/screens/series.jpg
+    caption: Series page
+  - url: https://raw.githubusercontent.com/Alexesmm/stremcompat-lg-webos/v3.0.0/docs/assets/screens/sources.jpg
+    caption: Sources
+  - url: https://raw.githubusercontent.com/Alexesmm/stremcompat-lg-webos/v3.0.0/docs/assets/screens/settings.jpg
+    caption: Settings
+funding:
+  buy_me_a_coffee: Alexesmm
