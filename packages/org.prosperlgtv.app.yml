@@ -1,0 +1,39 @@
+# Prosper LG TV: https://github.com/pustal/ProsperLGTV
+# The file name (without .yml) is the app id, as in appinfo.json.
+
+# Display name of the application
+title: Prosper LG TV
+# Publicly accessible HTTPS link to the icon image itself (not a github.com/.../blob/ page)
+iconUri: https://raw.githubusercontent.com/pustal/ProsperLGTV/main/assets/icons/largeIcon.png
+# The manifest of the latest release (written by `npm run package` in ProsperLGTV)
+manifestUrl: https://github.com/pustal/ProsperLGTV/releases/latest/download/org.prosperlgtv.app.manifest.json
+category: multimedia
+# Open source (GPL-3.0-or-later)
+pool: main
+# The app targets the browser engine of webOS 4 (Chromium 53) and newer.
+requirements:
+  webosRelease: '>=4.0'
+description: |
+  An IPTV player for the M3U playlists you add, made for the TV remote. It is
+  an unofficial webOS adaptation of
+  [ProsperoTV](https://github.com/blackbearreloaded/ProsperoTV) for
+  PlayStation 5.
+
+  - Large playlists in a fast grid, with category chips and filters for
+    country, language, category and quality
+  - Favourites, recent channels and search
+  - Opens straight away from the last good list; updates in the background
+  - Falls back to a channel's other streams and explains why a channel
+    won't play
+  - Zapping with Up/Down and CH+/CH-, a channel banner and a statistics
+    overlay
+  - Channel lists and shrunk logos are kept in a bounded cache that
+    Settings can clear, so the app doesn't fill the TV's storage
+
+  Comes with no channels or playlists: add one you are entitled to watch,
+  for example from your TV or internet provider. Prosper LG TV doesn't host
+  or provide any content. DRM-protected streams are not supported. Not
+  affiliated with ProsperoTV.
+# Sponsor information, like .github/FUNDING.yml
+funding:
+  ko_fi: pustal

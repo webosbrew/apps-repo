@@ -1,8 +1,11 @@
+# Stash for webOS: https://github.com/pustal/StashWebOS
+# The file name (without .yml) is the app id, as in appinfo.json.
+
 # Display name of the application
 title: Stash
 # Publicly accessible HTTPS link to the icon image itself (not a github.com/.../blob/ page)
 iconUri: https://raw.githubusercontent.com/pustal/StashWebOS/main/assets/icons/source/stash-logo.jpg
-# The manifest of the latest release
+# The manifest of the latest release (written by `npm run package` in StashWebOS)
 manifestUrl: https://github.com/pustal/StashWebOS/releases/latest/download/org.stashwebos.app.manifest.json
 category: multimedia
 # Open source
@@ -17,6 +20,7 @@ description: |
 
   - Home rows, browsing by scenes, groups, markers, galleries, images,
     performers, studios and tags, with sorting, filters and Stash's saved filters
+  - Play all and Shuffle on every scene list
   - Player that plays the original file when the TV can decode it and falls back
     to Stash's transcodes, with seek thumbnails, markers, subtitles and resume
   - Image viewer with zoom, rotate and slideshows
@@ -26,6 +30,7 @@ description: |
     new Stash server
   - Thumbnails are shrunk and kept in a bounded cache (size set in Settings), so
     the app doesn't fill the TV's storage
+  - Pin code access protection.
 
   Sign in with an API key or with your Stash username and password.
   Requires your own Stash server (v0.27 or newer). Not affiliated with the
