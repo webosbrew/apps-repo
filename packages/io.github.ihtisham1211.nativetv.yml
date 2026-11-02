@@ -1,0 +1,33 @@
+title: Native Tv
+iconUri: https://raw.githubusercontent.com/ihtisham1211/native-tv/main/native-tv/assets/dashboard-app/assets/icon130.png
+manifestUrl: https://github.com/ihtisham1211/native-tv/releases/latest/download/io.github.ihtisham1211.nativetv.manifest.json
+category: utility
+pool: main
+requirements:
+  webosRelease: '>=4.0'
+description: |
+  # Native Tv
+
+  A server that runs on a rooted LG webOS TV, with a dashboard for any phone or computer, a native app on the TV, and an MQTT bridge for Home Assistant.
+
+  - See and switch off what LG's ACR (Live Plus), ad tracking and data agreements collect.
+  - Block LG's ad and telemetry servers (a hosts-file block, off until switched on).
+  - Debloat apps and background services, remap the remote's buttons, and protect an OLED panel from burn-in.
+  - Read the TV's hardware telemetry and control it from Home Assistant, over a broker on the home network.
+
+  **What it changes on the TV** is listed in the [documentation](https://ihtisham1211.github.io/native-tv/administration/tv-changes/). The TV must be rooted and have the Homebrew Channel. The first launch of the app sets the server up and starts the setup wizard.
+
+  **Tested on** one TV, an LG OLED65B3PUA (webOS 10.3.2). Other models and webOS versions are untried with this server; webOS 4 and later are supported by design and a [TV report](https://github.com/ihtisham1211/native-tv/issues/new?template=tv_report.md) adds a model to the table.
+
+  Native Tv grew out of [Glasshouse](https://github.com/rorygallagher2024/glasshouse) by Rory Gallagher (MIT). The server is a C++ daemon with no Node on the TV, and the TV app is native.
+
+  Source, docs and issues: [ihtisham1211/native-tv](https://github.com/ihtisham1211/native-tv).
+screenshots:
+  - url: https://raw.githubusercontent.com/ihtisham1211/native-tv/main/docs/screenshots/tv-home.jpg
+    caption: The TV app's Home screen
+  - url: https://raw.githubusercontent.com/ihtisham1211/native-tv/main/docs/screenshots/tv-privacy.png
+    caption: Privacy on the TV
+  - url: https://raw.githubusercontent.com/ihtisham1211/native-tv/main/docs/screenshots/phone-overview.png
+    caption: The dashboard on a phone
+  - url: https://raw.githubusercontent.com/ihtisham1211/native-tv/main/docs/screenshots/phone-privacy.png
+    caption: What LG can collect
