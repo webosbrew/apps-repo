@@ -13,6 +13,24 @@ pool: main
 # The app targets the browser engine of webOS 4 (Chromium 53) and newer.
 requirements:
   webosRelease: '>=5.0'
+# Shown above the description (images from the app's README)
+screenshots:
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/home.png
+    caption: Home
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/scenes.png
+    caption: Scenes
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/scene.png
+    caption: Scene Page
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/player.png
+    caption: Player
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/performers.png
+    caption: Performers
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/performer.png
+    caption: Performer page
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/gallery.png
+    caption: Gallery
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/filter.png
+    caption: Filter panel
 description: |
   An unofficial client for [Stash](https://github.com/stashapp/stash), the
   self-hosted media organizer, made for the TV remote and careful with the TV's
