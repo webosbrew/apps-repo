@@ -12,7 +12,7 @@ category: multimedia
 pool: main
 # The app targets the browser engine of webOS 4 (Chromium 53) and newer.
 requirements:
-  webosRelease: '>=4.0'
+  webosRelease: '>=5.0'
 description: |
   An unofficial client for [Stash](https://github.com/stashapp/stash), the
   self-hosted media organizer, made for the TV remote and careful with the TV's

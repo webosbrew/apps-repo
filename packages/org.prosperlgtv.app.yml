@@ -12,7 +12,17 @@ category: multimedia
 pool: main
 # The app targets the browser engine of webOS 4 (Chromium 53) and newer.
 requirements:
-  webosRelease: '>=4.0'
+  webosRelease: '>=5.0'
+# Shown above the description (images from the app's README)
+screenshots:
+  - url: https://raw.githubusercontent.com/pustal/ProsperLGTV/main/docs/screenshots/live-tv.png
+    caption: Live TV
+  - url: https://raw.githubusercontent.com/pustal/ProsperLGTV/main/docs/screenshots/filters.png
+    caption: Filters
+  - url: https://raw.githubusercontent.com/pustal/ProsperLGTV/main/docs/screenshots/player-menu.png
+    caption: Player, with the menu and statistics
+  - url: https://raw.githubusercontent.com/pustal/ProsperLGTV/main/docs/screenshots/settings.png
+    caption: Settings and storage
 description: |
   An IPTV player for the M3U playlists you add, made for the TV remote. It is
   an unofficial webOS adaptation of
