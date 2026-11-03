@@ -4,7 +4,7 @@ manifestUrl: https://github.com/alpinesox/lg-homebrew-ca-bundle-updater/releases
 category: system
 pool: main
 requirements:
-  webosRelease: '>=5.0'
+  webosRelease: '>=9.0'
 description: |
   Choose Mozilla, Chrome unconstrained, and custom PEM certificate sources, then explicitly apply the selected roots as system-wide trust anchors.
 
