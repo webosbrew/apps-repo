@@ -1,0 +1,18 @@
+title: USB Ethernet (RTL8153)
+iconUri: https://raw.githubusercontent.com/artor410/lg-a1-usb-ethernet-driver/main/app/largeIcon.png
+manifestUrl: https://github.com/artor410/lg-a1-usb-ethernet-driver/releases/latest/download/io.github.artor410.lgusbethernet.manifest.json
+category: system
+pool: main
+requirements:
+  webosRelease: '>=6.0'
+description: |
+  Loads the **r8152** kernel driver so Realtek **RTL8152/RTL8153** USB Ethernet adapters work on
+  LG webOS 6 TVs with the **lm21u** platform (e.g. OLED A1, 2021). The TV's built-in port is limited to
+  100 Mbit/s; with a gigabit USB adapter we measured 111 Mbit/s (the test setup itself was capped near 100).
+
+  - Requires root. Only loads on kernel `4.4.84` / platform `lm21u`; refuses on any other TV.
+  - Load the driver on demand, or at every startup (with a boot-loop guard).
+  - Module built from LG's published GPL kernel source with the TV's own kernel config.
+  - Tested on OLED55A1PSA (webOS 6.5.3): the TV's network manager configures the adapter automatically.
+
+  Source and build scripts: https://github.com/artor410/lg-a1-usb-ethernet-driver
