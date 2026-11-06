@@ -1,0 +1,118 @@
+# The webosbrew Homebrew Channel submission for this app.
+#
+# THIS FILE DOES NOT BELONG TO THIS REPOSITORY AT RUNTIME. It is kept here so the submission is
+# version-controlled and reviewable alongside the thing it describes. To submit, fork
+# https://github.com/webosbrew/apps-repo and copy this file to `packages/com.butaca.yml`.
+#
+# Schema: content/schemas/packages/PackageInfo.json in that repo.
+# Required: title, iconUri, manifestUrl, category, pool, description. Verified 2026-11-06.
+#
+# Every claim in the description below is a claim about THIS build, and the ones that matter to an
+# owner are the ones the app cannot check for them: which sets play video, which do not, and what
+# the app talks to. Keep it in step with the release note and `docs/install-and-verify.md`.
+
+title: Butaca
+
+# Both icon URLs are raw links to THIS repository's default branch, and `repogen.lintpkg` rejects a
+# submission whose iconUri does not return 200. 160 for the listing card, 320 for the detail page;
+# tools/mkicons.py cuts both from the master.
+iconUri: https://raw.githubusercontent.com/gnacho/butaca/main/pkg/icon160.png
+detailIconUri: https://raw.githubusercontent.com/gnacho/butaca/main/pkg/icon320.png
+
+# `releases/latest/download/...` always resolves to the newest release, which is how the channel
+# picks up an update without this file changing. The release workflow sets neither `draft` nor
+# `prerelease` precisely because either would exclude the release from `latest` and break this URL.
+manifestUrl: https://github.com/gnacho/butaca/releases/latest/download/com.butaca.manifest.json
+
+category: multimedia
+pool: main
+
+# Max 80 characters (schema-enforced).
+shortDescription: A native Jellyfin client for LG webOS, drawn by the TV, not a browser
+
+# Real captures of the app, from the same code that runs on the television (the desktop simulator
+# against a demo library of openly licensed films). Each returns 200 from the default branch.
+screenshots:
+  - url: https://raw.githubusercontent.com/gnacho/butaca/main/docs/screenshots/home.jpg
+    caption: Home, with a rotating hero and shelves
+  - url: https://raw.githubusercontent.com/gnacho/butaca/main/docs/screenshots/ux-detail.jpg
+    caption: A film's page, with its cast and its own artwork
+  - url: https://raw.githubusercontent.com/gnacho/butaca/main/docs/screenshots/ux-library-grid.jpg
+    caption: The library grid, with sort and filter
+  - url: https://raw.githubusercontent.com/gnacho/butaca/main/docs/screenshots/player.jpg
+    caption: Playback, with the transport and track menus over the video
+  - url: https://raw.githubusercontent.com/gnacho/butaca/main/docs/screenshots/ux-settings.jpg
+    caption: Settings
+
+requirements:
+  # Passed VERBATIM to `webosbrew-ipk-verify --fw-releases`, the same tool and flag the release CI
+  # runs against the built binary. This bound exists ONLY here: the manifest CI generates carries no
+  # version requirement.
+  #
+  # The floor is webOS 4.0 and there is no ceiling. The app resolves the libraries that move between
+  # firmwares at run time instead of naming them in DT_NEEDED, and it bundles its own FFmpeg and its
+  # own subtitle renderer, so a firmware's own copies cannot shadow them. `tools/fwcompat.py` grades
+  # the binary and every bundled library against webosbrew's firmware inventories on every release,
+  # and the matrix that run produces is in the release audit.
+  #
+  # webosbrew's inventory holds one image below 4.4.2, so 4.0 through 4.3 are graded by the
+  # `goldilocks` bucket's single library set rather than by an image of their own. That is their
+  # model, and the release note says which tier that puts an owner in.
+  webosRelease: '>=4.0'
+
+description: |
+  An unofficial, native Jellyfin client for LG webOS televisions.
+
+  The official Jellyfin clients on these sets are web apps, and on older hardware it shows:
+  shelves stutter, posters open a beat late. Butaca draws its interface directly on the GPU and
+  hands video to the television's own hardware decoder, the same silicon the built-in apps use.
+
+  **What it does**
+
+  * Point it at your Jellyfin server, sign in with the account you already use, or approve a Quick
+    Connect code from a device that is already signed in
+  * Sign in to more than one server and switch between them in Settings, each with its own token
+  * Browse libraries with a grid, sort, filter (unwatched only among them), an A to Z rail and a
+    Favorites tab, and search across everything the active server offers
+  * Direct play of H.264 and HEVC, including 4K, 10 bit and Dolby Vision as the server reports it;
+    the server transcodes when the set cannot decode the file, and Auto follows a link whose speed
+    changes
+  * Resume, seek and scrub, chapters from the server, audio and subtitle track switching, Skip Intro
+    and Skip Credits where the server has the markers, Up Next, and progress reported back to your
+    server
+  * ASS and SSA subtitles rendered by the set with their styles, positioning and embedded fonts;
+    image subtitles (PGS, VobSub) unpacked during direct play; subtitle size and position adjustable
+  * A developer id and a release id are separate apps, so a nightly or a debug build never touches
+    the install you watch with
+
+  **Scope - please read before installing**
+
+  * **Films and television only.** No music, no photos, no live television and no DVR.
+  * **One server at a time.** Several can be configured, and the screens show the active one.
+  * **The address you type is the address it talks to.** A server reached by name needs `https://`.
+    A plain `http://` address is accepted only for an IP literal the app can prove is on your own
+    local network, because it will not send a password over plain HTTP to anything else.
+  * **It talks to your server and to nothing else.** There is no account with the author, no
+    telemetry, no analytics and no crash reporting compiled in. The password you type is used once;
+    what stays on the television is an access token your server can revoke.
+  * **Not every 2019 set plays video installed through Developer Mode**, and it is not this app's
+    bug to fix: some k5lp and k3lp sets have a Developer Mode sandbox that withholds a device the
+    video path needs. The app detects it and says so. On a rooted set with Homebrew Channel the
+    failure screen offers Repair; without root there is no fix. Some 2018 sets on firmware reporting
+    platform release 3.9.3 can sign in and browse but have not been seen to start video, and there
+    is a crash reported on sets built on LG's k6hp chip that has not been reproduced.
+
+  **Compatibility**
+
+  This needs **webOS 4.0 or newer**; older firmware does not start it. The maintainer develops and
+  watches on a 2019 LG set, and the release audit records which televisions each version was
+  actually verified on, which third-party reports exist and what they said. A report that it works
+  on your set is as useful as one that it fails.
+
+  **Root is not needed.** A regular set in Developer Mode runs everything except the Repair above.
+  Developer Mode expires and has to be renewed, and when it does LG removes the apps installed
+  through it. A rooted set with Homebrew Channel has no expiry.
+
+  Not affiliated with, endorsed by, or sponsored by Jellyfin or LG Electronics.
+
+  Source, screenshots and issues: https://github.com/gnacho/butaca
