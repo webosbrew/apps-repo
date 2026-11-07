@@ -3,16 +3,18 @@ iconUri: https://raw.githubusercontent.com/aabytt/custom-screensaver-aerial/main
 manifestUrl: https://github.com/aabytt/custom-screensaver-aerial/releases/latest/download/org.aabytt.webos.custom-screensaver-aerial.manifest.json
 category: screensaver
 pool: main
+requirements:
+  webosRelease: '>=5.0'
 description: |
   # Aerial webOS screensaver
 
   _Forked from [custom-screensaver](https://github.com/webosbrew/custom-screensaver)_
 
-  - [330+ videos](https://aabytt.github.io/aerial-preview/) from different sources.
+  - [330+ videos](https://aabytt.github.io/aerial-preview/) from different sources (Apple Aerials, Amazon FireOS, Jetson Creative, Robin Fourcade)
   - 40+ locales for OSD
   - Source type selection (FullHD/4k SDR or Dolby Vision)
   - Requires root and Homebrew channel
-  - Compatible with webOS 5 (2020), webOS 6 (2021), webOS 22 (2022), webOS 23 (2023), webOS 25 (2025)
+  - Compatible with webOS 5 (2020), webOS 6 (2021), webOS 22 (7.x), webOS 23 (8.x), webOS 25 (10.x), webOS 26 (11.x)
   
   ---
 
@@ -20,12 +22,13 @@ description: |
   
   ---
 
-  Source: https://github.com/aabytt/custom-screensaver-aerial
 screenshots:
   - url: https://github.com/aabytt/custom-screensaver-aerial/assets/84480313/77daf2da-b528-41ba-8377-fff70e6e1fd3
     caption: Main
   - https://github.com/aabytt/custom-screensaver-aerial/assets/84480313/166f43e7-a3cf-4035-975a-931f282f5655
-  - url: https://github.com/aabytt/custom-screensaver-aerial/assets/84480313/1b7f281b-efdc-4eed-b0f2-b06f4bd5929a
+  - url: https://github.com/user-attachments/assets/b530640c-56ef-42a5-98eb-f2f8f4dc11aa
     caption: Settings
+  - url: https://github.com/user-attachments/assets/e87586c6-4e00-47c6-8285-925c8e4fa646
+    caption: Playlist editor
 funding:
   github: [aabytt]
