@@ -18,6 +18,11 @@ description: |
   Because the stock app itself is patched, every launch path opens the ad-free version.
   HotsOff does not touch DRM, subscriptions or premium content.
 
+  ## Status
+
+  - **Development stage:** early / experimental
+  - **Tested on:** LG C2, webOS 25 (rooted)
+
   ## How it works
 
   The Hotstar webOS app is a thin launcher for `livingroom.hotstar.com`. HotsOff places a
