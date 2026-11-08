@@ -1,0 +1,26 @@
+title: Home Assistant PIP
+iconUri: https://raw.githubusercontent.com/tixelcat/ha-lg-webos-pip/main/webos-app/app/largeIcon.png
+manifestUrl: https://github.com/tixelcat/ha-lg-webos-pip/releases/latest/download/io.github.isdaddy.lgwebospip.manifest.json
+category: utility
+pool: main
+description: |
+  Display one or two Home Assistant camera feeds over the current picture
+  on an LG webOS TV. Configure each camera directly on the TV: select the
+  Home Assistant camera, enable or disable it, choose a corner, and set its
+  size independently (10–50%).
+
+  The app can be opened manually or triggered from Home Assistant using
+  the built-in LG webOS TV integration. The saved camera layout can be
+  launched with `webostv.command` and `show_saved: true`; the optional
+  custom Home Assistant integration is not required for that action.
+
+  Requires a reachable Home Assistant instance and an access token for
+  camera streams. MJPEG and snapshot streams are supported; HLS and WebRTC
+  behavior varies by TV model and video decoder availability.
+
+  This is the enhanced fork maintained by tixelcat, based on the
+  MIT-licensed original project by ISDaddy. Not affiliated with LG or
+  the Home Assistant project.
+
+  Source, installation instructions and issue tracker:
+  https://github.com/tixelcat/ha-lg-webos-pip
