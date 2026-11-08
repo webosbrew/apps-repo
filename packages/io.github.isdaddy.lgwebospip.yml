@@ -24,5 +24,6 @@ description: |
 
   Source, installation instructions and issue tracker:
   https://github.com/tixelcat/ha-lg-webos-pip
+
 requirements:
   webosRelease: '>=4.4'
