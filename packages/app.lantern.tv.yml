@@ -1,0 +1,31 @@
+title: Lantern
+iconUri: https://raw.githubusercontent.com/Bouliw/lantern/main/webos/largeIcon.png
+manifestUrl: https://github.com/Bouliw/lantern/releases/latest/download/app.lantern.tv.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=7.0'
+description: |
+  Lantern is a fast, stylish client for [Jellyfin](https://jellyfin.org). Jellyfin stays the server: Lantern
+  replaces the interface.
+
+  - A home page built around what you watch: Continue watching, recently added titles, sagas, a ranked Top of
+    the best rated titles, genres and "Because you watched…" rows.
+  - Recommendations computed on the TV from genres, cast, directors, studios and your watch history.
+  - Its own player: direct play when the TV can, HLS through Jellyfin otherwise, audio and subtitle choice,
+    skip intro and credits, scrubbing previews, chapters and next episode.
+  - Eight styles with their own colors, motion, interface sounds and background music. Each of them can be
+    turned down in Settings.
+  - Instant, focus-following navigation with the remote, and an OLED-safe screen saver while Lantern is open.
+  - English and French. Sign in with Quick Connect from any device already signed in.
+
+  On first launch, enter the address of your Jellyfin server (10.9 or later).
+
+  Source code: https://github.com/Bouliw/lantern
+screenshots:
+  - url: https://raw.githubusercontent.com/Bouliw/lantern/main/docs/home.webp
+    caption: Home
+  - url: https://raw.githubusercontent.com/Bouliw/lantern/main/docs/title.webp
+    caption: Title page
+  - url: https://raw.githubusercontent.com/Bouliw/lantern/main/docs/styles.webp
+    caption: Styles
