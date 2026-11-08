@@ -3,6 +3,13 @@ iconUri: https://raw.githubusercontent.com/tixelcat/ha-lg-webos-pip/main/webos-a
 manifestUrl: https://github.com/tixelcat/ha-lg-webos-pip/releases/latest/download/io.github.isdaddy.lgwebospip.manifest.json
 category: utility
 pool: main
+screenshots:
+  - url: https://raw.githubusercontent.com/tixelcat/ha-lg-webos-pip/main/screenshots/PIP_MENU.jpeg
+    caption: Home Assistant PIP settings menu
+  - url: https://raw.githubusercontent.com/tixelcat/ha-lg-webos-pip/main/screenshots/PIP_1.jpeg
+    caption: PIP Dual camera overlay
+  - url: https://raw.githubusercontent.com/tixelcat/ha-lg-webos-pip/main/screenshots/PIP_2.jpeg
+    caption: PIP Dual camera 
 description: |
   Display one or two Home Assistant camera feeds over the current picture
   on an LG webOS TV. Configure each camera directly on the TV: select the
