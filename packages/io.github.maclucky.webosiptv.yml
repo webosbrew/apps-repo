@@ -1,0 +1,43 @@
+title: IPTV Player
+iconUri: https://raw.githubusercontent.com/mac-lucky/webos-iptv-native/main/pkg/icon160.png
+detailIconUri: https://raw.githubusercontent.com/mac-lucky/webos-iptv-native/main/pkg/icon320.png
+manifestUrl: https://github.com/mac-lucky/webos-iptv-native/releases/latest/download/io.github.maclucky.webosiptv.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=6.0'
+screenshots:
+  - url: https://raw.githubusercontent.com/mac-lucky/webos-iptv-native/main/screenshots/1-guide.jpg
+    caption: TV guide with a live preview
+  - url: https://raw.githubusercontent.com/mac-lucky/webos-iptv-native/main/screenshots/2-groups.jpg
+    caption: Channel groups over the guide
+  - url: https://raw.githubusercontent.com/mac-lucky/webos-iptv-native/main/screenshots/3-player.jpg
+    caption: Live playback with the channel info bar
+  - url: https://raw.githubusercontent.com/mac-lucky/webos-iptv-native/main/screenshots/4-catchup.jpg
+    caption: Catch-up of an earlier programme from the guide
+  - url: https://raw.githubusercontent.com/mac-lucky/webos-iptv-native/main/screenshots/5-settings.jpg
+    caption: Settings
+shortDescription: Native M3U player with an XMLTV guide and catch-up
+description: |
+  A native IPTV player for LG webOS TVs, written in Rust. The interface is drawn on the TV's GPU
+  and video goes to the TV's hardware decoder, with no browser or web view in between.
+
+  The app ships no channels, playlists or guide data. Add an M3U playlist and XMLTV guide from a
+  provider you are allowed to use.
+
+  ## Features
+
+  * M3U playlists (several at once) with an XMLTV guide, groups, favourites, and custom or hidden
+    groups
+  * A full-screen TV guide with a live preview, a channel list, an info panel and playback history
+  * Catch-up from the guide, following the M3U conventions of Kodi's pvr.iptvsimple (`catchup`,
+    `catchup-source`, `catchup-days`) and SIPTV `timeshift`
+  * Movies and series sections for playlists that carry VOD
+  * DVB and WebVTT subtitles, audio track selection, picture in picture
+  * Programme reminders, channel renaming, a parental PIN, settings backup
+  * English and Polish
+
+  Developed on an LG C1 (webOS 6) and an LG C5 (webOS 25). Older TVs are untested.
+
+  Free software under the GPL-3.0-or-later. Source code and issues:
+  https://github.com/mac-lucky/webos-iptv-native
