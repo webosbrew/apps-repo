@@ -1,0 +1,57 @@
+title: webOS IPTV Player
+iconUri: https://raw.githubusercontent.com/lennylxx/webos-iptv-player/main/assets/icon130.png
+manifestUrl: https://github.com/lennylxx/webos-iptv-player/releases/latest/download/com.lennylxx.iptv.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=4.0'
+screenshots:
+  - url: https://lennylxx.github.io/webos-iptv-player/screenshots/channel-list.png
+    caption: Channel list with groups and current programs
+  - url: https://lennylxx.github.io/webos-iptv-player/screenshots/live-preview.png
+    caption: Live preview beside the channel list
+  - url: https://lennylxx.github.io/webos-iptv-player/screenshots/program-guide.png
+    caption: Three-pane program guide with catch-up
+  - url: https://lennylxx.github.io/webos-iptv-player/screenshots/playback-overlays.png
+    caption: Playback overlays with stream info
+  - url: https://lennylxx.github.io/webos-iptv-player/screenshots/movies.png
+    caption: Movies catalog from an Xtream account
+  - url: https://lennylxx.github.io/webos-iptv-player/screenshots/parental-controls.png
+    caption: Parental controls, lock groups or single channels with adult groups suggested
+  - url: https://lennylxx.github.io/webos-iptv-player/screenshots/search.png
+    caption: Search across channels, programs, movies and series
+  - url: https://lennylxx.github.io/webos-iptv-player/screenshots/settings.png
+    caption: Settings
+shortDescription: IPTV player with M3U, Xtream, XMLTV EPG and catch-up.
+description: |
+  A remote-friendly, open-source IPTV player for LG webOS TVs (webOS 4.0
+  and newer).
+
+
+  - Multiple M3U/M3U8 playlists and Xtream Codes accounts, with quick
+    account switching
+  - XMLTV program guide, reminders, catch-up and live DVR (pause/rewind)
+  - Live preview beside the channel list, Recently Watched, and number-key
+    channel entry
+  - Channel customization: reorder, hide, rename, regroup and favorites
+  - Xtream Movies and Series with Continue Watching and Watchlist
+  - Native playback, so HDR10, HLG, Dolby Vision and Dolby Atmos pass
+    through to the TV's decoder; MPEG-DASH with PlayReady, Widevine and
+    ClearKey
+  - Audio and subtitle tracks (WebVTT, CEA-608/708, embedded and sidecar
+    SRT/WebVTT/ASS) plus online subtitle search
+  - Channel health checks and automatic playback recovery
+  - Search across channels, programs, movies and series
+  - Parental controls, color themes, adjustable text size
+  - LAN setup: configure sources from a phone by scanning a QR code
+  - Full D-pad and Magic Remote support
+  - Interface in 11 languages
+
+
+  This application does not include, provide or automatically fetch any
+  channels, programs, playlists or EPG data. Users must provide their own
+  legally obtained M3U, Xtream and EPG services.
+
+
+  No root required. Free and open source under the Apache-2.0 license.
+  Source code: https://github.com/lennylxx/webos-iptv-player
