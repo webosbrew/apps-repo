@@ -1,0 +1,22 @@
+title: ScummVM
+iconUri: https://raw.githubusercontent.com/scummvm/scummvm/v2026.3.0/dists/emscripten/assets/scummvm-192.png
+manifestUrl: https://github.com/RF1705/scummvm-webos/releases/latest/download/org.scummvm.scummvm.manifest.json
+category: game
+pool: main
+description: |
+  Play classic point-and-click adventure games on LG webOS TVs with ScummVM.
+
+  Native ARMv7 port with LG Magic Remote support, OpenGL ES 2,
+  savegames, and common audio/video codecs. The package contains no games;
+  you must provide your own legally obtained game data.
+
+  Developer Mode installation supported; root is not required for ScummVM.
+screenshots:
+  - url: https://raw.githubusercontent.com/RF1705/scummvm-webos/main/docs/screenshots/scummvm-main.png
+    caption: ScummVM
+  - url: https://raw.githubusercontent.com/RF1705/scummvm-webos/main/docs/screenshots/monkey-island.png
+    caption: The Curse of Monkey Island
+  - url: https://raw.githubusercontent.com/RF1705/scummvm-webos/main/docs/screenshots/thimbleweed-park.png
+    caption: Thimbleweed Park
+  - url: https://raw.githubusercontent.com/RF1705/scummvm-webos/main/docs/screenshots/scummvm-settings.png
+    caption: Settings
