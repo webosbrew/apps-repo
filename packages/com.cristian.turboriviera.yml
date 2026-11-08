@@ -1,6 +1,6 @@
 title: Turbo Riviera
-iconUri: https://raw.githubusercontent.com/famcellini/TurboRiviera.v01.0/main/app/largeIcon.png
-manifestUrl: https://raw.githubusercontent.com/famcellini/TurboRiviera.v01.0/main/dist/com.cristian.turboriviera.manifest.json
+iconUri: https://raw.githubusercontent.com/famcellini/TurboRiviera/main/app/largeIcon.png
+manifestUrl: https://raw.githubusercontent.com/famcellini/TurboRiviera/main/dist/com.cristian.turboriviera.manifest.json
 category: game
 pool: non-free
 description: |
@@ -25,10 +25,10 @@ description: |
   | Yellow | auto / manual throttle (auto is the default) |
   | Back | pause |
 
-  Source code: https://github.com/famcellini/TurboRiviera.v01.0 (CC BY-NC 4.0 license:
+  Source code: https://github.com/famcellini/TurboRiviera (CC BY-NC 4.0 license:
   free to use, share and modify with credit, no commercial use)
 screenshots:
-  - url: https://raw.githubusercontent.com/famcellini/TurboRiviera.v01.0/main/screenshots/game.png
+  - url: https://raw.githubusercontent.com/famcellini/TurboRiviera/main/screenshots/game.png
     caption: Gameplay
-  - url: https://raw.githubusercontent.com/famcellini/TurboRiviera.v01.0/main/screenshots/fork.png
+  - url: https://raw.githubusercontent.com/famcellini/TurboRiviera/main/screenshots/fork.png
     caption: Choosing the route at a fork
