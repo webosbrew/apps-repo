@@ -1,0 +1,69 @@
+title: CVPN webOS
+shortDescription: Xray/VLESS for rooted LG TVs - TCP, XHTTP and gRPC
+iconUri: https://raw.githubusercontent.com/mikemandi/cvpn-webos/main/assets/icon160.png
+detailIconUri: https://raw.githubusercontent.com/mikemandi/cvpn-webos/main/launcher/icon-400.png
+manifestUrl: https://github.com/mikemandi/cvpn-webos/releases/latest/download/su.cvpn.webos.manifest.json
+category: utility
+pool: non-free
+requirements:
+  webosRelease: '>=4.4'
+description: |
+  **CVPN webOS** brings **Xray/VLESS configurations to rooted LG webOS TVs**.
+  Import your own VLESS links, HTTPS subscriptions or supported Xray JSON,
+  then connect with **TCP, XHTTP or gRPC**. The VPN runs on the TV, while
+  your phone manages it through the local CVPN Connect panel.
+
+  **TCP, XHTTP and gRPC are Xray transport modes, not separate VPN protocols.**
+  Compatible VLESS/Reality setups are supported; gRPC also supports TLS.
+
+  **Features**
+
+  - **TCP / XHTTP / gRPC transports** for supported Xray VLESS configurations.
+    Use compatible Reality settings, or TLS with gRPC.
+  - Import `vless://` links, compatible HTTPS subscriptions or supported
+    Xray JSON from **any provider**. A CVPN subscription is optional.
+  - Connect, disconnect, select a server, refresh subscriptions and check status
+    from the local **CVPN Connect** browser interface.
+  - Pair a phone by scanning the QR code shown on the TV and using a temporary PIN.
+  - Russian and English interface with remote-control-friendly TV dialogs.
+  - One All-in-One IPK including the launcher, ARMv7 backend, Xray-core and
+    recovery scripts. Components are prepared locally on first run, without
+    downloading extra executables onto the TV.
+
+  **Requirements**
+
+  - An LG TV with working **root**, Homebrew Channel's root service and TUN.
+  - Compatible ARMv7 / 32-bit userspace, including supported 64-bit kernel TVs.
+  - A trusted home network and a compatible VPN endpoint/configuration.
+
+  **Important limitations**
+
+  - The VPN handles **IPv4 only**. An active IPv6 default route prevents connection.
+  - **No universal kill switch** and no VPN auto-connect at TV startup.
+  - The control panel uses **unencrypted HTTP on LAN port 8765**. Do not expose
+    that port to the internet or use the panel on untrusted networks.
+  - **Owner-tested on four LG TVs:** 55UK6450PLC (webOS 4.4.3-22),
+    65UK6710PLB (4.4.3-22), 86NANO906NA (5.6.2), and
+    55UQ76003LD (webOS 22 / 7.6.0-1901). The scope of recorded tests varies;
+    see the tested-device documentation for details.
+  - The oldest verified build is **webOS 4.4.3-22**; requiring 4.4+ does not
+    certify every 4.4.x firmware. Root/Homebrew and TUN remain required.
+  - The application is **free to use**; `non-free` refers to CVPN's
+    proprietary free-use license, not the price. License notices are included
+    in the downloadable IPK and the source repository.
+
+  **License (free use; proprietary source):** https://github.com/mikemandi/cvpn-webos/blob/main/LICENSE
+  **Documentation:** https://github.com/mikemandi/cvpn-webos
+  **Russian guide:** https://github.com/mikemandi/cvpn-webos/blob/main/README.ru.md
+  **Releases:** https://github.com/mikemandi/cvpn-webos/releases
+screenshots:
+  - url: https://raw.githubusercontent.com/mikemandi/cvpn-webos/main/assets/screenshots/phone-home-empty.png
+    caption: CVPN Connect - empty server list, no subscription or active VPN
+  - url: https://raw.githubusercontent.com/mikemandi/cvpn-webos/main/assets/screenshots/tv-pairing-demo.png
+    caption: TV QR pairing - nonfunctional demo PIN and reserved test IP
+  - url: https://raw.githubusercontent.com/mikemandi/cvpn-webos/main/assets/screenshots/phone-subscriptions-empty.png
+    caption: Subscriptions - no imported configuration
+  - url: https://raw.githubusercontent.com/mikemandi/cvpn-webos/main/assets/screenshots/phone-import-empty.png
+    caption: Import a compatible profile - empty field
+  - url: https://raw.githubusercontent.com/mikemandi/cvpn-webos/main/assets/screenshots/tv-setup.png
+    caption: Automatic TV component preparation
