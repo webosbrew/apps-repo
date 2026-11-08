@@ -1,0 +1,52 @@
+title: Lightkeeper
+iconUri: https://raw.githubusercontent.com/chiotas/lightkeeper/main/app/largeIcon.png
+manifestUrl: https://github.com/chiotas/lightkeeper/releases/latest/download/lightkeeper.manifest.json
+category: system
+pool: main
+shortDescription: A calm Home screen for older webOS, with GlassHouse
+screenshots:
+  - url: https://raw.githubusercontent.com/chiotas/lightkeeper/main/docs/screenshots/home-icons.jpg
+    caption: The Home, with logos and names
+  - url: https://raw.githubusercontent.com/chiotas/lightkeeper/main/docs/screenshots/home-icons-only.jpg
+    caption: The Home, with logos only
+  - url: https://raw.githubusercontent.com/chiotas/lightkeeper/main/docs/screenshots/settings-phone.png
+    caption: The settings on a phone
+  - url: https://raw.githubusercontent.com/chiotas/lightkeeper/main/docs/screenshots/settings.png
+    caption: The settings on a computer, with a preview of the TV
+description: |
+  Lightkeeper is a calm Home screen for LG TVs on older webOS. It shows the time, the weather
+  for one city and a short row of apps and inputs over a picture, and keeps LG's ads and
+  suggestions out. It comes up when the TV switches on, and it is set up from a phone or a
+  computer on the same network.
+
+  <p align="center">
+    <strong>
+      <a href="https://github.com/chiotas/lightkeeper">project page</a>
+      •
+      <a href="https://github.com/chiotas/lightkeeper/issues">report an issue</a>
+    </strong>
+  </p>
+
+  ## What it needs
+
+  * Root and the Homebrew Channel.
+  * [GlassHouse](https://github.com/rorygallagher2024/glasshouse) running, for the Home key:
+    Lightkeeper takes the key through GlassHouse's remote key filter. Without GlassHouse the
+    rest works and the Home key stays LG's.
+
+  ## Compatibility
+
+  * Tested on an LG C1 with webOS 6.5.3.
+  * Reported working by owners on webOS 4.4.3 (a C8) and 4.10.1 (a 43UM7300).
+  * On webOS 2 and 3 the Home key stays LG's, as these TVs have no key filters; the Home,
+    the settings and opening at power on work.
+  * On webOS 9, 10 and 11 it has not been tried.
+
+  ## Settings
+
+  The settings page answers on port 8090 of the TV, from the local network only: tiles,
+  logos or names, the picture, the weather city and the remote. The project page has the
+  details, and how to remove it.
+
+  Lightkeeper is an unofficial, third-party app. It is not affiliated with, endorsed by or
+  sponsored by LG Electronics.
