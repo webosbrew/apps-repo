@@ -1,3 +1,4 @@
+# Homebrew-compatible IPK: real 2026 archive timestamps.
 title: SkiFreeWebOS
 iconUri: "https://raw.githubusercontent.com/ryanspice/SkifreeWebOS/v1.0.0/native/icon.png"
 manifestUrl: "https://github.com/ryanspice/SkifreeWebOS/releases/latest/download/com.ryanspice.skifree.manifest.json"
