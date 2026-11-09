@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/dmilin1/LGNightModeScheduler/main/app
 manifestUrl: https://github.com/dmilin1/LGNightModeScheduler/releases/latest/download/io.github.dmilin1.nightmodescheduler.manifest.json
 category: system
 pool: main
+requirements:
+  webosRelease: '>=6.5.3'
 shortDescription: Schedule blue light reduction and optional pixel brightness.
 description: |
   Set a daily window for blue light reduction, check the TV's actual picture
