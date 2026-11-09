@@ -1,0 +1,33 @@
+title: SkiFreeWebOS
+iconUri: "https://raw.githubusercontent.com/ryanspice/SkifreeWebOS/v1.0.0/native/icon.png"
+manifestUrl: "https://github.com/ryanspice/SkifreeWebOS/releases/latest/download/com.ryanspice.skifree.manifest.json"
+category: game
+pool: "non-free"
+shortDescription: "Native SkiFree 1.04 port for LG TVs. Original, Recreation, Yeti Chase."
+screenshots:
+  - url: "https://raw.githubusercontent.com/ryanspice/SkifreeWebOS/v1.0.0/docs/media/skifree-original-c3.png"
+    caption: "Original course on the C3"
+  - url: "https://raw.githubusercontent.com/ryanspice/SkifreeWebOS/v1.0.0/docs/media/skifree-recreation-desktop.png"
+    caption: "Recreation HUD"
+requirements:
+  webosRelease: ">=11.2.0"
+description: |
+  SkiFree for webOS is a free, native C++/GLES2 adaptation of SkiFree for LG
+  TVs, built for the Magic Remote, mouse and keyboard.
+
+  Original is the default: Slalom, Tree Slalom and Freestyle with the original
+  mountain, characters, scoring and yeti encounters. Recreation and Yeti Chase
+  are separate, easier modes. Local three-letter score tables keep existing
+  records.
+
+  All 89 original bitmap resources are included. No account, import or payment
+  is required. Original game and artwork by Chris Pirih; this is an independent
+  fan release, not affiliated with or endorsed by Chris Pirih, Microsoft or LG.
+
+  Tested on one TV: LG OLED48C3PUA (C3), firmware 43.21.84, webOS 11.2.0. That
+  is the measured minimum; no support claim below it. Known issue: in some
+  nested dialogs, the first Back press opens the exit confirmation; cancel and
+  press Back again.
+
+  Source and release:
+  https://github.com/ryanspice/SkifreeWebOS
