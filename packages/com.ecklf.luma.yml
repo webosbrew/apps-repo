@@ -1,0 +1,37 @@
+title: Luma
+iconUri: https://raw.githubusercontent.com/ecklf/lg-luma/main/assets/app-icon.svg
+manifestUrl: https://github.com/ecklf/lg-luma/releases/latest/download/com.ecklf.luma.manifest.json
+category: launcher
+pool: main
+requirements:
+  webosRelease: '>=4.0'
+shortDescription: A remote-first native launcher for rooted LG webOS TVs.
+description: |
+  Luma is a native, open-source launcher for rooted LG webOS TVs, inspired by Apple TV.
+  Browse installed apps and inputs, organize favorites, and navigate with a remote or pointer.
+
+  - Upload custom backgrounds, adjust gradient shading, and rotate backgrounds automatically.
+  - Customize input names and visibility, with live cable and signal status.
+  - Add QR-managed webhook shortcuts for automations.
+  - Personalize Home with a greeting, date, clock, and weather.
+  - Check for updates and install verified Luma releases from Settings.
+
+  Available in Czech, Dutch, English, French, German, Italian, Polish,
+  Portuguese (Brazil), Russian, Simplified and Traditional Chinese, Spanish,
+  Swedish, and Vietnamese.
+
+  **Requires a rooted TV running webOS 4 or newer.** Optional LG Home takeover
+  support varies by model and firmware. Follow the
+  [installation and Home integration guide](https://github.com/ecklf/lg-luma#installation)
+  and disable takeover before uninstalling if it was enabled.
+
+  The screenshots below are desktop previews of the native TV interface.
+screenshots:
+  - url: https://raw.githubusercontent.com/ecklf/lg-luma/main/docs/home.png
+    caption: Home screen (desktop preview)
+  - url: https://raw.githubusercontent.com/ecklf/lg-luma/main/docs/apps.png
+    caption: App library (desktop preview)
+  - url: https://raw.githubusercontent.com/ecklf/lg-luma/main/docs/settings.png
+    caption: General settings (desktop preview)
+  - url: https://raw.githubusercontent.com/ecklf/lg-luma/main/docs/inputs.png
+    caption: Input settings (desktop preview)
