@@ -1,0 +1,31 @@
+title: Aerial Home
+iconUri: https://raw.githubusercontent.com/samyn92/aerial-home/main/docs/icon160.png
+manifestUrl: https://github.com/samyn92/aerial-home/releases/latest/download/io.aerialhome.manifest.json
+category: system
+pool: main
+requirements:
+  webosRelease: '>=6.0'
+description: |
+  An ad-free home screen for rooted LG TVs: aerial video behind a clean glass dock.
+
+  - ~200 aerial scenes streamed from Apple and the Aerial community, or stored on the TV
+  - Dock and "More apps" drawer, HDMI inputs, reordering
+  - Icon styles (TV, App Store, monochrome) and a per-app icon picker
+  - Clock, date, greeting and weather; English and German
+  - Replaces LG's home screen (Home button via LG Input Hook, and at power-on)
+
+  Tested on webOS 6.5. Requires root.
+
+  ## Source
+  https://github.com/samyn92/aerial-home
+screenshots:
+  - url: https://raw.githubusercontent.com/samyn92/aerial-home/main/docs/screenshots/home.jpg
+    caption: Home screen with clock, weather and the dock
+  - url: https://raw.githubusercontent.com/samyn92/aerial-home/main/docs/screenshots/scenes.jpg
+    caption: Scene picker
+  - url: https://raw.githubusercontent.com/samyn92/aerial-home/main/docs/screenshots/dock.jpg
+    caption: Another scene, with the dock
+  - url: https://raw.githubusercontent.com/samyn92/aerial-home/main/docs/screenshots/settings.jpg
+    caption: Appearance settings
+  - url: https://raw.githubusercontent.com/samyn92/aerial-home/main/docs/screenshots/library.jpg
+    caption: Scene library
