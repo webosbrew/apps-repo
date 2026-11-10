@@ -1,0 +1,25 @@
+title: Twitch Lite
+iconUri: https://raw.githubusercontent.com/adamff-dev/twitch-lite-webos/master/docs/icon.png
+manifestUrl: https://github.com/adamff-dev/twitch-lite-webos/releases/latest/download/com.twitchlite.app.manifest.json
+category: internet
+pool: main
+requirements:
+  webosRelease: '>=6.0'
+screenshots:
+  - url: https://raw.githubusercontent.com/adamff-dev/twitch-lite-webos/master/docs/screenshot-home.png
+    caption: Home
+description: |
+  An unofficial, lightweight Twitch client built for modest TVs: native HLS playback, no frameworks.
+
+  - Home, Categories, Following, Videos and Search, with number keys for each tab
+  - Sign in with your own Twitch account by QR code
+  - Read-only chat for live streams, and a synchronized chat replay on past broadcasts
+  - VODs resume where you left them
+  - Content in your TV language
+  - Configurable chat (size, width, height, corner, opacity)
+  - English and Spanish interface
+  - Tries to restore the audio of VOD segments muted by Twitch and to play subscriber-only VODs from public CDN files. Both rely on how Twitch serves videos today and may stop working at any time; the first one can be turned off in Settings
+
+  Source: https://github.com/adamff-dev/twitch-lite-webos
+
+  Not made by, endorsed by or affiliated with Twitch Interactive, Inc.
