@@ -1,6 +1,6 @@
 # Homebrew-compatible IPK: real 2026 archive timestamps.
 title: SkiFreeWebOS
-iconUri: "https://raw.githubusercontent.com/ryanspice/SkifreeWebOS/v1.0.0/native/icon.png"
+iconUri: "https://raw.githubusercontent.com/ryanspice/SkifreeWebOS/7d600bb98a44024aa4c7500013015e89f6cc113f/native/icon-256.png"
 manifestUrl: "https://github.com/ryanspice/SkifreeWebOS/releases/latest/download/com.ryanspice.skifree.manifest.json"
 category: game
 pool: "non-free"
