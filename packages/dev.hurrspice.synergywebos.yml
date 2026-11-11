@@ -1,0 +1,10 @@
+title: SynergyWebOS
+iconUri: https://raw.githubusercontent.com/ryanspice/SynergyWebOS/main/app/icon.png
+manifestUrl: https://github.com/ryanspice/SynergyWebOS/releases/latest/download/dev.hurrspice.synergywebos.manifest.json
+category: utility
+pool: main
+requirements:
+  webosRelease: '>=6.0'
+shortDescription: "Desktop keyboard and mouse for LG webOS TVs via Synergy."
+description: |
+  SynergyWebOS brings your desktop keyboard and mouse to an LG webOS TV through Synergy. Includes a TV app, root helper, Windows-key -> system Home, Alt-hold Home, and a dock catalog. Requires a rooted TV for the input client. Trusted LAN only (classic unencrypted Synergy TCP).
