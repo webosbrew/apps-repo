@@ -1,0 +1,30 @@
+{
+  "title": "Zorofin",
+  "iconUri": "https://raw.githubusercontent.com/Zoraz01/zorofin-lg-releases/a7dbe6614ed25e81b7f81919626d5e83f44ee25d/artwork/lg-1.2.0/icon.png",
+  "manifestUrl": "https://github.com/Zoraz01/zorofin-lg-releases/releases/download/lg-v1.4.0/org.zorofin.tv.manifest.json",
+  "category": "multimedia",
+  "pool": "non-free",
+  "shortDescription": "Your Jellyfin library, on your TV.",
+  "description": "Version 1.4.0 adds Programs/Guide Live TV browsing, a TV-oriented Catch Up layout and Sign out last in the account menu.\n\nYour Jellyfin library, made for your LG TV. Browse movies and shows, continue watching, switch accounts and watch Live TV with a remote-friendly interface.\n\n### Optional Zorofin server features\n\nWith the optional Zorofin plugin enabled on your server, bring Zorofin Home rows to your TV: new episodes, movies under 90 minutes, 4K/HDR library picks, seasonal selections, popular titles and your teams. Available rows depend on your library and server configuration.\n\nOptional Zorofin Companion modules can enrich your server's Live TV guide with artwork and channel logos, and send request-ready alerts by email or ntfy. These are separately configured server features; ready alerts are delivered through the configured email/ntfy channels.\n\nWorks with ordinary Jellyfin servers without the Zorofin plugin or Companion. You supply your own server and lawful media. No media, channels or subscriptions are included. Plugin/Companion features require compatible separately available modules and operator setup. 4K/HDR library labels do not guarantee playback on every TV or format.\n\nThe app does not require root. The owner tested and reviewed the 1.4 baseline on LG B5/webOS 25. The release adds an automated-tested Catch Up focus correction; the corrected IPK has not had a separate physical retest; other models, older releases, Homebrew installation and custom-feed installation have not completed device acceptance.\n\nScreenshot sample-film credits: https://github.com/Zoraz01/zorofin-lg-releases/releases/download/lg-v1.2.0/CREDITS.md. Screenshots are historical 1.2.0 LG sample-library captures under an isolated QA identity, with their original production-code equality recorded in SCREENSHOT_PROVENANCE.json; they are not new 1.4 captures.",
+  "screenshots": [
+    {
+      "url": "https://raw.githubusercontent.com/Zoraz01/zorofin-lg-releases/a7dbe6614ed25e81b7f81919626d5e83f44ee25d/artwork/lg-1.2.0/01-home.png",
+      "caption": "Your library. Bigger."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Zoraz01/zorofin-lg-releases/a7dbe6614ed25e81b7f81919626d5e83f44ee25d/artwork/lg-1.2.0/02-library.png",
+      "caption": "Every film. In full view."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Zoraz01/zorofin-lg-releases/a7dbe6614ed25e81b7f81919626d5e83f44ee25d/artwork/lg-1.2.0/03-spring-details.png",
+      "caption": "Take a closer look. Then press play."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Zoraz01/zorofin-lg-releases/a7dbe6614ed25e81b7f81919626d5e83f44ee25d/artwork/lg-1.2.0/04-cosmos-details.png",
+      "caption": "Great stories. Your big screen."
+    }
+  ],
+  "requirements": {
+    "webosRelease": ">=10.2.0"
+  }
+}
