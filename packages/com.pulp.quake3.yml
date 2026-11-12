@@ -1,0 +1,38 @@
+title: ioquake3
+iconUri: https://raw.githubusercontent.com/pulpoff/webos-ioquake3/main/app/largeIcon.png
+manifestUrl: https://github.com/pulpoff/webos-ioquake3/releases/latest/download/com.pulp.quake3.manifest.json
+category: game
+pool: main
+screenshots:
+  - url: https://raw.githubusercontent.com/pulpoff/webos-ioquake3/main/docs/screenshots/demo-choose-level.jpg
+    caption: The demo's levels, ready right after installing
+  - url: https://raw.githubusercontent.com/pulpoff/webos-ioquake3/main/docs/screenshots/in-game.jpg
+    caption: A match on the full game's final map, from your own game files
+  - url: https://raw.githubusercontent.com/pulpoff/webos-ioquake3/main/docs/screenshots/menu.jpg
+    caption: The remote's Back button opens the menu
+  - url: https://raw.githubusercontent.com/pulpoff/webos-ioquake3/main/docs/screenshots/servers.jpg
+    caption: Playing online, with the list of public servers
+  - url: https://raw.githubusercontent.com/pulpoff/webos-ioquake3/main/docs/screenshots/launcher.jpg
+    caption: In the launcher
+description: |
+  **Includes the Quake III Arena demo**, so it plays right after installing.
+
+  [ioquake3](https://ioquake3.org), the Quake III Arena engine, as a native webOS app. For the full game,
+  copy your own `baseq3` folder (`pak0.pk3` from the CD, Steam or GOG, plus the 1.32 point release's
+  `pak1.pk3` to `pak8.pk3`) to a USB drive as `quake3/baseq3/`. The game finds it on any USB drive and
+  keeps its config, saves and screenshots in `quake3/home/` next to it.
+
+  * Plays with the remote (arrows walk and turn, OK shoots, Back opens the menu), a game controller,
+    or a USB keyboard and mouse
+  * The OpenGL2 renderer on OpenGL ES 3 at 1080p, with vsync and a 60 fps cap
+  * Mutes and drops to 10 fps while another app is in front, such as after pressing Home
+  * No root needed
+
+  ## Requirements
+
+  * An ARMv8 CPU, as in TVs with a 64-bit kernel such as the LG C1 (tested on webOS 6.5.3)
+  * OpenGL ES 3
+
+  Unofficial port, not affiliated with id Software. The demo data is id Software's, distributed under
+  its own license (`Q3A_EULA.txt`, installed with it).
+  Source: [pulpoff/webos-ioquake3](https://github.com/pulpoff/webos-ioquake3)
