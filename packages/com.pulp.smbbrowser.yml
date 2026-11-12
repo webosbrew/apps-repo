@@ -1,0 +1,39 @@
+title: File Manager
+iconUri: https://raw.githubusercontent.com/pulpoff/webos-file-manager/main/app/fm-largeIcon.png
+manifestUrl: https://github.com/pulpoff/webos-file-manager/releases/latest/download/com.pulp.smbbrowser.manifest.json
+category: utility
+pool: main
+requirements:
+  webosRelease: '>=6.0'
+screenshots:
+  - url: https://raw.githubusercontent.com/pulpoff/webos-file-manager/main/docs/screenshots/home.jpg
+    caption: Home, with USB drives, network servers and Continue watching
+  - url: https://raw.githubusercontent.com/pulpoff/webos-file-manager/main/docs/screenshots/grid.jpg
+    caption: A folder in grid view, with thumbnails and stream information
+  - url: https://raw.githubusercontent.com/pulpoff/webos-file-manager/main/docs/screenshots/player.jpg
+    caption: The player, with audio and subtitle tracks, stream information and seeking
+  - url: https://raw.githubusercontent.com/pulpoff/webos-file-manager/main/docs/screenshots/settings.jpg
+    caption: Settings, with the file service's status
+  - url: https://raw.githubusercontent.com/pulpoff/webos-file-manager/main/docs/screenshots/launcher.jpg
+    caption: In the launcher
+description: |
+  A file manager and media player for rooted TVs.
+
+  * Browse USB drives, SMB shares (found on the local network, or saved with a login) and SFTP servers
+  * Play video, music and photos with the TV's own player, with resume and *Continue watching*
+  * Embedded and external subtitles (SRT, ASS, SSA, VTT) and a choice of audio track
+  * Thumbnails and stream information, with the optional ffmpeg download
+  * List and grid views, sorting, pinned folders, dark and light themes
+  * Read-only: it never changes or deletes your files
+
+  ## Requirements
+
+  * **Root and the Homebrew Channel.** On first launch the app installs a boot hook through the
+    Homebrew Channel and starts its file service as root. Uninstalling the app removes the hook
+    at the next boot.
+  * **A 64-bit kernel** (`uname -m` prints `aarch64`), as on the LG C1. Tested on webOS 6.5.3.
+
+  ffmpeg, for thumbnails, stream information and embedded subtitles, is an optional download that
+  the app offers on first launch: John Van Sickle's static arm64 build, 19 MB.
+
+  Source, details and the bridge API: [pulpoff/webos-file-manager](https://github.com/pulpoff/webos-file-manager)
