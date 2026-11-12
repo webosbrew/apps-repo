@@ -1,0 +1,34 @@
+title: IHSplay Pro
+shortDescription: Improved IHSplay fork - Steam Remote Play for LG webOS
+iconUri: https://raw.githubusercontent.com/skwizzy222/ihsplay-pro/main/deploy/webos/largeIcon.png
+detailIconUri: https://raw.githubusercontent.com/skwizzy222/ihsplay-pro/main/deploy/webos/largeIcon.png
+manifestUrl: https://github.com/skwizzy222/ihsplay-pro/releases/latest/download/org.ihsplay.pro.manifest.json
+category: game
+pool: main
+description: |
+  # IHSplay Pro
+
+  An improved community fork of [IHSplay](https://github.com/mariotaku/ihsplay)
+  (GPL-3.0). Installs as a **separate** app (`org.ihsplay.pro`) and does **not**
+  replace upstream `org.mariotaku.ihsplay`.
+
+  ## Features
+
+  - Steam Remote Play client for LG webOS (Big Picture / Desktop)
+  - Add PC by IP, streaming PIN entry, cancel while connecting
+  - Bluetooth gamepad pairing/connect on the TV
+  - Selectable SS4S audio/video modules (with app restart)
+  - English UI by default; Russian available in Settings
+  - Support section with tips for reducing input lag
+
+  ## Notes
+
+  - Requires Steam on the PC with Remote Play enabled
+  - PC and TV should be on the same network (Ethernet on the PC preferred)
+  - Root is **not** required
+
+  ![Gamepad screen](https://raw.githubusercontent.com/skwizzy222/ihsplay-pro/main/deploy/webos/screenshot-gamepads.png)
+
+  Source: https://github.com/skwizzy222/ihsplay-pro
+funding:
+  github: [skwizzy222]
