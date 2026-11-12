@@ -1,0 +1,36 @@
+title: Lights Out for F1 TV
+iconUri: https://raw.githubusercontent.com/The-DarkMatter/lightsout-webos/v0.1.0/assets/app-icon.png
+manifestUrl: https://github.com/The-DarkMatter/lightsout-webos/releases/latest/download/com.thedarkmatter.lightsout.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=7.0'
+screenshots:
+  - url: https://raw.githubusercontent.com/The-DarkMatter/lightsout-webos/v0.1.0/docs/screenshots/browse.jpg
+    caption: Browsing a race weekend
+  - url: https://raw.githubusercontent.com/The-DarkMatter/lightsout-webos/v0.1.0/docs/screenshots/timing-tower.jpg
+    caption: Timing tower over a race replay
+  - url: https://raw.githubusercontent.com/The-DarkMatter/lightsout-webos/v0.1.0/docs/screenshots/cameras.jpg
+    caption: Picking an onboard camera
+  - url: https://raw.githubusercontent.com/The-DarkMatter/lightsout-webos/v0.1.0/docs/screenshots/sign-in.png
+    caption: Signing in from your phone
+shortDescription: Unofficial F1 TV player with a live timing tower and track map.
+description: |
+  An F1 TV player for LG TVs. You watch live sessions and replays with your
+  own F1 TV subscription, switch between the main feed and any driver's
+  onboard, and pull up a timing tower and track map over the video. On
+  replays the tower follows the race as you watch, so no spoilers.
+
+  You sign in once from your phone. The TV shows a QR code and a pairing
+  code, and after that the login keeps itself fresh for about a month. If
+  your TV is rooted, it can also pick up your login from the TV's own
+  browser, but only if you allow it.
+
+  Not affiliated with Formula 1, F1 TV or LG. You need your own F1 TV
+  subscription, and live sessions and onboards need F1 TV Pro or Premium.
+  F1 and F1 TV are trademarks of Formula One Licensing B.V.
+
+  Open source under the Apache License 2.0. Bugs and questions go to
+  [GitHub issues](https://github.com/The-DarkMatter/lightsout-webos/issues).
+
+  Tested on an LG OLED55C56LA (webOS 25).
