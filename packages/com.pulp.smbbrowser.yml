@@ -5,6 +5,17 @@ category: utility
 pool: main
 requirements:
   webosRelease: '>=6.0'
+screenshots:
+  - url: https://raw.githubusercontent.com/pulpoff/webos-file-manager/main/docs/screenshots/home.jpg
+    caption: Home, with USB drives, network servers and Continue watching
+  - url: https://raw.githubusercontent.com/pulpoff/webos-file-manager/main/docs/screenshots/grid.jpg
+    caption: A folder in grid view, with thumbnails and stream information
+  - url: https://raw.githubusercontent.com/pulpoff/webos-file-manager/main/docs/screenshots/player.jpg
+    caption: The player, with audio and subtitle tracks, stream information and seeking
+  - url: https://raw.githubusercontent.com/pulpoff/webos-file-manager/main/docs/screenshots/settings.jpg
+    caption: Settings, with the file service's status
+  - url: https://raw.githubusercontent.com/pulpoff/webos-file-manager/main/docs/screenshots/launcher.jpg
+    caption: In the launcher
 description: |
   A file manager and media player for rooted TVs.
 
