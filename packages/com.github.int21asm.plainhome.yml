@@ -6,14 +6,19 @@ pool: main
 description: |
   PlainHome is a minimal customizable home launcher for rooted LG webOS TVs.
 
-  It lists installed applications in a compact grid, supports custom, LG-order, and
+  It lists installed applications in a compact grid and supports custom, LG-order, and
   alphabetical sorting, hide/unhide controls, a resettable custom order, configurable
-  focus and tile colors, configurable clock and date displays, connected named inputs,
-  optional custom header text, launch at TV startup, Home-button takeover, and a
-  learnable spare-remote-button shortcut.
+  focus and tile colors, an optional blurred focus background, configurable clock and
+  date displays, connected named inputs, optional custom header text, launch at TV
+  startup, Home-button takeover without opening LG Home first, a learnable
+  spare-remote-button shortcut, cached app icons, and a Homebrew app catalog.
+
+  The catalog installs packages from the official webOS Homebrew index through the
+  Homebrew Channel. The package installed from this listing is always the latest
+  GitHub release.
 
   Root is required for application discovery, icon access, input discovery, and guarded
-  removal of applications that webOS marks removable. Startup and input-watcher
-  features are optional and disabled by default.
+  removal of applications that webOS marks removable. Startup, Home-button takeover,
+  the focus background, and the input watcher are optional and disabled by default.
 
   Source: https://github.com/int21asm/plainhome-webos
