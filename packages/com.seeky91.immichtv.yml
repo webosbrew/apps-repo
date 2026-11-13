@@ -7,32 +7,48 @@ pool: main
 requirements:
   webosRelease: '>=5.0'
 description: |
-  A read-only client for [Immich](https://immich.app/) — the self-hosted photo
-  and video management platform — designed and optimized for LG webOS Smart TVs.
-
-  Browse your entire library on the big screen with native D-pad navigation, a
-  justified-grid timeline, and full-screen media playback.
+  Your self-hosted [Immich](https://immich.app/) photo and video library on your LG TV,
+  built to be browsed from the couch with the remote.
 
   ## Features
 
-  - **Timeline** — Infinite-scrolling photo & video timeline grouped by date
-  - **Albums** — Browse and explore your Immich albums
-  - **Search** — Smart text search powered by Immich's ML backend, plus face/person search via the People ribbon
-  - **Justified grid** — Layout that respects original aspect ratios while keeping rows aligned
-  - **Virtualized rendering** — Smooth performance on libraries with thousands of assets
-  - **D-pad first** — Native integration with webOS Spotlight; designed for the remote, not a mouse
-  - **4K-aware** — UI calibrated for FHD and 4K TVs
-  - **Two auth modes** — Email/password login OR API key
+  - **Timeline** — your whole library, day by day, with a date scrubber to jump to any month or year
+  - **Full-screen viewer** — date, time and place at a glance; controls fade away to leave the photo alone
+  - **Slideshow** — from any photo, album or place: crossfades, shuffle, adjustable interval, and the screen saver stays away
+  - **Albums and places** — every album, and every city your photos were taken in
+  - **Search** — Immich smart search and the people Immich recognized
+  - **Videos** — playback with TV-friendly controls
+  - **Sign in with your phone** — scan a QR code instead of typing with the remote; pairing stays on your home network
+  - **Several accounts** — switch between servers or family members
+  - **Made for the remote** — the arrow keys work everywhere, and so do the Magic Remote pointer and wheel
 
   ## Setup
 
-  1. Launch the app and enter your Immich server URL
-  2. Sign in with your email/password, or paste an API key
-  3. Done — your timeline loads
+  1. Launch the app and add your Immich account: sign in with your phone, your email and password, or an API key
+  2. Your timeline loads
+
+  On TVs older than webOS 10, your Immich server must accept cross-origin requests:
+  see the [CORS setup](https://github.com/Seeky91/immich-tv-webos#couldnt-reach-the-server-cors).
 
   ## Disclaimer
 
-  Unofficial third-party client. Not affiliated with the official Immich
-  development team. Provided "as is" for personal use on LG Smart TVs.
+  Unofficial third-party client, not affiliated with the Immich project.
+screenshots:
+  - url: https://raw.githubusercontent.com/Seeky91/immich-tv-webos/main/assets/screenshots/album.jpg
+    caption: An album, day by day
+  - url: https://raw.githubusercontent.com/Seeky91/immich-tv-webos/main/assets/screenshots/viewer.jpg
+    caption: Full-screen viewer
+  - url: https://raw.githubusercontent.com/Seeky91/immich-tv-webos/main/assets/screenshots/slideshow.jpg
+    caption: Slideshow
+  - url: https://raw.githubusercontent.com/Seeky91/immich-tv-webos/main/assets/screenshots/timeline.jpg
+    caption: Timeline and date scrubber
+  - url: https://raw.githubusercontent.com/Seeky91/immich-tv-webos/main/assets/screenshots/albums.jpg
+    caption: Albums
+  - url: https://raw.githubusercontent.com/Seeky91/immich-tv-webos/main/assets/screenshots/places.jpg
+    caption: Places
+  - url: https://raw.githubusercontent.com/Seeky91/immich-tv-webos/main/assets/screenshots/search.jpg
+    caption: Smart search and people
+  - url: https://raw.githubusercontent.com/Seeky91/immich-tv-webos/main/assets/screenshots/phone-sign-in.jpg
+    caption: Sign in with your phone
 funding:
   custom: ["bitcoin:bc1qvxczfmurlglff6zmkgysnxy2yglvwspalcd373"]
