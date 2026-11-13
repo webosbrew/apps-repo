@@ -1,0 +1,35 @@
+# Draft: hold until the exact 0.4.1 build passes physical TV acceptance.
+title: SynergyWebOS
+iconUri: "https://raw.githubusercontent.com/ryanspice/SynergyWebOS/4d07ad6d971676bc5575576cc49dd3bd5cb62dff/native/icon.png"
+manifestUrl: "https://github.com/ryanspice/SynergyWebOS/releases/download/v0.4.1/dev.canopy.synergywebos.manifest.json"
+category: system
+pool: main
+shortDescription: "Native Synergy keyboard and mouse sharing for rooted LG TVs."
+screenshots:
+  - url: "https://raw.githubusercontent.com/ryanspice/SynergyWebOS/4d07ad6d971676bc5575576cc49dd3bd5cb62dff/docs/media/native-connection.png"
+    caption: "Native connection screen, Linux host capture; not a TV photograph"
+  - url: "https://raw.githubusercontent.com/ryanspice/SynergyWebOS/4d07ad6d971676bc5575576cc49dd3bd5cb62dff/docs/media/native-input.png"
+    caption: "Native input settings, Linux host capture; predates 0.4.1 additions"
+description: |
+  Share a desktop keyboard and mouse with a rooted LG webOS TV using a
+  compatible Synergy server. Native C++20, SDL2 and GLES2; no browser or
+  Python runtime on the TV. MIT-licensed independent implementation.
+
+  Real input requires existing root access, Linux uinput and separately
+  reviewed daemon/LS2 provisioning. Installing the IPK alone does not enable
+  root input. Stop the old client before starting native input.
+
+  The 0.4.1 candidate adds media/browser keys and an optional Windows XInput
+  companion for up to four controllers over mutual TLS. Direct classic mode
+  is plaintext and requires explicit consent on a trusted private network.
+  It does not share the desktop display, clipboard or files.
+
+  Candidate notice: build and loopback checks passed; physical 0.4.1 TV,
+  pairing, controller and media acceptance remain pending. The earlier
+  0.4.0 pointer path was manually accepted on the target TV. Compatibility
+  requirements for this candidate must be recorded before this draft merges.
+  Controller forwarding does not suppress input in PC apps. Raw HID, vendor
+  controls, gyro, touchpads and rumble return are not implemented.
+
+  Source, setup, licenses and release status:
+  https://github.com/ryanspice/SynergyWebOS
