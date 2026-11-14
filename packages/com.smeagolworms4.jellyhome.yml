@@ -1,0 +1,74 @@
+title: JellyHome
+iconUri: https://raw.githubusercontent.com/Smeagolworms4/lg-jellyfin-homeapp/main/app/icon160.png
+detailIconUri: https://raw.githubusercontent.com/Smeagolworms4/lg-jellyfin-homeapp/main/app/icon-large.png
+manifestUrl: https://github.com/Smeagolworms4/lg-jellyfin-homeapp/releases/latest/download/com.smeagolworms4.jellyhome.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=10.0'
+shortDescription: Your Jellyfin library on the webOS home screen (root)
+description: |
+  **Root required.** Puts your Jellyfin library on the webOS home screen, in place
+  of LG's ads and suggestions.
+
+  ## Features
+
+  * **Top carousel** instead of LG ads: continue watching, next up, recently
+    added, favorites or a random pick. Each item gets artwork composed on the TV:
+    the poster, the backdrop and the title logo (or the title in large type).
+  * **Trailers**: the item's local Jellyfin trailer, or the YouTube link from its
+    metadata. They are downloaded in advance on the TV (480p, falling back to 720p
+    then 1080p) and played in the carousel over the poster. The home screen turns
+    the sound on when the carousel is focused.
+  * **Banner and rows**: the banner next to recent inputs, and rows for continue
+    watching (with a progress bar), next up and recently added.
+  * Optionally **hides LG ads** everywhere on the home screen.
+  * Selecting an item launches the Jellyfin app on its details page.
+  * Sign-in with **Quick Connect**: no password to type with the remote.
+  * Interface in English, French, German, Spanish and Italian.
+
+  ## Requirements
+
+  * A rooted LG TV with the Homebrew Channel.
+  * webOS 10 or later (the Flutter home screen). Tested on webOS 10.3.
+  * A Jellyfin server on the same network, with Quick Connect enabled.
+  * The official Jellyfin app on the TV, to play what you select.
+
+  ## Setup
+
+  1. Install JellyHome and open it once: it installs its boot hook and enables
+     the home screen patch.
+  2. Search for your server, then sign in with Quick Connect from your phone.
+  3. Choose what goes where, then press *Apply to home screen*.
+
+  ## How it works
+
+  The home screen app is not modified. A small library, loaded into it at launch,
+  rewrites the replies it gets from system services, following rules generated
+  by a background service on the TV. The patch lives in bind mounts that are gone
+  after a reboot, and a guard disables it if the home screen crashes three times
+  in a minute.
+
+  Your Jellyfin session stays on the TV, readable by root only. Trailers and
+  artwork are cached on the TV's internal storage and cleaned up automatically.
+
+  To remove it, use *Disable patch* in the app, then uninstall it from the
+  Homebrew Channel.
+
+  Source code and details: https://github.com/Smeagolworms4/lg-jellyfin-homeapp
+
+  Claude (Anthropic) was used as an assistant for the implementation and
+  documentation. The maintainer is an experienced developer who led the
+  development, reviewed the generated code, and tested the app and its features
+  on a webOS 10.3 TV before release.
+screenshots:
+  - url: https://raw.githubusercontent.com/Smeagolworms4/lg-jellyfin-homeapp/main/docs/accueil.jpg
+    caption: Top carousel with Jellyfin artwork
+  - url: https://raw.githubusercontent.com/Smeagolworms4/lg-jellyfin-homeapp/main/docs/bande-annonce.jpg
+    caption: Trailer playing in the carousel
+  - url: https://raw.githubusercontent.com/Smeagolworms4/lg-jellyfin-homeapp/main/docs/rangees.jpg
+    caption: Jellyfin rows on the home screen
+funding:
+  github: [ Smeagolworms4 ]
+  buy_me_a_coffee: [ smeagolworms4 ]
+  custom: [ "https://www.paypal.com/donate/?business=SURRPGEXF4YVU&no_recurring=0" ]
