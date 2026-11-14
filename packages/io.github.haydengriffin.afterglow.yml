@@ -1,0 +1,81 @@
+title: Afterglow
+iconUri: https://raw.githubusercontent.com/HaydenGriffin/afterglow/main/app/largeIcon.png
+manifestUrl: https://github.com/HaydenGriffin/afterglow/releases/latest/download/io.github.haydengriffin.afterglow.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=5.0'
+description: |
+  # Afterglow
+
+  An unofficial [Music Assistant](https://music-assistant.io/) player for your TV. It shows
+  the album artwork, word-by-word lyrics and the queue, lets you browse, search and play
+  from the remote, and draws MilkDrop visuals in time with whatever your speakers are
+  playing, from the waveform Music Assistant's **MilkDrop Visualizer** plugin streams a
+  few seconds ahead.
+
+  ![Lyrics view](https://raw.githubusercontent.com/HaydenGriffin/afterglow/main/docs/screenshots/lyrics.jpg)
+
+  ## What it does
+
+  - **Album, Lyrics and Visuals views.** Complete artwork; timed lyrics with word-by-word karaoke where the lyrics have word timing; MilkDrop on its own, with a track card, or behind the artwork and lyrics.
+  - **Browse and Search** your Music Assistant library: recently played, favourites, radio, playlists and albums. Play now, play next, add to the queue or start radio.
+  - **Queue**: play, move and remove songs, shuffle, repeat, crossfade, volume and sleep timer. **Play on** moves the music to another speaker; **Speakers together** joins or leaves a sync group.
+  - **Idle poster**: when nothing plays, the paused song or recent music, one OK away.
+  - **Play on this TV**: the TV itself becomes a Music Assistant speaker through Sendspin.
+  - 395 MilkDrop presets; **Scan presets** measures each one on *your* TV and keeps the ones it runs smoothly. Favourites are shared with Music Assistant's own MilkDrop favourites.
+  - Remote media keys: play/pause, stop, fast-forward and rewind.
+  - Kind to OLEDs: the screensaver is held off only while music plays, and the picture drifts against burn-in.
+
+  ![Album view](https://raw.githubusercontent.com/HaydenGriffin/afterglow/main/docs/screenshots/album.jpg)
+
+  ## Requirements
+
+  - Music Assistant 2.10 or newer, on the same network, with the MilkDrop Visualizer plugin added (Settings → Plugins) for the visuals.
+  - Speakers Music Assistant streams to itself (Sonos, Chromecast, AirPlay, Squeezelite, …). A speaker playing something on its own, such as Spotify straight from the Spotify app, carries nothing it can draw.
+  - A TV with WebGL2 (LG's 2020 models onward). Tested on an LG OLED C1 (webOS 6). No root required.
+
+  ## Setting up
+
+  On first launch, sign in with Music Assistant's address and your username and password.
+  The TV gets its own long-lived token, named after it, which you can revoke in Music
+  Assistant's settings or with **Log out**; the password is not stored.
+  Then run **Scan presets** once. The [setup guide](https://github.com/HaydenGriffin/afterglow/blob/main/docs/install.md)
+  walks through everything, and [Settings and remote keys](https://github.com/HaydenGriffin/afterglow/blob/main/docs/settings.md) lists every option.
+
+  ## Privacy
+
+  Afterglow talks to your Music Assistant server. The one exception is lyrics: when Music
+  Assistant has none for a song, the TV asks [lrclib.net](https://lrclib.net) directly,
+  sending the song's title and artist. **Display → Lyrics → Online lyrics → Off** stops that.
+
+  ![Sign in](https://raw.githubusercontent.com/HaydenGriffin/afterglow/main/docs/screenshots/sign-in.jpg)
+
+  ## Source
+
+  [github.com/HaydenGriffin/afterglow](https://github.com/HaydenGriffin/afterglow) (MIT), based on Michael Nestrud's
+  [viz-man](https://github.com/mnestrud/viz-man). Rendering by the
+  [Music Assistant fork](https://github.com/music-assistant/butterchurn) of
+  [Butterchurn](https://github.com/jberg/butterchurn) and the butterchurn-presets packs (MIT);
+  Sendspin playback by [sendspin-js](https://github.com/Sendspin/sendspin-js) (Apache-2.0).
+screenshots:
+  - url: https://raw.githubusercontent.com/HaydenGriffin/afterglow/main/docs/screenshots/lyrics.jpg
+    caption: Lyrics view, with word-by-word karaoke
+  - url: https://raw.githubusercontent.com/HaydenGriffin/afterglow/main/docs/screenshots/album.jpg
+    caption: Album view
+  - url: https://raw.githubusercontent.com/HaydenGriffin/afterglow/main/docs/screenshots/visuals-track.jpg
+    caption: MilkDrop visuals with the track card
+  - url: https://raw.githubusercontent.com/HaydenGriffin/afterglow/main/docs/screenshots/controls.jpg
+    caption: Playback controls over the visuals
+  - url: https://raw.githubusercontent.com/HaydenGriffin/afterglow/main/docs/screenshots/search.jpg
+    caption: Searching the Music Assistant library
+  - url: https://raw.githubusercontent.com/HaydenGriffin/afterglow/main/docs/screenshots/queue.jpg
+    caption: The queue, the speaker it plays on and playback options
+  - url: https://raw.githubusercontent.com/HaydenGriffin/afterglow/main/docs/screenshots/idle.jpg
+    caption: The idle poster while the music is paused
+  - url: https://raw.githubusercontent.com/HaydenGriffin/afterglow/main/docs/screenshots/settings.jpg
+    caption: Settings
+  - url: https://raw.githubusercontent.com/HaydenGriffin/afterglow/main/docs/screenshots/sign-in.jpg
+    caption: Signing in to Music Assistant on first launch
+funding:
+  buy_me_a_coffee: haydengriffin
