@@ -1,0 +1,14 @@
+title: ROIPTV Premium
+iconUri: https://raw.githubusercontent.com/andrei199312/Roiptv/main/homebrew/icon.png
+manifestUrl: https://raw.githubusercontent.com/andrei199312/Roiptv/main/homebrew/com.roiptv.premium.manifest.json
+category: multimedia
+pool: non-free
+shortDescription: Free LG webOS player for ROIPTV accounts or your own playlist.
+requirements:
+  webosRelease: '>=4.0'
+description: |
+  # ROIPTV Premium
+
+  Free IPTV player for LG webOS TVs. Connect with an ROIPTV account or add a playlist you have the right to use. The IPK contains no channel list, playlist, or media streams; content is loaded after the user signs in or adds a playlist.
+
+  Playback depends on the playlist or provider and the TV's supported formats. The user is responsible for the content they choose to access.
