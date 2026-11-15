@@ -35,13 +35,15 @@ description: |
   
   This app is created by [dyptan-io](https://github.com/dyptan-io) and Enrico Bühler ([unom](https://unom.io)).
   MIT / Apache-2.0.
-
-  ## Screenshots
-
-  ![Controller - Game](https://raw.githubusercontent.com/punktfunk/client-webos/main/assets/screenshots/controller-ui-game.jpg)
-  ![Controller - Home](https://raw.githubusercontent.com/punktfunk/client-webos/main/assets/screenshots/controller-ui-home.jpg)
-  ![Console - Home](https://raw.githubusercontent.com/punktfunk/client-webos/main/assets/screenshots/console-kit-home.jpg)
-  ![Console - Settings](https://raw.githubusercontent.com/punktfunk/client-webos/main/assets/screenshots/console-kit-settings.jpg)
+screenshots:
+  - url: https://raw.githubusercontent.com/punktfunk/client-webos/main/assets/screenshots/controller-ui-game.jpg
+    caption: Controller - Game
+  - url: https://raw.githubusercontent.com/punktfunk/client-webos/main/assets/screenshots/controller-ui-home.jpg
+    caption: Controller - Home
+  - url: https://raw.githubusercontent.com/punktfunk/client-webos/main/assets/screenshots/console-kit-home.jpg
+    caption: Console - Home
+  - url: https://raw.githubusercontent.com/punktfunk/client-webos/main/assets/screenshots/console-kit-settings.jpg
+    caption: Console - Settings
 
 funding:
   github: [dyptan-io, enricobuehler]

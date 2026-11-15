@@ -5,6 +5,7 @@ pyyaml~=6.0
 more_itertools~=10.2.0
 nh3~=0.2.15
 requests~=2.31.0
+Pillow~=11.0
 webassets~=2.0
 cssmin~=0.2.0
 livereload~=2.6.3
