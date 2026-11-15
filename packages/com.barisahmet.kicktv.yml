@@ -5,6 +5,15 @@ category: multimedia
 pool: main
 requirements:
   webosRelease: '>=10.0'
+screenshots:
+  - url: https://raw.githubusercontent.com/barisahmet/kick-tv-webos/main/screenshots/player-chat.png
+    caption: Player with the read-only live chat overlay
+  - url: https://raw.githubusercontent.com/barisahmet/kick-tv-webos/main/screenshots/browse.png
+    caption: Browse everything live, by language or category
+  - url: https://raw.githubusercontent.com/barisahmet/kick-tv-webos/main/screenshots/sidebar.png
+    caption: Your channels, live ones first, with pins
+  - url: https://raw.githubusercontent.com/barisahmet/kick-tv-webos/main/screenshots/settings.png
+    caption: Settings
 description: |
   # Kick TV (Unofficial)
 
