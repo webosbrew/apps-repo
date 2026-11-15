@@ -1,6 +1,6 @@
 title: Instagram
-iconUri: https://raw.githubusercontent.com/azasticmaxxer/webos-instagram/main/icon.png
-manifestUrl: https://raw.githubusercontent.com/azasticmaxxer/webos-instagram/main/com.custom.instagram.manifest.json
+iconUri: https://raw.githubusercontent.com/ytsanchay5-tech/webos-instagram/main/icon.png
+manifestUrl: https://raw.githubusercontent.com/ytsanchay5-tech/webos-instagram/main/com.custom.instagram.manifest.json
 category: multimedia
 pool: main
 description: |
