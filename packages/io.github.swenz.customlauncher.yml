@@ -1,0 +1,47 @@
+title: Custom Launcher
+iconUri: https://raw.githubusercontent.com/swenz/webos-custom-launcher/main/app/largeIcon.png
+manifestUrl: https://github.com/swenz/webos-custom-launcher/releases/latest/download/io.github.swenz.customlauncher.manifest.json
+category: launcher
+pool: main
+shortDescription: tvOS-style home screen that can replace LG Home
+requirements:
+  webosRelease: '>=6.0'
+description: |
+  # Custom Launcher
+
+  A tvOS-style home screen for rooted LG webOS TVs. It can replace LG Home, so the Home button
+  on the remote opens this launcher instead.
+
+  * One six-column grid without categories; the first row is a dock over the wallpaper
+  * Installed apps, Live TV, HDMI inputs and system apps in the same grid
+  * Re-orderable tiles: hold OK, move with the arrow keys, press OK to drop
+  * Focus zoom with tilt and shadow; the focused app's own artwork becomes the wallpaper
+  * Control center (Up from the dock): power off, network, mute, screen off, sleep timer,
+    TV settings, restart
+  * Works with the D-pad and the Magic Remote pointer
+
+  ## Replacing LG Home
+
+  "Replace LG Home" in the launcher settings is optional and off by default. When turned on, a
+  boot hook in `/var/lib/webosbrew/init.d` bind-mounts a small script over the LG Home
+  executable. Nothing on the system partition is modified; the mount only exists in memory.
+  Turning the option off, or uninstalling the app, restores LG Home and removes the hook.
+
+  Your TV needs to be [rooted](https://www.webosbrew.org/rooting/) for this app to work: it
+  reads the app list and other apps' icons through the Homebrew Channel root service.
+
+  Tested on webOS 6.5.3. Source code and details on
+  [GitHub](https://github.com/swenz/webos-custom-launcher).
+screenshots:
+  - url: https://raw.githubusercontent.com/swenz/webos-custom-launcher/main/docs/screenshot.jpg
+    caption: Dock with the focused app's artwork as wallpaper
+  - url: https://raw.githubusercontent.com/swenz/webos-custom-launcher/main/docs/screenshot-grid.jpg
+    caption: App grid
+  - url: https://raw.githubusercontent.com/swenz/webos-custom-launcher/main/docs/screenshot-reorder.jpg
+    caption: Re-ordering tiles
+  - url: https://raw.githubusercontent.com/swenz/webos-custom-launcher/main/docs/screenshot-control-center.jpg
+    caption: Control center
+  - url: https://raw.githubusercontent.com/swenz/webos-custom-launcher/main/docs/screenshot-settings.jpg
+    caption: Launcher settings
+funding:
+  github: [ swenz ]
