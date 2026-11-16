@@ -5,9 +5,9 @@ category: multimedia
 pool: non-free
 shortDescription: IPTV player for playlists supplied by the user.
 requirements:
-  webosRelease: '>=4.4'
+  webosRelease: '>=3.0'
 description: |
-  ROIPTV Premium is a video player for LG televisions running webOS 4.4 or later.
+  ROIPTV Premium is a video player for LG televisions running webOS 3.0 or later.
   Users can connect with their ROIPTV subscriber account or load a playlist they provide
   through the phone activation page. The app contains no channels, playlists or video streams.
 
