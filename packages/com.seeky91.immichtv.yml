@@ -5,7 +5,7 @@ manifestUrl: https://github.com/Seeky91/immich-tv-webos/releases/latest/download
 category: multimedia
 pool: main
 requirements:
-  webosRelease: '>=5.0'
+  webosRelease: '>=4.0'
 description: |
   Your self-hosted [Immich](https://immich.app/) photo and video library on your LG TV,
   built to be browsed from the couch with the remote.
