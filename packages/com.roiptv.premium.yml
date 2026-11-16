@@ -19,3 +19,7 @@ description: |
   This proprietary application is submitted to the non-free pool. The submitter confirms they
   hold the rights needed to distribute this adaptation. No source code is offered under an
   open-source license.
+
+screenshots:
+  - url: https://github.com/andrei199312/Roiptv/releases/download/v1.0.19/roiptv-webos-login.png
+    caption: ROIPTV Premium sign-in and activation options
