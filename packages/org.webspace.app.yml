@@ -1,0 +1,34 @@
+# WebSpace: https://github.com/pustal/WebSpace
+# The file name (without .yml) is the app id, as in appinfo.json.
+
+# Display name of the application
+title: WebSpace
+# Publicly accessible HTTPS link to the icon image itself (not a github.com/.../blob/ page)
+iconUri: https://raw.githubusercontent.com/pustal/WebSpace/main/assets/icons/largeIcon.png
+# The manifest of the latest release (written by npm run package)
+manifestUrl: https://github.com/pustal/WebSpace/releases/latest/download/org.webspace.app.manifest.json
+category: utility
+# Open source (GPL-3.0)
+pool: main
+# Web app; built for Chromium 53 and newer (webOS 4+). Measuring needs a
+# rooted TV with the Homebrew Channel.
+requirements:
+  webosRelease: '>=4.0'
+description: |
+  Lists the apps installed on the TV and the storage each one uses, to see
+  what is filling it.
+
+  **Needs a rooted TV** (with the Homebrew Channel): reading other apps'
+  folders takes root. Without it the app only lists the apps.
+
+  - Each app's install folder and its data and services elsewhere, sorted by
+    size or by name; built-in apps on request
+  - The TV's storage areas and USB drives, used and free
+  - OK on an app: its folders, their sizes, and its largest files
+  - After every scan the list is also saved as webspace-report.txt in the
+    app's folder
+  - Made for the remote, with colour-key shortcuts
+# Screenshots shown above the description
+screenshots:
+  - url: https://raw.githubusercontent.com/pustal/WebSpace/main/docs/images/screenshot.png
+    caption: The list of apps (sample data)
