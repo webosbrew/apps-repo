@@ -1,0 +1,40 @@
+title: Tesseract
+iconUri: https://raw.githubusercontent.com/pulpoff/webos-tesseract/main/app/largeIcon.png
+manifestUrl: https://github.com/pulpoff/webos-tesseract/releases/latest/download/com.pulp.tesseract.manifest.json
+category: game
+pool: main
+screenshots:
+  - url: https://raw.githubusercontent.com/pulpoff/webos-tesseract/main/docs/screenshots/complex.jpg
+    caption: complex, one of the included maps
+  - url: https://raw.githubusercontent.com/pulpoff/webos-tesseract/main/docs/screenshots/waterworks.jpg
+    caption: waterworks
+  - url: https://raw.githubusercontent.com/pulpoff/webos-tesseract/main/docs/screenshots/reflection.jpg
+    caption: reflection
+  - url: https://raw.githubusercontent.com/pulpoff/webos-tesseract/main/docs/screenshots/menu.jpg
+    caption: The main menu, where the remote's arrows step between the buttons
+  - url: https://raw.githubusercontent.com/pulpoff/webos-tesseract/main/docs/screenshots/options.jpg
+    caption: The options, also reachable with the remote's arrows
+description: |
+  [Tesseract](https://tesseract.gg), the first-person shooter with real-time global illumination (the
+  successor of Cube 2: Sauerbraten's engine), as a native webOS app, with all of its maps included.
+
+  * Plays with the remote (Up and Down walk, Left and Right turn, OK shoots, Back opens the menu), a
+    game controller (sticks to walk and look, R2 shoots), or a USB keyboard and mouse
+  * In the menus, point with the Magic Remote, or let its arrows step between the buttons
+  * The renderer on OpenGL ES 3.2, with its dynamic lighting, shadows and global illumination, drawn
+    at 75% of 1080p with FXAA: 20 to 60 fps on an LG C1, depending on the map
+  * The Map Browser opens the included maps, and the Server Browser finds games online
+  * Pauses with its sound while another app is in front, such as after pressing Home
+  * No root needed
+
+  The first start compiles the shaders for about 30 seconds; later starts load them from a cache.
+
+  ## Requirements
+
+  * An ARMv8 CPU, as in TVs with a 64-bit kernel such as the LG C1 (tested on webOS 6.5.3)
+  * OpenGL ES 3.2
+  * About 80 MB of app storage
+
+  Unofficial port, not affiliated with the Tesseract developers. The game's media keep their own
+  licenses, which are installed beside them.
+  Source: [pulpoff/webos-tesseract](https://github.com/pulpoff/webos-tesseract)
