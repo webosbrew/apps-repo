@@ -6,6 +6,9 @@ pool: non-free
 shortDescription: IPTV player for playlists supplied by the user.
 requirements:
   webosRelease: '>=3.0'
+screenshots:
+  - url: https://raw.githubusercontent.com/andrei199312/apps-repo-review/roiptv-premium-1.0.18/docs/screenshots/playback.png
+    caption: ROIPTV Premium playing a test HLS stream in the webOS simulator
 description: |
   ROIPTV Premium is a video player for LG televisions running webOS 3.0 or later.
   Users can connect with their ROIPTV subscriber account or load a playlist they provide
