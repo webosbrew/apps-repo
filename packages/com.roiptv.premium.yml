@@ -7,6 +7,8 @@ shortDescription: IPTV player for playlists supplied by the user.
 requirements:
   webosRelease: '>=3.0'
 screenshots:
+  - url: https://raw.githubusercontent.com/andrei199312/apps-repo/roiptv-premium-1.0.18/docs/screenshots/home.png
+    caption: ROIPTV Premium home screen with a user-provided playlist in the webOS simulator
   - url: https://raw.githubusercontent.com/andrei199312/apps-repo/roiptv-premium-1.0.18/docs/screenshots/playback.png
     caption: ROIPTV Premium playing a test HLS stream in the webOS simulator
 description: |
