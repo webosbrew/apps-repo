@@ -29,3 +29,6 @@ description: |
 
   Switch Frame Tap is under active development; streaming stability may also
   depend on the Switch-side server/sysmodule.
+
+  Existing Homebrew Channel users upgrading from the previous package ID must
+  uninstall the old SysDVR entry before installing this package.
