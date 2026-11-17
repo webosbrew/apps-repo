@@ -1,7 +1,7 @@
 title: Home Chooser
 iconUri: https://raw.githubusercontent.com/webosbrew/home-chooser/main/app/largeIcon.png
 manifestUrl: https://github.com/webosbrew/home-chooser/releases/latest/download/org.webosbrew.homechooser.manifest.json
-category: system
+category: launcher
 pool: main
 requirements:
   webosRelease: '>=4.0'
