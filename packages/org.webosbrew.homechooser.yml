@@ -4,7 +4,7 @@ manifestUrl: https://github.com/webosbrew/home-chooser/releases/latest/download/
 category: system
 pool: main
 requirements:
-  webosRelease: '>=5.0'
+  webosRelease: '>=4.0'
 description: |
   Home Chooser lets you pick which app the Home button on the remote opens: LG's own Home, or a launcher you have installed, such as a dock or an alternative home screen.
 
@@ -14,13 +14,13 @@ description: |
 
   The TV must be rooted, with [Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel) installed and running with root access.
 
-  webOS 5 to 12 are supported. On webOS 11 and later, Home Chooser needs Homebrew Channel 0.8.0 or later; earlier releases don't give apps root access there.
+  webOS 4 to 12 are supported; webOS 3 and older are not. On webOS 11 and later, Home Chooser needs Homebrew Channel 0.8.0 or later; earlier releases don't give apps root access there.
 
   Home Chooser has no launcher of its own. It lists every installed app that declares itself a Home app.
 
   ## How to use
 
-  Open Home Chooser, move to your launcher, press OK and confirm. Press Home to try it. The change takes effect at once, with no restart. To go back, choose "LG Home (stock)" in Home Chooser.
+  Open Home Chooser, move to your launcher, press OK and confirm. Press Home to try it. The change takes effect at once, with no restart. To go back, choose "LG Home (Fullscreen)" in Home Chooser (on webOS 4.0, "LG Home (Ribbon)"; on webOS 4.5 and 5, either of the two LG Home rows).
 
   Launcher authors can build against the launcher API described in the [repository](https://github.com/webosbrew/home-chooser).
 screenshots:
