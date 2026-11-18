@@ -4,6 +4,9 @@ manifestUrl: https://github.com/Sqoutv/webOS-betterQuickSettings/releases/latest
 category: utility
 pool: main
 shortDescription: Apple Control Center style quick settings overlay for rooted LG webOS TVs.
+screenshots:
+  - url: https://raw.githubusercontent.com/Sqoutv/webOS-betterQuickSettings/main/screenshot.png
+    caption: G5 Quick Settings overlay on LG OLED G5
 requirements:
   webosRelease: '>=7.0'
 description: |
