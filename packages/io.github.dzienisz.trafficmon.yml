@@ -1,0 +1,22 @@
+title: Traffic Monitor
+iconUri: https://raw.githubusercontent.com/dzienisz/trafficmon-webos/main/app/icon.png
+manifestUrl: https://github.com/dzienisz/trafficmon-webos/releases/latest/download/io.github.dzienisz.trafficmon.manifest.json
+category: utility
+pool: main
+requirements:
+  root: required
+description: |
+  See exactly who your TV talks to: per-remote-host byte counters for WAN,
+  LAN and multicast traffic, with per-minute history.
+
+  - **Top talkers**: sent/received totals per host over 24h
+  - **Host names**: learned passively from DNS answers seen on the wire —
+    no extra lookups, no tracking
+  - **Categories**: LG endpoints, telemetry/ads, media apps, Google,
+    CDN/infra — so "is LG phoning home?" is one glance away
+  - **Per-host chart**: select a row to see its traffic over time
+
+  The app reads a tiny JSON API served by `trafficmon.py`, a dependency-free
+  Python 2.7 daemon (AF_PACKET counters + passive DNS). The daemon must be
+  deployed over SSH and started from a webosbrew `init.d` hook — full
+  instructions in the repo README. Pure-black OLED-friendly UI.
