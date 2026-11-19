@@ -1,6 +1,6 @@
-title: Chromium
+title: Chromium Browser
 iconUri: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/main/assets/icon.png
-manifestUrl: https://github.com/sarahahzub/WebOS-Chromium/releases/latest/download/org.nativechromium.browser.manifest.json
+manifestUrl: https://github.com/sarahahzub/WebOS-Chromium/releases/latest/download/io.github.sarahahzub.chromium.manifest.json
 category: internet
 pool: main
 shortDescription: Chromium 151 with the full Chrome interface, made for the TV
@@ -16,6 +16,22 @@ description: |
   - Bookmarks and settings are kept on the TV and survive reboots.
 
   Runs on webOS 4.4 (2018-2019 models) and newer. No Netflix or other DRM video, and no Google account sync.
+
+  **No sandbox.** Chromium's sandbox can't run in a Developer Mode app (the TV's kernel has no user namespaces or
+  seccomp), so the browser runs without it. All sites share one page process, and the GPU and network code run in
+  the browser process. A page that exploits a bug in Chromium could reach everything the browser holds: cookies and
+  logins for every site, and saved passwords (stored without a system keyring). Keep the browser updated, and think
+  twice before signing in to important accounts or saving passwords on the TV. A warning bar says this at every
+  start; it can be hidden, and from the third start turned off.
+
+  **TV Tools** is built in and changes pages: on every site it answers the site's video checks (MediaSource,
+  canPlayType, mediaCapabilities) and removes streams above your quality limit from HLS and DASH playlists, which
+  means it wraps fetch and XMLHttpRequest. In TV mode it sends the webOS TV user agent and hides
+  navigator.userAgentData. It keeps its settings for each site in that site's localStorage (key `__tvtools_cfg`).
+  If a site misbehaves, turn TV Tools off for that site from its toolbar button to see whether it's the cause.
+
+  Coming from the old Chromium app (`org.nativechromium.browser`): update it to 0.0.67 and open it once, then
+  install Chromium Browser. Bookmarks and history come over by themselves.
 
   Source, supported TVs and bug reports: [github.com/sarahahzub/WebOS-Chromium](https://github.com/sarahahzub/WebOS-Chromium)
 requirements:
