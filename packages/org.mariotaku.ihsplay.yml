@@ -17,12 +17,12 @@ description: |
 
   ---
 
-  ![Home UI](https://user-images.githubusercontent.com/830358/207047084-8ab2ce4e-daca-4027-aeed-4fc1a441e75e.png)
-
-  ![Streaming Overlay](https://user-images.githubusercontent.com/830358/207047480-8cc96496-4fab-4a0e-8d1a-896183c54a6e.png)
-
-
   Stay tuned!
 
+screenshots:
+  - url: https://user-images.githubusercontent.com/830358/207047084-8ab2ce4e-daca-4027-aeed-4fc1a441e75e.png
+    caption: Home UI
+  - url: https://user-images.githubusercontent.com/830358/207047480-8cc96496-4fab-4a0e-8d1a-896183c54a6e.png
+    caption: Streaming Overlay
 funding:
   github: [mariotaku]

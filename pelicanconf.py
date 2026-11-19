@@ -111,7 +111,14 @@ INDEX_APP_CATEGORIES = [
     ('game', 'Games'),
     ('amblight', 'Ambient Light'),
     ('screensaver', 'Screensavers'),
+    ('launcher', 'Launchers'),
     ('utility', 'Utilities'),
+]
+
+# App IDs listed first within their category, in this order, ahead of the alphabetical
+# rest: on the homepage shelves and in the /apps grid when filtered to a category.
+PINNED_APPS = [
+    'org.webosbrew.homechooser',
 ]
 
 # App IDs featured on the homepage, in display order. The blurb for each is

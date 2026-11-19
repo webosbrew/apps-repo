@@ -9,13 +9,13 @@ from pelican import signals, Readers, PagesGenerator, StaticGenerator
 from pelican.contents import Page
 from pelican.readers import BaseReader
 
-from repogen import funding, apidata, pkg_info, sitemap
+from repogen import funding, apidata, pkg_info, screenshots, sitemap
 from repogen.icons import obtain_icon
 
 log = logging.getLogger(__name__)
 
 # Bump when the cached shape or parse logic changes, to invalidate stale caches.
-_PKGINFO_CACHE_VERSION = 3
+_PKGINFO_CACHE_VERSION = 4
 _PKGINFO_CACHE_DIR = Path(__file__).parent.parent / 'cache'
 
 
@@ -32,6 +32,10 @@ class PackageInfoReader(BaseReader):
         offline = 'CI' not in os.environ
         siteurl = self.settings['SITEURL']
         info, content = self._read_package(Path(filename), offline, siteurl)
+        if info.get('screenshots'):
+            # Outside the pkginfo cache, which lives only offline and until the package
+            # file changes; sizes have their own cache keyed by URL, used in CI too.
+            info['screenshots'] = screenshots.with_sizes(info['id'], info['screenshots'])
 
         metadata = {
             'title': info['title'],
@@ -99,6 +103,8 @@ def readers_init(readers: Readers):
 def add_app_indices(generator: PagesGenerator):
     packages = list(sorted(generator.settings['PACKAGES'].values(), key=lambda info: info['title'].lower()))
 
+    pinned = generator.settings.get('PINNED_APPS', [])
+
     # Categories present in the catalog, used by the /apps filter sidebar.
     filter_categories = []
     for (category, title) in generator.settings['INDEX_APP_CATEGORIES']:
@@ -116,15 +122,19 @@ def add_app_indices(generator: PagesGenerator):
         'status': 'hidden',
         'packages': packages,
         'filter_categories': filter_categories,
+        'pinned': pinned,
     }, settings=generator.settings, source_path='apps-page.html', context=generator.context))
 
     def get_category_entries():
         entries = []
         for (category, title) in generator.settings['INDEX_APP_CATEGORIES']:
+            in_category = [pkg for pkg in packages if pkg['category'] == category]
             entries.append({
                 'slug': category,
                 'title': title,
-                'packages': [pkg for pkg in packages if pkg['category'] == category]
+                # Pinned apps first, in PINNED_APPS order; sorted() keeps the rest alphabetical.
+                'packages': sorted(in_category, key=lambda pkg: pinned.index(pkg['id'])
+                                   if pkg['id'] in pinned else len(pinned)),
             })
         return entries
 

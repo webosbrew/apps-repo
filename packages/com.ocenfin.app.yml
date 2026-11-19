@@ -1,0 +1,16 @@
+title: OcenFin
+iconUri: https://raw.githubusercontent.com/seluce/OcenFin/main/public/icon.png
+manifestUrl: https://github.com/seluce/OcenFin/releases/latest/download/com.ocenfin.app.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=10.0'
+description: |
+  OcenFin is a lightweight and fast native Jellyfin client for LG TVs, built with Svelte. It focuses on a clean, minimalist design by hiding less important details.
+
+  **Key Features:**
+  * **Fast User Switching:** Switch between profiles quickly using saved password tokens.
+  * **Shared Profiles:** Link two personal accounts to easily hide movies or series that one of you has already seen.
+  * **Direct Play Focus:** Avoid server transcoding with broad format support, including complex subtitles via libbitsub, assjs, and hls.
+  * **Watch Together:** Full WebSocket support for remote commands and SyncPlay.
+  * **Customization:** Create custom avatars directly on your TV using your recently watched shows or an SVG icon.
