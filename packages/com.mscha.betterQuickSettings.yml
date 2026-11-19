@@ -1,16 +1,16 @@
-title: G5 Quick Settings
+title: Better Quick Settings
 iconUri: https://raw.githubusercontent.com/Sqoutv/webOS-betterQuickSettings/main/app/largeIcon.png
 manifestUrl: https://github.com/Sqoutv/webOS-betterQuickSettings/releases/latest/download/mscha.g5quicksettings.manifest.json
 category: utility
 pool: main
-shortDescription: Apple Control Center style quick settings overlay for rooted LG webOS TVs.
+shortDescription: Apple Control Center style quick settings overlay for webOS TVs.
 screenshots:
   - url: https://raw.githubusercontent.com/Sqoutv/webOS-betterQuickSettings/main/screenshot.png
-    caption: G5 Quick Settings overlay on LG OLED G5
+    caption: Better Quick Settings overlay demo
 requirements:
   webosRelease: '>=7.0'
 description: |
-  A fast, HDR-friendly quick settings overlay for rooted LG OLED TVs (tested on LG OLED G5 / webOS 25) styled after Apple Control Center.
+  A fast, HDR-friendly quick settings overlay for webOS (tested on LG OLED G5 / webOS 25) styled after Apple Control Center.
 
   ### Features
   * **Floating Transparent Overlay:** Opens over live HDMI or media playback (`keepAlive: true`, `<0.3s` warm relaunch).
