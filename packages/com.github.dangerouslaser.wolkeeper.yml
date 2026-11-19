@@ -44,12 +44,12 @@ description: |
   ### Notes
   - Standby power consumption is higher than the deep zero-watt state — that is
     inherent to keeping the network interface powered.
-  - **Press Disable before uninstalling.** Uninstalling removes the daemon and
-    the boot hook by itself (the hook is a symlink into the app package, so it
-    disarms when the package goes away), but the Always Ready setting is a
-    system setting — Disable is what restores it, along with the nightly window
-    you had before. Your previous values are saved on Enable, so Disable puts
-    back what you actually had rather than LG's defaults.
+  - **Press Disable before uninstalling.** Disable restores the Always Ready
+    settings you had before Enable (saved at Enable time, not LG's defaults)
+    and removes everything else. If you uninstall while enabled, the running
+    keepalive notices within about two minutes that the app is gone, restores
+    your saved settings and removes itself — but if the TV is switched off or
+    rebooted before then, the Always Ready override stays behind.
   - The read-only rootfs is never modified; the keepalive unit lives in `/run`
     (tmpfs) and everything else under `/var/lib/webosbrew`.
 
