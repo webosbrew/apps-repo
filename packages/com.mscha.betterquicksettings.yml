@@ -1,6 +1,6 @@
 title: Better Quick Settings
 iconUri: https://raw.githubusercontent.com/Sqoutv/webOS-betterQuickSettings/main/app/largeIcon.png
-manifestUrl: https://github.com/Sqoutv/webOS-betterQuickSettings/releases/latest/download/com.mscha.betterQuickSettings.manifest.json
+manifestUrl: https://github.com/Sqoutv/webOS-betterQuickSettings/releases/latest/download/com.mscha.betterquicksettings.manifest.json
 category: utility
 pool: main
 shortDescription: Apple Control Center style quick settings overlay for webOS TVs.
