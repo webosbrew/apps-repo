@@ -1,0 +1,54 @@
+title: Hotaru
+iconUri: https://raw.githubusercontent.com/renjfk/hotaru-webos/main/assets/largeIcon.png
+detailIconUri: https://raw.githubusercontent.com/renjfk/hotaru-webos/main/assets/icon-400.png
+manifestUrl: https://github.com/renjfk/hotaru-webos/releases/latest/download/com.renjfk.hotaru.manifest.json
+category: game
+pool: main
+shortDescription: PlayStation Remote Play for LG webOS TVs
+requirements:
+  webosRelease: '>=6.0'
+screenshots:
+  - url: https://raw.githubusercontent.com/renjfk/hotaru-webos/main/screenshots/home.webp
+    caption: Home
+  - url: https://raw.githubusercontent.com/renjfk/hotaru-webos/main/screenshots/add-console.webp
+    caption: Add a console
+  - url: https://raw.githubusercontent.com/renjfk/hotaru-webos/main/screenshots/add-console-pin.webp
+    caption: Pairing with the PIN
+  - url: https://raw.githubusercontent.com/renjfk/hotaru-webos/main/screenshots/psn-sign-in.webp
+    caption: PSN sign-in
+  - url: https://raw.githubusercontent.com/renjfk/hotaru-webos/main/screenshots/rest-mode.webp
+    caption: Rest mode
+  - url: https://raw.githubusercontent.com/renjfk/hotaru-webos/main/screenshots/settings.webp
+    caption: Settings
+  - url: https://raw.githubusercontent.com/renjfk/hotaru-webos/main/screenshots/stream-menu.webp
+    caption: Menu over the game
+description: |
+  Hotaru is a native PlayStation Remote Play client for LG webOS TVs, built on
+  [chiaki-ng](https://github.com/streetpea/chiaki-ng)'s libchiaki. It streams a PS5 or PS4 from the local network,
+  or over PSN when you are away, and decodes the video with the TV's own hardware.
+
+  - **Remote Play from a PS5 or PS4** on the local network, or over PSN from anywhere
+  - **Hardware decoding** of H.264 and H.265 (and HDR10 on a PS5), with 48 kHz audio
+  - **Smooth playback**: a short playout buffer that hides the stalls a TV's Wi-Fi causes
+  - **A PS5-style home screen**: consoles as tiles, everything reachable with the TV remote, the D-pad or the left
+    stick. There is no pointer anywhere
+  - **Console discovery**: each console shows whether it is ready, in rest mode or away, and Start Remote Play
+    wakes one in rest mode first
+  - **One console, two routes**: pair it with its PIN at home and find it through PSN too. It stays one tile and
+    uses the local network first
+  - **Pairing** with the PIN from the console, or PSN sign-in through a QR code
+  - **The DualShock 4 is forwarded**: buttons, sticks, triggers, touchpad and rumble. Share + Options opens the
+    menu over the game
+
+  You need a PS5 or PS4 with Remote Play turned on (Settings > System > Remote Play), a TV in Developer Mode or
+  with the [Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel), and a DualShock 4 paired with
+  the TV for playing. The remote drives the menus. Wi-Fi works, but an Ethernet cable gives the smoothest stream.
+
+  This is an early beta, developed and tested on an LG 50UP75003LF (webOS TV 6.5.3). The
+  [user guide](https://github.com/renjfk/hotaru-webos/blob/main/docs/user-guide.md) covers installing, pairing and
+  playing, and issues are welcome at [renjfk/hotaru-webos](https://github.com/renjfk/hotaru-webos/issues).
+
+  Hotaru is not affiliated with, endorsed or certified by Sony Interactive Entertainment or LG Electronics. Source:
+  [renjfk/hotaru-webos](https://github.com/renjfk/hotaru-webos) (AGPL-3.0).
+funding:
+  github: [renjfk]
