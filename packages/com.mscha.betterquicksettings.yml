@@ -17,6 +17,6 @@ description: |
   * **HDR Paper-White Theme:** Avoids harsh `#FFFFFF` glare in dark rooms, with a 3-step UI brightness toggle (`Paper`, `Dim`, `Ultra`).
   * **Quick Controls:** HDMI input switcher with live connection status, OLED brightness slider with configurable D-Pad step size (`1%`, `5%`, `10%`, `20%`), dynamic Picture Mode (SDR / HDR10 / Dolby Vision), Sound Mode + active audio output readout, Energy Saving, and a shortcut to LG Standard Settings.
   * **Customizable & Bilingual:** Switch between English and German, configure brightness step size, and reorder sections and mode tiles directly in the overlay.
-  * **Automatic Service Elevation:** On first launch, the app automatically elevates its bundled background service via Homebrew Channel (`org.webosbrew.hbchannel.service/exec`).
+  * **Root Required:** Requires a rooted TV with Homebrew Channel running with root access; LG Developer Mode alone is insufficient. On first launch, the app automatically elevates its bundled background service via Homebrew Channel (`org.webosbrew.hbchannel.service/exec`).
 
   Source code on [GitHub](https://github.com/Sqoutv/webOS-betterQuickSettings).
