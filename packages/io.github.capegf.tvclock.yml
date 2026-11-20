@@ -1,0 +1,15 @@
+title: TV Clock Overlay
+iconUri: https://raw.githubusercontent.com/capegf/tv-clock-overlay/main/app/icon.png
+detailIconUri: https://raw.githubusercontent.com/capegf/tv-clock-overlay/main/assets/icon-1024.png
+manifestUrl: https://github.com/capegf/tv-clock-overlay/releases/latest/download/io.github.capegf.tvclock.manifest.json
+category: utility
+pool: main
+shortDescription: A configurable clock overlay and reminder for rooted LG webOS TVs.
+description: |
+  Display a live clock above HDMI inputs and apps, including Apple TV.
+
+  Configure its position, size, opacity, corner radius, font, duration and automatic reminder interval from a remote-friendly bilingual settings page. An optional high-contrast switch makes compatible LG system overlays darker.
+
+  Root access is required for the persistent reminder service and system-theme control. webOS 26 requires Homebrew Channel 0.8.0 or newer. The app makes no Internet requests and collects no telemetry.
+
+  Tested on an LG C2 running webOS 26 Re:New, firmware 43.21.94.
