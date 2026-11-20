@@ -31,13 +31,13 @@ description: |
 requirements:
   webosRelease: '>=4.4'
 screenshots:
-  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/main/assets/screenshots/new-tab.png
+  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/e772202038c5ba5fa3c7423d787d9a56210e6d23/assets/screenshots/new-tab.png
     caption: New Tab page
-  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/main/assets/screenshots/google.png
+  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/e772202038c5ba5fa3c7423d787d9a56210e6d23/assets/screenshots/google.png
     caption: Google search
-  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/main/assets/screenshots/github.png
+  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/e772202038c5ba5fa3c7423d787d9a56210e6d23/assets/screenshots/github.png
     caption: A GitHub page
-  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/main/assets/screenshots/about.png
+  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/e772202038c5ba5fa3c7423d787d9a56210e6d23/assets/screenshots/about.png
     caption: About Chromium
-  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/main/assets/screenshots/extensions.png
+  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/e772202038c5ba5fa3c7423d787d9a56210e6d23/assets/screenshots/extensions.png
     caption: Extensions, with TV Tools built in
