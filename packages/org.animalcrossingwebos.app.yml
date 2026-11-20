@@ -1,0 +1,42 @@
+# Animal Crossing for webOS: https://github.com/pustal/Animal-Crossing-WebOS
+# The file name (without .yml) is the app id, as in appinfo.json.
+
+# Display name of the application
+title: Animal Crossing
+# Publicly accessible HTTPS link to the icon image itself (not a github.com/.../blob/ page)
+iconUri: https://raw.githubusercontent.com/pustal/Animal-Crossing-WebOS/main/webos/largeIcon.png
+# The manifest of the latest release (written by the webos-package build target)
+manifestUrl: https://github.com/pustal/Animal-Crossing-WebOS/releases/latest/download/org.animalcrossingwebos.app.manifest.json
+category: game
+# Open source (MIT; the decompilation is CC0)
+pool: main
+# Native app rendering with OpenGL ES 3. Developed and tested on webOS 6
+# (Mali-G51); older TVs are untested.
+requirements:
+  webosRelease: '>=6.0'
+description: |
+  Animal Crossing (GameCube) on your LG TV: the ac-decomp decompilation with
+  the ACGC PC and Android ports, built as a native webOS app that renders on
+  the TV's own GPU.
+
+  **You need your own copy of the game.** The app contains no game data. On
+  first launch the TV shows an address and a PIN: open it on a phone or
+  computer on the same network and upload a disc image of your copy (US
+  version, GAFE01; .iso, .gcm or .ciso). The game starts as soon as it arrives.
+
+  - Plays with a game controller or the TV remote: arrows walk, OK and green
+    are A, the colour buttons are B/X/Y, Back opens the pause menu
+  - The same web page keeps working while you play: download and upload
+    memory-card saves, replace the disc image
+  - Texture packs: Dolphin-style packs (including the usual BC/DXT ones) can
+    be uploaded from the browser to a USB drive or the TV; the game uses a
+    pack on a USB drive automatically
+  - Press 1 on the remote (LB on a controller) to see the page's address and PIN
+  - Shaders are compiled once on the first launch and cached, so later
+    launches start in about a second
+
+  A non-commercial fan project, not affiliated with or endorsed by Nintendo.
+# Screenshots shown above the description
+screenshots:
+  - url: https://raw.githubusercontent.com/pustal/Animal-Crossing-WebOS/main/docs/images/web-page.png
+    caption: Upload page
