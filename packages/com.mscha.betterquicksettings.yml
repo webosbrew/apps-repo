@@ -1,0 +1,22 @@
+title: Better Quick Settings
+iconUri: https://raw.githubusercontent.com/Sqoutv/webOS-betterQuickSettings/main/app/largeIcon.png
+manifestUrl: https://github.com/Sqoutv/webOS-betterQuickSettings/releases/latest/download/com.mscha.betterquicksettings.manifest.json
+category: utility
+pool: main
+shortDescription: Apple Control Center style quick settings overlay for webOS TVs.
+screenshots:
+  - url: https://raw.githubusercontent.com/Sqoutv/webOS-betterQuickSettings/main/screenshot.png
+    caption: Better Quick Settings overlay demo
+requirements:
+  webosRelease: '>=7.0'
+description: |
+  A fast, HDR-friendly quick settings overlay for webOS (tested on LG OLED G5 / webOS 25) styled after Apple Control Center.
+
+  ### Features
+  * **Floating Transparent Overlay:** Opens over live HDMI or media playback (`keepAlive: true`, `<0.3s` warm relaunch).
+  * **HDR Paper-White Theme:** Avoids harsh `#FFFFFF` glare in dark rooms, with a 3-step UI brightness toggle (`Paper`, `Dim`, `Ultra`).
+  * **Quick Controls:** HDMI input switcher with live connection status, OLED brightness slider with configurable D-Pad step size (`1%`, `5%`, `10%`, `20%`), dynamic Picture Mode (SDR / HDR10 / Dolby Vision), Sound Mode + active audio output readout, Energy Saving, and a shortcut to LG Standard Settings.
+  * **Customizable & Bilingual:** Switch between English and German, configure brightness step size, and reorder sections and mode tiles directly in the overlay.
+  * **Root Required:** Requires a rooted TV with Homebrew Channel running with root access; LG Developer Mode alone is insufficient. On first launch, the app automatically elevates its bundled background service via Homebrew Channel (`org.webosbrew.hbchannel.service/exec`).
+
+  Source code on [GitHub](https://github.com/Sqoutv/webOS-betterQuickSettings).
