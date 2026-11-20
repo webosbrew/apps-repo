@@ -1,0 +1,33 @@
+title: Market Wall
+iconUri: https://raw.githubusercontent.com/dzienisz/market-wall-webos/main/largeIcon.png
+manifestUrl: https://github.com/dzienisz/market-wall-webos/releases/latest/download/io.github.dzienisz.marketwall.manifest.json
+category: utility
+pool: main
+requirements:
+  webosRelease: '>=5.0'
+description: |
+  Live markets on your TV: crypto, gold, stock indices and exchange rates, in your language and currency.
+  Made for a big OLED screen that's on all day: pure black background, layout that shifts every few minutes.
+
+  - **Board**: up to six assets you pick, with price, change and a 30-day chart
+  - **Crypto map**: the 24 largest coins as a treemap
+  - **Market mood**: crypto Fear & Greed, gold per gram and ECB exchange rates
+  - **What if**: what money spent 1, 5 or 10 years ago would be worth today
+  - **In Big Macs**: bitcoin and gold counted in Big Macs at your country's price
+
+  English and Polish, 18 currencies, all set with the remote. Free data sources only, no keys,
+  no tracking.
+
+  Also ships a screen saver (clock and your first four assets) that
+  [Glasshouse](https://github.com/rorygallagher2024/glasshouse) lists in its Screensaver tab.
+screenshots:
+  - url: https://raw.githubusercontent.com/dzienisz/market-wall-webos/main/docs/screenshots/board.jpg
+    caption: Board
+  - url: https://raw.githubusercontent.com/dzienisz/market-wall-webos/main/docs/screenshots/cryptomap.jpg
+    caption: Crypto map
+  - url: https://raw.githubusercontent.com/dzienisz/market-wall-webos/main/docs/screenshots/mood.jpg
+    caption: Market mood
+  - url: https://raw.githubusercontent.com/dzienisz/market-wall-webos/main/docs/screenshots/whatif.jpg
+    caption: What if
+  - url: https://raw.githubusercontent.com/dzienisz/market-wall-webos/main/docs/screenshots/settings.jpg
+    caption: Settings
