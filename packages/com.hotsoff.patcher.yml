@@ -1,0 +1,42 @@
+title: HotsOff
+iconUri: https://raw.githubusercontent.com/Shantil-K/HotsOff/main/hotsoffLarge.png
+manifestUrl: https://github.com/Shantil-K/HotsOff/releases/latest/download/com.hotsoff.patcher.manifest.json
+category: multimedia
+pool: main
+description: |
+  # HotsOff
+
+  > Patch-based ad-block layer for the stock Hotstar app on rooted LG webOS TVs.
+  > A sister project of [AmazOff](https://github.com/azoffshowy/AmazOff).
+
+  **HotsOff** patches the installed Hotstar app:
+  - Remove live / match ads (requests the clean, non ad-stitched stream)
+  - Remove pre-rolls, mid-rolls and the ads shown under the player when paused
+  - Remove the "Upgrade" / "Subscribe" button and subscription nudges
+  - Suppress third-party telemetry (Coralogix, Google Tag Manager, Moat, Firebase logging)
+
+  Because the stock app itself is patched, every launch path opens the ad-free version.
+  HotsOff does not touch DRM, subscriptions or premium content.
+
+  ## Status
+
+  - **Development stage:** early / experimental
+  - **Tested on:** LG C2, webOS 25 (rooted)
+
+  ## How it works
+
+  The Hotstar webOS app is a thin launcher for `livingroom.hotstar.com`. HotsOff places a
+  WebAppManager user script (`webOSUserScripts/userScript.js`) in the installed Hotstar app
+  folder, which removes ad data from the app's network traffic. **Stop Service** removes it again.
+
+  ## Usage
+
+  1. Launch **HotsOff**
+  2. Press **Start Service**
+  3. **Recommended:** enable **Autostart** so the patch is re-applied after Hotstar updates
+  4. **Launch Hotstar**: a "HotsOff loaded" toast confirms the patch
+
+  If something goes wrong, check the **Details** page log.
+screenshots:
+  - url: https://raw.githubusercontent.com/Shantil-K/HotsOff/main/Screenshot.png
+    caption: HotsOff main screen
