@@ -1,0 +1,21 @@
+title: Homebrew Store+
+iconUri: https://raw.githubusercontent.com/dasilva333/webos-storeplus/main/assets/icon160.png
+detailIconUri: https://raw.githubusercontent.com/dasilva333/webos-storeplus/main/assets/icon320.png
+manifestUrl: https://github.com/dasilva333/webos-storeplus/releases/latest/download/manifest.json
+category: system
+pool: main
+shortDescription: Modern split-pane catalog browser with GitHub star ratings and TV cards
+
+description: |
+  Homebrew Store+ is a modern, fast application browser for the webOS Homebrew catalog.
+
+  ### Features
+
+  * **GitHub Star Popularity Ranking**: Discover the most popular homebrew apps sorted by real-time GitHub stars.
+  * **Roomy TV Cards**: Generous 144px card height designed specifically for comfortable reading from the couch on OLED displays.
+  * **Split Detail Pane**: Rich application overview with repository metadata, version badges, install size, and quick Launch/Uninstall controls.
+  * **Full TV Remote Navigation**: Native D-pad navigation with instant focus ring feedback.
+  * **Smart Categories**: Quick filter pills for All, Featured, Installed, Media, Games, and Root & Tools.
+
+screenshots:
+  - https://raw.githubusercontent.com/dasilva333/webos-storeplus/main/assets/screenshot1.png
