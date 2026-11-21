@@ -73,6 +73,22 @@ jobs:
             return "${code}"
           }
 
+          # One new app per pull request, so each is reviewed and decided on its own.
+          # Edits to packages already listed are not counted. A warning for now: an app
+          # shipped as two packages (e.g. an app and its companion) is still accepted.
+          added_packages=(${{ inputs.added-packages }})
+          if [ "${#added_packages[@]}" -gt 1 ]; then
+            {
+              echo '# Multiple New Packages'
+              echo
+              echo " * :warning: This pull request adds ${#added_packages[@]} new packages. Please submit one new app per pull request, unless they are parts of the same app:"
+              for added_file in "${added_packages[@]}"; do
+                echo "   * \`$(basename "${added_file}")\`"
+              done
+              echo
+            } >> /tmp/lint-report.md
+          fi
+
           for changed_file in ${{ inputs.packages }}; do
             echo "# Check Results for $(basename "${changed_file}"):" >> /tmp/lint-report.md
             echo >> /tmp/lint-report.md

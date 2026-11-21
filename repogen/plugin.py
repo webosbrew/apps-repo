@@ -103,6 +103,8 @@ def readers_init(readers: Readers):
 def add_app_indices(generator: PagesGenerator):
     packages = list(sorted(generator.settings['PACKAGES'].values(), key=lambda info: info['title'].lower()))
 
+    pinned = generator.settings.get('PINNED_APPS', [])
+
     # Categories present in the catalog, used by the /apps filter sidebar.
     filter_categories = []
     for (category, title) in generator.settings['INDEX_APP_CATEGORIES']:
@@ -120,15 +122,19 @@ def add_app_indices(generator: PagesGenerator):
         'status': 'hidden',
         'packages': packages,
         'filter_categories': filter_categories,
+        'pinned': pinned,
     }, settings=generator.settings, source_path='apps-page.html', context=generator.context))
 
     def get_category_entries():
         entries = []
         for (category, title) in generator.settings['INDEX_APP_CATEGORIES']:
+            in_category = [pkg for pkg in packages if pkg['category'] == category]
             entries.append({
                 'slug': category,
                 'title': title,
-                'packages': [pkg for pkg in packages if pkg['category'] == category]
+                # Pinned apps first, in PINNED_APPS order; sorted() keeps the rest alphabetical.
+                'packages': sorted(in_category, key=lambda pkg: pinned.index(pkg['id'])
+                                   if pkg['id'] in pinned else len(pinned)),
             })
         return entries
 
