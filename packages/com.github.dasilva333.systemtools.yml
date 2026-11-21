@@ -1,0 +1,18 @@
+title: System Tools
+iconUri: https://raw.githubusercontent.com/dasilva333/webos-system-tools/main/assets/icon160.png
+detailIconUri: https://raw.githubusercontent.com/dasilva333/webos-system-tools/main/assets/icon320.png
+manifestUrl: https://github.com/dasilva333/webos-system-tools/releases/latest/download/manifest.json
+category: system
+pool: main
+shortDescription: Task Manager process viewer and 1-click Free Memory cache flusher
+
+description: |
+  System Tools is an all-in-one process manager and memory optimization suite for LG webOS TVs.
+
+  ### Features
+
+  * **Task Manager**: Interactive process viewer displaying active PIDs, app names, and per-process RSS memory consumption.
+  * **Individual Process Kill**: Terminate misbehaving or hung background applications with intuitive D-pad navigation.
+  * **Live RAM Gauge**: Real-time memory bar tracking used, free, and total system RAM with high-utilization warnings.
+  * **Free Memory Cleaner**: 1-click RAM cache flusher that drops system page caches and announces reclaimed MB via TV toast notification.
+  * **Companion Ribbon Tile**: Also installs the standalone "Free Memory" tile on your home ribbon for instant memory cleanup without opening a full UI.
