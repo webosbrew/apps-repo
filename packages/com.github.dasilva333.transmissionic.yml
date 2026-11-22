@@ -4,6 +4,8 @@ detailIconUri: https://raw.githubusercontent.com/dasilva333/webos-transmissionic
 manifestUrl: https://github.com/dasilva333/webos-transmissionic/releases/latest/download/manifest.json
 category: utility
 pool: main
+requirements:
+  webosRelease: '>=5.3'
 shortDescription: Modern, responsive Transmission BitTorrent remote manager
 
 screenshots:
