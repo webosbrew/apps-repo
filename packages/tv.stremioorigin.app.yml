@@ -1,0 +1,34 @@
+title: Stremio Origin
+iconUri: https://stremio-origin.github.io/webos/icon.png
+manifestUrl: https://stremio-origin.github.io/webos/api/apps/tv.stremioorigin.app/manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=3.0'
+description: |
+  # Stremio Origin
+
+  *Stremio&trade; is a trademark of its owner. This project is unofficial and is not
+  affiliated with, endorsed by, or sponsored by Stremio. The name is used only to describe
+  compatibility.*
+
+  A native TV app for Stremio addons, written in C, for LG webOS TVs (ARM).
+
+  You bring your own **Stremio account** and your own **addons**. The app ships empty and hosts
+  or indexes nothing: it plays only the stream links your addons return, and keeps your library
+  and watched history in sync with your account.
+
+  ## Features
+
+  - Home, Discover, Library and Search from your addons, with artwork and trailers
+  - The best stream for your TV and connection, picked in one press
+  - Styled subtitles and subtitle sync, DTS converted on the TV, Dolby Vision
+  - Torrent playback with an optional USB drive
+  - 11 languages, including right-to-left Arabic
+
+  Tested on webOS 4.4 so far. It should work on webOS 3 and later; reports are welcome.
+
+  ## Open source
+
+  GPL-3.0. Source, build scripts and the licences of every bundled component:
+  https://github.com/stremio-origin/webos

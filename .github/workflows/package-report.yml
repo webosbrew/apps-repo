@@ -33,7 +33,16 @@ jobs:
 
           artifacts_url=${{ github.event.workflow_run.artifacts_url }}
 
-          gh api "$artifacts_url" -q '.artifacts[] | [.name, .archive_download_url] | @tsv' | while read artifact
+          # A re-run keeps the artifacts of every earlier attempt, all under the same
+          # run ID and name, and the API has no attempt field. Take the newest live
+          # artifact of each name, so the report is the latest attempt's.
+          gh api --paginate "${artifacts_url}?per_page=100" -q '.artifacts[]' \
+            | jq -rs '
+                map(select(.expired | not))
+                | group_by(.name)
+                | map(max_by(.created_at))
+                | .[] | [.name, .archive_download_url] | @tsv' \
+            | while read artifact
           do
             IFS=$'\t' read name url <<< "$artifact"
             gh api "$url" > "$name.zip"
