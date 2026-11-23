@@ -4,7 +4,7 @@ detailIconUri: https://raw.githubusercontent.com/dasilva333/webos-storeplus/main
 manifestUrl: https://github.com/dasilva333/webos-storeplus/releases/latest/download/manifest.json
 category: utility
 pool: main
-shortDescription: Modern split-pane application explorer with GitHub popularity and category filters
+shortDescription: Modern split-pane app explorer with GitHub popularity and category filters
 
 screenshots:
   - https://raw.githubusercontent.com/dasilva333/webos-storeplus/main/assets/screenshot1.png
