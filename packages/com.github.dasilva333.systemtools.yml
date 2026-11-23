@@ -4,7 +4,7 @@ detailIconUri: https://raw.githubusercontent.com/dasilva333/webos-system-tools/m
 manifestUrl: https://github.com/dasilva333/webos-system-tools/releases/latest/download/manifest.json
 category: system
 pool: main
-shortDescription: Interactive process inspector and live system monitor with D-pad process termination
+shortDescription: Interactive process inspector and live system monitor with D-pad control
 
 screenshots:
   - https://raw.githubusercontent.com/dasilva333/webos-system-tools/main/assets/screenshot1.png
