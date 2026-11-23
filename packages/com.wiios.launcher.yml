@@ -1,6 +1,6 @@
 title: WiiOS
 iconUri: https://raw.githubusercontent.com/KaykCaputo/WiiOS-webOS/master/icon.png
-manifestUrl: https://github.com/KaykCaputo/WiiOS-webOS/releases/latest/download/com.wiios.launcher.manifest.json
+manifestUrl: https://github.com/KaykCaputo/WiiOS-webOS/releases/latest/download/com.wiios.launcher.homebrew.manifest.json
 category: launcher
 pool: main
 description: |
