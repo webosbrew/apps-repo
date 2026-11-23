@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/pulpoff/webos-tesseract/main/app/larg
 manifestUrl: https://github.com/pulpoff/webos-tesseract/releases/latest/download/com.pulp.tesseract.manifest.json
 category: game
 pool: main
+requirements:
+  webosRelease: '>=4.5'
 screenshots:
   - url: https://raw.githubusercontent.com/pulpoff/webos-tesseract/main/docs/screenshots/complex.jpg
     caption: complex, one of the included maps
