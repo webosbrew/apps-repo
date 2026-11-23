@@ -1,0 +1,20 @@
+title: Task Manager
+iconUri: https://raw.githubusercontent.com/dasilva333/webos-system-tools/main/assets/icon160.png
+detailIconUri: https://raw.githubusercontent.com/dasilva333/webos-system-tools/main/assets/icon320.png
+manifestUrl: https://github.com/dasilva333/webos-system-tools/releases/latest/download/manifest.json
+category: system
+pool: main
+shortDescription: Interactive process inspector and live system monitor with D-pad process termination
+
+screenshots:
+  - https://raw.githubusercontent.com/dasilva333/webos-system-tools/main/assets/screenshot1.png
+
+description: |
+  Task Manager is an interactive process viewer and system diagnostic utility for LG webOS TVs.
+
+  ### Features
+
+  * **Live Process Inspector**: View active background user applications, PIDs, and per-process RSS memory consumption in real time.
+  * **Remote D-Pad Process Termination**: Highlight any stuck, frozen, or leaking process and force-close it directly using the Magic Remote.
+  * **System Memory Bar**: Real-time memory gauge tracking used, free, and total system RAM with warning thresholds.
+  * **OLED Dark Aesthetic**: Designed specifically for comfortable viewing and clear contrast from the couch.
