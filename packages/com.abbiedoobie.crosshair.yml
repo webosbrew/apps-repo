@@ -1,0 +1,27 @@
+title: Crosshair Overlay
+iconUri: https://raw.githubusercontent.com/AbbieDoobie/webos-crosshair/main/assets/icon130.png
+manifestUrl: https://github.com/AbbieDoobie/webos-crosshair/releases/latest/download/com.abbiedoobie.crosshair.manifest.json
+category: utility
+pool: main
+shortDescription: Places a configurable crosshair over your TV
+description: |
+  A crosshair on top of whatever your TV is showing. Pick a shape, color, and size, and the crosshair sits over the picture.
+
+  Made for console and PC games that don't have a crosshair of their own (or only show one while aiming). Game Optimizer, VRR, ALLM, and HDR all stay on with it up, and by default it gets out of the way by itself when you go to Home or open an app.
+
+  ## Features
+
+  - 21 shapes, 11 color presets or any hue you want, and a separate brightness for HDR (the TV draws app graphics a LOT brighter over HDR).
+  - Move it anywhere on screen, for games whose aim point isn't dead center.
+  - Bind a remote button with [LG Input Hook](https://github.com/Simon34545/lginputhook): one press turns it on or off, and three quick presses open the settings.
+  - Comes on with the TV, if you want it to.
+  - Changing the look updates the crosshair live.
+
+  Remote button setup and technical details are in the [README](https://github.com/AbbieDoobie/webos-crosshair#readme).
+screenshots:
+  - url: https://raw.githubusercontent.com/AbbieDoobie/webos-crosshair/main/assets/screenshots/panel.png
+    caption: Settings panel, with the crosshair on
+  - url: https://raw.githubusercontent.com/AbbieDoobie/webos-crosshair/main/assets/screenshots/color.png
+    caption: Changing the color while the crosshair is on
+  - url: https://raw.githubusercontent.com/AbbieDoobie/webos-crosshair/main/assets/screenshots/preview.png
+    caption: Preview of a new shape while the crosshair is off
