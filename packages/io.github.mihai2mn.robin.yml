@@ -1,0 +1,29 @@
+title: Robin
+shortDescription: A web browser for the TV, driven with the remote.
+iconUri: https://raw.githubusercontent.com/mihai2mn/robin-webos/main/docs/screenshots/robin-icon.png
+manifestUrl: https://github.com/mihai2mn/robin-webos/releases/latest/download/io.github.mihai2mn.robin.manifest.json
+category: internet
+pool: main
+screenshots:
+  - url: https://raw.githubusercontent.com/mihai2mn/robin-webos/main/docs/screenshots/home.jpg
+    caption: Home page with search and shortcuts
+  - url: https://raw.githubusercontent.com/mihai2mn/robin-webos/main/docs/screenshots/browsing.jpg
+    caption: Browsing with the toolbar
+  - url: https://raw.githubusercontent.com/mihai2mn/robin-webos/main/docs/screenshots/video.jpg
+    caption: Video on the hardware decoder
+requirements:
+  webosRelease: "5"
+description: |
+  Robin is a web browser for rooted LG webOS TVs. It is driven with the remote: arrows move a pointer and scroll,
+  OK clicks, Back goes back.
+
+  It continues from [Wren](https://github.com/sostk/webos-wpe-browser) 0.3.3 by sostk, with:
+
+  - WPE WebKit 2.54.3, with the ARMv7 JavaScript JIT restored on 32-bit
+  - an ad blocker built on Brave's adblock-rust (network rules, scriptlets, cosmetic filters)
+  - hardware video for H.264 and VP9, with seeking and the remote's media keys
+  - a memory budget that fits the TV
+  - zoom remembered per site, bookmarks, history and tabs that come back after a restart
+
+  Tested on one TV, an LG CX on webOS 5.3. Needs root. The package is about 105 MB to download; leave about
+  400 MB free on the TV. It has its own app id and installs beside Wren.
