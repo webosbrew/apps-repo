@@ -22,8 +22,9 @@ description: |
   ## Private and safe
   - The TV talks straight to your own Home Assistant on your home network. There is no other server.
   - Sign in with a Home Assistant username and password; the password is never stored.
-  - Locks, alarms, doors, garage doors and gates are deliberately not supported, so nothing on
-    the TV can open your home.
+  - Locks, alarms, doors, garage doors and gates are deliberately not shown.
+  - An optional PIN lock keeps guests and children out. Turn it on if any of your switches,
+    buttons, scripts or scenes controls something sensitive.
 
   Works on webOS 4.0 and newer, and does not need root. Tested on an LG C9 (webOS 4.5).
 
