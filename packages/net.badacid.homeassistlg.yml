@@ -15,7 +15,7 @@ description: |
   ## Features
   - Lights (brightness and colour), switches and plugs, buttons, scenes and scripts
   - Heating, media players (such as Sonos), blinds and other safe covers, fans and robot vacuums
-  - Cameras as refreshing still pictures, and sensors
+  - Cameras (still pictures, and live view where Home Assistant offers it), and sensors
   - Rooms and names come straight from Home Assistant
   - Reorganise the layout: move cards and add pages
 
