@@ -1,0 +1,38 @@
+title: Home Assist LG
+iconUri: https://raw.githubusercontent.com/JayTee-2024/home-assistant-lg/main/webos/largeIcon.png
+manifestUrl: https://github.com/JayTee-2024/home-assistant-lg/releases/latest/download/net.badacid.homeassistlg.manifest.json
+category: utility
+pool: main
+shortDescription: Control your Home Assistant home with the TV remote.
+requirements:
+  webosRelease: '>=4.0'
+description: |
+  Control your [Home Assistant](https://www.home-assistant.io) home with the TV remote.
+
+  Choose which of your Home Assistant devices to show, and each one becomes a card on a grid with
+  pages: press OK to switch it on or off, or hold OK for all its controls.
+
+  ## Features
+  - Lights (brightness and colour), switches and plugs, buttons, scenes and scripts
+  - Heating, media players (such as Sonos), blinds and other safe covers, fans and robot vacuums
+  - Cameras as refreshing still pictures, and sensors
+  - Rooms and names come straight from Home Assistant
+  - Reorganise the layout: move cards and add pages
+
+  ## Private and safe
+  - The TV talks straight to your own Home Assistant on your home network. There is no other server.
+  - Sign in with a Home Assistant username and password; the password is never stored.
+  - Locks, alarms, doors, garage doors and gates are deliberately not supported, so nothing on
+    the TV can open your home.
+
+  Works on webOS 4.0 and newer, and does not need root. Tested on an LG C9 (webOS 4.5).
+
+  ## Source and help
+  https://github.com/JayTee-2024/home-assistant-lg
+screenshots:
+  - url: https://raw.githubusercontent.com/JayTee-2024/home-assistant-lg/main/docs/screenshots/home.png
+    caption: Home screen
+  - url: https://raw.githubusercontent.com/JayTee-2024/home-assistant-lg/main/docs/screenshots/media-player.png
+    caption: Controlling a Sonos speaker
+  - url: https://raw.githubusercontent.com/JayTee-2024/home-assistant-lg/main/docs/screenshots/about.png
+    caption: Settings, About
