@@ -3,6 +3,8 @@ iconUri: https://raw.githubusercontent.com/AbbieDoobie/webos-crosshair/main/asse
 manifestUrl: https://github.com/AbbieDoobie/webos-crosshair/releases/latest/download/com.abbiedoobie.crosshair.manifest.json
 category: utility
 pool: main
+requirements:
+  webosRelease: '>=3.0'
 shortDescription: Places a configurable crosshair over your TV
 description: |
   A crosshair on top of whatever your TV is showing. Pick a shape, color, and size, and the crosshair sits over the picture.
