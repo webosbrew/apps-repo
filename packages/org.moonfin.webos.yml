@@ -1,9 +1,9 @@
 title: Moonfin
-iconUri: https://raw.githubusercontent.com/Moonfin-Client/Smart-TV/main/packages/build-webos/webos-meta/icon-130.png
+iconUri: iconUri: https://raw.githubusercontent.com/Moonfin-Client/Smart-TV/main/packaging/webos/icon-130.png
 manifestUrl: https://github.com/Moonfin-Client/Smart-TV/releases/latest/download/org.moonfin.webos.manifest.json
 category: multimedia
 pool: main
 requirements:
   webosRelease: '>=5.0'
 description: |
-  Moonfin is an enhanced Jellyfin client for LG Smart TVs supporting webOS 3+
+  Moonfin is a premium client for Jellyfin, Emby, Plex, and Silo for LG Smart TVs supporting webOS 3+
