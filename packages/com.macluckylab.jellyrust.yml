@@ -11,11 +11,11 @@ pool: main
 shortDescription: A native Jellyfin client for LG webOS TVs with the look of Litefin
 
 screenshots:
-  - url: https://raw.githubusercontent.com/mac-lucky/jellyrust/v0.11.0/docs/screenshots/jellyrust/home.jpg
+  - url: https://raw.githubusercontent.com/mac-lucky/jellyrust/v0.12.0/docs/screenshots/jellyrust/home.jpg
     caption: Home
-  - url: https://raw.githubusercontent.com/mac-lucky/jellyrust/v0.11.0/docs/screenshots/jellyrust/detail.jpg
+  - url: https://raw.githubusercontent.com/mac-lucky/jellyrust/v0.12.0/docs/screenshots/jellyrust/detail.jpg
     caption: A film's page
-  - url: https://raw.githubusercontent.com/mac-lucky/jellyrust/v0.11.0/docs/screenshots/jellyrust/player.jpg
+  - url: https://raw.githubusercontent.com/mac-lucky/jellyrust/v0.12.0/docs/screenshots/jellyrust/player.jpg
     caption: Playback
 
 requirements:
@@ -37,11 +37,11 @@ description: |
 
   **Scope - please read before installing**
 
-  * **Video playback is verified on one television:** an LG C1 (2021) on webOS 6.5.3. On every other firmware from webOS 4.0 up the app is only known to pass a static compatibility check. If you try it on another set, please [report what happened](https://github.com/mac-lucky/jellyrust/issues), whether it worked or not.
+  * **Video playback is verified on two televisions:** an LG C1 (2021) on webOS 6.5.3 and an LG C5 (2025) on webOS 10.3.1. On every other firmware from webOS 4.0 up the app is only known to pass a static compatibility check. If you try it on another set, please [report what happened](https://github.com/mac-lucky/jellyrust/issues), whether it worked or not.
   * **Movies and TV shows only.** No music, photos or live TV.
   * **Never type a password into the app:** it logs typed text on the TV. Sign in with Quick Connect.
 
-  No telemetry: crash reporting and usage analytics cannot be compiled in, and the only server the app talks to is yours.
+  No telemetry: the app contains no crash-reporting or analytics code, and the only server it talks to is yours.
 
   Screenshots show openly licensed films from the Blender Foundation and others, credited in [CREDITS.md](https://github.com/mac-lucky/jellyrust/blob/main/docs/screenshots/CREDITS.md).
 
