@@ -1,5 +1,3 @@
-# Draft entry for webosbrew/apps-repo (packages/com.viiees.mytvlauncher.yml). Submit it as a PR there
-# only after this repository is public: the channel's lint rejects an iconUri that does not answer 200.
 title: myTV
 iconUri: https://raw.githubusercontent.com/ViieeS/mytvlauncher/main/package/icon160.png
 detailIconUri: https://raw.githubusercontent.com/ViieeS/mytvlauncher/main/package/icon320.png
@@ -35,7 +33,7 @@ description: |
   * Bundled public-domain paintings as wallpapers, night dimming
   * Photo screensaver and StandBy clock faces
   * Date, time and weather for a chosen city
-  * On rooted TVs, the Home button opens myTV
+  * On rooted TVs, the Home button opens myTV and remote app buttons open any app
 
   Tested on an LG OLED C1 (webOS 6.5.3). Root access is not required for basic functionality. On
   rooted TVs, myTV can replace the default Home screen; Screen off and Start screensaver need root
