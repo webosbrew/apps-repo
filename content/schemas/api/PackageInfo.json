@@ -39,6 +39,9 @@
     "requirements": {
       "$ref": "../packages/PackageInfo.json#/properties/requirements"
     },
+    "category": {
+      "$ref": "../packages/PackageInfo.json#/properties/category"
+    },
     "screenshots": {
       "type": "array",
       "description": "Screenshots of the app, in display order. Absent when the package lists none.",

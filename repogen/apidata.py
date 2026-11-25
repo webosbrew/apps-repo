@@ -17,7 +17,7 @@ from repogen.pkg_info import PackageInfo
 from repogen.siteurl import siteurl
 
 MANIFEST_KEYS = ('id', 'title', 'iconUri', 'manifestUrl', 'manifest', 'manifestUrlBeta', 'manifestBeta', 'pool',
-                 'detailIconUri', 'requirements', 'screenshots')
+                 'detailIconUri', 'requirements', 'screenshots', 'category')
 
 
 def fix_manifest_url(item: PackageInfo, app_dir: Path):
