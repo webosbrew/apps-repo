@@ -1,5 +1,5 @@
 title: Moonfin
-iconUri: iconUri: https://raw.githubusercontent.com/Moonfin-Client/Smart-TV/main/packaging/webos/icon-130.png
+iconUri: https://raw.githubusercontent.com/Moonfin-Client/Smart-TV/main/packaging/webos/icon-130.png
 manifestUrl: https://github.com/Moonfin-Client/Smart-TV/releases/latest/download/org.moonfin.webos.manifest.json
 category: multimedia
 pool: main
