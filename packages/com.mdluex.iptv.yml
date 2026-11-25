@@ -5,10 +5,18 @@ category: multimedia
 pool: non-free
 # Written for Chromium 76+ (verified on Samsung Tizen 6.0); webOS 6.0 ships Chromium 79
 screenshots:
-  - url: https://mdluex.github.io/mdluex-iptv/lg/screen-movies.png
-    caption: Movies with categories and counts
-  - url: https://mdluex.github.io/mdluex-iptv/channel-videos-tab.png
-    caption: The Mdluex Industries YouTube channel inside the app
+  - url: https://mdluex.github.io/mdluex-iptv/screens/home.png
+    caption: Home: featured video, your channel and new movies
+  - url: https://mdluex.github.io/mdluex-iptv/screens/movies.png
+    caption: Movies by category, with counts
+  - url: https://mdluex.github.io/mdluex-iptv/screens/movie-details.png
+    caption: Movie details with Play and My List
+  - url: https://mdluex.github.io/mdluex-iptv/screens/series-details.png
+    caption: Series with seasons and episodes
+  - url: https://mdluex.github.io/mdluex-iptv/screens/live-tv.png
+    caption: Live TV with channel list and TV guide
+  - url: https://mdluex.github.io/mdluex-iptv/screens/youtube-channel.png
+    caption: The Mdluex Industries YouTube channel
 requirements:
   webosRelease: '>=6.0'
 description: |
