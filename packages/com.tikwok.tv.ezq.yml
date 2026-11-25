@@ -1,0 +1,9 @@
+title: TikWok TV
+iconUri: https://raw.githubusercontent.com/EZQ-ER/TikWok-TV/main/usr/palm/applications/com.tikwok.tv.ezq/icon.png
+manifestUrl: https://github.com/EZQ-ER/TikWok-TV/releases/download/Stable/com.tikwok.tv.ezq.manifest.json
+category: multimedia
+pool: non-free
+description: |
+  TikWok TV is an unofficial third-party short-video viewer for LG webOS TVs, designed for remote-control use. It has a lightweight one-video-at-a-time player and a TV-style menu. MIT licensed.
+
+  Source: https://github.com/EZQ-ER/TikWok-TV
