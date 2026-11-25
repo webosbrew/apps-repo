@@ -1,0 +1,52 @@
+title: Pylon
+iconUri: https://raw.githubusercontent.com/Native-Webos/vplayer/main/app/packaging/icon160.png
+detailIconUri: https://raw.githubusercontent.com/Native-Webos/vplayer/main/app/packaging/icon320.png
+manifestUrl: https://github.com/Native-Webos/vplayer/releases/latest/download/com.sostk.vplayer.manifest.json
+category: multimedia
+pool: main
+
+# Max 80 characters.
+shortDescription: VLC's playback engine as a native webOS app, driven by the remote
+
+screenshots:
+  - url: https://raw.githubusercontent.com/Native-Webos/vplayer/main/app/packaging/screenshots/home.jpg
+    caption: Home
+  - url: https://raw.githubusercontent.com/Native-Webos/vplayer/main/app/packaging/screenshots/network.jpg
+    caption: Network shares and streams
+  - url: https://raw.githubusercontent.com/Native-Webos/vplayer/main/app/packaging/screenshots/player.jpg
+    caption: Playback
+
+requirements:
+  # Startup bound only: the firmware symbol check of the release package (7 images, webOS 5.3 to 11.2).
+  webosRelease: '>=5.3'
+
+description: |
+  Pylon brings VLC's playback engine (libVLC 3.0.24) to LG webOS televisions as a native app, used
+  entirely with the remote's arrows, OK and Back.
+
+  Video goes to the television's own decoder when it can (H.264, HEVC, VP9 and AV1 up to 4K, HDR10,
+  Dolby Vision profiles 8.1 and 7); everything else plays through VLC's own decoders.
+
+  **What it does**
+
+  * Plays from USB drives, SMB 2/3 shares (sign-ins can be saved), DLNA servers, FTP and SFTP
+  * HTTP(S) and HLS streams, and M3U, PLS and XSPF playlists, IPTV lists with channel logos included
+  * DVD images and VIDEO_TS folders with their menus
+  * Subtitles: SubRip, styled ASS, WebVTT, PGS, DVD and DVB pictures, teletext subtitles, CEA-608 and
+    CEA-708 captions; files beside the video or on a share; downloads from OpenSubtitles with your own
+    free API key
+  * Chapters, titles, speed 0.25–4×, A-B repeat, sleep timer, bookmarks and resume, frame by frame
+  * Aspect, zoom, crop, rotate; audio and subtitle delay; equalizer and other audio effects
+
+  **Scope, please read before installing**
+
+  * Tested on one television: an LG C1 (OLED65C1) on webOS 6.5.3. On other firmware from webOS 5.3 up
+    the package is only known to load. Please report what happens on yours, whether it works or not.
+  * Not yet checked on a television: Blu-ray menus, NFS, WebDAV, DASH, RTSP and multicast streams;
+    the audio effects have not been judged by ear. SMB 1 shares are not supported.
+  * Installs without root (Developer Mode is enough).
+
+  Pylon uses libVLC (LGPL) and is not affiliated with, endorsed by or sponsored by VideoLAN or LG
+  Electronics. "VLC" is a trademark of VideoLAN.
+
+  Source, release notes and issues: https://github.com/Native-Webos/vplayer
