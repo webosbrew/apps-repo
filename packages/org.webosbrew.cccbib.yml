@@ -1,7 +1,7 @@
 title: CCCBib
 iconUri: https://raw.githubusercontent.com/volkovmqx/cccbib/main/assets/icon130.png
 manifestUrl: https://github.com/volkovmqx/cccbib/releases/latest/download/org.webosbrew.cccbib.manifest.json
-category: multimedia
+category: streaming
 pool: main
 requirements:
   webosRelease: '>=4.0'

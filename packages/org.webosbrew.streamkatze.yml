@@ -1,7 +1,7 @@
 title: streamkatze
 iconUri: https://raw.githubusercontent.com/informatic/streamkatze/main/assets/icon130.png
 manifestUrl: https://github.com/informatic/streamkatze/releases/latest/download/org.webosbrew.streamkatze.manifest.json
-category: multimedia
+category: streaming
 pool: main
 requirements:
   webosRelease: '>=4.0'

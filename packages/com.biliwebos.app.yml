@@ -1,7 +1,7 @@
 title: BiliTV
 iconUri: https://raw.githubusercontent.com/asdf17128/bili-webos/main/app/webos-meta/largeIcon.png
 manifestUrl: https://github.com/asdf17128/bili-webos/releases/latest/download/com.biliwebos.app.manifest.json
-category: multimedia
+category: streaming
 pool: main
 requirements:
   webosRelease: '>=5.0'

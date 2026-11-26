@@ -2,6 +2,7 @@ title: Aerial Screensaver
 iconUri: https://raw.githubusercontent.com/aabytt/custom-screensaver-aerial/main/assets/icon130.png
 manifestUrl: https://github.com/aabytt/custom-screensaver-aerial/releases/latest/download/org.aabytt.webos.custom-screensaver-aerial.manifest.json
 category: screensaver
+group: aerial-screensaver
 pool: main
 requirements:
   webosRelease: '>=5.0'

@@ -1,0 +1,48 @@
+{# Tiles shared by the homepage shelves and the /apps grid. Import with context so SITEURL resolves:
+   {% import 'tiles.html' as tiles with context %} #}
+
+{% macro app_tile(package, attrs='') -%}
+<a href="{{ SITEURL }}/apps/{{ package.id }}/" class="shelf-card text-decoration-none text-body"{{ attrs }}>
+    <div class="shelf-thumb">
+        <img src="{{ package.iconUri }}" class="rounded-4 shelf-icon" alt="{{ package.title }}" loading="lazy">
+        {% if package.pool == 'non-free' %}
+        <span class="badge text-bg-primary position-absolute bottom-0 end-0">Non-free</span>
+        {% endif %}
+    </div>
+    <div class="fw-medium text-truncate">{{ package.title }}</div>
+</a>
+{%- endmacro %}
+
+{# One tile for a group of look-alike apps: the lead's icon on a stack of cards. A button, not a
+   link: it unfolds the group's panel (group_panel below) in place. #}
+{% macro group_tile(group, attrs='') -%}
+<button type="button" class="shelf-card group-tile text-body" data-group="{{ group.slug }}"
+        aria-expanded="false" aria-controls="group-panel-{{ group.slug }}"{{ attrs }}>
+    <span class="shelf-thumb group-stack">
+        <img src="{{ group.lead.iconUri }}" class="rounded-4 shelf-icon" alt="" loading="lazy">
+        <span class="group-count badge rounded-pill" aria-hidden="true">+{{ group.members|length - 1 }}</span>
+    </span>
+    <span class="d-block fw-medium text-truncate">{{ group.title }}</span>
+    <span class="visually-hidden">, {{ group.members|length }} apps</span>
+</button>
+{%- endmacro %}
+
+{# The recessed panel a group tile opens. Rendered once per group, hidden; the group-panel script
+   moves it in after the row holding the tile. #}
+{% macro group_panel(group) -%}
+<section class="group-panel" id="group-panel-{{ group.slug }}" data-group-panel="{{ group.slug }}"
+         aria-label="{{ group.title }}" hidden>
+    <div class="group-panel-clip">
+    <span class="group-panel-notch" aria-hidden="true"></span>
+    <div class="group-panel-surface">
+        <div class="group-panel-header">
+            <h2 class="h6 mb-0">{{ group.title }}</h2>
+            <span class="small text-body-secondary">{{ group.members|length }} apps</span>
+        </div>
+        <div class="app-grid">
+            {% for package in group.members %}{{ app_tile(package) }}{% endfor %}
+        </div>
+    </div>
+    </div>
+</section>
+{%- endmacro %}

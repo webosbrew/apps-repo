@@ -11,7 +11,7 @@ detailIconUri: https://raw.githubusercontent.com/GLinnik21/plx-native/main/pkg/i
 # `prerelease` precisely because either would exclude the release from `latest` and break this URL.
 manifestUrl: https://github.com/GLinnik21/plx-native/releases/latest/download/com.beb.plxnative.manifest.json
 
-category: multimedia
+category: homemedia
 pool: main
 
 # Max 80 characters (schema-enforced).
@@ -68,16 +68,6 @@ description: |
     </strong>
   </p>
 
-  ## Screenshots
-
-  ![Home](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/home.jpg)
-
-  ![Library](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/library.jpg)
-
-  ![Search](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/search.jpg)
-
-  ![Player](https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/player.jpg)
-
   ## Features
 
   * Sign in with an on-screen QR code and choose a Plex Home profile
@@ -98,3 +88,12 @@ description: |
 
   PlxNative is an unofficial, third-party client. It is not affiliated with, endorsed by, or
   sponsored by Plex GmbH, Plex, Inc. or LG Electronics.
+screenshots:
+  - url: https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/home.jpg
+    caption: Home
+  - url: https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/library.jpg
+    caption: Library
+  - url: https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/search.jpg
+    caption: Search
+  - url: https://raw.githubusercontent.com/GLinnik21/plx-native/main/docs/screenshots/player.jpg
+    caption: Player

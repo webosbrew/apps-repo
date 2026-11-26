@@ -1,7 +1,8 @@
 title: Crunchyroll Stream
 iconUri: https://raw.githubusercontent.com/ediaz23/crunchyroll-webos-stream/master/webos-meta/icon-large.png
 manifestUrl: https://github.com/ediaz23/crunchyroll-webos-stream/releases/latest/download/org.webosbrew.manifest.json
-category: multimedia
+category: streaming
+group: crunchyroll
 pool: main
 requirements:
   webosRelease: '>=5.0'

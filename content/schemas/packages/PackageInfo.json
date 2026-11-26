@@ -24,6 +24,11 @@
     "category": {
       "$ref": "Category.json"
     },
+    "group": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Slug of a group in conf/groups.yml, for an app that is one of several look-alikes (such as Jellyfin clients). The site shows a group as one tile that unfolds to its members"
+    },
     "description": {
       "type": "string",
       "description": "Markdown/HTML formatted description"

@@ -1,0 +1,22 @@
+# Groups of look-alike apps. A package joins one with `group: <slug>` in its own YAML.
+# On the site a group shows as one tile, the lead's, which unfolds to the other members
+# in alphabetical order. All members must share a category.
+#
+# title: the group's name on the site.
+# lead: the package ID whose tile stands for the group. It is chosen here, not by
+#       the packages, and must itself be a member.
+- slug: jellyfin
+  title: Jellyfin clients
+  lead: org.jellyfin.webos
+- slug: immich
+  title: Immich clients
+  lead: com.immich.webos
+- slug: crunchyroll
+  title: Crunchyroll clients
+  lead: com.crunchyroll.webos
+- slug: twitch
+  title: Twitch clients
+  lead: com.tbsniller.smarttwitchwebostv
+- slug: aerial-screensaver
+  title: Aerial screensavers
+  lead: org.aabytt.webos.custom-screensaver-aerial

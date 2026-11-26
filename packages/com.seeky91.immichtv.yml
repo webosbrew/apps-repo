@@ -2,7 +2,8 @@ title: Immich TV
 iconUri: https://raw.githubusercontent.com/Seeky91/immich-tv-webos/main/assets/icon-store.png
 detailIconUri: https://raw.githubusercontent.com/Seeky91/immich-tv-webos/main/assets/icon-source.png
 manifestUrl: https://github.com/Seeky91/immich-tv-webos/releases/latest/download/manifest.json
-category: multimedia
+category: homemedia
+group: immich
 pool: main
 requirements:
   webosRelease: '>=5.0'

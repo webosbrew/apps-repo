@@ -11,7 +11,7 @@ import yaml
 from markdown import Markdown
 from markdown.treeprocessors import Treeprocessor
 
-from repogen import pkg_info, report, screenshots, validators
+from repogen import conf, pkg_info, report, screenshots, validators
 from repogen.common import EXIT_OK, EXIT_PACKAGE_PROBLEM, EXIT_TOOL_PROBLEM
 from repogen.pkg_info import PackageInfo
 
@@ -195,6 +195,24 @@ class PackageInfoLinter:
         errors.append(message)
 
     @staticmethod
+    def _check_id_segments(info: PackageInfo, new_package: bool, errors: List[str], warnings: List[str]):
+        """A package id needs at least three dot-separated segments (`com.example.app`).
+
+        webOS OSE and LuneOS refuse to install an app whose id has fewer.
+        Like the namespace rule, only new packages fail: renaming a listed one would
+        orphan every TV that has it installed."""
+        pkgid = info.get('id', '')
+        if not pkgid or len(pkgid.split('.')) >= 3:
+            return
+        message = (f'`{pkgid}` has fewer than three segments. Package ids need at least three, '
+                   f'e.g. `com.github.<username>.<app>`: webOS OSE and LuneOS refuse to install apps with shorter ids.')
+        if not new_package:
+            warnings.append(message + ' It predates this rule, so it keeps the id it is already installed under.')
+            return
+        errors.append(message + ' The id must be changed in the app itself (appinfo.json) and its manifest, '
+                                'not just in this file.')
+
+    @staticmethod
     def _check_screenshots(info: PackageInfo, warnings: List[str]):
         """Screenshots are suggested, not required, so their absence is only a warning.
 
@@ -236,6 +254,28 @@ class PackageInfoLinter:
                     self.errors.append('Use HTTPS URL for %s' % report.as_code(src))
             return None
 
+    @staticmethod
+    def _check_group(info: PackageInfo, errors: List[str]):
+        """A `group` must name a group in conf/groups.yml, and a package joins a group in
+        the category its lead is in. The site build checks the whole catalogue; this
+        catches a submission's mistake in its own PR."""
+        slug = info.get('group', None)
+        if slug is None:
+            return
+        group = next((g for g in conf.groups() if g['slug'] == slug), None)
+        if group is None:
+            errors.append(f'`group: {slug}` is not a group in conf/groups.yml. Use an existing group, '
+                          f'or leave `group` out and ask the maintainers to add one.')
+            return
+        lead_file = Path(__file__, '..', '..', 'packages', f'{group["lead"]}.yml').resolve()
+        if group['lead'] == info.get('id') or not lead_file.is_file():
+            return
+        with lead_file.open(encoding='utf-8') as f:
+            lead_category = (yaml.safe_load(f) or {}).get('category')
+        if lead_category and info.get('category') != lead_category:
+            errors.append(f'Group `{slug}` is in category `{lead_category}`; set `category: {lead_category}` '
+                          f'to join it.')
+
     def lint(self, info: PackageInfo, new_package: bool = False,
              skipped: Optional[List[str]] = None) -> Tuple[List[str], List[str]]:
         """Lint `info`. `new_package` marks a package being added by this change, which
@@ -273,10 +313,13 @@ class PackageInfoLinter:
 
         # Process manifest
         self._check_id_namespace(info, new_package, errors, warnings, skipped)
+        self._check_id_segments(info, new_package, errors, warnings)
 
         self._check_source_license(info, errors, warnings, skipped)
 
         self._check_screenshots(info, warnings)
+
+        self._check_group(info, errors)
 
         description = info.get('description', '')
         if isinstance(description, str):
