@@ -13,14 +13,17 @@
 {% set featured = page.metadata.featured %}
 {% set multiple = featured|length > 1 %}
 <div class="container py-4">
-    <div id="featured-carousel" class="carousel slide carousel-fade"
-         {% if multiple %}data-bs-ride="carousel" data-bs-interval="6000"{% endif %}>
+    {# Rotation is started by the script at the end of this page, not data-bs-ride, so it can be
+       paused (button, hover, keyboard focus) and skipped under reduced motion. #}
+    <section id="featured-carousel" class="carousel slide carousel-fade"
+             aria-roledescription="carousel" aria-label="Featured apps">
         <div class="carousel-inner rounded-4">
             {% for package in featured %}
-            <div class="carousel-item{% if loop.first %} active{% endif %}">
+            <div class="carousel-item{% if loop.first %} active{% endif %}" role="group"
+                 aria-roledescription="slide" aria-label="{{ loop.index }} of {{ featured|length }}">
                 <div class="card border-0 rounded-4 overflow-hidden hero-banner">
                     <div class="card-body p-4 p-md-5">
-                        <div class="row align-items-center g-4 flex-column flex-sm-row flex-grow-1">
+                        <div class="row align-items-center justify-content-center g-4 flex-column flex-sm-row flex-grow-1">
                             <div class="col-auto">
                                 <img src="{{ package.iconUri }}" width="104" height="104" class="rounded-4"
                                      alt="{{ package.title }}">
@@ -43,14 +46,18 @@
             {% endfor %}
         </div>
         {% if multiple %}
-        <div class="carousel-indicators">
-            {% for package in featured %}
-            <button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="{{ loop.index0 }}"
-                    {% if loop.first %}class="active" aria-current="true"{% endif %} aria-label="{{ package.title }}"></button>
-            {% endfor %}
+        <div class="carousel-controls">
+            <div class="carousel-indicators">
+                {% for package in featured %}
+                <button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="{{ loop.index0 }}"
+                        {% if loop.first %}class="active" aria-current="true"{% endif %} aria-label="{{ package.title }}"></button>
+                {% endfor %}
+            </div>
+            <button type="button" class="carousel-pause" aria-label="Pause slideshow">
+                <i class="bi bi-pause-fill" aria-hidden="true"></i></button>
         </div>
         {% endif %}
-    </div>
+    </section>
 </div>
 {% endif %}
 
@@ -121,6 +128,37 @@
 
 {% block scripts %}
 {% include 'group-panel-script.html' %}
+<script>
+    // Featured carousel rotation. Bootstrap's own ride/hover handling is off; rotation runs only
+    // while the user hasn't paused it, no mouse is over it and keyboard focus isn't inside it.
+    // Under reduced motion it starts paused: the play button, indicators and swipe still work.
+    (function () {
+        var el = document.getElementById('featured-carousel');
+        var btn = el && el.querySelector('.carousel-pause');
+        if (!btn || !window.bootstrap) return;
+        var carousel = bootstrap.Carousel.getOrCreateInstance(el, { interval: 6000, ride: false, pause: false, touch: true });
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+        var userPaused = reduce.matches, hovered = false, focused = false, running = false;
+        function update() {
+            var run = !userPaused && !hovered && !focused;
+            if (run !== running) { running = run; if (run) carousel.cycle(); else carousel.pause(); }
+            btn.setAttribute('aria-label', userPaused ? 'Play slideshow' : 'Pause slideshow');
+            btn.firstElementChild.className = userPaused ? 'bi bi-play-fill' : 'bi bi-pause-fill';
+        }
+        btn.addEventListener('click', function () {
+            userPaused = !userPaused;
+            focused = false; // an explicit play wins over the focus pause until focus moves again
+            update();
+        });
+        el.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { hovered = true; update(); } });
+        el.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') { hovered = false; update(); } });
+        // Keyboard focus only: a mouse click on a dot or the button doesn't count.
+        el.addEventListener('focusin', function (e) { if (e.target.matches(':focus-visible')) { focused = true; update(); } });
+        el.addEventListener('focusout', function (e) { if (!el.contains(e.relatedTarget)) { focused = false; update(); } });
+        reduce.addEventListener('change', function () { if (reduce.matches) { userPaused = true; update(); } });
+        update();
+    })();
+</script>
 <script>
     // Shrink the right-edge fade as a shelf nears its end; hide it when there's no overflow.
     (function () {

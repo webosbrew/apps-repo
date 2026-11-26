@@ -72,21 +72,42 @@
     .hero-banner { background:
         radial-gradient(120% 140% at 85% -20%, rgba(207,6,82,.35), transparent 60%),
         linear-gradient(120deg, #1b1420, #141419); }
-    /* Featured carousel: from sm up (icon and text side by side) height is fixed by
-       aspect ratio, so it changes only with the viewport, not slide content. On xs the
-       content stacks, so height is left auto to avoid clipping the button. */
+    /* Featured carousel: all slides share one grid cell, inactive ones invisible rather than
+       display:none, so the carousel is always as tall as its tallest slide and never changes
+       height as it rotates. Each slide's content is centred vertically in that height. From sm
+       up (icon and text side by side) the height comes from the aspect ratio below. */
+    #featured-carousel .carousel-inner { display: grid; }
+    #featured-carousel .carousel-item { display: block; grid-area: 1 / 1; float: none;
+        margin-right: 0; visibility: hidden; }
+    #featured-carousel .carousel-item:is(.active, .carousel-item-next, .carousel-item-prev) { visibility: visible; }
+    #featured-carousel .carousel-item > .card { height: 100%; }
     @media (min-width: 576px) { #featured-carousel .carousel-item .card { aspect-ratio: 5 / 2; } }
     @media (min-width: 768px) { #featured-carousel .carousel-item .card { aspect-ratio: 3 / 1; } }
     @media (min-width: 992px) { #featured-carousel .carousel-item .card { aspect-ratio: 7 / 2; } }
     @media (min-width: 1200px) { #featured-carousel .carousel-item .card { aspect-ratio: 4 / 1; } }
     #featured-carousel .carousel-item .card-body {
         display: flex; flex-direction: column; justify-content: center; }
-    /* Indicators sit below the banner (outside the card) so they never overlap the CTA. */
-    #featured-carousel .carousel-indicators { position: static; margin: .75rem 0 0; }
+    /* Stacked (xs), the text column must not grow down the slide, or it takes the spare height
+       and the content sits at the top instead of centred. */
+    @media (max-width: 575.98px) { #featured-carousel .carousel-item .row > .col { flex: 0 0 auto; } }
+    /* Indicators and the pause button sit below the banner (outside the card). Each dot is a
+       24px target (transparent border, fill clipped to the 10px dot); the current one is also
+       larger, not only brighter. */
+    #featured-carousel .carousel-controls { display: flex; justify-content: center; align-items: center;
+        gap: .5rem; margin-top: .5rem; }
+    #featured-carousel .carousel-indicators { position: static; margin: 0; }
     #featured-carousel .carousel-indicators [data-bs-target] {
-        width: 10px; height: 10px; border-radius: 50%; border: 0;
-        margin: 0 5px; background-color: #fff; opacity: .4; transition: opacity .2s ease; }
-    #featured-carousel .carousel-indicators .active { opacity: 1; }
+        box-sizing: content-box; width: 10px; height: 10px; margin: 0; padding: 0;
+        border: 7px solid transparent; border-radius: 50%; background-clip: padding-box;
+        background-color: #fff; opacity: .4; transition: opacity .2s ease, transform .2s ease; }
+    #featured-carousel .carousel-indicators .active { opacity: 1; transform: scale(1.3); }
+    #featured-carousel .carousel-pause { display: grid; place-items: center; width: 2rem; height: 2rem;
+        padding: 0; border: 1px solid rgba(255, 255, 255, .3); border-radius: 50%;
+        background: transparent; color: #fff; font-size: 1rem; line-height: 1; }
+    #featured-carousel .carousel-pause:hover { background: rgba(255, 255, 255, .1); }
+    #featured-carousel .carousel-pause:focus-visible,
+    #featured-carousel .carousel-indicators [data-bs-target]:focus-visible {
+        outline: 2px solid var(--bs-primary); outline-offset: 2px; }
     .cta-icon { width: 48px; height: 48px; display: grid; place-items: center;
         background: rgba(207,6,82,.15); color: #ef2f7e; border-radius: 12px; }
     /* Amber accent (website-ng yellow-500) for the "Have an app idea?" card. */
