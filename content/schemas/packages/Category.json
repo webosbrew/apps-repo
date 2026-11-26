@@ -5,8 +5,16 @@
   "type": "string",
   "anyOf": [
     {
+      "const": "homemedia",
+      "description": "Client for a media server the user runs themselves (Jellyfin, Plex, Immich, TVHeadend, etc.)"
+    },
+    {
+      "const": "streaming",
+      "description": "Client for an online streaming service (video platforms, live streams, etc.)"
+    },
+    {
       "const": "multimedia",
-      "description": "Application for presenting, creating, or processing multimedia (audio/video)"
+      "description": "Application for presenting, creating, or processing multimedia (audio/video) that is neither a home media nor a streaming service client"
     },
     {
       "const": "game",

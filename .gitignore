@@ -152,3 +152,10 @@ cache/
 .pydevproject
 .settings/
 /.mcp.json
+
+# Local scratch space (review checkouts, test builds)
+/tmp/
+
+# Claude Code: agent worktrees and personal settings (shared .claude/settings.json stays trackable)
+/.claude/worktrees/
+/.claude/settings.local.json

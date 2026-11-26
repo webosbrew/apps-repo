@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://repo.webosbrew.org/schemas/conf/Groups.json",
+  "title": "Groups",
+  "description": "Groups of look-alike apps that packages join with `group` (conf/groups.yml)",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["slug", "title", "lead"],
+    "properties": {
+      "slug": {"$ref": "../packages/PackageInfo.json#/properties/group"},
+      "title": {"type": "string", "minLength": 1, "description": "The group's name on the site"},
+      "lead": {"type": "string", "minLength": 1, "description": "ID of the member whose tile stands for the group"}
+    }
+  }
+}

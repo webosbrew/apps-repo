@@ -1,0 +1,132 @@
+{# Group panels, shared by the homepage shelves and the /apps grid. A group tile
+   (button[data-group], see tiles.html) unfolds its panel (#group-panel-<slug>): the panel is
+   moved in after opts.anchorFor(tile) - the last tile of the tile's row - and it animates open
+   (grid rows 0fr -> 1fr), so whatever follows slides down. One panel is open at a time.
+   ?group=<slug> in the URL opens that group on load, and follows the open panel. #}
+<script>
+    window.initGroupPanels = function (root, opts) {
+        var current = null; // { tile, panel } of the open group
+
+        function panelFor(tile) { return document.getElementById(tile.getAttribute('aria-controls')); }
+        function tileFor(slug) {
+            return Array.prototype.slice.call(root.querySelectorAll('button[data-group]'))
+                .filter(function (t) { return t.dataset.group === slug; })[0];
+        }
+        function setParam(slug) {
+            var url = new URL(window.location.href);
+            if (slug) url.searchParams.set('group', slug); else url.searchParams.delete('group');
+            history.replaceState(history.state, '', url);
+        }
+        // Put the panel after the tile's row. The panel is taken out of the flow while the row is
+        // measured, so a resize that widens the row is seen.
+        function place(tile, panel) {
+            var wasHidden = panel.hidden;
+            panel.hidden = true;
+            var anchor = opts.anchorFor(tile);
+            if (anchor.nextElementSibling !== panel) anchor.after(panel);
+            panel.hidden = wasHidden;
+        }
+        // Point the notch at the tile's icon, kept inside the panel when the tile scrolls away.
+        function aim() {
+            if (!current) return;
+            var t = current.tile.querySelector('.shelf-thumb').getBoundingClientRect();
+            // Relative to the notch's containing block (the clip, which bleeds past the panel).
+            var p = current.panel.querySelector('.group-panel-notch').offsetParent.getBoundingClientRect();
+            // 32px: half the notch plus the surface's corner radius.
+            var x = Math.max(32, Math.min(p.width - 32, t.left + t.width / 2 - p.left));
+            current.panel.style.setProperty('--notch-x', x + 'px');
+        }
+        // Run fn once the transitions the last class change started have finished; under
+        // reduced motion there are none and it runs straight away.
+        function afterTransitions(el, fn) {
+            var running = el.getAnimations().filter(function (a) { return a instanceof CSSTransition; });
+            Promise.allSettled(running.map(function (a) { return a.finished; })).then(fn);
+        }
+        function show(tile, animate) {
+            var panel = panelFor(tile);
+            place(tile, panel);
+            if (!animate) panel.classList.add('no-anim');
+            panel.hidden = false;
+            current = { tile: tile, panel: panel };
+            aim();
+            // Commit the closed state (0fr) before opening, even when the panel was only just
+            // moved or unhidden, so the browser has a start value to transition from.
+            void getComputedStyle(panel).gridTemplateRows;
+            void panel.offsetHeight;
+            panel.classList.add('is-open');
+            tile.setAttribute('aria-expanded', 'true');
+            if (!animate) { void panel.offsetHeight; panel.classList.remove('no-anim'); }
+        }
+        function hide(animate) {
+            if (!current) return;
+            var closing = current;
+            current = null;
+            closing.tile.setAttribute('aria-expanded', 'false');
+            if (!animate) closing.panel.classList.add('no-anim');
+            closing.panel.classList.remove('is-open');
+            if (!animate) {
+                closing.panel.hidden = true;
+                closing.panel.classList.remove('no-anim');
+                return;
+            }
+            afterTransitions(closing.panel, function () {
+                if (!closing.panel.classList.contains('is-open')) closing.panel.hidden = true;
+            });
+        }
+        function toggle(tile) {
+            if (current && current.tile === tile) { hide(true); setParam(null); return; }
+            // Another group in the same row swaps in place rather than closing and reopening.
+            var swap = current && opts.anchorFor(tile) === opts.anchorFor(current.tile);
+            hide(!swap);
+            show(tile, !swap);
+            setParam(tile.dataset.group);
+        }
+
+        root.addEventListener('click', function (e) {
+            var tile = e.target.closest('button[data-group]');
+            if (tile && root.contains(tile)) toggle(tile);
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key !== 'Escape' || !current) return;
+            var tile = current.tile;
+            hide(true);
+            setParam(null);
+            tile.focus();
+        });
+        var lastWidth = window.innerWidth;
+        window.addEventListener('resize', function () {
+            if (!current) return;
+            if (window.innerWidth !== lastWidth) { lastWidth = window.innerWidth; place(current.tile, current.panel); }
+            aim();
+        });
+
+        return {
+            aim: aim,
+            // After the page re-filters or re-orders its tiles: keep the open panel after its
+            // tile's row, or close it if the tile was filtered out.
+            refresh: function () {
+                if (!current) return;
+                if (current.tile.offsetParent === null) { hide(false); return; }
+                place(current.tile, current.panel);
+                aim();
+            },
+            // Open ?group=<slug> without animation and bring it into view.
+            openFromQuery: function () {
+                var slug = new URLSearchParams(window.location.search).get('group');
+                var tile = slug && tileFor(slug);
+                if (!tile || tile.offsetParent === null) return;
+                show(tile, false);
+                // Scroll as little as needs be: the panel into view, then its tile. Waits for the
+                // rest of the page, which may not be parsed yet and so can't be scrolled into.
+                function reveal() {
+                    if (!current || current.tile !== tile) return;
+                    current.panel.scrollIntoView({ block: 'nearest', behavior: 'instant' });
+                    tile.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
+                    aim();
+                }
+                if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', reveal);
+                else reveal();
+            }
+        };
+    };
+</script>

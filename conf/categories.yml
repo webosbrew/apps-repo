@@ -1,0 +1,40 @@
+# Display names for the package categories, in display order. The categories themselves
+# are defined by content/schemas/packages/Category.json; the build fails if the two differ.
+#
+# title: the name shown on the site.
+# index: whether the category gets a shelf on the homepage (repo index).
+# pinned: optional app IDs listed first in the category, in this order, ahead of the
+#         alphabetical rest: on its homepage shelf and in the /apps grid filtered to it.
+# Every category with apps appears in the /apps filter sidebar.
+- slug: homemedia
+  title: Home Media
+  index: true
+- slug: streaming
+  title: Streaming
+  index: true
+- slug: multimedia
+  title: Multimedia
+  index: true
+- slug: game
+  title: Games
+  index: true
+- slug: amblight
+  title: Ambient Light
+  index: true
+- slug: screensaver
+  title: Screensavers
+  index: true
+- slug: launcher
+  title: Launchers
+  index: true
+  pinned:
+    - org.webosbrew.homechooser
+- slug: utility
+  title: Utilities
+  index: true
+- slug: system
+  title: System
+  index: false
+- slug: internet
+  title: Internet
+  index: false

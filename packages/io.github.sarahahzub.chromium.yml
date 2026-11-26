@@ -1,0 +1,43 @@
+title: Chromium Browser
+iconUri: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/main/assets/icon.png
+manifestUrl: https://github.com/sarahahzub/WebOS-Chromium/releases/latest/download/io.github.sarahahzub.chromium.manifest.json
+category: internet
+pool: main
+shortDescription: Chromium 151 with the full Chrome interface, made for the TV
+description: |
+  A desktop Chromium 151 built for the TV and running as an ordinary webOS app: tabs, the address bar, bookmarks,
+  history, downloads, settings, and extensions from the Chrome Web Store. No root needed.
+
+  - Pages are drawn on the TV's GPU, and video on any site goes to the TV's hardware decoder (up to 1080p60).
+  - A sharp 1920x1080 window with the interface at 1.5x.
+  - The remote's arrows, OK and Back work everywhere, the Magic Remote pointer works as a mouse, and typing uses
+    LG's on-screen keyboard.
+  - TV Tools, built in: a video quality limit for any site, TV versions of websites, lite mode, and a tab limit.
+  - Bookmarks and settings are kept on the TV and survive reboots.
+
+  Runs on webOS 4.4 (2018-2019 models) and newer. No Netflix or other DRM video, and no Google account sync.
+
+  **Security note:** the TV's system lacks features Chromium's sandbox needs, so the browser runs without its
+  sandbox and with site isolation off. A malicious site that exploits a browser bug could read your logins, cookies
+  and saved passwords for other sites. Keep the browser updated, and avoid signing in to important accounts or
+  saving passwords on the TV.
+
+  **About TV Tools:** it works inside every page you open. It answers sites' video checks, removes video streams
+  above your quality limit, and in TV mode tells sites the browser is a webOS TV. It also saves a small settings
+  entry on each site you visit. If a site doesn't work right, turn TV Tools off for that site from its toolbar
+  button to see whether it's the cause.
+
+  Source, supported TVs and bug reports: [github.com/sarahahzub/WebOS-Chromium](https://github.com/sarahahzub/WebOS-Chromium)
+requirements:
+  webosRelease: '>=4.4'
+screenshots:
+  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/e772202038c5ba5fa3c7423d787d9a56210e6d23/assets/screenshots/new-tab.png
+    caption: New Tab page
+  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/e772202038c5ba5fa3c7423d787d9a56210e6d23/assets/screenshots/google.png
+    caption: Google search
+  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/e772202038c5ba5fa3c7423d787d9a56210e6d23/assets/screenshots/github.png
+    caption: A GitHub page
+  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/e772202038c5ba5fa3c7423d787d9a56210e6d23/assets/screenshots/about.png
+    caption: About Chromium
+  - url: https://raw.githubusercontent.com/sarahahzub/WebOS-Chromium/e772202038c5ba5fa3c7423d787d9a56210e6d23/assets/screenshots/extensions.png
+    caption: Extensions, with TV Tools built in

@@ -1,7 +1,7 @@
 title: DecoTV
 iconUri: https://raw.githubusercontent.com/CheerChen/decotv-webos/main/assets/icons/icon-large.png
 manifestUrl: https://github.com/CheerChen/decotv-webos/releases/latest/download/com.cheerchen.decotv.manifest.json
-category: multimedia
+category: homemedia
 pool: main
 # ES2020 (optional chaining, nullish coalescing); Chromium 87+ / webOS 7.0+
 requirements:

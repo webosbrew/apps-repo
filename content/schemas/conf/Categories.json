@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://repo.webosbrew.org/schemas/conf/Categories.json",
+  "title": "Categories",
+  "description": "Display names of the package categories, in display order (conf/categories.yml)",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["slug", "title", "index"],
+    "properties": {
+      "slug": {"$ref": "../packages/Category.json"},
+      "title": {"type": "string", "minLength": 1},
+      "index": {"type": "boolean", "description": "Whether the category gets a shelf on the homepage"},
+      "pinned": {
+        "type": "array",
+        "description": "App IDs listed first in the category, in this order",
+        "items": {"type": "string", "minLength": 1},
+        "uniqueItems": true
+      }
+    }
+  }
+}

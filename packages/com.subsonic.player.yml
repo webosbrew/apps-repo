@@ -1,7 +1,7 @@
 title: Subsonic Player
 iconUri: https://raw.githubusercontent.com/pando85/subsonic-player-webos/main/webos/assets/icon_160.png
 manifestUrl: https://github.com/pando85/subsonic-player-webos/releases/latest/download/com.subsonic.player.v1.manifest.json
-category: multimedia
+category: homemedia
 pool: main
 requirements:
   webosRelease: '>=7.0'

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://repo.webosbrew.org/schemas/conf/Home.json",
+  "title": "Home",
+  "description": "Apps featured on the homepage (conf/home.yml)",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "featured": {
+      "type": "array",
+      "description": "Apps featured on the homepage, in display order",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  }
+}

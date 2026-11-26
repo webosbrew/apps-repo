@@ -9,6 +9,7 @@ from pelican.plugins import webassets
 from webassets.cache import MemoryCache
 
 import repogen
+import repogen.conf
 from repogen.siteurl import siteurl
 
 AUTHOR = 'webOS Homebrew Project'
@@ -106,22 +107,10 @@ FOOTER_SECTIONS = [
     ]},
 ]
 
-INDEX_APP_CATEGORIES = [
-    ('multimedia', 'Multimedia'),
-    ('game', 'Games'),
-    ('amblight', 'Ambient Light'),
-    ('screensaver', 'Screensavers'),
-    ('launcher', 'Launchers'),
-    ('utility', 'Utilities'),
-]
-
-# App IDs featured on the homepage, in display order. The blurb for each is
-# taken from the package's manifest (appDescription).
-FEATURED_APPS = [
-    'org.webosbrew.hbchannel',
-    'org.xbmc.kodi',
-    'com.limelight.webos',
-]
+# Editorial settings live as data in conf/, validated against content/schemas/conf/.
+APP_CATEGORIES = repogen.conf.categories()
+FEATURED_APPS = repogen.conf.home().get('featured', [])
+APP_GROUPS = repogen.conf.groups()
 
 # Following packages will have their IPKs downloaded and hosted on the site
 HOST_PACKAGES: set[str] = {

@@ -1,7 +1,7 @@
 title: Sendspin Cinema
 iconUri: https://raw.githubusercontent.com/zonya/sendspin-cinema-webos/main/icon.png
 manifestUrl: https://github.com/zonya/sendspin-cinema-webos/releases/latest/download/com.sendspin.cinema.manifest.json
-category: multimedia
+category: homemedia
 pool: main
 requirements:
   webosRelease: '>=7.0'

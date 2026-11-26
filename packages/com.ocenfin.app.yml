@@ -1,7 +1,8 @@
 title: OcenFin
 iconUri: https://raw.githubusercontent.com/seluce/OcenFin/main/public/icon.png
 manifestUrl: https://github.com/seluce/OcenFin/releases/latest/download/com.ocenfin.app.manifest.json
-category: multimedia
+category: homemedia
+group: jellyfin
 pool: main
 requirements:
   webosRelease: '>=10.0'
