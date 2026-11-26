@@ -19,7 +19,9 @@
     .app-shelf .shelf-thumb > .badge { font-size: .6rem; }
     /* Group tile: the lead's icon on a stack of cards, a "+N" badge for the other members.
        A button that opens the group's panel; reset to look like the link tiles. */
-    .group-tile { background: none; border: 0; padding: 0; font: inherit; cursor: pointer;
+    /* position: relative keeps the tile's visually-hidden text inside the shelf's scroll box;
+       otherwise it is placed against .shelf-wrap and widens the page on narrow screens. */
+    .group-tile { position: relative; background: none; border: 0; padding: 0; font: inherit; cursor: pointer;
         border-radius: var(--bs-border-radius-xl); scroll-margin-top: 5rem; }
     .group-tile:focus-visible { outline: 2px solid var(--bs-primary); outline-offset: 4px; }
     .group-stack { display: block; isolation: isolate; }
@@ -39,18 +41,27 @@
     .group-tile[aria-expanded="true"] .shelf-icon { outline: 2px solid var(--bs-primary); outline-offset: 2px; }
     /* Group panel: a recessed surface that opens below the group tile's row, the rows after it
        sliding down. The height animates through a one-row grid, 0fr -> 1fr, which every current
-       browser transitions; .group-panel-clip is the row, clipping what is not yet revealed. */
-    .group-panel { --notch-x: 50%; --notch-h: 1rem;
+       browser transitions; .group-panel-clip is the row, clipping what is not yet revealed.
+       In the /apps grid every level down to the members is a column subgrid, so members sit in
+       the same columns as the tiles outside. The clip and the surface bleed out by their inline
+       padding (negative margin = padding): a subgrid adds its edge margin + padding to its edge
+       columns, so this nets to zero there, and the recess extends beyond the columns instead of
+       eating into them. On the homepage (no grid) the bleed lines the first member up with the
+       shelf's first tile. */
+    .group-panel { --notch-x: 50%; --notch-h: 1rem; --panel-pad: .75rem;
         --group-panel-bg: color-mix(in srgb, var(--bs-body-bg) 55%, #000);
         --group-panel-edge: color-mix(in srgb, var(--bs-body-bg) 30%, #000);
         grid-column: 1 / -1; justify-self: stretch; scroll-margin-bottom: 1rem;
-        display: grid; grid-template-rows: 0fr;
+        display: grid; grid-template-columns: minmax(0, 1fr); grid-template-columns: subgrid;
+        grid-template-rows: 0fr;
         transition: grid-template-rows .38s cubic-bezier(.25, .8, .25, 1); }
     .group-panel[hidden] { display: none; }
     .group-panel.is-open { grid-template-rows: 1fr; }
     .group-panel.no-anim { transition: none; }
     @media (prefers-reduced-motion: reduce) { .group-panel { transition: none; } }
-    .group-panel-clip { position: relative; min-height: 0; overflow: hidden; }
+    .group-panel-clip { grid-column: 1 / -1; position: relative; min-height: 0; overflow: hidden;
+        display: grid; grid-template-columns: minmax(0, 1fr); grid-template-columns: subgrid; align-content: start;
+        margin-inline: calc(-1 * var(--panel-pad)); padding-inline: var(--panel-pad); }
     /* The recess is drawn as a gradient, darkest at the top and bottom edges, not as an inset
        shadow: the notch is filled with the top-edge colour so the two read as one shape. */
     .group-panel-notch { position: absolute; top: 0; left: var(--notch-x); width: 2.5rem;
@@ -58,11 +69,17 @@
         background: var(--group-panel-edge); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
     /* Spacing below the panel is inside the part that animates (the clip), so it grows and
        shrinks with the panel. */
-    .group-panel-surface { margin: var(--notch-h) 0 1rem; padding: 1rem 1rem 1.25rem;
+    .group-panel-surface { grid-column: 1 / -1;
+        display: grid; grid-template-columns: minmax(0, 1fr); grid-template-columns: subgrid;
+        margin: var(--notch-h) calc(-1 * var(--panel-pad)) 1rem; padding: 1rem var(--panel-pad) 1.25rem;
         border-radius: var(--bs-border-radius-lg);
         background: linear-gradient(var(--group-panel-edge), var(--group-panel-bg) .9rem,
             var(--group-panel-bg) calc(100% - .9rem), var(--group-panel-edge)); }
-    .group-panel-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: 1rem; }
+    .group-panel-header { grid-column: 1 / -1; display: flex; align-items: baseline; gap: .75rem; margin-bottom: 1rem; }
+    .group-panel .app-grid { grid-column: 1 / -1;
+        grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); grid-template-columns: subgrid; }
+    /* Homepage: members wrap at the shelf's pitch (tile width and gap), from the shelf's left edge. */
+    .shelf-wrap ~ .group-panel .app-grid { display: flex; flex-wrap: wrap; column-gap: 1rem; }
     .shelf-wrap ~ .group-panel .group-panel-surface { margin-bottom: .5rem; }
     .shelf-fade, .shelf-fade-start { position: absolute; top: 0; bottom: .5rem; width: 3rem;
         pointer-events: none; transition: opacity .15s ease; }
