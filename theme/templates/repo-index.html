@@ -14,27 +14,42 @@
 {% set multiple = featured|length > 1 %}
 <div class="container py-4">
     {# Rotation is started by the script at the end of this page, not data-bs-ride, so it can be
-       paused (button, hover, keyboard focus) and skipped under reduced motion. #}
+       paused (tapping the current dot, hover, keyboard focus) and skipped under reduced motion.
+       Every slide is the same template, anchored to the top: the icon, title, description and
+       button sit at the same place on each, only the text changes. The title and description
+       areas also hold the other slides' text, hidden and stacked in one grid cell, so they are
+       as tall as the longest one at any width. #}
+    {% set titles = featured|map(attribute='title')|list %}
+    {% set shorts = [] %}
+    {% for package in featured %}{% set _ = shorts.append(package.manifest.appDescription or package.shortDescription or '') %}{% endfor %}
     <section id="featured-carousel" class="carousel slide carousel-fade"
              aria-roledescription="carousel" aria-label="Featured apps">
         <div class="carousel-inner rounded-4">
             {% for package in featured %}
+            {% set own = loop.index0 %}
             <div class="carousel-item{% if loop.first %} active{% endif %}" role="group"
                  aria-roledescription="slide" aria-label="{{ loop.index }} of {{ featured|length }}">
                 <div class="card border-0 rounded-4 overflow-hidden hero-banner">
                     <div class="card-body p-4 p-md-5">
-                        <div class="row align-items-center justify-content-center g-4 flex-column flex-sm-row flex-grow-1">
+                        <div class="row align-items-center align-items-sm-start g-4 flex-column flex-sm-row flex-grow-1">
                             <div class="col-auto">
-                                <img src="{{ package.iconUri }}" width="104" height="104" class="rounded-4"
+                                <img src="{{ package.iconUri }}" width="104" height="104" class="rounded-4 d-block"
                                      alt="{{ package.title }}">
                             </div>
                             <div class="col">
                                 <div class="text-uppercase small fw-semibold text-primary mb-1" style="letter-spacing:.1em">Featured</div>
-                                <h2 class="h3 mb-1 text-white">{{ package.title }}</h2>
-                                {% set short = package.manifest.appDescription or package.shortDescription %}
-                                {% if short %}
-                                <p class="mb-0" style="color:rgba(255,255,255,.75)">{{ short }}</p>
-                                {% endif %}
+                                <div class="featured-stack mb-1">
+                                    {% for title in titles %}
+                                    {% if loop.index0 == own %}<h2 class="h3 mb-0 text-white">{{ title }}</h2>
+                                    {% else %}<div class="h3 mb-0 featured-ghost" aria-hidden="true">{{ title }}</div>{% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="featured-stack" style="color:rgba(255,255,255,.75)">
+                                    {% for short in shorts %}
+                                    <p class="mb-0 featured-desc{% if loop.index0 != own %} featured-ghost{% endif %}"
+                                       {%- if loop.index0 != own %} aria-hidden="true"{% endif %}>{{ short }}</p>
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
                         <div class="text-center text-sm-end pt-3">

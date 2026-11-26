@@ -85,11 +85,17 @@
     @media (min-width: 768px) { #featured-carousel .carousel-item .card { aspect-ratio: 3 / 1; } }
     @media (min-width: 992px) { #featured-carousel .carousel-item .card { aspect-ratio: 7 / 2; } }
     @media (min-width: 1200px) { #featured-carousel .carousel-item .card { aspect-ratio: 4 / 1; } }
-    #featured-carousel .carousel-item .card-body {
-        display: flex; flex-direction: column; justify-content: center; }
-    /* Stacked (xs), the text column must not grow down the slide, or it takes the spare height
-       and the content sits at the top instead of centred. */
+    /* Content is anchored to the top; the row takes the spare height, so "View app" sits at the
+       bottom of every slide. */
+    #featured-carousel .carousel-item .card-body { display: flex; flex-direction: column; }
     @media (max-width: 575.98px) { #featured-carousel .carousel-item .row > .col { flex: 0 0 auto; } }
+    /* A slide's own title or description plus the other slides', hidden, in one cell: the cell is
+       as tall as the longest, so what follows is at the same place on every slide. */
+    #featured-carousel .featured-stack { display: grid; }
+    #featured-carousel .featured-stack > * { grid-area: 1 / 1; }
+    #featured-carousel .featured-ghost { visibility: hidden; }
+    #featured-carousel .featured-desc { display: -webkit-box; -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; }
     /* Indicators sit below the banner (outside the card), in a row of fixed height. Each dot is
        a 24px target (transparent border, fill clipped to the 10px dot). The current slide's dot
        is a pill whose fill grows over the interval; the carousel script moves on when that
