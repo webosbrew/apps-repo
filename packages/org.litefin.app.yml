@@ -2,6 +2,7 @@ title: Litefin
 iconUri: https://raw.githubusercontent.com/MoazSalem/litefin/fc3b09787eb87a0379ffec2387f9b0b7c9e1cae1/assets/icon-130.png
 manifestUrl: https://github.com/MoazSalem/litefin/releases/latest/download/manifest.json
 category: homemedia
+group: jellyfin
 pool: main
 requirements:
   webosRelease: '>=5.0'

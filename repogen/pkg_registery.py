@@ -24,6 +24,7 @@ class PackageRegistry(TypedDict):
     manifestUrl: str
     manifestUrlBeta: NotRequired[str]
     category: str
+    group: NotRequired[str]
     description: str
     shortDescription: NotRequired[str]
     pool: Literal['main', 'non-free']

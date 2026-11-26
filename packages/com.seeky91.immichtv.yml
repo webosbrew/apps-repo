@@ -3,6 +3,7 @@ iconUri: https://raw.githubusercontent.com/Seeky91/immich-tv-webos/main/assets/i
 detailIconUri: https://raw.githubusercontent.com/Seeky91/immich-tv-webos/main/assets/icon-source.png
 manifestUrl: https://github.com/Seeky91/immich-tv-webos/releases/latest/download/manifest.json
 category: homemedia
+group: immich
 pool: main
 requirements:
   webosRelease: '>=5.0'

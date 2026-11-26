@@ -2,6 +2,7 @@ title: Breezyfin
 iconUri: https://raw.githubusercontent.com/botagas/Breezyfin/main/icon.png
 manifestUrl: https://github.com/botagas/Breezyfin/releases/latest/download/com.breezyfin.app.manifest.json
 category: homemedia
+group: jellyfin
 pool: main
 requirements:
   webosRelease: '>=7.0'

@@ -29,6 +29,9 @@ iconUri: https://raw.githubusercontent.com/webosbrew/webos-homebrew-channel/main
 manifestUrl: https://github.com/webosbrew/webos-homebrew-channel/releases/latest/download/org.webosbrew.hbchannel.manifest.json
 # Category for your application
 category: utility
+# Optional: if your app is one of several clients or forks of the same thing, the group it
+# belongs to in conf/groups.yml (for example `jellyfin`). Its members must share a category.
+# group: jellyfin
 # If this is an open source application, use main, otherwise non-free
 pool: main
 # Long description for your application, in Markdown format

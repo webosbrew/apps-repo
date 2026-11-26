@@ -127,6 +127,7 @@ class PackageInfo(TypedDict):
     manifestUrl: str
     manifestUrlBeta: NotRequired[str]
     category: str
+    group: NotRequired[str]
     description: str
     shortDescription: NotRequired[str]
     detailIconUri: NotRequired[str]
@@ -191,6 +192,8 @@ def from_package_info(pkgid: str, content: PackageRegistry, offline=False) -> Pa
         # Raw markdown source; sanitized after conversion via sanitize_description().
         'description': content.get('description', ''),
     }
+    if 'group' in content:
+        pkginfo['group'] = content['group']
     if 'shortDescription' in content:
         pkginfo['shortDescription'] = content['shortDescription']
     if 'detailIconUri' in content:

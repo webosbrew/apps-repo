@@ -41,3 +41,12 @@ def categories() -> list[dict]:
 
 def home() -> dict:
     return load('home', 'Home.json')
+
+
+def groups() -> list[dict]:
+    entries = load('groups', 'Groups.json')
+    slugs = [g['slug'] for g in entries]
+    duplicated = sorted({slug for slug in slugs if slugs.count(slug) > 1})
+    if duplicated:
+        raise ValueError(f'conf/groups.yml lists a group more than once: {duplicated}')
+    return entries

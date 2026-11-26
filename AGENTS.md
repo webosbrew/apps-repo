@@ -25,3 +25,14 @@ Treat these as wrong:
 The ID is what a TV matches an installed app against, so it has to change in the app itself and its
 manifest, not only in the file name here. Packages already listed keep the ID they shipped with:
 renaming one would orphan every TV that has it installed.
+
+## Groups
+
+Several apps are clients or forks of the same thing, such as the Jellyfin clients. A package joins
+such a group with `group: <slug>`, and the site shows the group as one tile that unfolds to its
+members. The groups and their leads are listed in [conf/groups.yml](conf/groups.yml).
+
+* A new package that is another client or fork of an app already in a group should set `group` to
+  that group. Ask for it in review if it is missing.
+* A submission does not choose the lead, and does not add a group to `conf/groups.yml` for its own
+  app. Both are the maintainers' call.
