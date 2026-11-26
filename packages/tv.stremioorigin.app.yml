@@ -1,7 +1,7 @@
 title: Stremio Origin
 iconUri: https://stremio-origin.github.io/webos/icon.png
 manifestUrl: https://stremio-origin.github.io/webos/api/apps/tv.stremioorigin.app/manifest.json
-category: multimedia
+category: streaming
 pool: main
 requirements:
   webosRelease: '>=3.0'

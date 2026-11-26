@@ -106,13 +106,20 @@ FOOTER_SECTIONS = [
     ]},
 ]
 
-INDEX_APP_CATEGORIES = [
-    ('multimedia', 'Multimedia'),
-    ('game', 'Games'),
-    ('amblight', 'Ambient Light'),
-    ('screensaver', 'Screensavers'),
-    ('launcher', 'Launchers'),
-    ('utility', 'Utilities'),
+# Every package category (content/schemas/packages/Category.json), in display order.
+# `title` is the name shown on the site; `index` gives the category a shelf on the homepage (repo index).
+# All categories with apps appear in the /apps filter sidebar.
+APP_CATEGORIES = [
+    {'slug': 'homemedia', 'title': 'Home Media', 'index': True},
+    {'slug': 'streaming', 'title': 'Streaming', 'index': True},
+    {'slug': 'multimedia', 'title': 'Multimedia', 'index': True},
+    {'slug': 'game', 'title': 'Games', 'index': True},
+    {'slug': 'amblight', 'title': 'Ambient Light', 'index': True},
+    {'slug': 'screensaver', 'title': 'Screensavers', 'index': True},
+    {'slug': 'launcher', 'title': 'Launchers', 'index': True},
+    {'slug': 'utility', 'title': 'Utilities', 'index': True},
+    {'slug': 'system', 'title': 'System', 'index': False},
+    {'slug': 'internet', 'title': 'Internet', 'index': False},
 ]
 
 # App IDs listed first within their category, in this order, ahead of the alphabetical

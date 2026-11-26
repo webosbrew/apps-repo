@@ -1,7 +1,7 @@
 title: Kick TV
 iconUri: https://raw.githubusercontent.com/barisahmet/kick-tv-webos/main/app/largeIcon.png
 manifestUrl: https://github.com/barisahmet/kick-tv-webos/releases/latest/download/org.webosbrew.manifest.json
-category: multimedia
+category: streaming
 pool: main
 requirements:
   webosRelease: '>=10.0'

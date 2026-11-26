@@ -1,7 +1,7 @@
 title: WebOS TVHeadend Client
 iconUri: https://raw.githubusercontent.com/willinuX-code/webos-tvheadend/master/public/appicon.png
 manifestUrl: https://github.com/willinuX-code/webos-tvheadend/releases/latest/download/com.willinux.tvh.app.manifest.json
-category: multimedia
+category: homemedia
 pool: main
 requirements:
   webosRelease: '>=5.0'

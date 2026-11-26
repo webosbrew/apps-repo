@@ -5,7 +5,7 @@ iconUri: https://raw.githubusercontent.com/aneeshtigga/immich-webos/main/src/ass
 # Publicly accessible manifest file of your application
 manifestUrl: https://github.com/aneeshtigga/immich-webos/releases/latest/download/com.immich.webos.manifest.json
 # Category for your application
-category: multimedia
+category: homemedia
 # If this is an open source application, use main, otherwise non-free
 pool: main
 # Minimum webOS release. The bundle uses ES2017, supported on webOS 5.0+ (Chromium 68+).

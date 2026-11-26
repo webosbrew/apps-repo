@@ -11,7 +11,7 @@ detailIconUri: https://raw.githubusercontent.com/GLinnik21/plx-native/main/pkg/i
 # `prerelease` precisely because either would exclude the release from `latest` and break this URL.
 manifestUrl: https://github.com/GLinnik21/plx-native/releases/latest/download/com.beb.plxnative.manifest.json
 
-category: multimedia
+category: homemedia
 pool: main
 
 # Max 80 characters (schema-enforced).

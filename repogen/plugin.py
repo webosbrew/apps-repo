@@ -105,12 +105,18 @@ def add_app_indices(generator: PagesGenerator):
 
     pinned = generator.settings.get('PINNED_APPS', [])
 
+    categories = generator.settings['APP_CATEGORIES']
+    known = {cat['slug'] for cat in categories}
+    unknown = sorted({pkg['category'] for pkg in packages} - known)
+    if unknown:
+        raise ValueError(f'Package categories missing from APP_CATEGORIES: {", ".join(unknown)}')
+
     # Categories present in the catalog, used by the /apps filter sidebar.
     filter_categories = []
-    for (category, title) in generator.settings['INDEX_APP_CATEGORIES']:
-        count = sum(1 for pkg in packages if pkg['category'] == category)
+    for cat in categories:
+        count = sum(1 for pkg in packages if pkg['category'] == cat['slug'])
         if count:
-            filter_categories.append({'slug': category, 'title': title, 'count': count})
+            filter_categories.append({'slug': cat['slug'], 'title': cat['title'], 'count': count})
 
     generator.hidden_pages.append(Page('', metadata={
         'title': 'Apps',
@@ -127,11 +133,13 @@ def add_app_indices(generator: PagesGenerator):
 
     def get_category_entries():
         entries = []
-        for (category, title) in generator.settings['INDEX_APP_CATEGORIES']:
-            in_category = [pkg for pkg in packages if pkg['category'] == category]
+        for cat in categories:
+            if not cat['index']:
+                continue
+            in_category = [pkg for pkg in packages if pkg['category'] == cat['slug']]
             entries.append({
-                'slug': category,
-                'title': title,
+                'slug': cat['slug'],
+                'title': cat['title'],
                 # Pinned apps first, in PINNED_APPS order; sorted() keeps the rest alphabetical.
                 'packages': sorted(in_category, key=lambda pkg: pinned.index(pkg['id'])
                                    if pkg['id'] in pinned else len(pinned)),
