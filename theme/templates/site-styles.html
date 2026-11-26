@@ -7,8 +7,12 @@
         scrollbar-width: none; scroll-snap-type: x proximity; }
     .app-shelf::-webkit-scrollbar { display: none; }
     .app-shelf > * { scroll-snap-align: start; }
-    .app-grid { display: grid; gap: 1rem; justify-items: center;
+    /* Rows are spaced by a margin under each tile rather than by row-gap, cancelled under the
+       last row: a closed group panel in the grid then takes no space at all, so hiding it moves
+       nothing. A gap would cost a row's spacing even at zero height. */
+    .app-grid { display: grid; column-gap: 1rem; margin-bottom: -1rem; justify-items: center;
         grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+    .app-grid > :not(.group-panel) { margin-bottom: 1rem; }
     .shelf-card { flex: 0 0 auto; width: 112px; text-align: center; }
     .shelf-thumb { position: relative; width: 96px; height: 96px; margin: 0 auto .5rem; }
     .shelf-icon { width: 96px; height: 96px; object-fit: cover; background: var(--bs-tertiary-bg); }
@@ -52,12 +56,14 @@
     .group-panel-notch { position: absolute; top: 0; left: var(--notch-x); width: 2.5rem;
         height: calc(var(--notch-h) + 1px); transform: translateX(-50%);
         background: var(--group-panel-edge); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
-    .group-panel-surface { margin-top: var(--notch-h); padding: 1rem 1rem 1.25rem;
+    /* Spacing below the panel is inside the part that animates (the clip), so it grows and
+       shrinks with the panel. */
+    .group-panel-surface { margin: var(--notch-h) 0 1rem; padding: 1rem 1rem 1.25rem;
         border-radius: var(--bs-border-radius-lg);
         background: linear-gradient(var(--group-panel-edge), var(--group-panel-bg) .9rem,
             var(--group-panel-bg) calc(100% - .9rem), var(--group-panel-edge)); }
     .group-panel-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: 1rem; }
-    .app-shelf + .group-panel, .shelf-wrap + .group-panel { margin-bottom: .5rem; }
+    .shelf-wrap ~ .group-panel .group-panel-surface { margin-bottom: .5rem; }
     .shelf-fade, .shelf-fade-start { position: absolute; top: 0; bottom: .5rem; width: 3rem;
         pointer-events: none; transition: opacity .15s ease; }
     .shelf-fade { right: 0; background: linear-gradient(90deg, transparent, var(--bs-body-bg)); }
