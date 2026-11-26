@@ -9,72 +9,52 @@
 <main>
 
 <!-- FEATURED -->
+{# Featured banner, after LG's app store: 16:9 slides, two per view from lg up, one below, in a
+   native scroll-snap track (swipe, trackpad and keyboard scrolling work without script). The
+   script below adds looping, the arrows, and rotation driven by the current dot's progress fill.
+   Each slide is one fixed template sized in container units, so only the text changes. #}
 {% if page.metadata.featured %}
 {% set featured = page.metadata.featured %}
-{% set multiple = featured|length > 1 %}
-<div class="container py-4">
-    {# Rotation is started by the script at the end of this page, not data-bs-ride, so it can be
-       paused (tapping the current dot, hover, keyboard focus) and skipped under reduced motion.
-       Every slide is the same template, anchored to the top: the icon, title, description and
-       button sit at the same place on each, only the text changes. The title and description
-       areas also hold the other slides' text, hidden and stacked in one grid cell, so they are
-       as tall as the longest one at any width. #}
-    {% set titles = featured|map(attribute='title')|list %}
-    {% set shorts = [] %}
-    {% for package in featured %}{% set _ = shorts.append(package.manifest.appDescription or package.shortDescription or '') %}{% endfor %}
-    <section id="featured-carousel" class="carousel slide carousel-fade"
-             aria-roledescription="carousel" aria-label="Featured apps">
-        <div class="carousel-inner rounded-4">
+{% set count = featured|length %}
+<section class="container py-4 featured" id="featured" data-count="{{ count }}"
+         aria-roledescription="carousel" aria-label="Featured apps">
+    <div class="feat-viewport">
+        {% if count > 1 %}
+        <button type="button" class="feat-arrow feat-prev" aria-label="Previous slide">
+            <i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+        <button type="button" class="feat-arrow feat-next" aria-label="Next slide">
+            <i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+        {% endif %}
+        <div class="feat-track"{% if count > 1 %} tabindex="0"{% endif %} role="group" aria-label="Slides">
             {% for package in featured %}
-            {% set own = loop.index0 %}
-            <div class="carousel-item{% if loop.first %} active{% endif %}" role="group"
-                 aria-roledescription="slide" aria-label="{{ loop.index }} of {{ featured|length }}">
-                <div class="card border-0 rounded-4 overflow-hidden hero-banner">
-                    <div class="card-body p-4 p-md-5">
-                        <div class="row align-items-center align-items-sm-start g-4 flex-column flex-sm-row flex-grow-1">
-                            <div class="col-auto">
-                                <img src="{{ package.iconUri }}" width="104" height="104" class="rounded-4 d-block"
-                                     alt="{{ package.title }}">
-                            </div>
-                            <div class="col">
-                                <div class="text-uppercase small fw-semibold text-primary mb-1" style="letter-spacing:.1em">Featured</div>
-                                <div class="featured-stack mb-1">
-                                    {% for title in titles %}
-                                    {% if loop.index0 == own %}<h2 class="h3 mb-0 text-white">{{ title }}</h2>
-                                    {% else %}<div class="h3 mb-0 featured-ghost" aria-hidden="true">{{ title }}</div>{% endif %}
-                                    {% endfor %}
-                                </div>
-                                <div class="featured-stack" style="color:rgba(255,255,255,.75)">
-                                    {% for short in shorts %}
-                                    <p class="mb-0 featured-desc{% if loop.index0 != own %} featured-ghost{% endif %}"
-                                       {%- if loop.index0 != own %} aria-hidden="true"{% endif %}>{{ short }}</p>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center text-sm-end pt-3">
-                            <a href="{{ SITEURL }}/apps/{{ package.id }}/" class="btn btn-primary">View app</a>
-                        </div>
+            {% set short = package.manifest.appDescription or package.shortDescription %}
+            <article class="feat-slide hero-banner" role="group" aria-roledescription="slide"
+                     aria-label="{{ loop.index }} of {{ count }}">
+                <div class="feat-body">
+                    <img src="{{ package.iconUri }}" width="104" height="104" alt="">
+                    <div class="feat-text">
+                        <div class="feat-label">Featured</div>
+                        <h2 class="feat-title">{{ package.title }}</h2>
+                        <p class="feat-desc">{{ short or '' }}</p>
                     </div>
+                    <a href="{{ SITEURL }}/apps/{{ package.id }}/" class="btn btn-primary feat-cta">View app</a>
                 </div>
-            </div>
+            </article>
             {% endfor %}
         </div>
-        {% if multiple %}
-        {# The current slide's dot is a pill that fills over the interval; tapping it pauses or
-           plays the rotation. The other dots go to their slide. #}
-        <div class="carousel-controls">
-            <div class="carousel-indicators">
-                {% for package in featured %}
-                <button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="{{ loop.index0 }}"
-                        {% if loop.first %}class="active" aria-current="true"{% endif %}
-                        data-title="{{ package.title }}" aria-label="{{ package.title }}"><span class="dot-fill"></span></button>
-                {% endfor %}
-            </div>
-        </div>
-        {% endif %}
-    </section>
-</div>
+    </div>
+    {% if count > 1 %}
+    {# The current slide's dot is a pill that fills over the interval; tapping it pauses or plays
+       the rotation. The other dots go to their slide. #}
+    <div class="feat-dots" role="group" aria-label="Choose a slide">
+        {% for package in featured %}
+        <button type="button" data-index="{{ loop.index0 }}" data-title="{{ package.title }}"
+                aria-label="{{ package.title }}"{% if loop.first %} class="active" aria-current="true"{% endif %}><span class="dot-fill"></span></button>
+        {% endfor %}
+    </div>
+    <p class="visually-hidden feat-status" role="status" aria-live="polite"></p>
+    {% endif %}
+</section>
 {% endif %}
 
 <!-- SHELVES -->
@@ -145,47 +125,136 @@
 {% block scripts %}
 {% include 'group-panel-script.html' %}
 <script>
-    // Featured carousel rotation. The timer is the fill animation on the current slide's dot:
-    // when it ends the carousel moves on, and pausing pauses the animation, so the fill always
-    // shows the real time left. Bootstrap's own cycling is off (interval: false). Rotation runs
-    // unless the user paused it (by tapping the current dot), a mouse is over the carousel or
-    // keyboard focus is inside it. Under reduced motion it starts paused.
+    // Featured banner. The track is a native scroll-snap row; this adds:
+    // - looping: slides are re-ordered (CSS order) around the current one, with an instant
+    //   scroll that keeps what's on screen in place, so a neighbour always exists to scroll to;
+    // - arrows and dots, which scroll the track (smoothly unless reduced motion);
+    // - rotation: the current dot's fill animation is the timer, and its end moves on one
+    //   slide, so the fill always shows the real time left. Rotation pauses while the user has
+    //   paused it (tapping the current dot), a mouse is over the banner or keyboard focus is
+    //   inside, and starts paused under reduced motion.
+    // "Current" is the leftmost slide in view. With no more slides than fit in view the banner
+    // is static: no rotation, and the dots and arrows are hidden by CSS.
     (function () {
-        var el = document.getElementById('featured-carousel');
-        var indicators = el && el.querySelector('.carousel-indicators');
-        if (!indicators || !window.bootstrap) return;
-        var carousel = bootstrap.Carousel.getOrCreateInstance(el, { interval: false, ride: false, pause: false, touch: true });
+        var root = document.getElementById('featured');
+        var track = root && root.querySelector('.feat-track');
+        if (!track || track.children.length < 2) return;
+        var slides = Array.prototype.slice.call(track.children);
+        var n = slides.length;
+        var dots = Array.prototype.slice.call(root.querySelectorAll('.feat-dots [data-index]'));
+        var status = root.querySelector('.feat-status');
+        var wide = window.matchMedia('(min-width: 992px)');
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-        var userPaused = reduce.matches, hovered = false, focused = false;
+        var current = 0, userPaused = reduce.matches, hovered = false, focused = false, announce = false;
+        var pending = null, pendingTimer; // target slide of a scripted scroll still in flight
+
+        function perView() { return wide.matches ? 2 : 1; }
+        function rotates() { return n > perView(); }
+        // Slides ahead of the current one in visual order at rest: one, so that scrolling back
+        // works too, when there are enough slides for that and a full view after it.
+        function lead() { return n >= perView() + 2 ? 1 : 0; }
+        function x(slide) { return slide.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft; }
+        function nearest() {
+            var best = 0, dist = Infinity;
+            slides.forEach(function (s, i) { var d = Math.abs(x(s) - track.scrollLeft); if (d < dist) { dist = d; best = i; } });
+            return best;
+        }
+        // Re-order so `before` slides precede slide c, keeping c where it is on screen. Snapping
+        // is off while slides move, or the browser re-snaps (and cancels a scroll in flight);
+        // callers turn it back on with snapLater() once the track is at rest.
+        function snapLater() { requestAnimationFrame(function () { track.style.scrollSnapType = ''; }); }
+        function arrange(c, before) {
+            var offset = x(slides[c]) - track.scrollLeft;
+            track.style.scrollSnapType = 'none';
+            slides.forEach(function (s, i) { s.style.order = ((i - c + before) % n + n) % n; });
+            track.scrollTo({ left: x(slides[c]) - offset, behavior: 'instant' });
+        }
+        // Put the current slide at the left edge, at rest (load, resize).
+        function place() {
+            arrange(current, lead());
+            track.scrollTo({ left: x(slides[current]), behavior: 'instant' });
+            snapLater();
+        }
+        function setActive(i) {
+            current = i;
+            dots.forEach(function (d, j) {
+                d.classList.toggle('active', j === i);
+                if (j === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+            });
+            update();
+        }
         function update() {
-            el.toggleAttribute('data-paused', userPaused || hovered || focused);
-            indicators.querySelectorAll('[data-bs-slide-to]').forEach(function (dot) {
-                dot.setAttribute('aria-label', dot.classList.contains('active')
-                    ? dot.dataset.title + ': ' + (userPaused ? 'play' : 'pause') + ' slideshow'
-                    : dot.dataset.title);
+            root.toggleAttribute('data-paused', userPaused || hovered || focused || !rotates());
+            dots.forEach(function (d) {
+                d.setAttribute('aria-label', d.classList.contains('active')
+                    ? d.dataset.title + ': ' + (userPaused ? 'play' : 'pause') + ' slideshow'
+                    : d.dataset.title);
             });
         }
-        el.addEventListener('animationend', function (e) {
-            if (e.animationName === 'featured-progress') carousel.next();
+        // Go to slide t; dir +1 forward, -1 back, 0 the shorter way. The track is re-ordered so
+        // the target is reachable that way, then scrolled to it.
+        function goTo(t, dir, user) {
+            t = ((t % n) + n) % n;
+            var k = (t - current + n) % n;
+            if (!k) return;
+            var per = perView();
+            if (!dir) dir = k <= n - k ? 1 : -1;
+            if (dir > 0 && k > n - per) dir = -1;
+            if (dir < 0 && k < per) dir = 1;
+            arrange(current, dir > 0 ? 0 : n - k);
+            pending = t;
+            clearTimeout(pendingTimer);
+            pendingTimer = setTimeout(function () { if (pending === t) { pending = null; settle(); } }, 2000);
+            announce = user;
+            setActive(t);
+            track.scrollTo({ left: x(slides[t]), behavior: reduce.matches ? 'instant' : 'smooth' });
+        }
+        function settle() {
+            // While a scripted scroll is in flight, other scrolls end too (the instant one that
+            // re-ordering makes); only arriving at the target settles it.
+            if (pending !== null && Math.abs(track.scrollLeft - x(slides[pending])) >= 1) return;
+            pending = null;
+            var i = nearest();
+            if (i !== current) { setActive(i); announce = true; }
+            arrange(current, lead());
+            snapLater();
+            if (announce && status) status.textContent = 'Slide ' + (current + 1) + ' of ' + n;
+            announce = false;
+        }
+
+        // The user taking over (touch, wheel, keys) ends a scripted scroll: snap and settle as usual.
+        ['pointerdown', 'wheel', 'keydown'].forEach(function (type) {
+            track.addEventListener(type, function () {
+                if (pending === null) return;
+                pending = null;
+                track.style.scrollSnapType = '';
+            }, { passive: true });
         });
-        // Bootstrap moves to a tapped dot's slide from a capturing listener on document, so this
-        // listens capturing on window, which runs first: `active` is still the dot that was
-        // current when it was tapped. Tapping that one is a no-op for Bootstrap.
-        window.addEventListener('click', function (e) {
-            var dot = e.target instanceof Element && e.target.closest('[data-bs-slide-to]');
-            if (!dot || !indicators.contains(dot) || !dot.classList.contains('active')) return;
-            userPaused = !userPaused;
-            focused = false; // an explicit play wins over the focus pause until focus moves again
-            update();
-        }, true);
-        el.addEventListener('slide.bs.carousel', function () { setTimeout(update); });
-        el.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { hovered = true; update(); } });
-        el.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') { hovered = false; update(); } });
-        // Keyboard focus only: a mouse click on a dot doesn't count.
-        el.addEventListener('focusin', function (e) { if (e.target.matches(':focus-visible')) { focused = true; update(); } });
-        el.addEventListener('focusout', function (e) { if (!el.contains(e.relatedTarget)) { focused = false; update(); } });
+        if ('onscrollend' in window) track.addEventListener('scrollend', settle);
+        else { var t; track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(settle, 150); }); }
+        root.addEventListener('animationend', function (e) {
+            if (e.animationName === 'featured-progress') goTo(current + 1, 1, false);
+        });
+        root.querySelector('.feat-prev').addEventListener('click', function () { goTo(current - 1, -1, true); });
+        root.querySelector('.feat-next').addEventListener('click', function () { goTo(current + 1, 1, true); });
+        dots.forEach(function (d, i) {
+            d.addEventListener('click', function () {
+                if (i !== current) { goTo(i, 0, true); return; }
+                userPaused = !userPaused;
+                focused = false; // an explicit play wins over the focus pause until focus moves again
+                update();
+            });
+        });
+        root.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { hovered = true; update(); } });
+        root.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') { hovered = false; update(); } });
+        // Keyboard focus only: a mouse click on a dot or arrow doesn't count.
+        root.addEventListener('focusin', function (e) { if (e.target.matches(':focus-visible')) { focused = true; update(); } });
+        root.addEventListener('focusout', function (e) { if (!root.contains(e.relatedTarget)) { focused = false; update(); } });
         reduce.addEventListener('change', function () { if (reduce.matches) { userPaused = true; update(); } });
-        update();
+        wide.addEventListener('change', function () { place(); update(); });
+        window.addEventListener('resize', place);
+        place();
+        setActive(0);
     })();
 </script>
 <script>

@@ -72,57 +72,63 @@
     .hero-banner { background:
         radial-gradient(120% 140% at 85% -20%, rgba(207,6,82,.35), transparent 60%),
         linear-gradient(120deg, #1b1420, #141419); }
-    /* Featured carousel: all slides share one grid cell, inactive ones invisible rather than
-       display:none, so the carousel is always as tall as its tallest slide and never changes
-       height as it rotates. Each slide's content is centred vertically in that height. From sm
-       up (icon and text side by side) the height comes from the aspect ratio below. */
-    #featured-carousel .carousel-inner { display: grid; }
-    #featured-carousel .carousel-item { display: block; grid-area: 1 / 1; float: none;
-        margin-right: 0; visibility: hidden; }
-    #featured-carousel .carousel-item:is(.active, .carousel-item-next, .carousel-item-prev) { visibility: visible; }
-    #featured-carousel .carousel-item > .card { height: 100%; }
-    @media (min-width: 576px) { #featured-carousel .carousel-item .card { aspect-ratio: 5 / 2; } }
-    @media (min-width: 768px) { #featured-carousel .carousel-item .card { aspect-ratio: 3 / 1; } }
-    @media (min-width: 992px) { #featured-carousel .carousel-item .card { aspect-ratio: 7 / 2; } }
-    @media (min-width: 1200px) { #featured-carousel .carousel-item .card { aspect-ratio: 4 / 1; } }
-    /* Content is anchored to the top; the row takes the spare height, so "View app" sits at the
-       bottom of every slide. */
-    #featured-carousel .carousel-item .card-body { display: flex; flex-direction: column; }
-    @media (max-width: 575.98px) { #featured-carousel .carousel-item .row > .col { flex: 0 0 auto; } }
-    /* A slide's own title or description plus the other slides', hidden, in one cell: the cell is
-       as tall as the longest, so what follows is at the same place on every slide. */
-    #featured-carousel .featured-stack { display: grid; }
-    #featured-carousel .featured-stack > * { grid-area: 1 / 1; }
-    #featured-carousel .featured-ghost { visibility: hidden; }
-    #featured-carousel .featured-desc { display: -webkit-box; -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; }
-    /* Indicators sit below the banner (outside the card), in a row of fixed height. Each dot is
-       a 24px target (transparent border, fill clipped to the 10px dot). The current slide's dot
-       is a pill whose fill grows over the interval; the carousel script moves on when that
-       animation ends, so the fill is the timer. Paused (data-paused), the fill stops and dims
-       and a pause glyph shows on the pill. */
-    #featured-carousel { --featured-interval: 6s; }
-    #featured-carousel .carousel-controls { display: flex; justify-content: center; align-items: center;
-        min-height: 2rem; margin-top: .5rem; }
-    #featured-carousel .carousel-indicators { position: static; margin: 0; }
-    #featured-carousel .carousel-indicators [data-bs-target] {
-        position: relative; box-sizing: content-box; width: 10px; height: 10px; margin: 0; padding: 0;
-        border: 7px solid transparent; border-radius: 12px; background-clip: padding-box;
-        background-color: rgba(255, 255, 255, .4); opacity: 1; overflow: hidden;
-        transition: width .25s ease; }
-    #featured-carousel .carousel-indicators .active { width: 32px; background-color: rgba(255, 255, 255, .3); }
-    #featured-carousel .dot-fill { position: absolute; inset: 0; background: #fff;
-        transform: scaleX(0); transform-origin: left; }
-    #featured-carousel .carousel-indicators .active .dot-fill {
-        animation: featured-progress var(--featured-interval) linear forwards; }
-    #featured-carousel[data-paused] .carousel-indicators .active .dot-fill {
-        animation-play-state: paused; opacity: .55; }
-    #featured-carousel[data-paused] .carousel-indicators .active::after { content: ""; position: absolute;
-        inset: 2px calc(50% - 3px); background: linear-gradient(90deg,
-            #111 0 2px, transparent 2px 4px, #111 4px 6px); }
+    /* Featured banner (after LG's app store): 16:9 slides with a 16px radius, two per view from
+       lg up with a 20px gap, one below, in a scroll-snap row. Its height comes from 16:9 alone. */
+    .featured { --feat-per: 1; --feat-gap: 20px; --featured-interval: 5s; }
+    @media (min-width: 992px) { .featured { --feat-per: 2; } }
+    .feat-viewport { position: relative; }
+    .feat-track { position: relative; display: flex; gap: var(--feat-gap); overflow-x: auto;
+        scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none;
+        border-radius: 16px; }
+    .feat-track::-webkit-scrollbar { display: none; }
+    .feat-track:focus-visible { outline: 2px solid var(--bs-primary); outline-offset: 2px; }
+    .feat-slide { flex: 0 0 calc((100% - (var(--feat-per) - 1) * var(--feat-gap)) / var(--feat-per));
+        aspect-ratio: 16 / 9; scroll-snap-align: start; scroll-snap-stop: always;
+        position: relative; overflow: hidden; border-radius: 16px; container-type: inline-size; }
+    .featured[data-count="1"] .feat-track { justify-content: center; overflow: hidden; }
+    /* One fixed template per slide, sized in container units so it scales with the slide:
+       icon top left, the text beside it (title one line, description two), button bottom right. */
+    .feat-body { position: absolute; inset: 0; display: grid; padding: 6cqi 6.5cqi;
+        grid-template-columns: 18cqi minmax(0, 1fr); grid-template-rows: auto 1fr auto; column-gap: 4.5cqi; }
+    .feat-body > img { grid-row: 1; width: 18cqi; height: 18cqi; border-radius: 3.5cqi; }
+    .feat-text { grid-column: 2; grid-row: 1; min-width: 0; }
+    .feat-label { font-size: max(10px, 2.4cqi); line-height: 1.4; font-weight: 600; letter-spacing: .1em;
+        text-transform: uppercase; color: var(--bs-primary); margin-bottom: .8cqi; }
+    .feat-title { font-size: 5.4cqi; line-height: 1.25; font-weight: 500; color: #fff; margin: 0 0 1cqi;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .feat-desc { font-size: 3.3cqi; line-height: 1.4; height: 2.8em; margin: 0; color: rgba(255, 255, 255, .75);
+        display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+    .feat-cta { grid-column: 1 / -1; grid-row: 3; justify-self: end; font-size: max(12px, 2.9cqi);
+        padding: .5em 1.1em; border-radius: max(6px, 1.4cqi); }
+    /* Arrows on the track's edges, on wide screens with a mouse (swipe elsewhere); hidden when
+       every slide fits in view. */
+    .feat-arrow { display: none; position: absolute; z-index: 1; top: 50%; width: 2.5rem; height: 2.5rem;
+        place-items: center; padding: 0; border: 1px solid rgba(255, 255, 255, .25); border-radius: 50%;
+        background: rgba(20, 20, 25, .85); color: #fff; font-size: 1.1rem; }
+    .feat-prev { left: 0; transform: translate(-50%, -50%); }
+    .feat-next { right: 0; transform: translate(50%, -50%); }
+    .feat-arrow:hover { background: rgba(40, 40, 48, .95); }
+    .feat-arrow:focus-visible { outline: 2px solid var(--bs-primary); outline-offset: 2px; }
+    @media (min-width: 992px) and (hover: hover) and (pointer: fine) {
+        .featured:not([data-count="1"]):not([data-count="2"]) .feat-arrow { display: grid; }
+    }
+    /* Dots below the track, in a row of fixed height. Each is a 24px target (transparent border,
+       fill clipped to the 10px dot). The current slide's dot is a pill whose fill grows over the
+       interval; the script moves on when that animation ends, so the fill is the timer. Paused
+       (data-paused), the fill stops and dims and a pause glyph shows on the pill. */
+    .feat-dots { display: flex; justify-content: center; align-items: center; min-height: 2rem; margin-top: .5rem; }
+    @media (min-width: 992px) { .featured[data-count="2"] .feat-dots { display: none; } }
+    .feat-dots > button { position: relative; box-sizing: content-box; width: 10px; height: 10px;
+        margin: 0; padding: 0; border: 7px solid transparent; border-radius: 12px; background-clip: padding-box;
+        background-color: rgba(255, 255, 255, .4); overflow: hidden; cursor: pointer; transition: width .25s ease; }
+    .feat-dots > .active { width: 32px; background-color: rgba(255, 255, 255, .3); }
+    .feat-dots .dot-fill { position: absolute; inset: 0; background: #fff; transform: scaleX(0); transform-origin: left; }
+    .feat-dots > .active .dot-fill { animation: featured-progress var(--featured-interval) linear forwards; }
+    .featured[data-paused] .feat-dots > .active .dot-fill { animation-play-state: paused; opacity: .55; }
+    .featured[data-paused] .feat-dots > .active::after { content: ""; position: absolute;
+        inset: 2px calc(50% - 3px); background: linear-gradient(90deg, #111 0 2px, transparent 2px 4px, #111 4px 6px); }
     @keyframes featured-progress { to { transform: scaleX(1); } }
-    #featured-carousel .carousel-indicators [data-bs-target]:focus-visible {
-        outline: 2px solid var(--bs-primary); outline-offset: 0; }
+    .feat-dots > button:focus-visible { outline: 2px solid var(--bs-primary); outline-offset: 0; }
     .cta-icon { width: 48px; height: 48px; display: grid; place-items: center;
         background: rgba(207,6,82,.15); color: #ef2f7e; border-radius: 12px; }
     /* Amber accent (website-ng yellow-500) for the "Have an app idea?" card. */
