@@ -12,7 +12,8 @@
 {# Featured banner, after LG's app store: 16:9 slides, two per view from lg up, one below, in a
    native scroll-snap track (swipe, trackpad and keyboard scrolling work without script). The
    script below adds looping, the arrows, and rotation driven by the current dot's progress fill.
-   Each slide is one fixed template sized in container units, so only the text changes. #}
+   Each slide is one fixed template sized in container units, so only the text changes, and
+   the whole slide is the link to the app (its title link, stretched over it). #}
 {% if page.metadata.featured %}
 {% set featured = page.metadata.featured %}
 {% set count = featured|length %}
@@ -34,10 +35,9 @@
                     <img src="{{ package.iconUri }}" width="104" height="104" alt="">
                     <div class="feat-text">
                         <div class="feat-label">Featured</div>
-                        <h2 class="feat-title">{{ package.title }}</h2>
+                        <h2 class="feat-title"><a href="{{ SITEURL }}/apps/{{ package.id }}/" class="feat-link stretched-link">{{ package.title }}</a></h2>
                         <p class="feat-desc">{{ short or '' }}</p>
                     </div>
-                    <a href="{{ SITEURL }}/apps/{{ package.id }}/" class="btn btn-primary feat-cta">View app</a>
                 </div>
             </article>
             {% endfor %}

@@ -86,20 +86,26 @@
         aspect-ratio: 16 / 9; scroll-snap-align: start; scroll-snap-stop: always;
         position: relative; overflow: hidden; border-radius: 16px; container-type: inline-size; }
     .featured[data-count="1"] .feat-track { justify-content: center; overflow: hidden; }
-    /* One fixed template per slide, sized in container units so it scales with the slide:
-       icon top left, the text beside it (title one line, description two), button bottom right. */
-    .feat-body { position: absolute; inset: 0; display: grid; padding: 6cqi 6.5cqi;
-        grid-template-columns: 18cqi minmax(0, 1fr); grid-template-rows: auto 1fr auto; column-gap: 4.5cqi; }
-    .feat-body > img { grid-row: 1; width: 18cqi; height: 18cqi; border-radius: 3.5cqi; }
-    .feat-text { grid-column: 2; grid-row: 1; min-width: 0; }
+    /* One fixed template per slide, sized in container units so it scales with the slide: a
+       large icon and a fixed-height text group (label, one-line title, two-line description area)
+       side by side, centred vertically. Both have fixed heights, so the centring puts them at the
+       same place on every slide whatever the text. The whole slide is the link (its title link,
+       stretched): focus ring inside the edge, a slight brightening on hover. */
+    .feat-body { position: absolute; inset: 0; display: grid; align-items: center; padding: 0 6.5cqi;
+        grid-template-columns: 20cqi minmax(0, 1fr); column-gap: 4.5cqi; }
+    .feat-body > img { width: 20cqi; height: 20cqi; border-radius: 3.8cqi; }
+    .feat-text { min-width: 0; }
     .feat-label { font-size: max(10px, 2.4cqi); line-height: 1.4; font-weight: 600; letter-spacing: .1em;
-        text-transform: uppercase; color: var(--bs-primary); margin-bottom: .8cqi; }
-    .feat-title { font-size: 5.4cqi; line-height: 1.25; font-weight: 500; color: #fff; margin: 0 0 1cqi;
+        text-transform: uppercase; color: var(--bs-primary); margin-bottom: 1cqi; }
+    .feat-title { font-size: 5.2cqi; line-height: 1.25; font-weight: 500; margin: 0 0 1.2cqi;
         white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .feat-desc { font-size: 3.3cqi; line-height: 1.4; height: 2.8em; margin: 0; color: rgba(255, 255, 255, .75);
+    .feat-link { color: #fff; text-decoration: none; }
+    .feat-link:focus-visible { outline: none; }
+    .feat-desc { font-size: 3.2cqi; line-height: 1.4; height: 2.8em; margin: 0; color: rgba(255, 255, 255, .75);
         display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
-    .feat-cta { grid-column: 1 / -1; grid-row: 3; justify-self: end; font-size: max(12px, 2.9cqi);
-        padding: .5em 1.1em; border-radius: max(6px, 1.4cqi); }
+    .feat-slide { transition: filter .2s ease; }
+    .feat-slide:has(.feat-link:focus-visible) { outline: 3px solid var(--bs-primary); outline-offset: -3px; }
+    @media (hover: hover) { .feat-slide:has(.feat-link:hover) { filter: brightness(1.15); } }
     /* Arrows on the track's edges, on wide screens with a mouse (swipe elsewhere); hidden when
        every slide fits in view. */
     .feat-arrow { display: none; position: absolute; z-index: 1; top: 50%; width: 2.5rem; height: 2.5rem;
