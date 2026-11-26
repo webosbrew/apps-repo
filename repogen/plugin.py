@@ -140,7 +140,7 @@ def add_app_indices(generator: PagesGenerator):
             entries.append({
                 'slug': cat['slug'],
                 'title': cat['title'],
-                # Pinned apps first, in PINNED_APPS order; sorted() keeps the rest alphabetical.
+                # Pinned apps first, in conf/home.yml order; sorted() keeps the rest alphabetical.
                 'packages': sorted(in_category, key=lambda pkg: pinned.index(pkg['id'])
                                    if pkg['id'] in pinned else len(pinned)),
             })

@@ -9,6 +9,7 @@ from pelican.plugins import webassets
 from webassets.cache import MemoryCache
 
 import repogen
+import repogen.conf
 from repogen.siteurl import siteurl
 
 AUTHOR = 'webOS Homebrew Project'
@@ -106,35 +107,11 @@ FOOTER_SECTIONS = [
     ]},
 ]
 
-# Every package category (content/schemas/packages/Category.json), in display order.
-# `title` is the name shown on the site; `index` gives the category a shelf on the homepage (repo index).
-# All categories with apps appear in the /apps filter sidebar.
-APP_CATEGORIES = [
-    {'slug': 'homemedia', 'title': 'Home Media', 'index': True},
-    {'slug': 'streaming', 'title': 'Streaming', 'index': True},
-    {'slug': 'multimedia', 'title': 'Multimedia', 'index': True},
-    {'slug': 'game', 'title': 'Games', 'index': True},
-    {'slug': 'amblight', 'title': 'Ambient Light', 'index': True},
-    {'slug': 'screensaver', 'title': 'Screensavers', 'index': True},
-    {'slug': 'launcher', 'title': 'Launchers', 'index': True},
-    {'slug': 'utility', 'title': 'Utilities', 'index': True},
-    {'slug': 'system', 'title': 'System', 'index': False},
-    {'slug': 'internet', 'title': 'Internet', 'index': False},
-]
-
-# App IDs listed first within their category, in this order, ahead of the alphabetical
-# rest: on the homepage shelves and in the /apps grid when filtered to a category.
-PINNED_APPS = [
-    'org.webosbrew.homechooser',
-]
-
-# App IDs featured on the homepage, in display order. The blurb for each is
-# taken from the package's manifest (appDescription).
-FEATURED_APPS = [
-    'org.webosbrew.hbchannel',
-    'org.xbmc.kodi',
-    'com.limelight.webos',
-]
+# Editorial settings live as data in conf/, validated against content/schemas/conf/.
+APP_CATEGORIES = repogen.conf.categories()
+_home = repogen.conf.home()
+PINNED_APPS = _home.get('pinned', [])
+FEATURED_APPS = _home.get('featured', [])
 
 # Following packages will have their IPKs downloaded and hosted on the site
 HOST_PACKAGES: set[str] = {

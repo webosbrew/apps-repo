@@ -87,7 +87,7 @@
             for (var i = 0; i < rootRadios.length; i++) if (rootRadios[i].checked) return rootRadios[i].value;
             return 'all';
         }
-        // "All" stays alphabetical; within a category, pinned apps (data-pin, PINNED_APPS order) come first.
+        // "All" stays alphabetical; within a category, pinned apps (data-pin, conf/home.yml order) come first.
         function order() {
             var sorted = cards.slice();
             if (cat !== 'all') {
