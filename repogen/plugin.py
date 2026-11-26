@@ -148,6 +148,29 @@ def resolve_groups(packages: list, groups: list[dict]) -> list[dict]:
     return resolved
 
 
+def fold_tiles(packages: list, groups: list[dict], pinned: dict[str, int], keep_members: bool) -> list[dict]:
+    """Order the tiles of a grid or shelf: pinned apps first, then by title, where each group
+    is one tile titled and sorted by the group's title (and pinned where its lead is).
+
+    Entries are `{'package': pkg, 'member': slug or None}` or `{'group': group}`. With
+    `keep_members`, members stay in the list at their own position, flagged with their group
+    so the page can hide them while the group is folded; otherwise they are left out."""
+    by_slug = {g['slug']: g for g in groups}
+    rest = len(pinned)
+    keyed = []
+    present = {pkg['id'] for pkg in packages}
+    for group in groups:
+        if group['lead']['id'] in present:
+            keyed.append(((pinned.get(group['lead']['id'], rest), group['title'].lower()), {'group': group}))
+    for pkg in packages:
+        slug = pkg.get('group') if pkg.get('group') in by_slug else None
+        if slug and not keep_members:
+            continue
+        keyed.append(((pinned.get(pkg['id'], rest), pkg['title'].lower()), {'package': pkg, 'member': slug}))
+    keyed.sort(key=lambda item: item[0])
+    return [entry for _, entry in keyed]
+
+
 def add_app_indices(generator: PagesGenerator):
     packages = list(sorted(generator.settings['PACKAGES'].values(), key=lambda info: info['title'].lower()))
 
@@ -191,6 +214,8 @@ def add_app_indices(generator: PagesGenerator):
         'packages': packages,
         'filter_categories': filter_categories,
         'groups': groups,
+        # All tiles by title (the grid's JS re-sorts pins within a category); members kept, hidden while folded.
+        'tiles': fold_tiles(packages, groups, {}, keep_members=True),
         'pinned': pinned,
     }, settings=generator.settings, source_path='apps-page.html', context=generator.context))
 
@@ -205,6 +230,8 @@ def add_app_indices(generator: PagesGenerator):
                 'title': cat['title'],
                 # Pinned apps first, in conf/categories.yml order; sorted() keeps the rest alphabetical.
                 'packages': sorted(in_category, key=lambda pkg: pinned.get(pkg['id'], len(pinned))),
+                'tiles': fold_tiles(in_category, [g for g in groups if g['category'] == cat['slug']],
+                                    pinned, keep_members=False),
             })
         return entries
 

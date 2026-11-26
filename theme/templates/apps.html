@@ -50,21 +50,25 @@
         <div class="col-lg-9">
             <h1 class="h3 mb-4">All apps</h1>
 
+            {% import 'tiles.html' as tiles with context %}
+            {# Group members are in the grid too, hidden while their group is folded: a search or
+               the root filter shows them as plain tiles instead of the group tile. #}
             <div class="app-grid" id="apps-grid">
-            {% for package in page.metadata.packages %}
+            {% for tile in page.metadata.tiles %}
+                {% if tile.group %}
+                {% set group = tile.group %}
+                {% set pin = page.metadata.pinned.get(group.lead.id) %}
+                {{ tiles.group_tile(group, ' data-group-tile data-title="' ~ (group.title|lower|e) ~ '" data-category="' ~ group.category ~ '"'
+                                           ~ (' data-pin="%d"'|format(pin) if pin is not none else '')) }}
+                {% else %}
+                {% set package = tile.package %}
                 {% set root = 'required' if package.manifest.rootRequired == True else ('optional' if package.manifest.rootRequired == 'optional' else 'none') %}
-                <a href="{{ SITEURL }}/apps/{{ package.id }}/" class="shelf-card text-decoration-none text-body"
-                   data-title="{{ package.title|lower }}" data-category="{{ package.category }}" data-root="{{ root }}"
-                   {%- if package.id in page.metadata.pinned %} data-pin="{{ page.metadata.pinned[package.id] }}"{% endif %}>
-                    <div class="shelf-thumb">
-                        <img src="{{ package.iconUri }}" class="rounded-4 shelf-icon" alt="{{ package.title }}">
-                        {% if package.pool == 'non-free' %}
-                        <span class="badge text-bg-primary position-absolute bottom-0 end-0">Non-free</span>
-                        {% endif %}
-                    </div>
-                    <div class="fw-medium text-truncate">{{ package.title }}</div>
-                </a>
+                {{ tiles.app_tile(package, ' data-title="' ~ (package.title|lower|e) ~ '" data-category="' ~ package.category ~ '" data-root="' ~ root ~ '"'
+                                           ~ (' data-member="' ~ tile.member ~ '" hidden' if tile.member else '')
+                                           ~ (' data-pin="%d"'|format(page.metadata.pinned[package.id]) if package.id in page.metadata.pinned else '')) }}
+                {% endif %}
             {% endfor %}
+            {% for group in page.metadata.groups %}{{ tiles.group_panel(group) }}{% endfor %}
             </div>
 
             <p id="apps-empty" class="text-body-secondary text-center py-5" style="display:none">
@@ -73,16 +77,28 @@
     </div>
 </main>
 
+{% include 'group-panel-script.html' %}
 <script>
     (function () {
         var grid = document.getElementById('apps-grid');
-        var cards = Array.prototype.slice.call(grid.querySelectorAll('[data-title]'));
+        var cards = Array.prototype.slice.call(grid.querySelectorAll(':scope > [data-title]'));
+        var groups = window.initGroupPanels(grid, { anchorFor: lastInRow });
         var search = document.getElementById('app-search');
         var catButtons = Array.prototype.slice.call(document.querySelectorAll('#cat-filter [data-filter-cat]'));
         var rootRadios = Array.prototype.slice.call(document.querySelectorAll('input[name="root-filter"]'));
         var empty = document.getElementById('apps-empty');
         var cat = 'all';
 
+        // The last visible tile on the same grid row as `tile`; a group's panel goes after it.
+        function lastInRow(tile) {
+            var last = tile;
+            for (var el = tile.nextElementSibling; el; el = el.nextElementSibling) {
+                if (!el.dataset.title || el.offsetParent === null) continue;
+                if (el.offsetTop !== tile.offsetTop) break;
+                last = el;
+            }
+            return last;
+        }
         function currentRoot() {
             for (var i = 0; i < rootRadios.length; i++) if (rootRadios[i].checked) return rootRadios[i].value;
             return 'all';
@@ -103,15 +119,21 @@
             order();
             var q = (search.value || '').trim().toLowerCase();
             var root = currentRoot();
+            // Searching or filtering by root access unfolds the groups: their members show as
+            // plain tiles and are matched one by one. The category filter keeps them folded.
+            var unfolded = !!q || root !== 'all';
             var shown = 0;
             cards.forEach(function (c) {
-                var ok = (cat === 'all' || c.dataset.category === cat)
+                var ok = cat === 'all' || c.dataset.category === cat;
+                if ('groupTile' in c.dataset) ok = ok && !unfolded;
+                else ok = ok && (!c.dataset.member || unfolded)
                     && (root === 'all' || c.dataset.root === root)
                     && (!q || c.dataset.title.indexOf(q) !== -1);
-                c.style.display = ok ? '' : 'none';
+                c.hidden = !ok;
                 if (ok) shown++;
             });
             empty.style.display = shown ? 'none' : '';
+            groups.refresh();
         }
 
         catButtons.forEach(function (btn) {
@@ -136,6 +158,7 @@
             }
         }
         apply();
+        groups.openFromQuery();
     })();
 </script>
 {% endblock main %}
