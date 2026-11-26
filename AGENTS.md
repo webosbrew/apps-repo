@@ -3,6 +3,10 @@
 Guidance for AI agents writing or reviewing package submissions in this repository. The rules for
 submitters are in [README.md](README.md); this file adds what a reviewer should check.
 
+GitHub Copilot code review reads this file, and also the shorter checklist in
+[.github/instructions/packages.instructions.md](.github/instructions/packages.instructions.md), which it
+applies to changes under `packages/`. Keep the two in step when a rule changes.
+
 ## Package ID
 
 A package's ID (the `id` in its `appinfo.json`, and the name of its file in `packages/`) must be
