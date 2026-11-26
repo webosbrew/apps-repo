@@ -152,3 +152,6 @@ cache/
 .pydevproject
 .settings/
 /.mcp.json
+
+# Local scratch space (review checkouts, test builds)
+/tmp/
