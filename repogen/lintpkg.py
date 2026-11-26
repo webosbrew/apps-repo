@@ -195,6 +195,24 @@ class PackageInfoLinter:
         errors.append(message)
 
     @staticmethod
+    def _check_id_segments(info: PackageInfo, new_package: bool, errors: List[str], warnings: List[str]):
+        """A package id needs at least three dot-separated segments (`com.example.app`).
+
+        webOS OSE and LuneOS refuse to install an app whose id has fewer.
+        Like the namespace rule, only new packages fail: renaming a listed one would
+        orphan every TV that has it installed."""
+        pkgid = info.get('id', '')
+        if not pkgid or len(pkgid.split('.')) >= 3:
+            return
+        message = (f'`{pkgid}` has fewer than three segments. Package ids need at least three, '
+                   f'e.g. `com.github.<username>.<app>`: webOS OSE and LuneOS refuse to install apps with shorter ids.')
+        if not new_package:
+            warnings.append(message + ' It predates this rule, so it keeps the id it is already installed under.')
+            return
+        errors.append(message + ' The id must be changed in the app itself (appinfo.json) and its manifest, '
+                                'not just in this file.')
+
+    @staticmethod
     def _check_screenshots(info: PackageInfo, warnings: List[str]):
         """Screenshots are suggested, not required, so their absence is only a warning.
 
@@ -295,6 +313,7 @@ class PackageInfoLinter:
 
         # Process manifest
         self._check_id_namespace(info, new_package, errors, warnings, skipped)
+        self._check_id_segments(info, new_package, errors, warnings)
 
         self._check_source_license(info, errors, warnings, skipped)
 

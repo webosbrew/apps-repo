@@ -13,6 +13,8 @@ Check each of these and comment on any that fail. Skip style nits.
     project's domain on a fork. `org.webosbrew.*` is only for github.com/webosbrew.
   - If the ID must change, say it has to change in the app and its release manifest too,
     not only the file name here.
+- The ID needs at least three dot-separated segments; `myapp` and `com.app` are wrong
+  (webOS OSE and LuneOS refuse to install apps with shorter IDs).
 - Do not ask to rename a package that is already listed on main.
 
 ## Content rules

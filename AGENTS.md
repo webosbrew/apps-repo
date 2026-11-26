@@ -17,6 +17,9 @@ A developer who does not own a domain uses their own GitHub namespace instead:
 `com.github.<username>.<app>` or `io.github.<username>.<app>`, where `<username>` is the GitHub
 account that publishes the app.
 
+The ID needs at least three dot-separated segments. webOS OSE and LuneOS refuse to install an app
+with a shorter one such as `myapp` or `com.app`.
+
 Treat these as wrong:
 
 * A generic or made-up prefix, such as `com.local.*`, `com.custom.*` or `com.app.*`.
