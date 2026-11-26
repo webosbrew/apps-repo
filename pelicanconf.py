@@ -109,9 +109,7 @@ FOOTER_SECTIONS = [
 
 # Editorial settings live as data in conf/, validated against content/schemas/conf/.
 APP_CATEGORIES = repogen.conf.categories()
-_home = repogen.conf.home()
-PINNED_APPS = _home.get('pinned', [])
-FEATURED_APPS = _home.get('featured', [])
+FEATURED_APPS = repogen.conf.home().get('featured', [])
 APP_GROUPS = repogen.conf.groups()
 
 # Following packages will have their IPKs downloaded and hosted on the site

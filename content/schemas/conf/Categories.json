@@ -11,7 +11,13 @@
     "properties": {
       "slug": {"$ref": "../packages/Category.json"},
       "title": {"type": "string", "minLength": 1},
-      "index": {"type": "boolean", "description": "Whether the category gets a shelf on the homepage"}
+      "index": {"type": "boolean", "description": "Whether the category gets a shelf on the homepage"},
+      "pinned": {
+        "type": "array",
+        "description": "App IDs listed first in the category, in this order",
+        "items": {"type": "string", "minLength": 1},
+        "uniqueItems": true
+      }
     }
   }
 }

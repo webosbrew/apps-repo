@@ -55,7 +55,7 @@
                 {% set root = 'required' if package.manifest.rootRequired == True else ('optional' if package.manifest.rootRequired == 'optional' else 'none') %}
                 <a href="{{ SITEURL }}/apps/{{ package.id }}/" class="shelf-card text-decoration-none text-body"
                    data-title="{{ package.title|lower }}" data-category="{{ package.category }}" data-root="{{ root }}"
-                   {%- if package.id in page.metadata.pinned %} data-pin="{{ page.metadata.pinned.index(package.id) }}"{% endif %}>
+                   {%- if package.id in page.metadata.pinned %} data-pin="{{ page.metadata.pinned[package.id] }}"{% endif %}>
                     <div class="shelf-thumb">
                         <img src="{{ package.iconUri }}" class="rounded-4 shelf-icon" alt="{{ package.title }}">
                         {% if package.pool == 'non-free' %}
@@ -87,7 +87,7 @@
             for (var i = 0; i < rootRadios.length; i++) if (rootRadios[i].checked) return rootRadios[i].value;
             return 'all';
         }
-        // "All" stays alphabetical; within a category, pinned apps (data-pin, conf/home.yml order) come first.
+        // "All" stays alphabetical; within a category, pinned apps (data-pin, conf/categories.yml order) come first.
         function order() {
             var sorted = cards.slice();
             if (cat !== 'all') {

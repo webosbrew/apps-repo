@@ -4,8 +4,3 @@ featured:
   - org.webosbrew.hbchannel
   - org.xbmc.kodi
   - com.limelight.webos
-
-# App IDs listed first within their category, in this order, ahead of the alphabetical
-# rest: on the homepage shelves and in the /apps grid when filtered to a category.
-pinned:
-  - org.webosbrew.homechooser

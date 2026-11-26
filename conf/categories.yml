@@ -3,6 +3,8 @@
 #
 # title: the name shown on the site.
 # index: whether the category gets a shelf on the homepage (repo index).
+# pinned: optional app IDs listed first in the category, in this order, ahead of the
+#         alphabetical rest: on its homepage shelf and in the /apps grid filtered to it.
 # Every category with apps appears in the /apps filter sidebar.
 - slug: homemedia
   title: Home Media
@@ -25,6 +27,8 @@
 - slug: launcher
   title: Launchers
   index: true
+  pinned:
+    - org.webosbrew.homechooser
 - slug: utility
   title: Utilities
   index: true

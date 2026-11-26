@@ -151,7 +151,18 @@ def resolve_groups(packages: list, groups: list[dict]) -> list[dict]:
 def add_app_indices(generator: PagesGenerator):
     packages = list(sorted(generator.settings['PACKAGES'].values(), key=lambda info: info['title'].lower()))
 
-    pinned = generator.settings.get('PINNED_APPS', [])
+    by_id = {pkg['id']: pkg for pkg in packages}
+    # Pinned apps lead their category, in the order conf/categories.yml lists them.
+    pinned: dict[str, int] = {}
+    for cat in generator.settings['APP_CATEGORIES']:
+        for rank, pkgid in enumerate(cat.get('pinned', [])):
+            pkg = by_id.get(pkgid)
+            if pkg is None:
+                log.warning('Category %s pins %s, which is not in the catalogue', cat['slug'], pkgid)
+            elif pkg['category'] != cat['slug']:
+                raise ValueError(f'Category `{cat["slug"]}` pins {pkgid}, which is in `{pkg["category"]}`')
+            else:
+                pinned[pkgid] = rank
 
     categories = generator.settings['APP_CATEGORIES']
     known = {cat['slug'] for cat in categories}
@@ -192,9 +203,8 @@ def add_app_indices(generator: PagesGenerator):
             entries.append({
                 'slug': cat['slug'],
                 'title': cat['title'],
-                # Pinned apps first, in conf/home.yml order; sorted() keeps the rest alphabetical.
-                'packages': sorted(in_category, key=lambda pkg: pinned.index(pkg['id'])
-                                   if pkg['id'] in pinned else len(pinned)),
+                # Pinned apps first, in conf/categories.yml order; sorted() keeps the rest alphabetical.
+                'packages': sorted(in_category, key=lambda pkg: pinned.get(pkg['id'], len(pinned))),
             })
         return entries
 
