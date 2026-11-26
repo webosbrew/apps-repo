@@ -46,15 +46,16 @@
             {% endfor %}
         </div>
         {% if multiple %}
+        {# The current slide's dot is a pill that fills over the interval; tapping it pauses or
+           plays the rotation. The other dots go to their slide. #}
         <div class="carousel-controls">
             <div class="carousel-indicators">
                 {% for package in featured %}
                 <button type="button" data-bs-target="#featured-carousel" data-bs-slide-to="{{ loop.index0 }}"
-                        {% if loop.first %}class="active" aria-current="true"{% endif %} aria-label="{{ package.title }}"></button>
+                        {% if loop.first %}class="active" aria-current="true"{% endif %}
+                        data-title="{{ package.title }}" aria-label="{{ package.title }}"><span class="dot-fill"></span></button>
                 {% endfor %}
             </div>
-            <button type="button" class="carousel-pause" aria-label="Pause slideshow">
-                <i class="bi bi-pause-fill" aria-hidden="true"></i></button>
         </div>
         {% endif %}
     </section>
@@ -129,30 +130,43 @@
 {% block scripts %}
 {% include 'group-panel-script.html' %}
 <script>
-    // Featured carousel rotation. Bootstrap's own ride/hover handling is off; rotation runs only
-    // while the user hasn't paused it, no mouse is over it and keyboard focus isn't inside it.
-    // Under reduced motion it starts paused: the play button, indicators and swipe still work.
+    // Featured carousel rotation. The timer is the fill animation on the current slide's dot:
+    // when it ends the carousel moves on, and pausing pauses the animation, so the fill always
+    // shows the real time left. Bootstrap's own cycling is off (interval: false). Rotation runs
+    // unless the user paused it (by tapping the current dot), a mouse is over the carousel or
+    // keyboard focus is inside it. Under reduced motion it starts paused.
     (function () {
         var el = document.getElementById('featured-carousel');
-        var btn = el && el.querySelector('.carousel-pause');
-        if (!btn || !window.bootstrap) return;
-        var carousel = bootstrap.Carousel.getOrCreateInstance(el, { interval: 6000, ride: false, pause: false, touch: true });
+        var indicators = el && el.querySelector('.carousel-indicators');
+        if (!indicators || !window.bootstrap) return;
+        var carousel = bootstrap.Carousel.getOrCreateInstance(el, { interval: false, ride: false, pause: false, touch: true });
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-        var userPaused = reduce.matches, hovered = false, focused = false, running = false;
+        var userPaused = reduce.matches, hovered = false, focused = false;
         function update() {
-            var run = !userPaused && !hovered && !focused;
-            if (run !== running) { running = run; if (run) carousel.cycle(); else carousel.pause(); }
-            btn.setAttribute('aria-label', userPaused ? 'Play slideshow' : 'Pause slideshow');
-            btn.firstElementChild.className = userPaused ? 'bi bi-play-fill' : 'bi bi-pause-fill';
+            el.toggleAttribute('data-paused', userPaused || hovered || focused);
+            indicators.querySelectorAll('[data-bs-slide-to]').forEach(function (dot) {
+                dot.setAttribute('aria-label', dot.classList.contains('active')
+                    ? dot.dataset.title + ': ' + (userPaused ? 'play' : 'pause') + ' slideshow'
+                    : dot.dataset.title);
+            });
         }
-        btn.addEventListener('click', function () {
+        el.addEventListener('animationend', function (e) {
+            if (e.animationName === 'featured-progress') carousel.next();
+        });
+        // Bootstrap moves to a tapped dot's slide from a capturing listener on document, so this
+        // listens capturing on window, which runs first: `active` is still the dot that was
+        // current when it was tapped. Tapping that one is a no-op for Bootstrap.
+        window.addEventListener('click', function (e) {
+            var dot = e.target instanceof Element && e.target.closest('[data-bs-slide-to]');
+            if (!dot || !indicators.contains(dot) || !dot.classList.contains('active')) return;
             userPaused = !userPaused;
             focused = false; // an explicit play wins over the focus pause until focus moves again
             update();
-        });
+        }, true);
+        el.addEventListener('slide.bs.carousel', function () { setTimeout(update); });
         el.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { hovered = true; update(); } });
         el.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') { hovered = false; update(); } });
-        // Keyboard focus only: a mouse click on a dot or the button doesn't count.
+        // Keyboard focus only: a mouse click on a dot doesn't count.
         el.addEventListener('focusin', function (e) { if (e.target.matches(':focus-visible')) { focused = true; update(); } });
         el.addEventListener('focusout', function (e) { if (!el.contains(e.relatedTarget)) { focused = false; update(); } });
         reduce.addEventListener('change', function () { if (reduce.matches) { userPaused = true; update(); } });

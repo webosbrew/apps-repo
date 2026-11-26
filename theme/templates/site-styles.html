@@ -90,24 +90,33 @@
     /* Stacked (xs), the text column must not grow down the slide, or it takes the spare height
        and the content sits at the top instead of centred. */
     @media (max-width: 575.98px) { #featured-carousel .carousel-item .row > .col { flex: 0 0 auto; } }
-    /* Indicators and the pause button sit below the banner (outside the card). Each dot is a
-       24px target (transparent border, fill clipped to the 10px dot); the current one is also
-       larger, not only brighter. */
+    /* Indicators sit below the banner (outside the card), in a row of fixed height. Each dot is
+       a 24px target (transparent border, fill clipped to the 10px dot). The current slide's dot
+       is a pill whose fill grows over the interval; the carousel script moves on when that
+       animation ends, so the fill is the timer. Paused (data-paused), the fill stops and dims
+       and a pause glyph shows on the pill. */
+    #featured-carousel { --featured-interval: 6s; }
     #featured-carousel .carousel-controls { display: flex; justify-content: center; align-items: center;
-        gap: .5rem; margin-top: .5rem; }
+        min-height: 2rem; margin-top: .5rem; }
     #featured-carousel .carousel-indicators { position: static; margin: 0; }
     #featured-carousel .carousel-indicators [data-bs-target] {
-        box-sizing: content-box; width: 10px; height: 10px; margin: 0; padding: 0;
-        border: 7px solid transparent; border-radius: 50%; background-clip: padding-box;
-        background-color: #fff; opacity: .4; transition: opacity .2s ease, transform .2s ease; }
-    #featured-carousel .carousel-indicators .active { opacity: 1; transform: scale(1.3); }
-    #featured-carousel .carousel-pause { display: grid; place-items: center; width: 2rem; height: 2rem;
-        padding: 0; border: 1px solid rgba(255, 255, 255, .3); border-radius: 50%;
-        background: transparent; color: #fff; font-size: 1rem; line-height: 1; }
-    #featured-carousel .carousel-pause:hover { background: rgba(255, 255, 255, .1); }
-    #featured-carousel .carousel-pause:focus-visible,
+        position: relative; box-sizing: content-box; width: 10px; height: 10px; margin: 0; padding: 0;
+        border: 7px solid transparent; border-radius: 12px; background-clip: padding-box;
+        background-color: rgba(255, 255, 255, .4); opacity: 1; overflow: hidden;
+        transition: width .25s ease; }
+    #featured-carousel .carousel-indicators .active { width: 32px; background-color: rgba(255, 255, 255, .3); }
+    #featured-carousel .dot-fill { position: absolute; inset: 0; background: #fff;
+        transform: scaleX(0); transform-origin: left; }
+    #featured-carousel .carousel-indicators .active .dot-fill {
+        animation: featured-progress var(--featured-interval) linear forwards; }
+    #featured-carousel[data-paused] .carousel-indicators .active .dot-fill {
+        animation-play-state: paused; opacity: .55; }
+    #featured-carousel[data-paused] .carousel-indicators .active::after { content: ""; position: absolute;
+        inset: 2px calc(50% - 3px); background: linear-gradient(90deg,
+            #111 0 2px, transparent 2px 4px, #111 4px 6px); }
+    @keyframes featured-progress { to { transform: scaleX(1); } }
     #featured-carousel .carousel-indicators [data-bs-target]:focus-visible {
-        outline: 2px solid var(--bs-primary); outline-offset: 2px; }
+        outline: 2px solid var(--bs-primary); outline-offset: 0; }
     .cta-icon { width: 48px; height: 48px; display: grid; place-items: center;
         background: rgba(207,6,82,.15); color: #ef2f7e; border-radius: 12px; }
     /* Amber accent (website-ng yellow-500) for the "Have an app idea?" card. */
