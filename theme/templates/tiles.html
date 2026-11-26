@@ -32,6 +32,7 @@
 {% macro group_panel(group) -%}
 <section class="group-panel" id="group-panel-{{ group.slug }}" data-group-panel="{{ group.slug }}"
          aria-label="{{ group.title }}" hidden>
+    <div class="group-panel-clip">
     <span class="group-panel-notch" aria-hidden="true"></span>
     <div class="group-panel-surface">
         <div class="group-panel-header">
@@ -41,6 +42,7 @@
         <div class="app-grid">
             {% for package in group.members %}{{ app_tile(package) }}{% endfor %}
         </div>
+    </div>
     </div>
 </section>
 {%- endmacro %}

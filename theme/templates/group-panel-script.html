@@ -1,7 +1,7 @@
 {# Group panels, shared by the homepage shelves and the /apps grid. A group tile
    (button[data-group], see tiles.html) unfolds its panel (#group-panel-<slug>): the panel is
-   moved in after opts.anchorFor(tile) - the last tile of the tile's row - and its height
-   animates from 0 to auto, so whatever follows slides down. One panel is open at a time.
+   moved in after opts.anchorFor(tile) - the last tile of the tile's row - and it animates open
+   (grid rows 0fr -> 1fr), so whatever follows slides down. One panel is open at a time.
    ?group=<slug> in the URL opens that group on load, and follows the open panel. #}
 <script>
     window.initGroupPanels = function (root, opts) {
@@ -31,7 +31,8 @@
             if (!current) return;
             var t = current.tile.querySelector('.shelf-thumb').getBoundingClientRect();
             var p = current.panel.getBoundingClientRect();
-            var x = Math.max(24, Math.min(p.width - 24, t.left + t.width / 2 - p.left));
+            // 32px: half the notch plus the surface's corner radius.
+            var x = Math.max(32, Math.min(p.width - 32, t.left + t.width / 2 - p.left));
             current.panel.style.setProperty('--notch-x', x + 'px');
         }
         // Run fn once the transitions the last class change started have finished; under
@@ -47,7 +48,10 @@
             panel.hidden = false;
             current = { tile: tile, panel: panel };
             aim();
-            void panel.offsetHeight; // commit the closed height so opening transitions
+            // Commit the closed state (0fr) before opening, even when the panel was only just
+            // moved or unhidden, so the browser has a start value to transition from.
+            void getComputedStyle(panel).gridTemplateRows;
+            void panel.offsetHeight;
             panel.classList.add('is-open');
             tile.setAttribute('aria-expanded', 'true');
             if (!animate) { void panel.offsetHeight; panel.classList.remove('no-anim'); }
