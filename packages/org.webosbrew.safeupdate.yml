@@ -37,3 +37,5 @@ description: |
         already executed startup scripts)
   4. If any operation selected above succeeded, you should get a "Finished."
      message in log listing.
+screenshots:
+  - https://github.com/user-attachments/assets/e5b906ba-59a7-45af-aabb-c8afefec8d3a
