@@ -9,7 +9,7 @@ from pelican import signals, Readers, PagesGenerator, StaticGenerator
 from pelican.contents import Page
 from pelican.readers import BaseReader
 
-from repogen import funding, apidata, pkg_info, screenshots, sitemap
+from repogen import funding, apidata, openapi, pkg_info, screenshots, sitemap
 from repogen.icons import obtain_icon
 
 log = logging.getLogger(__name__)
@@ -269,6 +269,7 @@ def add_app_api_data(generator: StaticGenerator):
                      Path(output_path, 'apps'), host_packages, featured_packages, categories=categories)
     apidata.generate(pool_list('non-free'), Path(output_path, 'api', apidata.POOL_DIRS['non-free']),
                      categories=categories)
+    openapi.generate(Path(output_path, 'api'), categories)
 
 
 def add_crawler_files(generator: StaticGenerator):
