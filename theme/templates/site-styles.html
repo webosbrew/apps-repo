@@ -172,4 +172,8 @@
         background: var(--bs-tertiary-bg); padding: 1rem; border-radius: .5rem; overflow-x: auto; }
     .app-description :not(pre) > code {
         background: var(--bs-tertiary-bg); padding: .15em .4em; border-radius: .3rem; }
+    /* All apps filter bar below lg: sits under the sticky navbar; the chip row scrolls without a scrollbar. */
+    .filter-bar { top: var(--navbar-height); z-index: 1010; }  /* top is set from the navbar height by the script */
+    .chip-row { scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 0 .25rem; }
+    .chip-row::-webkit-scrollbar { display: none; }
 </style>

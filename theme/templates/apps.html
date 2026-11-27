@@ -13,9 +13,31 @@
 
 {% block main %}
 <main class="container py-4">
+    {# Below lg: a sticky bar with the search box (moved here by the script) and one scrolling row of chips. #}
+    <div class="d-lg-none sticky-top bg-body pt-2 pb-2 mb-3 filter-bar" id="filter-bar">
+        <div id="search-slot-bar"></div>
+        <div class="d-flex flex-nowrap gap-2 overflow-auto chip-row mt-2" id="chip-row">
+            <div class="dropdown flex-shrink-0">
+                <button type="button" class="btn btn-outline-secondary rounded-pill py-2 text-nowrap dropdown-toggle" id="root-chip"
+                        data-bs-toggle="dropdown" aria-expanded="false">Root: Any</button>
+                <ul class="dropdown-menu" id="root-menu">
+                    {% for value, label in [('all', 'Any'), ('required', 'Required'), ('optional', 'Optional'), ('none', 'None')] %}
+                    <li><button type="button" class="dropdown-item py-2" data-root-value="{{ value }}" data-root-label="{{ label }}">{{ label }}</button></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <button type="button" class="btn btn-primary rounded-pill py-2 text-nowrap flex-shrink-0" data-chip-cat="all">All
+                <span class="badge text-bg-dark rounded-pill">{{ page.metadata.packages|length }}</span></button>
+            {% for cat in page.metadata.filter_categories %}
+            <button type="button" class="btn btn-outline-secondary rounded-pill py-2 text-nowrap flex-shrink-0" data-chip-cat="{{ cat.slug }}">{{ cat.title }}
+                <span class="badge text-bg-secondary rounded-pill">{{ cat.count }}</span></button>
+            {% endfor %}
+        </div>
+    </div>
+
     <div class="row g-4">
-        <aside class="col-lg-3">
-            <div class="mb-3">
+        <aside class="col-lg-3 d-none d-lg-block">
+            <div class="mb-3" id="search-box">
                 <label for="app-search" class="visually-hidden">Search apps</label>
                 <div class="input-group">
                     <span class="input-group-text bg-body-tertiary"><i class="bi bi-search"></i></span>
@@ -87,6 +109,13 @@
         var catButtons = Array.prototype.slice.call(document.querySelectorAll('#cat-filter [data-filter-cat]'));
         var rootRadios = Array.prototype.slice.call(document.querySelectorAll('input[name="root-filter"]'));
         var empty = document.getElementById('apps-empty');
+        var chips = Array.prototype.slice.call(document.querySelectorAll('[data-chip-cat]'));
+        var rootChip = document.getElementById('root-chip');
+        var rootItems = Array.prototype.slice.call(document.querySelectorAll('[data-root-value]'));
+        var chipRow = document.getElementById('chip-row');
+        var searchBox = document.getElementById('search-box');
+        var searchHome = searchBox.parentNode;
+        var searchSlot = document.getElementById('search-slot-bar');
         var cat = 'all';
 
         // The last visible tile on the same grid row as `tile`; a group's panel goes after it.
@@ -115,6 +144,40 @@
             }
             sorted.forEach(function (c) { grid.appendChild(c); });
         }
+        // The one search input lives in the sidebar from lg up and in the sticky bar below it.
+        var wide = window.matchMedia('(min-width: 992px)');
+        function placeSearch() {
+            if (wide.matches) searchHome.insertBefore(searchBox, searchHome.firstChild);
+            else searchSlot.appendChild(searchBox);
+        }
+        // Make the sidebar buttons, the chips and the root radios/menu all show the current state.
+        function syncUI(scroll) {
+            var root = currentRoot();
+            catButtons.forEach(function (b) { b.classList.toggle('active', b.dataset.filterCat === cat); });
+            chips.forEach(function (b) {
+                var on = b.dataset.chipCat === cat;
+                b.classList.toggle('btn-primary', on);
+                b.classList.toggle('btn-outline-secondary', !on);
+                b.classList.toggle('active', on);
+                var badge = b.querySelector('.badge');
+                if (badge) { badge.classList.toggle('text-bg-dark', on); badge.classList.toggle('text-bg-secondary', !on); }
+                if (on && scroll && chipRow.offsetParent !== null) {
+                    chipRow.scrollLeft = b.offsetLeft - (chipRow.clientWidth - b.offsetWidth) / 2;
+                }
+            });
+            rootItems.forEach(function (i) {
+                var on = i.dataset.rootValue === root;
+                i.classList.toggle('active', on);
+                if (on) rootChip.firstChild.nodeValue = 'Root: ' + i.dataset.rootLabel;
+            });
+            rootChip.classList.toggle('btn-primary', root !== 'all');
+            rootChip.classList.toggle('btn-outline-secondary', root === 'all');
+        }
+        function setCat(value) {
+            cat = value;
+            syncUI(true);
+            apply();
+        }
         function apply() {
             order();
             var q = (search.value || '').trim().toLowerCase();
@@ -137,26 +200,41 @@
         }
 
         catButtons.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                catButtons.forEach(function (b) { b.classList.remove('active'); });
-                btn.classList.add('active');
-                cat = btn.dataset.filterCat;
+            btn.addEventListener('click', function () { setCat(btn.dataset.filterCat); });
+        });
+        chips.forEach(function (btn) {
+            btn.addEventListener('click', function () { setCat(btn.dataset.chipCat); });
+        });
+        rootRadios.forEach(function (r) { r.addEventListener('change', function () { syncUI(false); apply(); }); });
+        rootItems.forEach(function (i) {
+            i.addEventListener('click', function () {
+                rootRadios.forEach(function (r) { r.checked = r.value === i.dataset.rootValue; });
+                syncUI(false);
                 apply();
             });
         });
-        rootRadios.forEach(function (r) { r.addEventListener('change', apply); });
+        // Fixed positioning lets the menu escape the chip row's overflow clipping.
+        // (Bootstrap's script loads after this one, hence the load event.)
+        window.addEventListener('load', function () {
+            new bootstrap.Dropdown(rootChip, { popperConfig: function (_, d) { return Object.assign({}, d, { strategy: 'fixed' }); } });
+        });
+        // Keep the bar right under the sticky navbar, whatever height it has (it grows below md, or when opened).
+        var nav = document.querySelector('nav.sticky-top');
+        var bar = document.getElementById('filter-bar');
+        function placeBar() { bar.style.top = nav.getBoundingClientRect().height + 'px'; }
+        new ResizeObserver(placeBar).observe(nav);
+        placeBar();
+        wide.addEventListener('change', placeSearch);
+        placeSearch();
         search.addEventListener('input', apply);
 
         // Pre-select a category from the ?category=<slug> query param (home "See all" links).
         var initialCat = new URLSearchParams(window.location.search).get('category');
         if (initialCat) {
             var target = catButtons.filter(function (b) { return b.dataset.filterCat === initialCat; })[0];
-            if (target) {
-                catButtons.forEach(function (b) { b.classList.remove('active'); });
-                target.classList.add('active');
-                cat = initialCat;
-            }
+            if (target) cat = initialCat;
         }
+        syncUI(true);
         apply();
         groups.openFromQuery();
     })();
