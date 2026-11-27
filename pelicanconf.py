@@ -53,6 +53,7 @@ MARKDOWN = {
         'markdown.extensions.codehilite': {'css_class': 'highlight'},
         'markdown.extensions.extra': {},
         'markdown.extensions.meta': {},
+        'repogen.mdext': {},
         'markdown.extensions.toc': {
             'permalink': True,
         },

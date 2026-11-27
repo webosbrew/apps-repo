@@ -13,6 +13,7 @@ from markdown.treeprocessors import Treeprocessor
 
 from repogen import conf, pkg_info, report, screenshots, validators
 from repogen.common import EXIT_OK, EXIT_PACKAGE_PROBLEM, EXIT_TOOL_PROBLEM
+from repogen.mdext import ListAfterParagraphExtension
 from repogen.pkg_info import PackageInfo
 
 
@@ -343,7 +344,7 @@ class PackageInfoLinter:
 
         description = info.get('description', '')
         if isinstance(description, str):
-            mk = Markdown()
+            mk = Markdown(extensions=[ListAfterParagraphExtension()])
             # patch in the customized image pattern matcher with url checking
             mk.treeprocessors.register(
                 self.ImageProcessor(errors), 'image_link', 1)

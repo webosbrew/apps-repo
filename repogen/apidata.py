@@ -14,6 +14,7 @@ from markdown import Markdown
 from repogen import pkg_info
 from repogen.common import ITEMS_PER_PAGE, ensure_open
 from repogen.icons import obtain_icon
+from repogen.mdext import ListAfterParagraphExtension
 from repogen.pkg_info import PackageInfo
 from repogen.siteurl import siteurl
 
@@ -73,7 +74,7 @@ def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, 
              featured_packages: Set[str] = None, *, categories: List[dict]):
     """Write the API of one pool into `api_dir`. `packages` are sorted by title, and
     `categories` is conf/categories.yml, whose order the category list keeps."""
-    markdown = Markdown()
+    markdown = Markdown(extensions=[ListAfterParagraphExtension()])
 
     site_url = siteurl()
     known = {cat['slug'] for cat in categories}
