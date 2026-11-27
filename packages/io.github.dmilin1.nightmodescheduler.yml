@@ -1,0 +1,22 @@
+title: Night Mode Scheduler
+iconUri: https://raw.githubusercontent.com/dmilin1/LGNightModeScheduler/main/app/largeIcon.png
+manifestUrl: https://github.com/dmilin1/LGNightModeScheduler/releases/latest/download/io.github.dmilin1.nightmodescheduler.manifest.json
+category: system
+pool: main
+requirements:
+  webosRelease: '>=6.5.3'
+shortDescription: Schedule blue light reduction and optional pixel brightness.
+description: |
+  Set a daily window for blue light reduction, check the TV's actual picture
+  settings, and make temporary manual changes from your remote.
+
+  Defaults to 9 PM–6 AM using the TV's local clock. Pixel brightness scheduling
+  is optional, with separate day and night values from 0 to 100. Both default
+  to 100. Changes made manually last until the next scheduled transition.
+
+  Requires a rooted TV and Homebrew Channel with root access. The background
+  service starts at boot and catches up after startup or wake; it does not
+  wake a powered-off TV. Brightness applies to the current input and picture mode.
+screenshots:
+  - url: https://raw.githubusercontent.com/dmilin1/LGNightModeScheduler/main/docs/screenshot.png
+    caption: Live picture status, daily schedule, and optional pixel brightness controls
