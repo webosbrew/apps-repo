@@ -8,3 +8,22 @@ requirements:
   webosRelease: '>=5.0'
 description: |
   Moonfin is a premium client for Jellyfin, Emby, Plex, and Silo for LG Smart TVs supporting webOS 3+
+screenshots:
+  - url: https://raw.githubusercontent.com/Moonfin-Client/Smart-TV/062177c187b20c72fbd954cbf525e2ea51c045b6/images/1-home.webp
+    caption: Home screen with the featured media bar
+  - url: https://raw.githubusercontent.com/Moonfin-Client/Smart-TV/062177c187b20c72fbd954cbf525e2ea51c045b6/images/2-playback.webp
+    caption: Player with trickplay thumbnails and the subtitle menu
+  - url: https://raw.githubusercontent.com/Moonfin-Client/Smart-TV/062177c187b20c72fbd954cbf525e2ea51c045b6/images/3-details.webp
+    caption: The five detail screen styles
+  - url: https://raw.githubusercontent.com/Moonfin-Client/Smart-TV/062177c187b20c72fbd954cbf525e2ea51c045b6/images/4-mediabars.webp
+    caption: The six media bar styles
+  - url: https://raw.githubusercontent.com/Moonfin-Client/Smart-TV/062177c187b20c72fbd954cbf525e2ea51c045b6/images/5-livetv.webp
+    caption: Live TV guide, channel changer and player
+  - url: https://raw.githubusercontent.com/Moonfin-Client/Smart-TV/062177c187b20c72fbd954cbf525e2ea51c045b6/images/6-navigation.webp
+    caption: Top and Sidebar navigation
+  - url: https://raw.githubusercontent.com/Moonfin-Client/Smart-TV/062177c187b20c72fbd954cbf525e2ea51c045b6/images/7-books-games.webp
+    caption: Books library and retro game library
+  - url: https://raw.githubusercontent.com/Moonfin-Client/Smart-TV/062177c187b20c72fbd954cbf525e2ea51c045b6/images/8-home-rows.webp
+    caption: Modern and Classic home rows
+  - url: https://raw.githubusercontent.com/Moonfin-Client/Smart-TV/062177c187b20c72fbd954cbf525e2ea51c045b6/images/9-music.webp
+    caption: Music player with synced lyrics
