@@ -1,0 +1,30 @@
+title: ROIPTV Premium
+iconUri: https://raw.githubusercontent.com/andrei199312/Roiptv/main/icon.png
+manifestUrl: https://github.com/andrei199312/Roiptv/releases/latest/download/com.roiptv.premium.manifest.json
+category: multimedia
+pool: non-free
+shortDescription: IPTV player for playlists supplied by the user.
+requirements:
+  webosRelease: '>=3.0'
+screenshots:
+  - url: https://raw.githubusercontent.com/andrei199312/apps-repo/roiptv-premium-1.0.18/docs/screenshots/home.png
+    caption: ROIPTV Premium home screen with a user-provided playlist in the webOS simulator
+  - url: https://raw.githubusercontent.com/andrei199312/apps-repo/roiptv-premium-1.0.18/docs/screenshots/playback.png
+    caption: ROIPTV Premium playing a test HLS stream in the webOS simulator
+description: |
+  ROIPTV Premium is a video player for LG televisions running webOS 3.0 or later.
+  Users can connect with their ROIPTV subscriber account or load a playlist they provide
+  through the phone activation page. The app contains no channels, playlists or video streams.
+
+  Users must provide playlists and subscriptions they are authorized to use. Playback relies
+  on the television's built-in media support; available formats vary by model, firmware and
+  content provider. The activation page asks for the TV's MAC address from network settings
+  because webOS does not expose it to apps.
+
+  This proprietary application is submitted to the non-free pool. The submitter confirms they
+  hold the rights needed to distribute this adaptation. No source code is offered under an
+  open-source license.
+
+screenshots:
+  - url: https://github.com/andrei199312/Roiptv/releases/download/v1.0.20/roiptv-webos-login.png
+    caption: ROIPTV Premium sign-in and activation options
