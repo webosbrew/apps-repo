@@ -1,0 +1,39 @@
+title: Dev Mode Forever
+iconUri: https://raw.githubusercontent.com/lennylxx/lg-devmode-forever/main/app/largeIcon.png
+manifestUrl: https://github.com/lennylxx/lg-devmode-forever/releases/latest/download/com.lennylxx.devmodeforever.manifest.json
+category: system
+pool: main
+shortDescription: Keeps Developer Mode on by resetting its power-off counter, no root required.
+description: |
+  Keeps Developer Mode enabled on LG webOS TVs without root.
+
+
+  webOS turns Developer Mode off after 11 real power-offs, and the next
+  boot removes every dev-installed app. The official startup script clears
+  that counter only when the network is ready at boot, so it can still
+  build up while the session is valid. Dev Mode Forever runs a small
+  service at every boot that:
+
+  - Resets the power-off counter once it reaches 8, by switching Developer
+    Mode off and back on through the system devmode service
+  - Renews the official Developer Mode session, then backs up and validates
+    the session token before every reset, and aborts if any step fails
+  - Renews the session at startup when fewer than 7 days remain
+  - Shows Developer Mode, token, session time and counter status, with
+    Check now, Extend session and Force toggle actions
+
+
+  A counter reset **reboots the TV**. Expect one controlled reboot per
+  about 8 real power-offs, at most once every 24 hours. Standby with Quick
+  Start+ and reboots do not count as power-offs.
+
+
+  Developer Mode must be enabled through LG's official Developer Mode app,
+  and that app must stay installed. A network connection and a valid
+  official session token are needed to renew the session. No account
+  password is stored or sent. Rooted TVs do not need this app: Homebrew
+  Channel's startup script already clears the counter.
+
+
+  No root required. Free and open source under the Apache-2.0 license.
+  Source code: https://github.com/lennylxx/lg-devmode-forever
