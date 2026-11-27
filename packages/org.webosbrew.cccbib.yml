@@ -6,9 +6,25 @@ pool: main
 requirements:
   webosRelease: '>=4.0'
 description: |
-  [media.ccc.de](https://media.ccc.de) media library application for webOS..
+  [media.ccc.de](https://media.ccc.de) media library application for webOS. Some call it the Netflix for Hackers. Others call it even nicer things, so you should try it out and watch some smart talks!
 
-  ![Main Screen](https://github.com/volkovmqx/cccbib/blob/main/.github/screenshots/screenshot1.png?raw=true)
-  
-  ![Player Screen](https://github.com/volkovmqx/cccbib/blob/main/.github/screenshots/screenshot2.png?raw=true)
-  
+  ### Background
+
+  This app uses the official media.ccc.de GraphQL endpoint. It uses TypeScript, React, Embla, and an HTML5 video player.
+
+  ### Features
+
+  - Browse conferences with a preview of the selected talk (picture or short video) and search for talks.
+  - Save talks to the Watchlist and resume the 20 most recent ones in Continue Watching.
+  - Select audio languages and [subtitles](https://github.com/volkovmqx/cccbib/wiki/Subtitles) when a talk provides them. The app comes in 9 languages.
+  - A lot of customization! Themes yeah, Baby!
+  - Show technical details. Stats for Nerds!
+  - Control the app with webOS [launch commands](https://github.com/volkovmqx/cccbib/wiki/Remote-control) and publish what is playing to Home Assistant over [MQTT](https://github.com/volkovmqx/cccbib/wiki/Home-Assistant-over-MQTT).
+  - Use it in a browser on a phone or tablet. Like [here](https://tv.media.ccc.de)!
+
+  ### Browser support
+
+  The target is Chrome 68 (webOS 5). The production build uses ES2019 syntax or older syntax. A startup error screen shows the error if the app fails to start.
+screenshots:
+  - https://github.com/volkovmqx/cccbib/blob/main/.github/screenshots/screenshot1.png?raw=true
+  - https://github.com/volkovmqx/cccbib/blob/main/.github/screenshots/screenshot2.png?raw=true

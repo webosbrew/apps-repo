@@ -7,14 +7,33 @@ pool: main
 requirements:
   webosRelease: '>=7.0'
 description: |
-  # Breezyfin
+  Breezyfin is a Jellyfin client for LG webOS TVs. It is built with Enact Sandstone.
+  The app provides TV-first navigation for 5-way and Magic Remote input, configurable
+  themes, and playback handling designed for webOS constraints.
 
-  Unofficial performance-oriented Jellyfin client for LG webOS TVs.
+  Other Jellyfin clients and themes, including JellySee, AndroidTV-FireTV, Moonfin, and
+  ElegantFin, inspired parts of Breezyfin's design. Check them out.
 
-  ## Features
-  - Home, library, favorites, search
-  - Media details and playback
-  - Remote-friendly TV UI
+  If you find a problem, open a GitHub issue and include the steps to reproduce it, the
+  affected media or feature, the TV model, and relevant sanitized logs.
 
-  ## Source
-  https://github.com/botagas/Breezyfin
+  ### Current capabilities
+
+  - Multi-server, multi-user saved sessions with quick account switching
+  - Direct playback from Breezyfin Home with matching server/account validation; see [Home launch contract](https://github.com/botagas/Breezyfin/blob/main/HOME_LAUNCH.md).
+  - Automatic session restoration and credential recovery for expired saved accounts
+  - Password and Jellyfin Quick Connect sign-in after a server connection is established
+  - TV-first navigation tuned for LG Magic Remote (5-way and pointer flows)
+  - Elegant (default) and Classic navigation themes
+  - Performance Mode and Performance+ Mode (animation reduction options)
+  - Configurable inactivity screensaver for authenticated browsing views
+  - Playback that adapts to TV/media compatibility through Direct Play, Direct Stream, or Transcode, with explicit consent before Dolby Vision/HDR quality downgrades
+  - Smart subtitle and audio handling, including configurable client-rendered text subtitles and client-rendered bitmap subtitles
+  - Adaptive image loading (WebP when supported, with automatic fallback on load failure)
+  - Optional Breezyfin plugin Home sections, with built-in Home fallback when the server Home provider is unavailable
+  - Native Jellyfin Likes Watchlist with optional plugin-backed progress, history, and statistics
+  - HSS-controlled Discovery feeds and a Calendar view when advertised by the Breezyfin plugin
+  - App-coordinated native Jellyfin SyncPlay and authenticated JellyWatchParty rooms
+  - Built-in diagnostics, logs, and cache tools for easier troubleshooting
+
+  > **Note:** If the app does not start or behaves incorrectly after a major update, clear the cache once in **Settings > Diagnostics** before you report the problem.

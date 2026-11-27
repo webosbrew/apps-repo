@@ -4,9 +4,14 @@ manifestUrl: https://github.com/webosbrew/SpaceCadetPinball/releases/latest/down
 category: game
 pool: main
 description: |
-  ## Summary
+  ### Summary
 
-  Reverse engineering of `3D Pinball for Windows – Space Cadet`, a game bundled with Windows.
+  Reverse engineering of `3D Pinball for Windows - Space Cadet`, a game bundled with Windows.
+
+  ### How to play
+
+  Place compiled executable into a folder containing original game resources (not included).\
+  Supports data files from Windows and Full Tilt versions of the game.
 screenshots:
   - https://github.com/user-attachments/assets/b64c979f-7850-49e2-be21-c54bdbe8addc
   - https://github.com/user-attachments/assets/21e05993-494e-41d8-9447-d4c3c5fff63d

@@ -4,11 +4,9 @@ manifestUrl: https://github.com/krzywro/webos-bluetooth-disabler/releases/latest
 category: utility
 pool: main
 description: |
-  # Bluetooth Disabler
+  Requires Homebrew Channel and root.
 
-  Root required
-
-  # Features
+  ### Features
 
   * Start/stop Bluetooth service on demand
   * Automatically disable Bluetooth after boot

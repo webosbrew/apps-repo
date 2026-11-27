@@ -9,3 +9,13 @@ description: |
   [HyperHDR](https://www.hyperhdr.eu) (Fork of [Hyperion.NG](https://hyperion-project.org)) ambient lighting service incl. frontend to start/stop/autostart the daemon.
 
   To be used in combination with PicCap.
+
+  ### References
+
+  [Hyperion.NG](https://github.com/hyperion-project/hyperion.ng)
+
+  [HyperHDR](https://github.com/awawa-dev/HyperHDR)
+
+  Video grabber of webOS: [hyperion-webos](https://github.com/webosbrew/hyperion-webos)
+
+  Frontend of Video grabber hyperion-webos: [piccap](https://github.com/TBSniller/piccap)

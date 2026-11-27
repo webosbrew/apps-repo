@@ -7,6 +7,17 @@ description: |
   Probably the only custom screensaver you'll ever need on webOS TV.
 
   Requires root.
+
+  ### Features
+
+  * Autostart registration
+  * Temporary apply
+  * Launch screensaver immediately for testing
+
+  ### Acknowledgments
+
+  - Original animation POC by an unnamed individual.
+  - According to WikiMedia Commons - DVD Video logotype does not meet the [threshold of originality](https://commons.wikimedia.org/wiki/Commons:Threshold_of_originality) needed for copyright protection, and is therefore in the public domain.
 screenshots:
   - https://github.com/user-attachments/assets/cbea1891-dd62-4bd9-9b0a-18d7022ba70f
   - https://github.com/user-attachments/assets/57e9d952-b1fd-4459-9b79-5bf3fa0526fd

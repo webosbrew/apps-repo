@@ -9,3 +9,9 @@ description: |
   [Hyperion.NG](https://hyperion-project.org) ambient lighting service incl. frontend to start/stop/autostart the daemon.
 
   To be used in combination with PicCap.
+
+  ### Related projects
+
+  - [Hyperion.NG](https://github.com/hyperion-project/hyperion.ng) - Ambient lighting service/daemon
+  - [hyperion-webos](https://github.com/webosbrew/hyperion-webos) - Video grabber for webOS
+  - [PicCap](https://github.com/TBSniller/piccap) - Frontend for hyperion-webos video grabber

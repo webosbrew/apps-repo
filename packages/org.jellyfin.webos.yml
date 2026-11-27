@@ -7,4 +7,11 @@ pool: main
 requirements:
   webosRelease: '>=5.0'
 description: |
-  Wrapper around [Jellyfin](https://jellyfin.org) Web project
+  This is a small wrapper around the web interface provided by the server (https://github.com/jellyfin/jellyfin-web) so most of the development happens there.
+
+  ### Usage
+
+  Fill in your hostname, port, and schema and click connect. The app will check for a server by grabbing the manifest and the public serverinfo.
+  Afterwards, the app hands off control to the hosted webUI.
+
+  **Note:** If you previously installed the app via Homebrew or Developer mode, you must uninstall that before you can use the store version.
