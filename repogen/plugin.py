@@ -42,7 +42,7 @@ class PackageInfoReader(BaseReader):
             'override_save_as': f'apps/{info["id"]}/index.html',
             # Keep the trailing slash: GitHub Pages 301-redirects the slashless form.
             'override_url': f'apps/{info["id"]}/',
-            'description': info['manifest'].get('appDescription') or info.get('shortDescription'),
+            'description': info.get('shortDescription') or info['manifest'].get('appDescription'),
             'template': 'app',
             'status': 'hidden',
             'modified': info['lastmodified'],

@@ -83,9 +83,9 @@ def generate(packages: List[PackageInfo], api_dir: Path, apps_dir: Path = None, 
 
     def package_item(p_info: PackageInfo, from_file: str) -> PackageInfo:
         package = {k: p_info[k] for k in MANIFEST_KEYS if k in p_info}
-        # Prefer the manifest's appDescription, fall back to the package's shortDescription.
-        package['shortDescription'] = p_info['manifest'].get('appDescription') or p_info.get(
-            'shortDescription')
+        # The package's shortDescription overrides the manifest's appDescription.
+        package['shortDescription'] = p_info.get('shortDescription') or p_info['manifest'].get(
+            'appDescription')
         # Present only on featured packages, so clients can highlight them.
         if featured_packages and p_info['id'] in featured_packages:
             package['featured'] = True

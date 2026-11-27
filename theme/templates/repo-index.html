@@ -28,7 +28,7 @@
         {% endif %}
         <div class="feat-track"{% if count > 1 %} tabindex="0"{% endif %} role="group" aria-label="Slides">
             {% for package in featured %}
-            {% set short = package.manifest.appDescription or package.shortDescription %}
+            {% set short = package.shortDescription or package.manifest.appDescription %}
             <article class="feat-slide hero-banner" role="group" aria-roledescription="slide"
                      aria-label="{{ loop.index }} of {{ count }}">
                 <div class="feat-body">

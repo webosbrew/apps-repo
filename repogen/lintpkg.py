@@ -213,6 +213,24 @@ class PackageInfoLinter:
                                 'not just in this file.')
 
     @staticmethod
+    def _check_short_description(info: PackageInfo, warnings: List[str]):
+        """The site and the API show `shortDescription`, falling back to the manifest's
+        `appDescription`. Without either the app has no tagline; with only a long
+        appDescription it overflows the card. The schema caps shortDescription at 80."""
+        if info.get('shortDescription'):
+            return
+        manifest = _manifest_of(info)
+        if manifest is None:
+            return
+        app_description = (manifest.get('appDescription') or '').strip()
+        if not app_description:
+            warnings.append('No short description: the manifest has no `appDescription`. Add a one-line '
+                            '`shortDescription` (at most 80 characters).')
+        elif len(app_description) > 80 or '\n' in app_description:
+            warnings.append(f'The manifest\'s `appDescription` is {len(app_description)} characters, too long for '
+                            f'the app card. Add a one-line `shortDescription` (at most 80 characters) to show instead.')
+
+    @staticmethod
     def _check_screenshots(info: PackageInfo, warnings: List[str]):
         """Screenshots are suggested, not required, so their absence is only a warning.
 
@@ -318,6 +336,8 @@ class PackageInfoLinter:
         self._check_source_license(info, errors, warnings, skipped)
 
         self._check_screenshots(info, warnings)
+
+        self._check_short_description(info, warnings)
 
         self._check_group(info, errors)
 

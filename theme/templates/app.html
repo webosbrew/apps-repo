@@ -35,7 +35,7 @@
                 </div>
                 <div class="col">
                     <h1 class="h2 mb-1 text-white">{{ page.title }}</h1>
-                    {% set short = m.appDescription or info.shortDescription %}
+                    {% set short = info.shortDescription or m.appDescription %}
                     {% if short %}
                     <div class="text-body-secondary">{{ short }}</div>
                     {% endif %}

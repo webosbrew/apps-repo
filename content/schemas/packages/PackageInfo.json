@@ -36,7 +36,7 @@
     "shortDescription": {
       "type": "string",
       "maxLength": 80,
-      "description": "Short one-line tagline shown on the app card and detail header. Overrides the package manifest's appDescription."
+      "description": "Short one-line tagline shown on the app card and detail header, and as shortDescription in the API. Overrides the package manifest's appDescription; set it when that is missing or longer than 80 characters."
     },
     "detailIconUri": {
       "type": "string",
