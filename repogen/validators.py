@@ -5,7 +5,8 @@ from typing import Any, Type
 
 import jsonschema
 from jsonschema.protocols import Validator
-from jsonschema.validators import RefResolver
+from referencing import Registry, Resource
+from referencing.exceptions import NoSuchResource
 
 
 def schemas_dir() -> Path:
@@ -48,15 +49,21 @@ def validate(validator: Validator, instance: Any) -> None:
 
 
 def for_schema(rel_path: str) -> Validator:
-    def schema_handler(uri: str) -> Any:
-        with schemas_dir().joinpath(urllib.parse.urlparse(uri).path.removeprefix('/schemas/')).open() as rf:
-            return json.load(rf)
+    """A validator for content/schemas/<rel_path>.
 
-    schema_path = schemas_dir().joinpath(rel_path)
-    with schema_path.open() as f:
+    Every schema has an $id under https://repo.webosbrew.org/schemas/, and relative $refs
+    resolve against it, as JSON Schema specifies. Those URLs are served from content/schemas
+    here, so validation never goes to the network and sees the schemas of this checkout."""
+
+    def retrieve(uri: str) -> Resource:
+        parsed = urllib.parse.urlparse(uri)
+        if parsed.scheme != 'https' or not parsed.path.startswith('/schemas/'):
+            raise NoSuchResource(ref=uri)
+        with schemas_dir().joinpath(parsed.path.removeprefix('/schemas/')).open() as rf:
+            return Resource.from_contents(json.load(rf))
+
+    with schemas_dir().joinpath(rel_path).open() as f:
         schema = json.load(f)
-        resolver = RefResolver(base_uri=schema_path.as_uri(), referrer=schema, handlers={'https': schema_handler})
-        validator_cls: Type[jsonschema.Validator] = jsonschema.validators.validator_for(schema)
-        validator = validator_cls(resolver=resolver, schema=schema)
-        jsonschema.validate(schema, validator_cls.META_SCHEMA)
-        return validator
+    validator_cls: Type[jsonschema.Validator] = jsonschema.validators.validator_for(schema)
+    validator_cls.check_schema(schema)
+    return validator_cls(schema, registry=Registry(retrieve=retrieve))
