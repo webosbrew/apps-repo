@@ -14,12 +14,10 @@
         grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
     .app-grid > :not(.group-panel) { margin-bottom: 1rem; }
     .shelf-card { flex: 0 0 auto; width: 112px; text-align: center; }
-    .shelf-thumb { position: relative; width: 96px; height: 96px; margin: 0 auto .5rem; }
-    .shelf-icon { width: 96px; height: 96px; object-fit: cover; background: var(--bs-tertiary-bg); }
-    /* Smaller tiles in the /apps grid on wide screens, where full-size icons read as crowded. */
-    @media (min-width: 992px) {
-        #apps-grid .shelf-card { width: 100%; }
-        #apps-grid .shelf-thumb, #apps-grid .shelf-icon { width: 80px; height: 80px; } }
+    .shelf-thumb { position: relative; width: 80px; height: 80px; margin: 0 auto .5rem; }
+    .shelf-icon { width: 80px; height: 80px; object-fit: cover; background: var(--bs-tertiary-bg); }
+    /* In the /apps grid a tile fills its column, so titles get the column's width. */
+    #apps-grid .shelf-card { width: 100%; }
     .app-shelf .shelf-thumb > .badge { font-size: .6rem; }
     /* Group tile: the lead's icon on a stack of cards, a "+N" badge for the other members.
        A button that opens the group's panel; reset to look like the link tiles. */
