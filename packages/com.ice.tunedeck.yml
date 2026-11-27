@@ -1,0 +1,34 @@
+title: TuneDeck
+iconUri: https://raw.githubusercontent.com/Eraxty/Tunedeck/main/app/assets/icon160.png
+detailIconUri: https://raw.githubusercontent.com/Eraxty/Tunedeck/main/docs/icon.png
+manifestUrl: https://github.com/Eraxty/Tunedeck/releases/latest/download/com.ice.tunedeck.manifest.json
+category: multimedia
+pool: main
+shortDescription: Spotify-style music player for the TV remote, with lyrics and free music
+requirements:
+  webosRelease: '>=4.0'
+screenshots:
+  - url: https://raw.githubusercontent.com/Eraxty/Tunedeck/main/docs/screenshots/home.png
+    caption: Home, with your library on the left and Now Playing on the right
+  - url: https://raw.githubusercontent.com/Eraxty/Tunedeck/main/docs/screenshots/player.png
+    caption: Full-screen player with synced lyrics
+  - url: https://raw.githubusercontent.com/Eraxty/Tunedeck/main/docs/screenshots/welcome.png
+    caption: First launch
+description: |
+  A fast music player for LG TVs, laid out like Spotify desktop and built for the remote.
+
+  - **Your Spotify**: plays your music, playlists and Liked Songs with your own Spotify Premium account,
+    through Spotify's official Web Playback SDK (no DRM is bypassed). Each person signs in with their own
+    free Spotify developer key; the app walks you through it on your phone in about 3 minutes.
+  - **Free music** from Audius without an account, with crossfade and 8D audio.
+  - Synced lyrics (LRCLIB) with per-song timing, full-screen player, queue, profiles, library.
+  - Colour themes and extensions from the Spicetify community.
+
+  ## Root
+
+  Root is optional. With root, TuneDeck starts a small helper on the TV (phone sign-in page, Spotify login
+  relay, playlist imports), set up through the Homebrew Channel on first launch. It runs from the app's own
+  folder, keeps its state in `/var/lib/webosbrew/tunedeck` and links a boot hook into
+  `/var/lib/webosbrew/init.d`. Without root, only the free music works.
+
+  Tested on an LG 43UM7300PTA with webOS TV 4.10.2.
