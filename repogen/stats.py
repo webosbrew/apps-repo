@@ -20,6 +20,11 @@ access allows just 60 requests an hour. A failed request logs a warning and
 leaves that repository without stats; it never fails the build. Counts come from the GraphQL API,
 which always needs a token, many repositories per request.
 
+Set `STATS_ONLY` to a JSON array of package ids (what repogen.check_updates prints) to refresh
+only the repositories those packages release from: in CI the other repositories keep their cached
+values as they are, with no request. A repository missing from the cache is fetched anyway. Unset
+or empty means every repository, as above (the daily build, pushes).
+
 Run `python -m repogen.stats` to fully refresh the whole local cache, or `python -m repogen.stats
 --incremental` to run the CI path against it. It reads the token from
 GITHUB_TOKEN, so `GITHUB_TOKEN=$(gh auth token) python -m repogen.stats` works.
@@ -75,6 +80,19 @@ def repo_of(info: dict) -> Optional[str]:
         if m:
             return f'{m.group(1)}/{m.group(2)}'
     return None
+
+
+def _only_ids() -> Optional[set[str]]:
+    """Package ids named by STATS_ONLY, or None when every repository is to be refreshed."""
+    raw = os.environ.get('STATS_ONLY', '').strip()
+    if not raw:
+        return None
+    try:
+        ids = json.loads(raw)
+        return {i for i in ids if isinstance(i, str)}
+    except (ValueError, TypeError):
+        log.warning('ignoring STATS_ONLY, not a JSON array of ids: %r', raw[:100])
+        return None
 
 
 def _token() -> Optional[str]:
@@ -299,14 +317,22 @@ def _prefetch(wanted: str):
     cache = _load_cache()
     repos: dict[str, str] = {wanted.lower(): wanted}
     pattern = re.compile(r'github\.com/([^/\s\'"]+)/([^/\s\'"]+)/releases/', re.IGNORECASE)
+    only = _only_ids()
+    changed_repos: set[str] = set()
     for path in Path(__file__).parent.parent.joinpath('packages').iterdir():
         try:
             for m in pattern.finditer(path.read_text(encoding='utf-8')):
-                repos.setdefault(f'{m.group(1)}/{m.group(2)}'.lower(), f'{m.group(1)}/{m.group(2)}')
+                key = f'{m.group(1)}/{m.group(2)}'.lower()
+                repos.setdefault(key, f'{m.group(1)}/{m.group(2)}')
+                if only is not None and path.stem in only:
+                    changed_repos.add(key)
         except OSError:
             pass
     ci = 'CI' in os.environ
-    todo = [r for k, r in sorted(repos.items()) if k not in _resolved and (ci or k not in cache)]
+    # With STATS_ONLY, repositories of unchanged packages are not fetched while they have a
+    # cache entry; _lookup then answers them from the cache.
+    todo = [r for k, r in sorted(repos.items()) if k not in _resolved and (ci or k not in cache)
+            and (only is None or k in changed_repos or k not in cache)]
     for repo, fetched in fetch_many(todo, cache).items():
         cache[repo.lower()] = {**fetched, 'fetchedAt': _now()}
         _resolved[repo.lower()] = {k: fetched[k] for k in ('downloads', 'stars')}
@@ -323,7 +349,7 @@ def _lookup(repo: str) -> Optional[dict]:
         if _token() and ('CI' in os.environ or key not in cache):
             _prefetch(repo)
         if key not in _resolved:  # no fetch wanted or possible: whatever the cache holds
-            entry = cache.get(key) if 'CI' not in os.environ else None
+            entry = cache.get(key) if 'CI' not in os.environ or _only_ids() is not None else None
             _resolved[key] = {k: entry[k] for k in ('downloads', 'stars') if k in entry} if entry else None
     return _resolved[key]
 
@@ -342,16 +368,25 @@ def refresh_all(incremental: bool = False) -> int:
     from repogen import pkg_info
     global _cache
     repos: dict[str, str] = {}
+    only = _only_ids() if incremental else None
+    wanted: dict[str, str] = {}
     for info in pkg_info.list_packages(Path(__file__).parent.parent / 'packages', offline=True):
         if repo := repo_of(info):
             repos.setdefault(repo.lower(), repo)
+            if only is not None and info['id'] in only:
+                wanted.setdefault(repo.lower(), repo)
     cache = _load_cache() if incremental else {}
-    fetched = fetch_many(sorted(repos.values(), key=str.lower), cache, force_full=not incremental)
+    if only is not None:  # as in CI: only the changed packages' repositories, plus any not cached yet
+        wanted.update({k: r for k, r in repos.items() if k not in cache})
+        log.info('STATS_ONLY: fetching %d of %d repositories: %s', len(wanted), len(repos), ', '.join(sorted(wanted.values())))
+    fetched = fetch_many(sorted((wanted if only is not None else repos).values(), key=str.lower), cache,
+                         force_full=not incremental)
     _cache = {k: v for k, v in cache.items() if k in repos}
     _cache.update({r.lower(): {**v, 'fetchedAt': _now()} for r, v in fetched.items()})
     _save_cache(_cache)
-    failed = len(repos) - len(fetched)
-    print(f'{len(fetched)} of {len(repos)} repositories have stats, {failed} failed; '
+    attempted = len(wanted) if only is not None else len(repos)
+    failed = attempted - len(fetched)
+    print(f'{len(fetched)} of {attempted} repositories fetched, {failed} failed; '
           f'{requests_made} HTTP requests, {points_spent} points, last rateLimit {last_rate_limit}')
     return failed
 

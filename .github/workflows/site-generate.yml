@@ -5,6 +5,11 @@ name: 'Site: Generate'
 
 on:
   workflow_call:
+    inputs:
+      stats_only:
+        description: JSON array of package ids whose repositories' stats to refresh; empty for all
+        type: string
+        default: ''
 
 jobs:
   site-generate:
@@ -45,6 +50,7 @@ jobs:
         run: invoke build
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          STATS_ONLY: ${{ inputs.stats_only }}
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v5
