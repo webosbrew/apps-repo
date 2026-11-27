@@ -46,6 +46,23 @@
     "requirements": {
       "$ref": "../packages/PackageInfo.json#/properties/requirements"
     },
+    "stats": {
+      "type": "object",
+      "description": "Popularity counts from the package's GitHub repository, refreshed with every site build. Absent when the package does not release from GitHub or the counts could not be read.",
+      "properties": {
+        "downloads": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Downloads from GitHub: the download counts of the .ipk release assets, summed over all releases of the repository. Includes downloads made to update an installed app."
+        },
+        "stars": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Stars of the package's GitHub repository."
+        }
+      },
+      "additionalProperties": false
+    },
     "screenshots": {
       "type": "array",
       "description": "Screenshots of the app, in display order. Absent when the package lists none.",

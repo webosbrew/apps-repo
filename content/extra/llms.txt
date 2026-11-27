@@ -10,7 +10,8 @@ package with its version, description, icon and download URL.
 
 - [All packages](/api/apps.json): every package in a single response. Fields per package:
   `id`, `title`, `shortDescription`, `iconUri`, `manifestUrl`, `manifest` (version and
-  ipk download URL), `pool`, `category`, `fullDescriptionUrl`, and `featured` on homepage apps.
+  ipk download URL), `pool`, `category`, `fullDescriptionUrl`, `stats` (GitHub `downloads` of .ipk assets over all releases
+  and repo `stars`, either may be absent), and `featured` on homepage apps.
 - [Paginated list](/api/apps/1.json): the same packages in pages. Follow `paging.nextUrl`.
 - [Latest release of one app](/api/apps/org.webosbrew.hbchannel/releases/latest.json):
   replace the id in the path with any package id.

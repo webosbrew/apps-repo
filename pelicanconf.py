@@ -10,6 +10,7 @@ from webassets.cache import MemoryCache
 
 import repogen
 import repogen.conf
+import repogen.stats
 from repogen.siteurl import siteurl
 
 AUTHOR = 'webOS Homebrew Project'
@@ -23,6 +24,8 @@ WEBASSETS_SOURCE_PATHS = [theme_dir.joinpath('styles'), pelican.themes.webosbrew
 THEME_TEMPLATES_OVERRIDES = ['./theme/templates']
 
 PLUGINS = [webassets, repogen]
+
+JINJA_FILTERS = {'compact_number': repogen.stats.compact_number}
 
 WEBASSETS_CONFIG = [
     ("CACHE", MemoryCache(1024)),

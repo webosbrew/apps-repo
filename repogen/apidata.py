@@ -19,7 +19,7 @@ from repogen.pkg_info import PackageInfo
 from repogen.siteurl import siteurl
 
 MANIFEST_KEYS = ('id', 'title', 'iconUri', 'manifestUrl', 'manifest', 'manifestUrlBeta', 'manifestBeta', 'pool',
-                 'category', 'detailIconUri', 'requirements', 'screenshots')
+                 'category', 'detailIconUri', 'requirements', 'screenshots', 'stats')
 
 # Where each pool's API lives, under api/ on the site.
 POOL_DIRS = {'main': '', 'non-free': 'non-free'}

@@ -123,6 +123,14 @@
                 {% endif %}
                 <dt class="col-5 fw-normal text-body-secondary">Category</dt>
                 <dd class="col-7">{% for cat in APP_CATEGORIES if cat.slug == info.category %}<a href="{{ SITEURL }}/apps/?category={{ cat.slug }}">{{ cat.title }}</a>{% else %}{{ info.category|capitalize }}{% endfor %}</dd>
+                {% if info.stats and info.stats.downloads is defined %}
+                <dt class="col-5 fw-normal text-body-secondary">Downloads</dt>
+                <dd class="col-7" title="{{ '{:,}'.format(info.stats.downloads) }} IPK downloads from GitHub"><i class="bi bi-download me-1"></i>{{ info.stats.downloads|compact_number }}</dd>
+                {% endif %}
+                {% if info.stats and info.stats.stars is defined %}
+                <dt class="col-5 fw-normal text-body-secondary">Stars</dt>
+                <dd class="col-7" title="{{ '{:,}'.format(info.stats.stars) }} stars on GitHub"><i class="bi bi-star me-1"></i>{{ info.stats.stars|compact_number }}</dd>
+                {% endif %}
                 {% if m.sourceUrl %}
                 <dt class="col-5 fw-normal text-body-secondary">Source</dt>
                 <dd class="col-7 text-truncate"><a href="{{ m.sourceUrl }}" target="_blank" rel="noopener">Repository</a></dd>

@@ -9,7 +9,7 @@ from pelican import signals, Readers, PagesGenerator, StaticGenerator
 from pelican.contents import Page
 from pelican.readers import BaseReader
 
-from repogen import funding, apidata, openapi, pkg_info, screenshots, sitemap
+from repogen import funding, apidata, openapi, pkg_info, screenshots, sitemap, stats
 from repogen.icons import obtain_icon
 
 log = logging.getLogger(__name__)
@@ -36,6 +36,10 @@ class PackageInfoReader(BaseReader):
             # Outside the pkginfo cache, which lives only offline and until the package
             # file changes; sizes have their own cache keyed by URL, used in CI too.
             info['screenshots'] = screenshots.with_sizes(info['id'], info['screenshots'])
+        # Also outside the pkginfo cache: counts change without the package file changing.
+        info.pop('stats', None)
+        if package_stats := stats.for_package(info):
+            info['stats'] = package_stats
 
         metadata = {
             'title': info['title'],

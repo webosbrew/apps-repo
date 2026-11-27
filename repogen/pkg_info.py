@@ -133,6 +133,8 @@ class PackageInfo(TypedDict):
     detailIconUri: NotRequired[str]
     funding: NotRequired[dict]
     screenshots: NotRequired[List[Screenshot]]
+    # Added at build time from GitHub, see repogen/stats.py.
+    stats: NotRequired[dict]
     pool: str
     requirements: NotRequired[PackageRequirements]
     manifest: PackageManifest
