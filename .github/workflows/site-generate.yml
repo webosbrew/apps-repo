@@ -24,6 +24,15 @@ jobs:
           path: ./cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('packages/*') }}
 
+      # Its own cache so each run restores the newest one and saves its own: the step above never
+      # re-saves on a hit.
+      - name: Cache GitHub stats
+        uses: actions/cache@v6
+        with:
+          path: ./.stats-cache
+          key: stats-${{ github.run_id }}
+          restore-keys: stats-
+
       - name: Set up Python
         uses: actions/setup-python@v7
         with:

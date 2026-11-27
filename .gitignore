@@ -144,6 +144,9 @@ output/
 # Package info cache directory
 cache/
 
+# GitHub stats cache (restored and saved by CI separately from cache/)
+.stats-cache/
+
 # IDEA directory
 .idea/
 
