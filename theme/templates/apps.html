@@ -177,6 +177,12 @@
             cat = value;
             syncUI(true);
             apply();
+            // Mirror the choice in ?category= so the view can be shared or reloaded. replaceState,
+            // so Back leaves the page rather than stepping through every filter tried.
+            var url = new URL(window.location.href);
+            if (cat === 'all') url.searchParams.delete('category');
+            else url.searchParams.set('category', cat);
+            history.replaceState(history.state, '', url);
         }
         function apply() {
             order();
