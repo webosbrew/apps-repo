@@ -1,0 +1,25 @@
+title: FinNative
+shortDescription: A native Jellyfin client for LG webOS TVs, built on PlxNative
+iconUri: https://raw.githubusercontent.com/tiper/fin-native/main/pkg/icon160.png
+detailIconUri: https://raw.githubusercontent.com/tiper/fin-native/main/pkg/icon320.png
+manifestUrl: https://github.com/tiper/fin-native/releases/latest/download/io.github.tiper.finnative.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=4.0'
+description: |
+  FinNative is an unofficial, native Jellyfin client for LG webOS TVs. The interface is drawn on the
+  GPU with no Chromium, JavaScript or WebView, and video goes through the TV's hardware decoder.
+
+  It is a fork of [PlxNative](https://github.com/GLinnik21/plx-native) by Gleb Linnik, which does the
+  same for Plex; FinNative adds a Jellyfin layer on top and keeps PlxNative's player and UI.
+
+  - Sign in with Quick Connect or a server address, username and password; servers on the network are found automatically
+  - Direct play with the TV's hardware decoder, resume and seek, subtitles and audio track choice
+  - Optional on-TV conversion of audio the TV cannot decode natively
+  - No telemetry and no crash uploads
+
+  Tested by its maintainer on an LG C1 (webOS 6). Other firmware has not been verified; the `>=4.0`
+  floor matches PlxNative's own listing. Not affiliated with Jellyfin, PlxNative or LG.
+
+  Source and issues: https://github.com/tiper/fin-native
