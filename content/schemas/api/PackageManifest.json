@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://repo.webosbrew.org/schemas/api/PackageManifest.schema",
+  "$id": "https://repo.webosbrew.org/schemas/api/PackageManifest.json",
   "title": "PackageManifest",
   "description": "Package manifest for webOS homebrew package",
   "type": "object",
@@ -30,8 +30,11 @@
       "description": "The title of the application."
     },
     "appDescription": {
-      "type": "string",
-      "description": "The description of the application shown in the application details page."
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The description of the application shown in the application details page, or null."
     },
     "iconUri": {
       "type": "string",

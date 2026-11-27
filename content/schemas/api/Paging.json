@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://repo.webosbrew.org/schemas/api/Paging.json",
+  "title": "Paging",
+  "type": "object",
+  "description": "Position of this page in the list. A file holding the whole list reports itself as page 1 of 1.",
+  "properties": {
+    "page": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of this page, starting at 1."
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of packages on this page."
+    },
+    "maxPage": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of the last page. At least 1, even for an empty list."
+    },
+    "itemsTotal": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of packages on all pages together."
+    },
+    "prevUrl": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "URL of the previous page, relative to this file, or null on the first page."
+    },
+    "nextUrl": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "URL of the next page, relative to this file, or null on the last page."
+    }
+  },
+  "required": [
+    "page",
+    "count",
+    "maxPage",
+    "itemsTotal",
+    "prevUrl",
+    "nextUrl"
+  ]
+}

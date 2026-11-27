@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://webosbrew.org/schema/HomebrewRepository.schema",
+  "$id": "https://repo.webosbrew.org/schemas/api/PackageInfo.json",
   "title": "HomebrewPackageInfo",
   "description": "Homebrew Package Information",
   "type": "object",
@@ -14,8 +14,11 @@
       "description": "The title of the application as it shows in the Launcher and the app window. The application title is unique, set once."
     },
     "shortDescription": {
-      "type": "string",
-      "description": "Short description for your app."
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Short description for your app, or null when the package has none."
     },
     "fullDescriptionUrl": {
       "type": "string",
@@ -85,7 +88,7 @@
       ]
     },
     {
-      "oneOf": [
+      "anyOf": [
         {
           "required": [
             "manifestUrl"
