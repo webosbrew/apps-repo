@@ -39,6 +39,10 @@
     "manifest": {
       "$ref": "PackageManifest.json"
     },
+    "category": {
+      "$ref": "../packages/Category.json",
+      "description": "Category id, one of those listed by categories.json."
+    },
     "requirements": {
       "$ref": "../packages/PackageInfo.json#/properties/requirements"
     },

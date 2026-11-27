@@ -264,9 +264,11 @@ def add_app_api_data(generator: StaticGenerator):
     def pool_list(pool: str):
         return list(sorted(filter(lambda pkg: pkg['pool'] == pool, packages), key=lambda pkg: pkg['title'].lower()))
 
-    apidata.generate(pool_list('main'), Path(output_path, 'api'), Path(output_path, 'apps'), host_packages,
-                     featured_packages)
-    apidata.generate(pool_list('non-free'), Path(output_path, 'api', 'non-free'))
+    categories = generator.settings['APP_CATEGORIES']
+    apidata.generate(pool_list('main'), Path(output_path, 'api', apidata.POOL_DIRS['main']),
+                     Path(output_path, 'apps'), host_packages, featured_packages, categories=categories)
+    apidata.generate(pool_list('non-free'), Path(output_path, 'api', apidata.POOL_DIRS['non-free']),
+                     categories=categories)
 
 
 def add_crawler_files(generator: StaticGenerator):

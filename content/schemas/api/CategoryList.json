@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://repo.webosbrew.org/schemas/api/CategoryList.json",
+  "title": "CategoryList",
+  "description": "Every package category, in display order, including those without packages (categories.json)",
+  "type": "object",
+  "properties": {
+    "categories": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "CategoryInfo.json"
+          },
+          {
+            "properties": {
+              "appsUrl": {
+                "type": "string",
+                "description": "URL of every package of the category in one file, relative to categories.json."
+              },
+              "pagesUrl": {
+                "type": "string",
+                "description": "URL of the first page of packages of the category, relative to categories.json."
+              }
+            },
+            "required": [
+              "appsUrl",
+              "pagesUrl"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "categories"
+  ]
+}

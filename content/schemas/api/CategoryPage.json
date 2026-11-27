@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://repo.webosbrew.org/schemas/api/CategoryPage.json",
+  "title": "CategoryPage",
+  "description": "The packages of one category: all of them (categories/<id>.json) or one page (categories/<id>/<page>.json). A PackagesPage with the category added.",
+  "type": "object",
+  "properties": {
+    "category": {
+      "$ref": "CategoryInfo.json"
+    },
+    "paging": {
+      "$ref": "Paging.json"
+    },
+    "packages": {
+      "$ref": "PackagesPage.json#/properties/packages"
+    }
+  },
+  "required": [
+    "category",
+    "paging",
+    "packages"
+  ],
+  "additionalProperties": false
+}
