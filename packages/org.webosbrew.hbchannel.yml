@@ -27,3 +27,5 @@ description: |
       * In case a device crashes on boot only an emergency shell will be exposed
         via telnet. In order to disable it fix the original crash cause and remove
         `/var/luna/preferences/webosbrew_failsafe` flag file.
+screenshots:
+  - https://user-images.githubusercontent.com/13520633/149569503-c9e13f40-ec44-43f0-b330-94a8a26081e5.png

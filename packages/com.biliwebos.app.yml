@@ -38,5 +38,10 @@ description: |
   ## Source Code
 
   [GitHub](https://github.com/asdf17128/bili-webos) — MIT License
+screenshots:
+  - https://raw.githubusercontent.com/asdf17128/bili-webos/ff4264586ac816a6d1d2bb44da84861a42988f86/docs/screenshots/v2/home.jpg
+  - https://raw.githubusercontent.com/asdf17128/bili-webos/ff4264586ac816a6d1d2bb44da84861a42988f86/docs/screenshots/v2/navigation.jpg
+  - https://raw.githubusercontent.com/asdf17128/bili-webos/ff4264586ac816a6d1d2bb44da84861a42988f86/docs/screenshots/v2/search.png
+  - https://raw.githubusercontent.com/asdf17128/bili-webos/ff4264586ac816a6d1d2bb44da84861a42988f86/docs/screenshots/v2/settings.png
 funding:
   github: [asdf17128]

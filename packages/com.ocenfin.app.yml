@@ -15,3 +15,22 @@ description: |
   * **Direct Play Focus:** Avoid server transcoding with broad format support, including complex subtitles via libbitsub, assjs, and hls.
   * **Watch Together:** Full WebSocket support for remote commands and SyncPlay.
   * **Customization:** Create custom avatars directly on your TV using your recently watched shows or an SVG icon.
+screenshots:
+  - url: https://raw.githubusercontent.com/seluce/OcenFin/bd287bc3d111ca8b7ff220d1ed1d86a4c632430d/docs/screenshots/home.webp
+    caption: OcenFin home screen
+  - url: https://raw.githubusercontent.com/seluce/OcenFin/bd287bc3d111ca8b7ff220d1ed1d86a4c632430d/docs/screenshots/rows.webp
+    caption: Home screen rows
+  - url: https://raw.githubusercontent.com/seluce/OcenFin/bd287bc3d111ca8b7ff220d1ed1d86a4c632430d/docs/screenshots/library.webp
+    caption: Library
+  - url: https://raw.githubusercontent.com/seluce/OcenFin/bd287bc3d111ca8b7ff220d1ed1d86a4c632430d/docs/screenshots/details.webp
+    caption: Title page
+  - url: https://raw.githubusercontent.com/seluce/OcenFin/bd287bc3d111ca8b7ff220d1ed1d86a4c632430d/docs/screenshots/series.webp
+    caption: Season page
+  - url: https://raw.githubusercontent.com/seluce/OcenFin/bd287bc3d111ca8b7ff220d1ed1d86a4c632430d/docs/screenshots/player.webp
+    caption: Player
+  - url: https://raw.githubusercontent.com/seluce/OcenFin/bd287bc3d111ca8b7ff220d1ed1d86a4c632430d/docs/screenshots/screensaver.webp
+    caption: Screensaver
+  - url: https://raw.githubusercontent.com/seluce/OcenFin/bd287bc3d111ca8b7ff220d1ed1d86a4c632430d/docs/screenshots/profiles.webp
+    caption: Profile selection
+  - url: https://raw.githubusercontent.com/seluce/OcenFin/bd287bc3d111ca8b7ff220d1ed1d86a4c632430d/docs/screenshots/settings.webp
+    caption: Settings

@@ -19,6 +19,9 @@ description: |
 
   **Feel free to contribute!**
   [https://github.com/adamff-dev/twitch-adfree-webos](https://github.com/adamff-dev/twitch-adfree-webos)
+screenshots:
+  - url: https://raw.githubusercontent.com/adamff-dev/twitch-adfree-webos/66efe6b89e7d21c67336443935e851182bd6eae6/screenshots/settings.png
+    caption: Settings
 funding:
   github: [adamff-dev]
   buymeacoffee: [rsiztb3]

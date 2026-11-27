@@ -17,3 +17,16 @@ description: |
   and hardware HLS decode.
 
   Source: https://github.com/CheerChen/decotv-webos (MIT)
+screenshots:
+  - url: https://raw.githubusercontent.com/CheerChen/decotv-webos/03dba9765fa1e3c3a4bf9c3f9c3a6ceb2f479afb/assets/screenshots/home.en.webp
+    caption: Home
+  - url: https://raw.githubusercontent.com/CheerChen/decotv-webos/03dba9765fa1e3c3a4bf9c3f9c3a6ceb2f479afb/assets/screenshots/search.en.webp
+    caption: Search
+  - url: https://raw.githubusercontent.com/CheerChen/decotv-webos/03dba9765fa1e3c3a4bf9c3f9c3a6ceb2f479afb/assets/screenshots/library.en.webp
+    caption: Library
+  - url: https://raw.githubusercontent.com/CheerChen/decotv-webos/03dba9765fa1e3c3a4bf9c3f9c3a6ceb2f479afb/assets/screenshots/detail.en.webp
+    caption: Details
+  - url: https://raw.githubusercontent.com/CheerChen/decotv-webos/03dba9765fa1e3c3a4bf9c3f9c3a6ceb2f479afb/assets/screenshots/player.webp
+    caption: Player
+  - url: https://raw.githubusercontent.com/CheerChen/decotv-webos/03dba9765fa1e3c3a4bf9c3f9c3a6ceb2f479afb/assets/screenshots/settings.en.webp
+    caption: Settings

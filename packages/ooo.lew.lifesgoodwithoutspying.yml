@@ -14,3 +14,6 @@ description: |
   - Re-applies at boot
 
   Requires root and the Homebrew Channel.
+screenshots:
+  - url: https://raw.githubusercontent.com/lewisdoesstuff/lifesgoodwithoutspying/1aba228beaafc820c06271e8479aae51578dfe8c/assets/screenshot.png
+    caption: "The app's main screen on an LG G4 running webOS 9"

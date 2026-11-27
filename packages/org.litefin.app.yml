@@ -8,3 +8,5 @@ requirements:
   webosRelease: '>=5.0'
 description: |
   A High-Performance, Native Jellyfin Client for LG web-OS TVs.
+screenshots:
+  - https://github.com/user-attachments/assets/6ef405e1-e530-4b1e-a747-2a681576e827
