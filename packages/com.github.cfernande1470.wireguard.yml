@@ -5,6 +5,7 @@ category: utility
 pool: main
 requirements:
   webosRelease: '>=5.0'
+shortDescription: WireGuard VPN client for rooted TVs
 description: |
   WireGuard VPN client for rooted LG webOS TVs using Homebrew Channel.
 

@@ -1,4 +1,5 @@
 title: Open Service Menu
+shortDescription: Opens webOS hidden service menus (inStart, ezAdjust) over the current app
 description: |
   An overlay app to quickly open webOS hidden service menus (inStart, ezAdjust, etc.) without interrupting the current app or HDMI input.
   //!// Do not change anything in the hidden menu unless you know what you are doing //!//

@@ -12,6 +12,7 @@ screenshots:
     caption: Timeline
   - url: https://raw.githubusercontent.com/mariotaku/Gallery3D/main/docs/webos/fullscreen.webp
     caption: Full screen photo
+shortDescription: The classic Android Froyo 3D photo gallery, for photos on a USB drive
 description: |
   Take a trip back to the Android 2.2 Froyo days with Gallery3D, bringing the classic Cooliris 3D photo wall to your webOS TV. Browse photos on a USB drive as familiar stacks of albums, explore a grid or timeline, or enjoy a full screen view using your remote's pointer or arrow keys.
 

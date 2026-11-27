@@ -6,6 +6,7 @@ group: twitch
 pool: main
 requirements:
   webosRelease: '>=5.0'
+shortDescription: Modded Twitch app that hides ads and claims channel points
 description: |
   Modded Twitch application with extended features
 

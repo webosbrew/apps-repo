@@ -6,6 +6,7 @@ group: aerial-screensaver
 pool: main
 requirements:
   webosRelease: '>=5.0'
+shortDescription: Screensaver with 190+ aerial videos, adjustable texts and custom fonts
 description: |
   # Aerial webOS Screensaver
 

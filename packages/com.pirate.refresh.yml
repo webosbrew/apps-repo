@@ -5,6 +5,7 @@ category: system
 pool: main
 requirements:
   webosRelease: '>=5.0'
+shortDescription: Keeps your Developer Mode session token refreshed automatically
 description: |
 
   # WebOS Token Refresher

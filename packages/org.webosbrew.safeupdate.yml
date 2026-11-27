@@ -3,6 +3,7 @@ iconUri: https://raw.githubusercontent.com/webosbrew/homebrew-channel-safe-updat
 manifestUrl: https://github.com/webosbrew/homebrew-channel-safe-updater/releases/latest/download/org.webosbrew.safeupdate.manifest.json
 category: system
 pool: main
+shortDescription: Repairs and updates a broken Homebrew Channel installation
 description: |
   This application is a tool helpful in recovering broken or potentially-broken
   Homebrew Channel installations. It elevates its own root code execution service,

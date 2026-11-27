@@ -1,4 +1,5 @@
 title: 2048 Port for WebOS
+shortDescription: The classic 2048 puzzle game, played with the remote
 description: |
   Classic 2048 puzzle game ported for LG webOS TVs.
   App ported by Kzu.

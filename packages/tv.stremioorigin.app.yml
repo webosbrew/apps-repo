@@ -5,6 +5,7 @@ category: streaming
 pool: main
 requirements:
   webosRelease: '>=3.0'
+shortDescription: Native player for Stremio addons; bring your own account and addons
 description: |
   # Stremio Origin
 

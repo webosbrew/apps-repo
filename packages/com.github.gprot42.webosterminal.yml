@@ -5,6 +5,7 @@ category: utility
 pool: main
 requirements:
   webosRelease: '>=1.0'
+shortDescription: "Native terminal for rooted TVs: run shell commands without a laptop"
 description: |
   # webOS Terminal
 

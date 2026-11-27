@@ -5,6 +5,7 @@ category: homemedia
 pool: main
 requirements:
   webosRelease: '>=7.0'
+shortDescription: Cinema-style Music Assistant player with album-art theming
 description: |
   A cinema-inspired **Music Assistant** player for LG webOS TVs.
 
