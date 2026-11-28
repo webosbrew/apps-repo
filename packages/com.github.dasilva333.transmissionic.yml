@@ -1,0 +1,26 @@
+title: Transmissionic
+iconUri: https://raw.githubusercontent.com/dasilva333/webos-transmissionic/main/assets/icon160.png
+detailIconUri: https://raw.githubusercontent.com/dasilva333/webos-transmissionic/main/assets/icon320.png
+manifestUrl: https://github.com/dasilva333/webos-transmissionic/releases/latest/download/manifest.json
+category: utility
+pool: main
+requirements:
+  webosRelease: '>=5.3'
+shortDescription: Modern, responsive Transmission BitTorrent remote manager
+
+screenshots:
+  - https://raw.githubusercontent.com/dasilva333/webos-transmissionic/main/assets/screenshot1.png
+
+description: |
+  Transmissionic is a modern, fast, and feature-rich BitTorrent remote management client for Transmission daemons on LG webOS TVs.
+
+  Ported from the open-source project by [6c65726f79/Transmissionic](https://github.com/6c65726f79/Transmissionic).
+
+  ### Features
+
+  * **Full Transmission Control**: View active downloads, progress bars, real-time download and upload speeds, ETA, and peer statistics.
+  * **Queue Management**: Pause, resume, reorder, remove, or add new torrent files and magnet links.
+  * **Multi-Server Support**: Easily manage multiple Transmission servers with built-in connection profile manager.
+  * **webOS 5+ Compatibility**: Transpiled specifically for Chromium 68 compatibility, eliminating ES2020 runtime syntax errors on webOS 5 (OLED CX) and newer models.
+  * **TV Remote D-Pad & Back Key Support**: Full 2D spatial D-pad navigation (Up/Down/Left/Right/OK) with high-visibility focus rings, overlay focus trapping, native webOS Back key (`461`) handling, and LG Magic Remote air-mouse support.
+  * **Dark OLED Theme**: Sleek dark-mode aesthetic built with Ionic Vue.
