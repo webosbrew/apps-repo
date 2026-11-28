@@ -1,0 +1,13 @@
+title: CA Bundle Manager
+iconUri: https://raw.githubusercontent.com/alpinesox/lg-homebrew-ca-bundle-updater/main/assets/icon.svg
+manifestUrl: https://github.com/alpinesox/lg-homebrew-ca-bundle-updater/releases/download/v0.1.6/manifest.json
+category: system
+pool: main
+requirements:
+  webosRelease: '>=9.0'
+description: |
+  Choose Mozilla, Chrome unconstrained, and custom PEM certificate sources, then explicitly apply the selected roots as system-wide trust anchors.
+
+  Requires Homebrew Channel's root execution service for privileged actions. It refuses to apply, restore, or enable boot checks while another CA overlay is mounted. Plain PEM bundles do not include all Mozilla or Chrome browser-specific trust constraints.
+
+  Screenshots are not included yet.
