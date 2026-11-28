@@ -1,0 +1,50 @@
+title: JellyRust
+
+iconUri: https://raw.githubusercontent.com/mac-lucky/jellyrust/main/pkg/icon160.png
+detailIconUri: https://raw.githubusercontent.com/mac-lucky/jellyrust/main/pkg/icon320.png
+
+manifestUrl: https://github.com/mac-lucky/jellyrust/releases/latest/download/com.macluckylab.jellyrust.manifest.json
+
+category: multimedia
+pool: main
+
+shortDescription: A native Jellyfin client for LG webOS TVs with the look of Litefin
+
+screenshots:
+  - url: https://raw.githubusercontent.com/mac-lucky/jellyrust/v0.12.0/docs/screenshots/jellyrust/home.jpg
+    caption: Home
+  - url: https://raw.githubusercontent.com/mac-lucky/jellyrust/v0.12.0/docs/screenshots/jellyrust/detail.jpg
+    caption: A film's page
+  - url: https://raw.githubusercontent.com/mac-lucky/jellyrust/v0.12.0/docs/screenshots/jellyrust/player.jpg
+    caption: Playback
+
+requirements:
+  webosRelease: '>=4.0'
+
+description: |
+  An unofficial, native Jellyfin client for LG webOS televisions with the look of [Litefin](https://github.com/MoazSalem/litefin).
+
+  JellyRust is a fork of [Native Jelly](https://github.com/sostk/native-jelly). It draws its interface directly on the GPU and hands video to the television's own hardware decoder, and it looks like Litefin: a pure black theme, the left rail, Litefin's home rows, detail pages and player controls. It installs as its own app, beside Native Jelly or Litefin.
+
+  **What it does**
+
+  * Sign in to your Jellyfin server with a Quick Connect code approved from another device
+  * Several Jellyfin users on one television, with **Who's watching?** at start
+  * Home, your libraries, Favorites, Random, Search and Continue Watching
+  * Plays a file directly when the television can decode it; anything else is converted by your server, which also records where you stopped and what you finished
+  * Audio and subtitle tracks follow what your server remembers for you, with a preference for dubbed or voice-over audio
+  * English, Polish, Spanish, Russian and Belarusian
+
+  **Scope - please read before installing**
+
+  * **Video playback is verified on two televisions:** an LG C1 (2021) on webOS 6.5.3 and an LG C5 (2025) on webOS 10.3.1. On every other firmware from webOS 4.0 up the app is only known to pass a static compatibility check. If you try it on another set, please [report what happened](https://github.com/mac-lucky/jellyrust/issues), whether it worked or not.
+  * **Movies and TV shows only.** No music, photos or live TV.
+  * **Never type a password into the app:** it logs typed text on the TV. Sign in with Quick Connect.
+
+  No telemetry: the app contains no crash-reporting or analytics code, and the only server it talks to is yours.
+
+  Screenshots show openly licensed films from the Blender Foundation and others, credited in [CREDITS.md](https://github.com/mac-lucky/jellyrust/blob/main/docs/screenshots/CREDITS.md).
+
+  Not affiliated with, endorsed by, or sponsored by the Jellyfin project, LG Electronics, Native Jelly or Litefin.
+
+  Source, release notes and issues: https://github.com/mac-lucky/jellyrust
