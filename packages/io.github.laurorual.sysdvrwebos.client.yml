@@ -1,0 +1,34 @@
+title: SysDVR WebOS
+iconUri: https://raw.githubusercontent.com/laurorual/sysdvr-webos/main/webos/icon.png
+manifestUrl: https://github.com/laurorual/sysdvr-webos/releases/latest/download/io.github.laurorual.sysdvrwebos.client.manifest.json
+category: multimedia
+pool: main
+shortDescription: Stream your Nintendo Switch to LG webOS TVs via SysDVR or Switch Frame Tap.
+
+requirements:
+  webosRelease: '>=5.0'
+
+description: |
+  Native Nintendo Switch streaming client for LG webOS TVs, with two network
+  streaming backends:
+
+  - **SysDVR** in TCP Bridge mode: H.264 video and PCM stereo audio at 720p30.
+  - **Switch Frame Tap** in Network mode: H.264 video and PCM stereo audio,
+    supporting up to 720p60 or 1080p60 depending on the console and game.
+    Switch Frame Tap support is currently beta.
+
+  Features include LG hardware H.264 decoding through NDL DirectMedia,
+  automatic LAN discovery for both backends, selectable consoles and servers,
+  audio/video synchronization, and automatic reconnection after sleep, server
+  restarts, or transient network failures. No FFmpeg installation is required
+  on the TV.
+
+  Requires an LG TV running webOS 5.0 or later and a Nintendo Switch running
+  either SysDVR in TCP Bridge mode or Switch Frame Tap in Network mode on the
+  same local network. 5 GHz Wi-Fi or Ethernet is recommended.
+
+  Switch Frame Tap is under active development; streaming stability may also
+  depend on the Switch-side server/sysmodule.
+
+  Existing Homebrew Channel users upgrading from the previous package ID must
+  uninstall the old SysDVR entry before installing this package.
