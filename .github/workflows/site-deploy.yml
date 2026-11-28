@@ -19,8 +19,10 @@ permissions:
   id-token: write
 
 jobs:
-  # Stage 1: has any package published a new version since the last check? Pushes, manual runs
-  # and the daily schedule force a full build; the 2-hourly schedule builds only on changes.
+  # Stage 1: does any package's manifest differ from what the live site publishes? Compared with
+  # the deployed data, not a saved state, so a build or deploy that failed is retried by the next
+  # check. Pushes, manual runs and the daily schedule force a full build; the 2-hourly schedule
+  # builds only on changes.
   check:
     runs-on: ubuntu-latest
     outputs:
@@ -30,15 +32,6 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v7
-
-      # The newest cache of any run, as site-generate.yml does. The state file lives next to the
-      # stats cache, so the generate job restores it too and carries it on.
-      - name: Restore state
-        uses: actions/cache/restore@v6
-        with:
-          path: ./.stats-cache
-          key: stats-${{ github.run_id }}-check
-          restore-keys: stats-
 
       - name: Set up Python
         uses: actions/setup-python@v7
@@ -56,15 +49,6 @@ jobs:
         env:
           # Empty for the 2-hourly schedule; every other trigger builds everything.
           FORCE_FLAG: ${{ github.event.schedule != '17 */2 * * *' && '--force' || '' }}
-
-      # Saved under its own key: the generate job saves stats-<run id>, and a key that exists
-      # is never overwritten.
-      - name: Save state
-        if: ${{ !cancelled() }}
-        uses: actions/cache/save@v6
-        with:
-          path: ./.stats-cache
-          key: stats-${{ github.run_id }}-check
 
   # Stage 2: the build. If the check job itself failed, pushes, manual runs and the daily
   # schedule still build, in full.
