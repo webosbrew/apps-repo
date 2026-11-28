@@ -1,0 +1,26 @@
+title: Aurora
+iconUri: https://raw.githubusercontent.com/GuiDev1994/aurora-tv/main/deploy/webos/icon_large.png
+detailIconUri: https://raw.githubusercontent.com/GuiDev1994/aurora-tv/main/deploy/webos/icon_large.png
+manifestUrl: https://github.com/GuiDev1994/aurora-tv/releases/latest/download/com.aurora.gamestream.manifest.json
+category: game
+pool: main
+description: |
+  **Aurora** is a fork of [Moonlight TV](https://github.com/mariotaku/moonlight-tv) for LG webOS,
+  focused on 4K 120 Hz HDR streaming with Sunshine or GameStream hosts.
+
+  App ID: `com.aurora.gamestream` (separate from Moonlight `com.limelight.webos`).
+
+  * HEVC, AV1, and HDR10 when the host and the TV support them
+  * Up to 4K 120 Hz
+  * Releases: [github.com/GuiDev1994/aurora-tv/releases](https://github.com/GuiDev1994/aurora-tv/releases)
+screenshots:
+  - url: https://raw.githubusercontent.com/GuiDev1994/aurora-tv/main/docs/images/home.png
+    caption: Home
+  - url: https://raw.githubusercontent.com/GuiDev1994/aurora-tv/main/docs/images/settings.png
+    caption: Settings
+  - url: https://raw.githubusercontent.com/GuiDev1994/aurora-tv/main/docs/images/performance-stats.png
+    caption: Performance stats
+  - url: https://raw.githubusercontent.com/GuiDev1994/aurora-tv/main/docs/images/keyboard-streaming.png
+    caption: Streaming
+funding:
+  github: [GuiDev1994]
