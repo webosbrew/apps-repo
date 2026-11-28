@@ -1,0 +1,21 @@
+title: App Explorer for webOS
+iconUri: https://raw.githubusercontent.com/dasilva333/webos-storeplus/main/assets/icon160.png
+detailIconUri: https://raw.githubusercontent.com/dasilva333/webos-storeplus/main/assets/icon320.png
+manifestUrl: https://github.com/dasilva333/webos-storeplus/releases/latest/download/manifest.json
+category: utility
+pool: main
+shortDescription: Modern split-pane app explorer with GitHub popularity and category filters
+
+screenshots:
+  - https://raw.githubusercontent.com/dasilva333/webos-storeplus/main/assets/screenshot1.png
+
+description: |
+  App Explorer for webOS is an independent catalog browser and directory utility designed for comfortable sofa discovery on LG webOS TVs.
+
+  ### Features
+
+  * **GitHub Star Popularity Ranking**: Discover the most popular community apps sorted by real-time GitHub stars.
+  * **Roomy TV Cards**: Generous 144px card height designed specifically for comfortable reading from the couch on OLED displays.
+  * **Split Detail Pane**: Rich application overview with repository metadata, version badges, install size, and quick Launch/Uninstall controls.
+  * **Full TV Remote Navigation**: Native D-pad navigation with instant focus ring feedback.
+  * **Smart Categories**: Quick filter pills for All, Featured, Installed, Media, Games, and Root & Tools.
