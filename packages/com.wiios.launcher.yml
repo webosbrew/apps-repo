@@ -1,0 +1,12 @@
+title: WiiOS
+iconUri: https://raw.githubusercontent.com/KaykCaputo/WiiOS-webOS/master/icon.png
+manifestUrl: https://github.com/KaykCaputo/WiiOS-webOS/releases/latest/download/com.wiios.launcher.homebrew.manifest.json
+category: launcher
+pool: main
+requirements:
+  webosRelease: '>=4.0'
+description: |
+  A customizable channel launcher for LG webOS TVs. Use it as a regular app, or select it as Home with Home Chooser on a rooted TV.
+screenshots:
+  - url: https://raw.githubusercontent.com/KaykCaputo/WiiOS-webOS/master/docs/media/home.png
+    caption: WiiOS channel grid
