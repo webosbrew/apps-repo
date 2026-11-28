@@ -1,0 +1,58 @@
+# Stash for webOS: https://github.com/pustal/StashWebOS
+# The file name (without .yml) is the app id, as in appinfo.json.
+
+# Display name of the application
+title: Stash
+# Publicly accessible HTTPS link to the icon image itself (not a github.com/.../blob/ page)
+iconUri: https://raw.githubusercontent.com/pustal/StashWebOS/main/assets/icons/source/stash-logo.jpg
+# The manifest of the latest release (written by `npm run package` in StashWebOS)
+manifestUrl: https://github.com/pustal/StashWebOS/releases/latest/download/org.stashwebos.app.manifest.json
+category: multimedia
+# Open source
+pool: main
+# The app targets the browser engine of webOS 4 (Chromium 53) and newer.
+requirements:
+  webosRelease: '>=5.0'
+# Shown above the description (images from the app's README)
+screenshots:
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/home.png
+    caption: Home
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/scenes.png
+    caption: Scenes
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/scene.png
+    caption: Scene Page
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/player.png
+    caption: Player
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/performers.png
+    caption: Performers
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/performer.png
+    caption: Performer page
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/gallery.png
+    caption: Gallery
+  - url: https://raw.githubusercontent.com/pustal/StashWebOS/main/docs/screenshots/filter.png
+    caption: Filter panel
+description: |
+  An unofficial client for [Stash](https://github.com/stashapp/stash), the
+  self-hosted media organizer, made for the TV remote and careful with the TV's
+  small storage.
+
+  - Home rows, browsing by scenes, groups, markers, galleries, images,
+    performers, studios and tags, with sorting, filters and Stash's saved filters
+  - Play all and Shuffle on every scene list
+  - Player that plays the original file when the TV can decode it and falls back
+    to Stash's transcodes, with seek thumbnails, markers, subtitles and resume
+  - Image viewer with zoom, rotate and slideshows
+  - Editing from the remote: ratings, tags, performers, markers, details,
+    scraping, bulk actions
+  - Library tasks and Stash server settings, including first-time setup of a
+    new Stash server
+  - Thumbnails are shrunk and kept in a bounded cache (size set in Settings), so
+    the app doesn't fill the TV's storage
+  - Pin code access protection.
+
+  Sign in with an API key or with your Stash username and password.
+  Requires your own Stash server (v0.27 or newer). Not affiliated with the
+  Stash project.
+# Sponsor information, like .github/FUNDING.yml
+funding:
+  ko_fi: pustal
