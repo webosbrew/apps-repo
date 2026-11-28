@@ -1,0 +1,47 @@
+title: Memories TV
+iconUri: https://raw.githubusercontent.com/Whisprin/memories-tv-webos/main/assets/icon-store.png
+detailIconUri: https://raw.githubusercontent.com/Whisprin/memories-tv-webos/main/assets/icon-source.png
+manifestUrl: https://github.com/Whisprin/memories-tv-webos/releases/latest/download/manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=8.0'
+description: |
+  Your [Nextcloud Memories](https://memories.gallery/) photo and video library on your LG TV,
+  built to be browsed from the couch with the remote. Memories TV only reads your library:
+  nothing on your server is changed.
+
+  ## Features
+
+  - **Timeline**: your whole library, day by day, in a justified grid that keeps every photo's shape, with a date scrubber to jump to any month or year
+  - **Memories' sections**, in the same order as its web app: Folders, Favourites, Albums, People, Archive, On this day, Places and Tags
+  - **Full-screen viewer**: controls that fade away, an Info panel (place, people, tags, camera and file details) and a rotate button
+  - **Videos**: played from the original file with seeking, including HDR, without transcoding on the server
+  - **Slideshow**: crossfades, shuffle and an adjustable interval, and the screen saver stays away
+  - **RAW files**: a RAW badge, and RAW files stacked behind the JPG or HEIC of the same name when Memories stacks them
+  - **Sign in with your phone**: scan a QR code and approve the TV; two-factor and single sign-on work as usual
+  - **Several accounts**: switch between servers or family members
+  - **Made for the remote**: the arrow keys work everywhere, and so do the Magic Remote pointer and wheel
+
+  ## Requirements
+
+  - Nextcloud with the [Memories](https://apps.nextcloud.com/apps/memories) app
+  - The server reachable from the TV over HTTPS with a publicly trusted certificate (for example Let's Encrypt)
+  - Video previews enabled in Nextcloud, for video thumbnails
+
+  No CORS or reverse-proxy changes are needed.
+
+  ## Setup
+
+  1. Enter your Nextcloud address
+  2. Scan the QR code with your phone, sign in to Nextcloud and choose **Grant access**
+  3. Your timeline opens
+
+  See the [README](https://github.com/Whisprin/memories-tv-webos#readme) for troubleshooting.
+
+  ## Disclaimer
+
+  Unofficial third-party client, not affiliated with or endorsed by Nextcloud or the Memories project.
+screenshots:
+  - url: https://raw.githubusercontent.com/Whisprin/memories-tv-webos/main/docs/timeline.jpg
+    caption: Timeline and date scrubber
