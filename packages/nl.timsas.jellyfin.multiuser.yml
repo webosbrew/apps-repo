@@ -1,0 +1,17 @@
+title: Jellyfin-Multiuser
+shortDescription: Multi-user Jellyfin client with profile switcher and PIN protection
+iconUri: https://raw.githubusercontent.com/OudeKaas69/jellyfin-multiuser/master/frontend/assets/icon-160.png
+manifestUrl: https://github.com/OudeKaas69/jellyfin-multiuser/releases/latest/download/nl.timsas.jellyfin.multiuser.manifest.json
+category: multimedia
+pool: main
+requirements:
+  webosRelease: '>=5.0'
+description: |
+  Multi-user fork of the official [Jellyfin](https://jellyfin.org) webOS client (`org.jellyfin.webos`) that installs side-by-side with the stock app.
+
+  ### Features
+  - **"Who's watching?" Profile Switcher:** Displays public server accounts alongside locally saved profiles — works even when all accounts are hidden from the login screen on the Jellyfin server (`/Users/Public` returns `[]`).
+  - **Add User & Quick Connect:** Add accounts via username/password or Jellyfin Quick Connect code directly from the TV.
+  - **Per-Profile 4-Digit PIN Lock:** Optional 4-digit PIN lock per profile with an on-screen TV remote keypad (supports both D-pad and physical number keys).
+  - **Auto Sign-In & Profile Drawer:** Action drawer below the selected profile card to toggle Auto Sign-in, manage PINs, or remove saved credentials.
+  - **Fast In-App User Switching:** Adds a Switch User button to the Jellyfin top header bar and an entry in the user Settings menu to return to the profile picker without signing out or losing saved tokens.
